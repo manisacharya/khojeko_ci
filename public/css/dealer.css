@@ -1,0 +1,25 @@
+#sdealer {
+	padding:20px;
+}
+
+.listview {
+	height:350px;
+	width:200px;
+	float:left;
+	border:1px solid black;
+}
+
+.gridview {
+	height:200px;
+	width:800px;
+	clear:both;
+	border:1px solid black;
+}
+
+div#profile p {
+	font-size:12px;
+	font-height:10px;
+	padding:0;
+	margin:0;
+	color:#fff;
+}

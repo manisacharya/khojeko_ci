@@ -1,0 +1,112 @@
+.cd-accordion-menu {
+  padding-left:10px;
+}
+.cd-accordion-menu ul {
+  /* by default hide all sub menus */
+  display: none;
+}
+.cd-accordion-menu li {
+ /* -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;*/
+ list-style-type:none;
+}
+.cd-accordion-menu input[type=checkbox] {
+  /* hide native checkbox */
+  position: absolute;
+  opacity: 0;
+}
+.cd-accordion-menu label, .cd-accordion-menu a {
+  position: relative;
+  display: block;
+
+  font-size:14px;
+}
+.no-touch .cd-accordion-menu label:hover, .no-touch .cd-accordion-menu a:hover {
+  background: #52565d;
+}
+.cd-accordion-menu label::before, .cd-accordion-menu label::after, .cd-accordion-menu a::after {
+  /* icons */
+  content: '';
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+.cd-accordion-menu label {
+  cursor: pointer;
+}
+
+.cd-accordion-menu input[type=checkbox]:checked + label + ul,
+.cd-accordion-menu input[type=checkbox]:checked + label:nth-of-type(n) + ul {
+  /* use label:nth-of-type(n) to fix a bug on safari (<= 8.0.8) with multiple adjacent-sibling selectors*/
+  /* show children when item is checked */
+  display: block;
+}
+
+.cd-accordion-menu input[type=checkbox]:checked > .hidden_div{display:block}
+.hidden_div{display:none}
+.category_block{border:1px solid #808080;border-radius:5px;}
+.category{background:#808080;color:white;height:50px;font-size:16px;padding:10px 10px;}
+
+.menu_cat {
+padding-left:10px;
+
+}
+.menu_cat ul {
+  /* by default hide all sub menus */
+  display: none;
+}
+.menu_cat li {
+ /* -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;*/
+ list-style-type:none;
+}
+.menu_cat input[type=checkbox] {
+  /* hide native checkbox */
+  position: absolute;
+  opacity: 0;
+}
+.menu_cat label, .menu_cat a {
+  position: relative;
+  display: block;
+
+  font-size:14px;
+}
+.no-touch .menu_cat label:hover, .no-touch .menu_cat a:hover {
+  background: #52565d;
+  
+}
+.menu_cat label::before, .menu_cat label::after, .menu_cat a::after {
+  /* icons */
+  content: '';
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+.menu_cat label {
+  cursor: pointer;
+}
+
+.menu_cat input[type=checkbox]:checked + label + ul,
+.menu_cat input[type=checkbox]:checked + label:nth-of-type(n) + ul {
+  /* use label:nth-of-type(n) to fix a bug on safari (<= 8.0.8) with multiple adjacent-sibling selectors*/
+  /* show children when item is checked */
+  display: block;
+}

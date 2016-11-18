@@ -1,16 +1,8 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+date_default_timezone_set('UTC');
 /*
-|--------------------------------------------------------------------------
-| Base Site URL
-|--------------------------------------------------------------------------
-|
-| URL to your CodeIgniter root. Typically this will be your base URL,
-| WITH a trailing slash:
-|
-|	http://example.com/
-|
 | WARNING: You MUST set this value!
 |
 | If it is not set, then CodeIgniter will try guess the protocol and path
@@ -23,7 +15,41 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = '';
+/**
+ * it checks for is a given host is https or http
+ * @return bool
+ */
+function checkHttps()
+{
+    return isset($_SERVER['HTTPS']) && ($_SERVER['HTTPS'] == 'on');
+}
+
+/**
+ * it returns either https or http
+ * @return string
+ */
+function getProtocol()
+{
+    return checkHttps() ? 'https://' : 'http://';
+}
+
+/**
+ * it returns the base url
+ * @return string
+ */
+function baseUrl()
+{
+    $baseUrl = getProtocol() . $_SERVER['HTTP_HOST'];
+    return $baseUrl;
+}
+
+function fullUrl()
+{
+    return baseUrl() . $_SERVER['PHP_SELF'];
+}
+
+
+$config['base_url'] = 'http://localhost/khojeko/';
 
 /*
 |--------------------------------------------------------------------------
@@ -35,7 +61,7 @@ $config['base_url'] = '';
 | variable so that it is blank.
 |
 */
-$config['index_page'] = 'index.php';
+$config['index_page'] = '';
 
 /*
 |--------------------------------------------------------------------------
@@ -314,7 +340,7 @@ $config['cache_query_string'] = FALSE;
 | https://codeigniter.com/user_guide/libraries/encryption.html
 |
 */
-$config['encryption_key'] = '';
+$config['encryption_key'] = '3puhW8MY8xaWTUQ4011G1oOKnnWDY1SM';
 
 /*
 |--------------------------------------------------------------------------
