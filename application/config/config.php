@@ -49,7 +49,7 @@ function fullUrl()
 }
 
 
-$config['base_url'] = 'http://localhost/khojeko/';
+$config['base_url'] = baseUrl();
 
 /*
 |--------------------------------------------------------------------------
