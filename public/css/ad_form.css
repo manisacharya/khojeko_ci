@@ -1,0 +1,27 @@
+@charset "utf-8";
+/* CSS Document */
+#disclamier{
+	color:red;
+	}
+
+#first{background:#e6e6e6;padding-left:10px}
+#first h3{color:#390}
+.select_section{display:table-cell;}
+.search_section{display:table-cell;margin-left:10px}
+.section_wrap{width:100%;display:table}
+.cat{background:white;margin-left:20px;margin-right:10px}
+#second{padding-left:10px;margin-bottom:20px;}
+#second h2{color:#1077b2}
+#ad_type input{margin-left:20px;}
+#show_info{display:none}
+#third h2{color:#1077b2}
+#country_name{display:none}
+
+/*For popup*/
+.popuptext{display:none}
+
+.btn{background:#1077b2;color:white}
+.btn:hover{color:black}
+
+.popuptext{color:#1077bc}
+#reason{display:none}

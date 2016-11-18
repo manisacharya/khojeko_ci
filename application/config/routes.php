@@ -1,54 +1,74 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-/*
-| -------------------------------------------------------------------------
-| URI ROUTING
-| -------------------------------------------------------------------------
-| This file lets you re-map URI requests to specific controller functions.
-|
-| Typically there is a one-to-one relationship between a URL string
-| and its corresponding controller class/method. The segments in a
-| URL normally follow this pattern:
-|
-|	example.com/class/method/id/
-|
-| In some instances, however, you may want to remap this relationship
-| so that a different class/function is called than the one
-| corresponding to the URL.
-|
-| Please see the user guide for complete details:
-|
-|	https://codeigniter.com/user_guide/general/routing.html
-|
-| -------------------------------------------------------------------------
-| RESERVED ROUTES
-| -------------------------------------------------------------------------
-|
-| There are three reserved routes:
-|
-|	$route['default_controller'] = 'welcome';
-|
-| This route indicates which controller class should be loaded if the
-| URI contains no data. In the above example, the "welcome" class
-| would be loaded.
-|
-|	$route['404_override'] = 'errors/page_missing';
-|
-| This route will tell the Router which controller/method to use if those
-| provided in the URL cannot be matched to a valid route.
-|
-|	$route['translate_uri_dashes'] = FALSE;
-|
-| This is not exactly a route, but allows you to automatically route
-| controller and method names that contain dashes. '-' isn't a valid
-| class or method name character, so it requires translation.
-| When you set this option to TRUE, it will replace ALL dashes in the
-| controller and method URI segments.
-|
-| Examples:	my-controller/index	-> my_controller/index
-|		my-controller/my-method	-> my_controller/my_method
-*/
-$route['default_controller'] = 'welcome';
+$route['default_controller'] = 'pages';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
+
+// INDEX CONTROLLER ROUTE
+$route['home'] = "homepage/home";
+$route['adpost'] = "homepage/adpost";
+
+// PERSONAL SESSION CONTROLLER
+$route['login'] = "user_session/login";
+$route['logged_in'] = "user_session/logged_in";
+$route['logout'] = "user_session/logout";
+$route['login_validation'] = "user_session/login_validation";
+
+// khojeko CONTROLLER ROUTE
+$route['redirecter'] = "khojeko/redirecter";
+$route['heirarchy'] = "khojeko/heirarchy";
+$route['modify'] = "khojeko/modify";
+
+// USER PANEL CONTROLLER ROUTE
+$route['upanel'] = "user_panel/redirect";
+$route['upanel/(:any)'] = "user_panel/redirect";
+$route['upanel/(:any)/(:any)'] = "user_panel/upanel/$1/$2";
+
+// DEALER CONTROLLER ROUTE
+$route['dealer'] = "dealers/redirect";
+$route['dealer/(:any)'] = "dealers/redirect";
+$route['dealer/(:any)/(:any)'] = "dealers/dealer/$1/$2";
+
+// DETAIL CONTROLLER ROUTE
+// signup
+// signup
+$route['signup'] = "Signup/signup";
+$route['signup_done'] = "Signup/signup_done";
+$route['details_validation'] = "Signup/details_validation";
+$route['register_user/(:any)'] = "Signup/register_user/$1";
+//check unique username
+$route['available_username'] = "Signup/available_username";
+//check unique user email
+$route['available_email'] = "Signup/available_email";
+//check unique mobile number in personal
+$route['available_mobile_P'] = "Signup/available_mobile_P";
+//check unique mobile number in dealer
+$route['available_mobile_d'] = "Signup/available_mobile_d";
+
+// details
+$route['details'] = "details/details";
+$route['details/(:any)'] = "details/details/$1";
+
+//ask me
+$route['ask-me/(:any)'] = "details/add_question_ask_me/$1";
+$route['ask-me/(:any)'] = "details/ask_me_validation/$1";
+
+// SEARCH CONTROLLER
+$route['results'] = "search/results";
+
+// UPLOAD CONTROLLER
+$route['upload_view'] = "upload/upload_view";
+$route['upload_file'] = "upload/upload_file";
+
+// ADMIN SESSION CONTROLLER
+$route['admin'] = 'admin/admin_pages/page';
+$route['admin/logo_upload'] = 'admin/upload/logo_upload/';
+$route['admin/category_add'] = 'admin/admin_pages/add_category';
+$route['admin/category_delete'] = 'admin/admin_pages/delete_category';
+$route['admin/category_edit'] = 'admin/admin_pages/edit_category';
+$route['admin/login'] = 'admin/users/login';
+$route['admin/sign_up'] = 'admin/users/sign_up';
+$route['admin/logout'] = 'admin/users/logout';
+$route['admin/change_password'] = 'admin/users/change_password';
+$route['admin/(:any)'] = 'admin/admin_pages/page/$1';

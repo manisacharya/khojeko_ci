@@ -1,0 +1,64 @@
+@charset "utf-8";
+/* CSS Document */
+.status_of_account a{color:red;}
+.status_of_account{text-align:center}
+.welcome_div{margin-bottom:10px}
+.welcome_div a{margin-right:30px;}
+.user_menu{display:inline;border:1px solid;}
+.user_menu a{margin:2px;font-size:15px}
+.premium{color:#906}
+.users_menu_item{color:green}
+.alert_message{background:#F30;margin-top:10px;margin-bottom:10px;}
+.ad_count button{height:100px;width:100px;margin-top:10px;border-radius:10px;border:1px solid}
+.ad_count{padding-left:20px;}
+.number{font-size:24px;font-weight:700;padding-top:20px;}
+
+.owner_ad_display{border:1px solid;border-radius:10px;margin-top:10px;overflow:auto;min-height:100px}
+.all_ads_section{margin-top:10px}
+.all_ads_section a{color:green}
+.search_sec button{background:#CCC;border-radius:8px;border:1px solid}
+.search_sec input{border-radius:8px;border:1px solid}
+.search_sec{float:right}
+.owner_detail_ad img{height:100px; width:100px;margin-bottom:10px;margin-right:10px;}
+.red{color:red}
+.green{color:green}
+.blue{color:blue}
+.owner_detail_ad i{font-size:36px}
+.owner_detail_ad price{font-size:18px;color:#306}
+.owner_detail_ad name{font-weight:700}
+.owner_detail_ad date,.owner_detail_ad time{font-size:14px}
+.owner_detail_ad li{border-top:1px solid  #333;min-height:20px;padding-top:10px;clear:both;}
+.owner_detail_ad ul{overflow:hidden}
+.online_offline{float:right;font-size:18px;color:green}
+/*.online_offline:hover + .message{display:block}
+.delete_edit:hover + .message{
+display:block !important;
+z-index:10;}*/
+/*a[title]:hover:after {content: attr(title);background:black;color:white;position:absolute;font-size:14px}*/
+
+.banner_booking section{border:1px solid;text-align:center;margin:10px;}
+.banner_booking div{}
+.banner_booking div section span{background:#CCC}
+.banner_booking div section p{font-size:14px;color:#333}
+
+.purple{color:#609}
+.top{color:#333;font-weight:700;padding-bottom:10px;text-decoration:underline}
+.book_now{border-radius:8px;background:red;color:white}
+.left_banner{border:1px solid;margin-bottom:10px}
+.left_banner section{border:1px solid white;border-bottom:1px solid #333}
+.left_banner .book_now{float:right}
+.left_banner .top{float:left;text-decoration:none;font-size:18px;color:#666}
+.left_banner section p{font-size:14px;color:#333}
+.slider_banner{border:1px solid;text-align:center;margin-top:10px;}
+.slider_banner section{border-bottom:1px solid #333;margin-top:10px;}
+.slider_banner .book_now{float:right}
+.slider_banner .top{float:left;text-decoration:none;font-size:18px;color:#666}
+.slider_banner section p{font-size:14px;color:#333}
+.slider_banner span{background:#CCC}
+.slider_banner h2{text-align:center;text-decoration:underline}
+.main_banner_booking{border:1px solid;margin-top:25px;margin-bottom:15px;}
+
+
+
+.modal-title{color:red}
+.btn-pay{background:red;color:white;border-radius:8px;height:35px}

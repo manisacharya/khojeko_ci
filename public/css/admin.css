@@ -1,0 +1,40 @@
+@charset "utf-8";
+/* CSS Document */
+.admin_header{padding-top:30px}
+.admin_header ul li{display:inline;list-style-type:none;}
+.admin_title{font-size:24px;color:#666;padding-top:30px;text-align:center;text-decoration:underline}
+.second_menu ul{display:inline-table;}
+.second_menu ul a{background:#FC3;border-radius:8px;padding:5px 5px}
+.second_menu ul li{margin-top:10px;list-style-type:none;display:none;margin-left:20px;}
+.second_menu ul:hover > li{display:block}
+.stat_report{border:1px solid;border-radius:8px;padding:5px 5px;position:absolute;top:-10px;left:25px;background:white}
+.statics{margin-top:20px;border:1px solid;border-radius:8px;}
+.online_report{border:1px solid;border-radius:8px;padding:5px 5px;background:white}
+.online_stat{margin-top:40px;border:1px solid;border-radius:10px;background:#F99;padding-left:10px;margin-left:10px}
+.online_stat span{padding-left:25px;}
+.Report_div{margin-top:15px;border:1px solid;border-radius:10px;background:#F99;padding-left:10px;margin-left:10px}
+.individual_div{margin-top:40px;border:1px solid;border-radius:10px;background:#F99;padding-left:10px;}
+.dealer_div{margin-top:40px;border:1px solid;border-radius:10px;background:#F99;padding-left:10px;}
+.search_active{border-radius:10px;width:30%;font-size:14px}
+.active_inactive{background:#06F;border-radius:8px;border:1px solid;padding-left:10px;font-size:18px;margin-top:10px;}
+.active_inactive a {color:#CC0;margin-right:10px;margin-left:10px;}
+.inactive_ads ol li span{display:inline-table;margin-left:15px;}
+.inactive_ads ol li span i{font-size:24px}
+.inactive_ads ol li{border-bottom:1px solid #666;margin-top:10px;}
+.inactive_ads ol li span img{width:100px;height:100px;border:1px solid}
+.inactive_ads ol li span input{width:30px;height:30px;}
+.inactive_ads{border:3px solid #F06;border-radius:10px;margin-top:10px}
+.top_title a{margin-left:15px;font-size:18px}
+
+.active_ads ol li span{display:inline-table;margin-left:15px;}
+.active_ads ol li span i{font-size:24px}
+.active_ads ol li{border-bottom:1px solid #666;margin-top:10px;}
+.active_ads ol li span img{width:100px;height:100px;border:1px solid}
+.active_ads ol li span input{width:30px;height:30px;}
+.active_ads{border:3px solid #F06;border-radius:10px;margin-top:30px}
+.unverified_verified{margin-top:25px;padding-top:10px;border:3px solid #F06;border-radius:10px;}
+.unverified_verified a{margin-right:15px;font-size:18px}
+.search_input{border-radius:8px;width:30%}
+.unverified_verified ol li span{display:inline-table;margin-left:40px;font-size:16px;}
+.unverified_verified ol li{border-bottom:1px solid #333;margin-top:10px;}
+.unverified_verified ol li span i{font-size:24px}

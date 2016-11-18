@@ -313,3 +313,15 @@ switch (ENVIRONMENT)
  * And away we go...
  */
 require_once BASEPATH.'core/CodeIgniter.php';
+
+/*
+|---------------------------------------------------------------
+| TimeZone
+|---------------------------------------------------------------
+|
+| default Time Zone
+|
+
+*/
+if (function_exists( 'date_default_timezone_set' ))
+	date_default_timezone_set('UTC');

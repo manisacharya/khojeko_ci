@@ -1,0 +1,74 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: cham11ng
+ * Date: 10/27/16
+ * Time: 1:48 PM
+ */
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+class Items_model extends CI_Model {
+    public $item_id;
+    public $title;
+    public $item_type;
+    public $bought_from;
+    public $price;
+    public $quantity;
+    public $used_for;
+    public $mkt_price;
+    public $verification_number;
+    public $isVerified;
+    public $avaibility_address;
+    public $published_date;
+    public $delivery;
+    public $delivery_charge;
+    public $warranty_period;
+    public $sales_status;
+    public $ad_duration;
+    public $views;
+    public $visibility;
+    public $video_url1;
+    public $video_url2;
+    public $deleted_date;
+    public $c_id;
+    public $user_id;
+    public $ad_id;
+    public $is_premium;
+    public $comment_count;
+    public $spam_count;
+
+    public function insert_dealer() {
+        if ($this->db->table_exists('dealer')) {
+            $this->$item_id = $this->input->post('');
+            $this->$title = $this->input->post('');
+            $this->$item_type = $this->input->post('');
+            $this->$bought_from = $this->input->post('');
+            $this->$price = $this->input->post('');
+            $this->$quantity = $this->input->post('');
+            $this->$used_for = $this->input->post('');
+            $this->$mkt_price = $this->input->post('');
+            $this->$verification_number = $this->input->post('');
+            $this->$isVerified = $this->input->post('');
+            $this->$avaibility_address = $this->input->post('');
+            $this->$published_date = $this->input->post('');
+            $this->$delivery = $this->input->post('');
+            $this->$delivery_charge = $this->input->post('');
+            $this->$warranty_period = $this->input->post('');
+            $this->$sales_status = $this->input->post('');
+            $this->$ad_duration = $this->input->post('');
+            $this->$views = $this->input->post('');
+            $this->$visibility = $this->input->post('');
+            $this->$video_url1 = $this->input->post('');
+            $this->$video_url2 = $this->input->post('');
+            $this->$deleted_date = $this->input->post('');
+            $this->$c_id = $this->input->post('');
+            $this->$user_id = $this->input->post('');
+            $this->$ad_id = $this->input->post('');
+            $this->$is_premium = $this->input->post('');
+            $this->$comment_count = $this->input->post('');
+            $this->$spam_count = $this->input->post('');
+            return TRUE;
+        }
+        return FALSE;
+    }
+}

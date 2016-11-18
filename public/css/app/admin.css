@@ -1,0 +1,120 @@
+@charset "utf-8";
+/* CSS Document */
+body a{color:#000000}
+a:hover{color:#000000}
+.content h3{text-decoration:underline;color:#C36}
+.admin_header{padding-top:30px}
+.admin_header ul li{display:inline;list-style-type:none;}
+.info{font-size:24px;color:#666;padding-top:10px;text-align:center;}
+.second_menu ul{display:inline-table;}
+.second_menu ul a{background:#FC3;border-radius:8px;padding:5px 5px}
+.second_menu ul li{margin-top:10px;list-style-type:none;display:none;margin-left:20px;}
+.second_menu ul:hover > li{display:block}
+.stat_report{border:1px solid;border-radius:8px;padding:5px 5px;background:white;width:25%}
+.statics{margin-top:20px;border:1px solid;border-radius:8px;margin-left:0px;}
+.online_report{border:1px solid;border-radius:8px;padding:5px 5px;background:white}
+.online_stat{margin-top:40px;border:1px solid;border-radius:10px;background:#e6e6e6;padding-left:10px;margin-left:10px}
+.online_stat span{padding-left:25px;}
+.Report_div{margin-top:15px;border:1px solid;border-radius:10px;background:#e6e6e6;padding-left:10px;margin-left:10px}
+.individual_div{margin-top:40px;border:1px solid;border-radius:10px;background:#e6e6e6;padding-left:10px;margin-right:10px;}
+.dealer_div{margin-top:40px;border:1px solid;border-radius:10px;background:#e6e6e6;padding-left:10px;}
+.search_active{border-radius:10px;width:30%;font-size:14px}
+.active_inactive{background:#06F;border-radius:8px;border:1px solid;padding-left:10px;font-size:18px;margin-top:10px;}
+.active_inactive a {color:#CC0;margin-right:10px;margin-left:10px;}
+.inactive_ads ol li span{display:inline-table;margin-left:15px;}
+.inactive_ads ol li span i{font-size:24px}
+.inactive_ads ol li{border-bottom:1px solid #666;margin-top:10px;}
+.inactive_ads ol li span img{width:100px;height:100px;border:1px solid}
+.inactive_ads ol li span input{width:30px;height:30px;}
+.inactive_ads{border:3px solid #F06;border-radius:10px;margin-top:10px;}
+.top_title a{margin-left:5px;font-size:16px}
+.top_title{border-bottom:1px solid #f06}
+.active_ads ol li span{display:inline-table;margin-left:15px;}
+.active_ads ol li span i{font-size:24px}
+.active_ads ol li{border-bottom:1px solid #666;margin-top:10px;}
+.active_ads ol li span img{width:100px;height:100px;border:1px solid}
+.active_ads ol li span input{width:30px;height:30px;}
+.active_ads{border:3px solid #F06;border-radius:10px;margin-top:30px}
+.unverified_verified{margin-top:25px;padding-top:10px;border:3px solid #F06;border-radius:10px;}
+.unverified_verified a{margin-right:10px;}
+.search_input{border-radius:8px;width:30%}
+.unverified_verified ol li span{display:inline-table;margin-left:40px;font-size:16px;}
+.unverified_verified ol li{border-bottom:1px solid #333;margin-top:10px;}
+.unverified_verified ol li span i{font-size:24px}
+.red{color:red}
+.green{color:green}
+.underline{text-decoration:underline}
+.default_button{color:white;background:#1071bc;border-radius:8px}
+
+.setup-content{ 
+  align-items: center;
+  display: flex;
+  justify-content: center; }
+
+.stepwizard-step p {
+    margin-top: 10px;
+}
+
+.stepwizard-row {
+    display: table-row;
+}
+
+.stepwizard {
+    display: table;
+    width: 100%;
+    position: relative;
+}
+
+.stepwizard-step button[disabled] {
+    opacity: 1 !important;
+    filter: alpha(opacity=100) !important;
+}
+
+.stepwizard-row:before {
+    top: 25px;
+    bottom: 0;
+    position: absolute;
+    content: " ";
+    width: 100%;
+    height: 1px;
+    background-color: #ccc;
+    z-order: 0;
+
+}
+
+.stepwizard-step {
+    display: table-cell;
+    text-align: center;
+    position: relative;
+}
+
+.btn-circle {
+  width: 50px;
+  height:50px;
+  text-align: center;
+  padding: 6px 0;
+  font-size: 25px;
+  line-height: 1.428571429;
+  border-radius: 25px;
+}
+
+.btn-primary{color:white}
+table{border-collapse:separate; 
+border-spacing:1em;
+}
+
+.category0,.category1,.category2, .category3 {list-style-type:none;}
+
+.category0 li a,.category1 li a,.category2 li a,.category3 li a{text-decoration:none;color:#000;font-size:16px;font-weight:500}
+
+
+input.readonly{width:520px;}
+
+.step-3 input.sstep{width:500px}
+.step-3{width:80%;margin-left:10%}
+#MultiFile1_list{display:inline-flex;max-width:700px;overflow:hidden;white-space:nowrap}
+.MultiFile-remove{font-size:18px;font-weight:bolder}
+.MultiFile-label{margin-right:10px;width:120px;}
+.prevBtn{color:#333;background:#999}
+#display_cname, #display_parent {border:1px solid;height:25px;padding-left:10px;width:60%}
+form{padding-left:25px;  padding:25px;}
