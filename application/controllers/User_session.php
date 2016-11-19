@@ -1,6 +1,8 @@
 <?php
 class User_session extends CI_Controller {
 
+    private $khojeko_username;
+
     function __construct() {
         parent::__construct();
         $this->user_data = array();
@@ -19,12 +21,12 @@ class User_session extends CI_Controller {
         $this->load->library('form_validation');
         $this->form_validation->set_rules('user_name', 'User name', 'required|trim');
         $this->form_validation->set_rules('password', 'Password', 'required|trim|callback_validate_credentials');
-        $username = $this->input->post('user_name');
+        //$username = $this->input->post('user_name');
 
         if($this->form_validation->run()){
             $user_session = array(
-                'username' => $username,
-                'id' => $this->detail_db_model->get_id_session($username),
+                'username' => $this->khojeko_username,
+                'id' => $this->detail_db_model->get_id_session($this->khojeko_username),
                 'is_logged_in' => 1
             );
             $this->session->set_userdata('logged_in', $user_session);
@@ -104,11 +106,12 @@ class User_session extends CI_Controller {
 
     //set message if username/password is incorrect
     public function validate_credentials(){
-        $username = $this->input->post('user_name');
+        $username_login = $this->input->post('user_name');
+        $this->khojeko_username = $this->user_model->can_login($username_login);
 
-        if($this->user_model->can_login($username)){
-            if($this->user_model->user_verification($username)) {
-                return true;
+        if($this->khojeko_username){
+            if($this->user_model->user_verification($this->khojeko_username)) {
+                return $this->khojeko_username;
             } else {
                 $this->form_validation->set_message("validate_credentials", "Please verify your account from your email.");
                 return false;
