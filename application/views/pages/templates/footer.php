@@ -197,41 +197,12 @@
 </footer>
 <a href="#" class="back-to-top"><i class="fa fa-arrow-up"></i></a>
 
-<script src="<?php echo base_url('public/js/jquery.js');?>"></script>
-<script src="<?php echo base_url('public/js/bootstrap.min.js');?>"></script>
-<script src="<?php echo base_url('public/js/category.js');?>"></script>
-<script src="<?php echo base_url('public/js/list_grid.js');?>"></script>
+<script type="text/javascript" src="<?php echo base_url('public/js/jquery.js');?>"></script>
+<script type="text/javascript" src="<?php echo base_url('public/js/bootstrap.min.js');?>"></script>
+<script type="text/javascript" src="<?php echo base_url('public/js/category.js');?>"></script>
+<script type="text/javascript" src="<?php echo base_url('public/js/list_grid.js');?>"></script>
 <script type="text/javascript" src="<?php echo base_url('public/js/jssor.slider.min.js');?>"></script>
-<script>// JavaScript Document
 
-    function sortUnorderedList(ul, sortDescending) {
-        if(typeof ul == "string")
-            ul = document.getElementById(ul);
-
-        var lis = ul.getElementsByTagName("LI");
-        var vals = [];
-
-        for(var i = 0, l = lis.length; i < l; i++)
-            vals.push(lis[i].innerHTML);
-
-        vals.sort();
-
-        if(sortDescending)
-            vals.reverse();
-
-        for(var i = 0, l = lis.length; i < l; i++)
-            lis[i].innerHTML = vals[i];
-    }
-
-    window.onload = function() {
-        var desc = false;
-        document.getElementById("test").onclick = function() {
-            sortUnorderedList("list", desc);
-            desc = !desc;
-            return false;
-        }
-    }
-</script>
 <script>(function(d, s, id) {
         var js, fjs = d.getElementsByTagName(s)[0];
         if (d.getElementById(id)) return;
@@ -240,12 +211,14 @@
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
 </script>
+
 <script type="text/javascript">
     $("#ques").hide();
     $(".post").click(function() {
         $("#ques").show().focus();
     })
 </script>
+
 <script>
     jssor_1_slider_init();
 </script>

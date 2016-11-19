@@ -1,10 +1,8 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Khojeko</title>
 
     <link href="<?php echo base_url('public/css/bootstrap.min.css');?>" rel="stylesheet" />
@@ -26,7 +24,7 @@
     <link href="<?php echo base_url('public/images/ico/apple-touch-icon-57-precomposed.png');?>" rel="apple-touch-icon-precomposed" />
     <link href="<?php echo base_url('public/images/icons/icon.ico')?>" rel="shortcut icon" />
 
-    <!--<link href='https://fonts.googleapis.com/css?family=cabin' rel='stylesheet' type='text/css' />-->
+
     <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet" />
 </head>
 <body id="page-wrap">
@@ -118,17 +116,7 @@
                     <img src="<?php echo base_url('public/images/shipping.jpg');?>" class="img-responsive">
                 </div>
 
-                <div class="video">
-
-                    <video controls>
-                        <source src="#" type="video/mp4">
-                        <source src="#" type="video/ogg">
-                        Your browser does not support HTML5 video.
-                    </video>
-                    <a href="http://www.youtube.com" target="_blank" >Khojeko.com official promo Ad  </a>
-                </div>
-
-                <div class="fb-page" data-href="https://www.facebook.com/facebook" data-height="70" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/facebook"><a href="https://www.facebook.com/facebook">Facebook</a></blockquote></div></div>
+                <div class="fb-page" data-href="https://www.facebook.com/technorio" data-height="70" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/facebook"><a href="https://www.facebook.com/facebook">Facebook</a></blockquote></div></div>
 
             </div> <!--end of col-sm-3-->
 
@@ -143,7 +131,8 @@
                             <option value="bhaktapur">Bhaktapur</option>
                         </select>
                         <input type="text" name="search" class="search" placeholder="What are you looking for?">
-                        <button id="search_btn"><i class="fa fa-search"> </i> Search</button>
-                        <a href="ad_form.html">  <button id="ad_btn">POST FREE ADS</button></a>
+                        <button type="submit" id="search_btn"><i class="fa fa-search"> </i> Search</button>
+                        <?php echo form_close(); ?>
+
+                        <a href="ad_form.html"><button type="button" id="ad_btn">POST FREE ADS</button></a>
                     </div>
-                    <?php echo form_close(); ?>
