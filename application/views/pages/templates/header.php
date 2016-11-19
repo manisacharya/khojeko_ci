@@ -26,7 +26,7 @@
     <link href="<?php echo base_url('public/images/ico/apple-touch-icon-57-precomposed.png');?>" rel="apple-touch-icon-precomposed" />
     <link href="<?php echo base_url('public/images/icons/icon.ico')?>" rel="shortcut icon" />
 
-    <link href='https://fonts.googleapis.com/css?family=cabin' rel='stylesheet' type='text/css' />
+    <!--<link href='https://fonts.googleapis.com/css?family=cabin' rel='stylesheet' type='text/css' />-->
     <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet" />
 </head>
 <body id="page-wrap">
@@ -126,11 +126,6 @@
                         Your browser does not support HTML5 video.
                     </video>
                     <a href="http://www.youtube.com" target="_blank" >Khojeko.com official promo Ad  </a>
-                </div>
-
-
-                <div class="banner">
-                    <img src="<?php echo base_url('images/ad2.jpg');?>" class="img-responsive">
                 </div>
 
                 <div class="fb-page" data-href="https://www.facebook.com/facebook" data-height="70" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/facebook"><a href="https://www.facebook.com/facebook">Facebook</a></blockquote></div></div>

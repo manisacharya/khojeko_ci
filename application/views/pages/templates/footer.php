@@ -200,7 +200,6 @@
 <script src="<?php echo base_url('public/js/jquery.js');?>"></script>
 <script src="<?php echo base_url('public/js/bootstrap.min.js');?>"></script>
 <script src="<?php echo base_url('public/js/category.js');?>"></script>
-<script src="<?php echo base_url('public/js/display.js');?>"></script>
 <script src="<?php echo base_url('public/js/list_grid.js');?>"></script>
 <script type="text/javascript" src="<?php echo base_url('public/js/jssor.slider.min.js');?>"></script>
 <script>// JavaScript Document
@@ -240,6 +239,12 @@
         js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6";
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
+</script>
+<script type="text/javascript">
+    $("#ques").hide();
+    $(".post").click(function() {
+        $("#ques").show().focus();
+    })
 </script>
 <script>
     jssor_1_slider_init();

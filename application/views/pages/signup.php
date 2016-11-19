@@ -39,11 +39,6 @@
         });
     </script>
 
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $("#select").searchable();
-        });
-    </script>
     <script>
         $(document).bind("mobileinit", function() {
             $.mobile.ignoreContentEnabled = true;

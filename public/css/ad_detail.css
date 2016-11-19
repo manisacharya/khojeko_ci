@@ -1,6 +1,6 @@
 @charset "utf-8";
 /* CSS Document */
-.ad_category{background:#69F;margin-top:10px;padding:5px 5px 5px;color:white}
+.item_category{background:#69F;margin-top:10px;padding:5px 5px 5px;color:white}
 
 .main_cat{color:#036;font-weight:600}
 
@@ -12,16 +12,16 @@
 
 .warning_tips p{color:red}
 
-.ad_info i{font-size:28px;}
-.ad_info > div{display:inline}
+.item_info i{font-size:28px;}
+.item_info > div{display:inline}
 
 .double{
   white-space: pre;
  }
 
- .ad_info{min-height:75px;margin-top:10px;padding-top:5px;padding-bottom:10px;border:1px solid;}
+.item_info{min-height:75px;margin-top:10px;padding-top:5px;padding-bottom:10px;border:1px solid;}
 
-.ad_info > div img{height:35px;width:25px}
+.item_info > div img{height:35px;width:25px}
 
 #fake_report a{color:red}
 
@@ -42,19 +42,19 @@
 
 #sold{float:right;position:absolute;max-width:100px;max-height:100px;}
 
-#ad_img{max-height:400px;width:100%;margin:auto;display:block}
+#item_img{max-height:400px;width:100%;margin:auto;display:block}
 
-.ad_image{margin-top:10px;border:1px solid;}
+.item_image{margin-top:10px;border:1px solid;}
 
-#ad_spec{background:#099;margin-top:10px;font-size:24px;padding-left:10px;color:black}
+#item_spec{background:#099;margin-top:10px;font-size:24px;padding-left:10px;color:black}
 
-.ad_spec_sub{border:1px solid;height:700px;margin-bottom:10px;}
+.item_spec_sub{border:1px solid;height:700px;margin-bottom:10px;}
 
-.ad_detail_price{font-size:24px;color:#309;font-weight:700}
+.item_detail_price{font-size:24px;color:#309;font-weight:700}
 
-.ad_detail_title{font-size:20px;color:#090}
+.item_detail_title{font-size:20px;color:#090}
 
-.ad_written_spec{padding-left:10px;}
+.item_written_spec{padding-left:10px;}
 
 .status{color:red;margin-left:20px;}
 
@@ -62,13 +62,13 @@
 
 .written_from{border:1px solid;padding-left:20px}
 
-.ad_owner_details{background:#CCC;padding:10px 20px 10px;margin:10px;}
+.item_owner_details{background:#CCC;padding:10px 20px 10px;margin:10px;}
 
-.ad_owner_details {color:#333}
+.item_owner_details {color:#333}
 
-.ad_id{font-size:12px}
+.item_id{font-size:12px}
 
-.ad_owner_name{font-weight:800}
+.item_owner_name{font-weight:800}
 
 .verified{color:#0C0}
 
@@ -129,6 +129,6 @@ border-spacing:5px;}
 
 	}
 	
-.ad_image_section img{height:120px;width:115px;border:1px solid;}
+.item_image_section img{height:120px;width:115px;border:1px solid;}
 
-.ad_img_slider{border:1px solid;margin-top:10px;}
+.item_img_slider{border:1px solid;margin-top:10px;}
