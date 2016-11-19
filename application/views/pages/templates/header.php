@@ -12,7 +12,7 @@
     <link href="<?php echo base_url('public/css/responsive.css');?>" rel="stylesheet" />
     <link href="<?php echo base_url('public/css/category.css');?>" rel="stylesheet" />
     <link href="<?php echo base_url('public/css/dealer_page.css');?>" rel="stylesheet" />
-    <link href="<?php echo base_url('public/css/ad_detail.css');?>" rel="stylesheet" />
+    <link href="<?php echo base_url('public/css/item_detail.css');?>" rel="stylesheet" />
     <link href="<?php echo base_url('public/css/user_panel.css');?>" rel="stylesheet" />
     <link href="<?php echo base_url('public/css/list_grid.css');?>" rel="stylesheet" />
     <link href="<?php echo base_url('public/css/login.css');?>" rel="stylesheet" />
