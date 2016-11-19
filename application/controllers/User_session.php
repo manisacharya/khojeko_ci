@@ -25,9 +25,10 @@ class User_session extends CI_Controller {
 
         if($this->form_validation->run()){
             $user_session = array(
-                'username' => $this->khojeko_username,
-                'id' => $this->detail_db_model->get_id_session($this->khojeko_username),
-                'is_logged_in' => 1
+                'username'      => $this->khojeko_username,
+                'type'          => $this->detail_db_model->get_type_session($this->khojeko_username),
+                'id'            => $this->detail_db_model->get_id_session($this->khojeko_username),
+                'is_logged_in'  => 1
             );
             $this->session->set_userdata('logged_in', $user_session);
             redirect('logged_in');
