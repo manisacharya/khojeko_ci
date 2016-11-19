@@ -9,6 +9,8 @@
 
                     <div class="clearfix"></div>
 
+                    <?php echo $fav_msg; ?>
+
                     <div class="item_category">
                         <a class="main_cat">MAIN CATEGORY:</a>
                         <a class="cat_description">Mobile Phones & Tablets</a> >><a class="cat_description"> Mobiles</a> >><a class="cat_description"> Nokia </a>
