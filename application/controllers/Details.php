@@ -10,9 +10,8 @@ class Details extends CI_Controller {
         $this->load->model('khojeko_db_model'); // load model
         $this->load->model('general_database_model');
         $this->load->model('database_models/categories_model');
-        $this->load->model('Spam_and_fav_model');
-        $this->load->model('Ask_me_model');
-        $this->output->enable_profiler(TRUE);
+        $this->load->model('spam_and_fav_model');
+        $this->load->model('ask_me_model');
     }
 
     //For Details Page
@@ -29,7 +28,7 @@ class Details extends CI_Controller {
         $data['user'] = $this->detail_db_model->get_details_user($data['details']);
         $data['user_type'] = $this->detail_db_model->get_details_dealer($data['user']);
         $data['date'] = $this->detail_db_model->get_date_diff($data['details']);
-        $data['question'] = $this->Ask_me_model->get_ques_ans($id);
+        $data['question'] = $this->ask_me_model->get_ques_ans($id);
 
         $item_joins = array(
             array(
@@ -153,7 +152,7 @@ class Details extends CI_Controller {
             $type = $this->session->userdata['logged_in']['type'];
             if(strtoupper($type) == 'PERSONAL') {
                 $p_id = $this->session->userdata['logged_in']['id'];
-                $this->Spam_and_fav_model->add_fav($id, $p_id);
+                $this->spam_and_fav_model->add_fav($id, $p_id);
                 redirect('details/'.$id);
             } else {
                 echo "only personal user can add to favourite";
@@ -167,7 +166,7 @@ class Details extends CI_Controller {
     public function add_to_spam($id){
         if($this->session->has_userdata('logged_in')) {
             $user_id = $this->session->userdata['logged_in']['id'];
-            $this->Spam_and_fav_model->add_spam($id, $user_id);
+            $this->spam_and_fav_model->add_spam($id, $user_id);
         } else {
             $this->load->view('login');
         }
@@ -184,8 +183,8 @@ class Details extends CI_Controller {
 
             //add the question in table
             if($this->form_validation->run()){
-                //$this->Ask_me_model->add_question($ques, $item_id, $user_id);
-                $this->Ask_me_model->add_question($item_id,$user_id);
+                //$this->ask_me_model->add_question($ques, $item_id, $user_id);
+                $this->ask_me_model->add_question($item_id,$user_id);
                 redirect('details/'.$item_id);
             } else {
                 $this->load->view('pages/details/'.$item_id);

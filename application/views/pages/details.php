@@ -9,10 +9,10 @@
 
                     <div class="clearfix"></div>
 
-                    <div class="ad_category">
+                    <div class="item_category">
                         <a class="main_cat">MAIN CATEGORY:</a>
                         <a class="cat_description">Mobile Phones & Tablets</a> >><a class="cat_description"> Mobiles</a> >><a class="cat_description"> Nokia </a>
-                    </div><!--ad_category ends-->
+                    </div><!--item_category ends-->
 
                     <div class="warning_tips">
                         <p>
@@ -20,7 +20,7 @@
                         </p>
                     </div><!--warning_tips-->
 
-                    <div class="ad_info">
+                    <div class="item_info">
                         <div class="col-sm-2">
                             <div class="col-sm-2">
                                 <i class="fa fa-clock-o" id="clock"></i>
@@ -96,23 +96,23 @@
                                 <a href="<?php echo base_url("Details/add_to_spam/".$id)?>">If this ad is fake report us</a>
                             </div>
                         </div>
-                    </div><!--ad_info ends-->
+                    </div><!--item_info ends-->
 
                     <div class="col-sm-7" style="clear:both">
-                        <div class="ad_image">
+                        <div class="item_image">
                             <?php if($details->sales_status == 0){ ?>
                                 <img src="<?php echo base_url('public/images/sold1.jpg'); ?>" alt="sold" id="sold" class="img-responsive">
                             <?php } ?>
-                            <img src="<?php echo base_url();?>public/images/item_images/<?php echo $image->row()->image;?>" id="ad_img" class="img-responsive">
-                        </div><!--ad_images ends -->
+                            <img src="<?php echo base_url();?>public/images/item_images/<?php echo $image->row()->image;?>" id="item_img" class="img-responsive">
+                        </div><!--item_images ends -->
 
                         <div class="clearfix"></div>
 
-                        <div class="ad_img_slider">
+                        <div class="item_img_slider">
                             <div  id="slider1_container" >
                                 <div u="slides" style="cursor: move; width: 100%; height: 120px;margin-left:10px;">
                                     <?php foreach ($image->result() as $row): ?>
-                                        <div class="ad_image_section">
+                                        <div class="item_image_section">
                                             <img src="<?php echo base_url();?>public/images/item_images/<?php echo $row->image; ?>" alt="mobile">
                                         </div>
                                     <?php endforeach ?>
@@ -125,7 +125,7 @@
                                             width: 37px;
                                             height: 37px;
                                             cursor: pointer;
-                                            background: url(images/a11.png) no-repeat;
+                                            background: url(/public/images/a11.png) no-repeat;
 
                                         }
                                         .jssora11l { background-position: -3px -42px; }
@@ -139,17 +139,17 @@
                                 <span u="arrowleft" class="jssora11l" style="top: 123px; left: -10px;"></span>
                                 <span u="arrowright" class="jssora11r" style="top: 123px; right: -8px;"></span>
                             </div><!--slider1_container-->
-                        </div><!--ad_img_slider-->
+                        </div><!--item_img_slider-->
 
 
                     </div><!--col-sm-7 ends-->
 
                     <div class="col-sm-5">
-                        <div class="ad_written_spec">
+                        <div class="item_written_spec">
                             <?php
-                            echo "<a class='ad_detail_price'>";
+                            echo "<a class='item_detail_price'>";
                             echo "Offer Rs.".$details->price."</a>"."<a class='status'>".$details->item_type."</a><br>";
-                            echo "<a class='ad_detail_title'> $details->title</a>";
+                            echo "<a class='item_detail_title'> $details->title</a>";
                             echo "<p>".$specification->specs."</p>";
                             ?>
 
@@ -165,11 +165,11 @@
                                 </a><br>
                                 <a>Market Indicative Price: <?php echo "Rs. ".$details->mkt_price; ?></a>
                             </div>
-                        </div><!--ad_writtten_spec-->
+                        </div><!--item_writtten_spec-->
 
-                        <div class="ad_owner_details">
-                            <a class="ad_id"><?php echo 'ad id: '.$details->item_id; ?>,&nbsp;&nbsp;Member since:<?php echo mdate('%d %M %Y', $user->ac_created); ?></a><br>
-                            <a>Ad by:<a class="ad_owner_name"> <?php echo $user_type->name; ?></a></a><br>
+                        <div class="item_owner_details">
+                            <a class="item_id"><?php echo 'ad id: '.$details->item_id; ?>,&nbsp;&nbsp;Member since:<?php echo mdate('%d %M %Y', $user->ac_created); ?></a><br>
+                            <a>Ad by:<a class="item_owner_name"> <?php echo $user_type->name; ?></a></a><br>
                             <a>Address: <?php echo $user_type->city. " " . $user_type->full_address; ?></a><br>
                             <a>District: <?php echo $user_type->district; ?></a><br>
                             <a>Telephone no.: <?php echo $user_type->tel_no; ?></a><br>
@@ -245,13 +245,13 @@
 
                 <div class="clearfix"></div>
 
-                <div id="ad_spec">
+                <div id="item_spec">
                     Ad details/Specification
-                </div><!--ad_spec--->
+                </div><!--item_spec--->
 
-                <div class="ad_spec_sub">
+                <div class="item_spec_sub">
 
-                </div><!--ad_spec_sub-->
+                </div><!--item_spec_sub-->
 
                 <div class="question_section">
                     <div class="question_title">

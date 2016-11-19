@@ -1,7 +1,6 @@
 <?php
 class User_session extends CI_Controller {
 
-
     function __construct() {
         parent::__construct();
         $this->user_data = array();
