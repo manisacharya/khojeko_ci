@@ -75,6 +75,7 @@ class Signup extends CI_Controller {
 
         $data['dealer_list'] = $this->khojeko_db_model->joinThings('user', 'khojeko_username, name', $dealer_list_joins, 'type="dealer"');
         $data["category"] = $this->categories_model->get_categories();
+        $data['zones'] = $this->Signup_model->getAllZones();
 
         $this->load->view('pages/templates/header', $data);
         $this->load->view('pages/signup', $data);
@@ -430,6 +431,10 @@ class Signup extends CI_Controller {
         } else {
             echo "Your account is not valid. Please signup again.";
         }
+    }
+
+    public function get_districts(){
+        $this->Signup_model->get_districts();
     }
 
     public function available_username(){
