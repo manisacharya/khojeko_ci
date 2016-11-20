@@ -83,7 +83,7 @@
                             </td>
                             <td>
                                 <?php echo form_input('user_name', $this->input->post('user_name'), 'required class="naya form-control" id="username"'); ?>
-                                <?php echo form_error('user_name', '<div class="error" style="color: #ff000f">', '</div>'); ?>
+                                <?php echo form_error('user_name', '<div class="alert alert-danger">', '</div>'); ?>
                                 <div class="result" id="result1" ></div>
                             </td>
                         </tr>
@@ -94,7 +94,7 @@
                             <td>
                                 <!--input type="email" name="user_email" required class="naya"-->
                                 <?php echo form_input('user_email', $this->input->post('user_email'), 'required class="naya form-control" id="useremail"');?>
-                                <?php echo form_error('user_email', '<div class="error" style="color: #ff000f">', '</div>'); ?>
+                                <?php echo form_error('user_email', '<div class="alert alert-danger">', '</div>'); ?>
                                 <div class="result" id="result2"></div>
                             </td>
                         </tr>
@@ -104,7 +104,7 @@
                             </td>
                             <td>
                                 <?php echo form_password('password', '', 'required class="naya form-control" id="txtNewPassword"'); ?>
-                                <?php echo form_error('password', '<div class="error" style="color: #ff000f">', '</div>'); ?>
+                                <?php echo form_error('password', '<div class="alert alert-danger">', '</div>'); ?>
                                 <!--input type="password" required class="naya"-->
                             </td>
                         </tr>
@@ -114,8 +114,7 @@
                             </td>
                             <td>
                                 <?php echo form_password('re-password', '', 'required class="naya form-control" id="txtConfirmPassword" onChange="checkPasswordMatch();"'); ?>
-                                <br>
-                                <?php echo form_error('re-password', '<div class="error" style="color: #ff000f">', '</div>'); ?>
+                                <?php echo form_error('re-password', '<div class="alert alert-danger">', '</div>'); ?>
                                 <div class="registrationFormAlert" id="divCheckPasswordMatch"></div>
                             </td>
 
@@ -140,7 +139,7 @@
                                 );
                                 echo form_radio($data_radio2)."Company Ac(Distributed/Dealer/Retail)";
                                 ?>
-                                <?php echo form_error('acc_type', '<div class="error" style="color: #ff000f">', '</div>'); ?>
+                                <?php echo form_error('acc_type', '<div class="alert alert-danger">', '</div>'); ?>
                             </td>
                         </tr>
                     </table>
@@ -151,7 +150,7 @@
                     <div class='g-recaptcha' data-sitekey='6LdaZCITAAAAAJ99HnRAhCbkJ7us0MUGmXkDW94p'></div><br><br>
 
                     <?php echo form_checkbox('termsandcondition', 'accept', '', 'required checked').'I Agree with the '."<a class='terms' href='#'>Terms and Conditions.</a>"; ?>
-                    <?php echo form_error('termsandcondition', '<div class="error" style="color: #ff000f">', '</div>'); ?>
+                    <?php echo form_error('termsandcondition', '<div class="alert alert-danger">', '</div>'); ?>
 
                     <button class="btn btn-primary nextBtn btn-lg pull-right" type="button" style="float:left">Next</button>
 
@@ -172,7 +171,7 @@
 
                                 <td>
                                     <?php echo form_input('full_name', $this->input->post('full_name'), 'class="naya"'); ?>
-                                    <?php echo form_error('full_name', '<div class="error" style="color: #ff000f">', '</div>'); ?>
+                                    <?php echo form_error('full_name', '<div class="alert alert-danger">', '</div>'); ?>
                                 </td>
                             </tr>
 
@@ -243,7 +242,7 @@
 
                                 <td>
                                     <?php echo form_input('city_p', $this->input->post('city_p'), 'class="naya"'); ?>
-                                    <?php echo form_error('city_p', '<div class="error" style="color: #ff000f">', '</div>'); ?>
+                                    <?php echo form_error('city_p', '<div class="alert alert-danger">', '</div>'); ?>
                                 </td>
                             </tr>
 
@@ -254,7 +253,7 @@
 
                                 <td>
                                     <?php echo form_input('address_p', $this->input->post('address_p'), 'class="naya"'); ?>
-                                    <?php echo form_error('address_p', '<div class="error" style="color: #ff000f">', '</div>'); ?>
+                                    <?php echo form_error('address_p', '<div class="alert alert-danger">', '</div>'); ?>
                                 </td>
                             </tr>
 
@@ -264,7 +263,8 @@
                                 </td>
 
                                 <td>
-                                    <?php echo form_input('mobile_p', $this->input->post('mobile_p'), 'class="naya form-control" id="mobile_p"'); ?>
+                                    <?php echo form_input('mobile_p', $this->input->post('mobile_p'), 'class="naya form-control" id="mobile_p" maxlength = 10'); ?>
+                                    <?php echo form_error('mobile_p', '<div class="alert alert-danger">', '</div>'); ?>
                                     <div class="result" id="result3"></div>
                                 </td>
                             </tr>
@@ -275,8 +275,9 @@
                                 </td>
 
                                 <td>
-                                    <?php echo form_input('sec_mobile', $this->input->post('sec_mobile'), 'class="naya"'); ?>
-                                    <?php echo form_error('sec_mobile', '<div class="error" style="color: #ff000f">', '</div>'); ?>
+                                    <?php echo form_input('sec_mobile', $this->input->post('sec_mobile'), 'class="naya" id="sec_mobile" maxlength = 10'); ?>
+                                    <?php echo form_error('sec_mobile', '<div class="alert alert-danger">', '</div>'); ?>
+                                    <div class="result" id="sec_result"></div>
                                 </td>
                             </tr>
 
@@ -286,8 +287,9 @@
                                 </td>
 
                                 <td>
-                                    <?php echo form_input('telephone_p', $this->input->post('telephone_p'), 'class="naya"'); ?>
-                                    <?php echo form_error('telephone_p', '<div class="error" style="color: #ff000f">', '</div>'); ?>
+                                    <?php echo form_input('telephone_p', $this->input->post('telephone_p'), 'class="naya" id="telephone_p" maxlength = 9'); ?>
+                                    <?php echo form_error('telephone_p', '<div class="alert alert-danger">', '</div>'); ?>
+                                    <div class="result" id="tel_p_result"></div>
                                 </td>
                             </tr>
 
@@ -305,7 +307,7 @@
 
                                 <td>
                                     <?php echo form_input('dealer_name', $this->input->post('dealer_name'), 'class="naya"'); ?>
-                                    <?php echo form_error('dealer_name', '<div class="error" style="color:red">', '</div>'); ?>
+                                    <?php echo form_error('dealer_name', '<div class="alert alert-danger">', '</div>'); ?>
                                 </td>
                             </tr>
 
@@ -336,7 +338,7 @@
 
                                 <td>
                                     <?php echo form_input('city', $this->input->post('city'), 'class="naya"'); ?>
-                                    <?php echo form_error('city', '<div class="error" style="color:red">', '</div>'); ?>
+                                    <?php echo form_error('city', '<div class="alert alert-danger">', '</div>'); ?>
                                 </td>
                             </tr>
 
@@ -347,7 +349,7 @@
 
                                 <td>
                                     <?php echo form_input('address', $this->input->post('address'), 'class="naya"'); ?>
-                                    <?php echo form_error('address', '<div class="error" style="color:red">', '</div>'); ?>
+                                    <?php echo form_error('address', '<div class="alert alert-danger">', '</div>'); ?>
                                 </td>
                             </tr>
 
@@ -357,8 +359,8 @@
                                 </td>
 
                                 <td>
-                                    <?php echo form_input('mobile', $this->input->post('mobile'), 'class="naya form-control" id="mobile_d"'); ?>
-                                    <?php echo form_error('mobile', '<div class="error" style="color: #ff000f">', '</div>'); ?>
+                                    <?php echo form_input('mobile', $this->input->post('mobile'), 'class="naya form-control" id="mobile_d" maxlength = 10'); ?>
+                                    <?php echo form_error('mobile', '<div class="alert alert-danger">', '</div>'); ?>
                                     <div class="result" id="result4"></div>
                                 </td>
                             </tr>
@@ -369,8 +371,9 @@
                                 </td>
 
                                 <td>
-                                    <?php echo form_input('telephone', $this->input->post('telephone'), 'class="naya"'); ?>
-                                    <?php echo form_error('telephone', '<div class="error" style="color: #ff000f">', '</div>'); ?>
+                                    <?php echo form_input('telephone', $this->input->post('telephone'), 'class="naya" id="telephone" maxlength = 9'); ?>
+                                    <?php echo form_error('telephone', '<div class="alert alert-danger">', '</div>'); ?>
+                                    <div class="result" id="tel_d_result"></div>
                                 </td>
                             </tr>
 
@@ -390,8 +393,8 @@
                                         'id' => 'profile'
                                     );
                                     echo form_textarea($data);
+                                    echo form_error('profile', '<div class="alert alert-danger">', '</div>');
                                     ?>
-                                    <?php echo form_error('profile', '<div class="error" style="color: #ff000f">', '</div>'); ?>
                                     <div id="textarea_feedback"></div>
                                 </td>
                             </tr>
@@ -403,7 +406,7 @@
 
                                 <td>
                                     <?php  echo form_input('website', $this->input->post('website')); ?>
-                                    <?php echo form_error('website', '<div class="error" style="color: #ff000f">', '</div>'); ?>
+                                    <?php echo form_error('website', '<div class="alert alert-danger">', '</div>'); ?>
                                 </td>
                             </tr>
                         </table>
@@ -528,60 +531,111 @@
         $('#mobile_p').keyup(function(){
             var mobile_p = $(this).val(); // Get primary mobile number of personal textbox using $(this)
             var Result = $('#result3'); // Get ID of the result DIV where we display the results
-            if(mobile_p.length > 9) { // if greater than 2 (minimum 3)
-                Result.html('Loading...'); // you can use loading animation here
-                var dataPass = 'action=availability&mobile_p='+mobile_p;
-                $.ajax({ // Send the username val to available.php
-                    type : 'POST',
-                    data : dataPass,
-                    url  : 'available_mobile_P',
-                    success: function(responseText){ // Get the result
-                        if(responseText == 0){
-                            Result.html('<span class="success">This mobile number can be used</span>').css('color','green');
+            var reg = /^([0-9])+$/;
+            if((reg.test($(this).val()))) { // check number format
+                if(mobile_p.length > 9) { // if greater than 9 (minimum 10)
+                    Result.html('Loading...'); // you can use loading animation here
+                    var dataPass = 'action=availability&mobile_p=' + mobile_p;
+                    $.ajax({ // Send the username val to available.php
+                        type: 'POST',
+                        data: dataPass,
+                        url: 'available_mobile_P',
+                        success: function (responseText) { // Get the result
+                            if (responseText == 0) {
+                                Result.html('<span class="success">This mobile number can be used</span>').css('color', 'green');
+                            } else if (responseText > 0) {
+                                Result.html('<span class="error">Mobile number already used.<br>Please enter another mobile number.</span>').css('color', 'red');
+                            } else {
+                                alert('Problem with sql query');
+                            }
                         }
-                        else if(responseText > 0){
-                            Result.html('<span class="error">Mobile number already used.<br>Please enter another mobile number.</span>').css('color','red');
-                        }
-                        else{
-                            alert('Problem with sql query');
-                        }
-                    }
-                });
+                    });
+                } else {
+                    Result.html('Mobile number must have 10 digits').css('color','#ff5500');
+                }
             }else{
-                Result.html('Enter atleast 10 digits');
+                Result.html('Please enter only numbers').css('color','red');
             }
             if(mobile_p.length == 0) {
                 Result.html('');
             }
         });
 
+        $('#sec_mobile').keyup(function(){
+            var sec_mobile = $(this).val(); // Get primary mobile number of personal textbox using $(this)
+            var Result = $('#sec_result'); // Get ID of the result DIV where we display the results
+            var reg = /^([0-9])+$/;
+            if((reg.test($(this).val()))) { // check number format
+                if(sec_mobile.length < 10) { // if greater than 9 (minimum 10)
+                    Result.html('Mobile number must have 10 digits').css('color','#ff5500');
+                } else {
+                    Result.html('<span class="success">This mobile number can be used</span>').css('color', 'green');
+                }
+            }else{
+                Result.html('Please enter only numbers').css('color','red');
+            }
+        });
+
+        $('#telephone_p').keyup(function(){
+            var telephone_p = $(this).val(); // Get primary mobile number of personal textbox using $(this)
+            var Result = $('#tel_p_result'); // Get ID of the result DIV where we display the results
+            var reg = /^([0-9])+$/;
+            if((reg.test($(this).val()))) { // check number format
+                if(telephone_p.length < 9) { // if greater than 9 (minimum 10)
+                    Result.html('Telephone number must have 9 digits').css('color','#ff5500');
+                } else {
+                    Result.html('<span class="success">This telephone number can be used</span>').css('color', 'green');
+                }
+            }else{
+                Result.html('Please enter only numbers').css('color','red');
+            }
+        });
+
         $('#mobile_d').keyup(function(){
             var mobile_d = $(this).val(); // Get primary mobile number of personal textbox using $(this)
             var Result = $('#result4'); // Get ID of the result DIV where we display the results
-            if(mobile_d.length > 9) { // if greater than 2 (minimum 3)
-                Result.html('Loading...'); // you can use loading animation here
-                var dataPass = 'action=availability&mobile_d='+mobile_d;
-                $.ajax({ // Send the username val to available.php
-                    type : 'POST',
-                    data : dataPass,
-                    url  : 'available_mobile_d',
-                    success: function(responseText){ // Get the result
-                        if(responseText == 0){
-                            Result.html('<span class="success">This mobile number can be used</span>').css('color','green');
+            var reg = /^([0-9])+$/;
+            if((reg.test($(this).val()))) { // check number format
+                if (mobile_d.length > 9) { // if greater than 9 (minimum 10)
+                    Result.html('Loading...'); // you can use loading animation here
+                    var dataPass = 'action=availability&mobile_d=' + mobile_d;
+                    $.ajax({ // Send the username val to available.php
+                        type: 'POST',
+                        data: dataPass,
+                        url: 'available_mobile_d',
+                        success: function (responseText) { // Get the result
+                            if (responseText == 0) {
+                                Result.html('<span class="success">This mobile number can be used</span>').css('color', 'green');
+                            } else if (responseText > 0) {
+                                Result.html('<span class="error">Mobile number already used.<br>Please enter another mobile number.</span>').css('color', 'red');
+                            } else {
+                                alert('Problem with sql query');
+                            }
                         }
-                        else if(responseText > 0){
-                            Result.html('<span class="error">Mobile number already used.<br>Please enter another mobile number.</span>').css('color','red');
-                        }
-                        else{
-                            alert('Problem with sql query');
-                        }
-                    }
-                });
+                    });
+                } else {
+                    Result.html('Mobile number must have 10 digits').css('color','#ff5500');
+                }
             }else{
-                Result.html('Enter 10 digits');
+                Result.html('Please enter only numbers').css('color','red');
             }
             if(mobile_d.length == 0) {
                 Result.html('');
+            }
+        });
+
+        $('#telephone').keyup(function(){
+            var telephone = $(this).val(); // Get primary mobile number of personal textbox using $(this)
+            var Result = $('#tel_d_result'); // Get ID of the result DIV where we display the results
+            var reg = /^([0-9])+$/;
+            if((reg.test($(this).val()))) { // check number format
+                if(telephone.length < 9) { // if greater than 9 (minimum 10)
+                    Result.html('Telephone number must have 9 digits').css('color','#ff5500');
+                } else {
+                    Result.html('<span class="success">This telephone number can be used</span>').css('color', 'green');
+                }
+            }else{
+                Result.html('Please enter only numbers').css('color','red');
             }
         });
     });
