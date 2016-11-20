@@ -98,6 +98,26 @@ class Signup_model extends CI_Model {
         }
     }
 
+    public function getAllZones(){
+        $this->db->select('zone_name');
+        $query = $this->db->get('zones');
+        return $query->result();
+    }
+
+    public function get_districts(){
+        $this->db->select('district_name')->from('districts');
+        $this->db->join('zones', "districts.zone_id = zones.id");
+        $where = "zone_name ='".$this->input->post('zone')."'";
+        $this->db->where($where);
+        $query = $this->db->get();
+        $HTML = "";
+        foreach($query->result() as $row) {
+            $HTML.="<option value='".$row->district_name."'>".$row->district_name."</option>";
+        }
+        echo $HTML;
+        //echo $query->result();
+    }
+
     public function available_username(){
         $query = $this->db->get_where('user', ['khojeko_username' => $this->input->post('username')]);
         echo $query->num_rows();
