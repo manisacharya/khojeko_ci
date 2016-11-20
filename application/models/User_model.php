@@ -27,13 +27,6 @@ class User_model extends CI_Model {
             $db_password = $row_d->password;
         }
 
-//        $data = array(
-//            'khojeko_username' => $username,
-//            'type !=' => 'admin'
-//        );
-//        $info = $this->db->get_where('user', $data);
-//        $row = $info->row();
-
         if ($query_p->num_rows() == 1 || $query_d->num_rows() ==1) {
             if(password_verify($password, $db_password)) {
                 return $khojeko_username;

@@ -160,7 +160,7 @@ class Details extends CI_Controller {
                 redirect('details/'.$id);
             }
         } else {
-            $this->load->view('login');
+            redirect('login');
         }
     }
 
@@ -170,7 +170,7 @@ class Details extends CI_Controller {
             $user_id = $this->session->userdata['logged_in']['id'];
             $this->spam_and_fav_model->add_spam($id, $user_id);
         } else {
-            $this->load->view('login');
+            redirect('login');
         }
     }
 
@@ -192,7 +192,7 @@ class Details extends CI_Controller {
                 $this->load->view('pages/details/'.$item_id);
             }
         }else {
-            $this->load->view('login');
+            redirect('login');
         }
     }
 
