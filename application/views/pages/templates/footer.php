@@ -152,6 +152,7 @@
 
         <div class="history_section">
             <?php foreach ($recent_views as $rv):?>
+                <a href="<?php echo base_url('details/'.$rv->item_id);?>">
                 <li style="height:140px; width:160px;">
                     <img src="<?php echo base_url('public/images/item_images/'.$rv->image);?>" style="height:100px; width:100px; padding:5px"><br>
                     <span class="title">
@@ -159,6 +160,7 @@
                     <a class="sub" href="!#"><?php echo (strlen($rv->title) > 15) ? substr($rv->title, 0, 15).'...' : $rv->title; ?></a><br>
                 </span>
                 </li>
+                </a>
             <?php endforeach;?>
         </div>
     </div> <!--history ends-->

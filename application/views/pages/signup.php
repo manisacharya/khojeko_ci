@@ -182,16 +182,13 @@
 
                                 <td>
                                     <?php
-                                    $options_z = array(
-                                        'Bagmati' =>'Bagmati',              'Bheri' => 'Bheri',
-                                        'Dhawalagiri' => 'Dhawalagiri',     'Gandaki' => 'Gandaki',
-                                        'Janakpur' => 'Janakpur',           'Karnali' => 'Karnali',
-                                        'Koshi' => 'Koshi',                 'Lumbini' => 'Lumbini',
-                                        'Mahakali' => 'Mahakali',           'Mechi' => 'Mechi',
-                                        'Narayani' => 'Narayani',           'Rapti' => 'Rapti',
-                                        'Sagarmatha' => 'Sagarmatha',       'Seti' => 'Seti'
-                                    );
-                                    echo form_dropdown('zone_p', $options_z, $this->input->post('zone'));
+                                    $options_z = array();
+                                    $options_z[] = "--Select Zone--";
+
+                                    foreach($zones as $row) {
+                                        $options_z[$row->zone_name] = $row->zone_name;
+                                    }
+                                    echo form_dropdown('zone_p', $options_z, $this->input->post('zone'), ' id="zone_p"');
                                     ?>
                                 </td>
                             </tr>
@@ -202,36 +199,9 @@
                                 </td>
 
                                 <td>
-                                    <?php
-                                    $options_d = array(
-                                        'Achham' => 'Achham',               'Arghakhanchi' => 'Arghakhanchi',       'Baglung' => 'Baglung',
-                                        'Baitadi' => 'Baitadi',             'Bajhang' => 'Bajhang',                 'Bajura' => 'Bajura',
-                                        'Banke' => 'Banke',                 'Bara' => 'Bara',                       'Bardiya' => 'Bardiya',
-                                        'Bhaktapur' => 'Bhaktapur',         'Bhojpur' => 'Bhojpur',                 'Chitwan' => 'Chitwan',
-                                        'Dadeldhura' => 'Dadeldhura',       'Dailekh' => 'Dailekh',                 'Dang' => 'Dang',
-                                        'Darchula' => 'Darchula',           'Dhading' => 'Dhading',                 'Dhankuta' => 'Dhankuta',
-                                        'Dhanusa' => 'Dhanusa',             'Dholkha' => 'Dholkha',                 'Dolpa' => 'Dolpa',
-                                        'Doti' => 'Doti',                   'Gorkha' => 'Gorkha',                   'Gulmi' => 'Gulmi',
-                                        'Humla' => 'Humla',                 'Ilam' => 'Ilam',                       'Jajarkot' => 'Jajarkot',
-                                        'Jhapa' => 'Jhapa',                 'Jumla' => 'Jumla',                     'Kailali' => 'Kailali',
-                                        'Kalikot' => 'Kalikot',             'Kanchanpur' => 'Kanchanpur',           'Kapilvastu' => 'Kapilvastu',
-                                        'Kaski' => 'Kaski',                 'Kathmandu' => 'Kathmandu',             'Kavrepalanchok' => 'Kavrepalanchok',
-                                        'Khotang' => 'Khotang',             'Lalitpur' => 'Lalitpur',               'Lamjung' => 'Lamjung',
-                                        'Mahottari' => 'Mahottari',         'Makwanpur' => 'Makwanpur',             'Manang' => 'Manang',
-                                        'Morang' => 'Morang',               'Mugu' => 'Mugu',                       'Mustang' => 'Mustang',
-                                        'Myagdi' => 'Myagdi',               'Nawalparasi' => 'Nawalparasi',         'Nuwakot' => 'Nuwakot',
-                                        'Okhaldhunga' => 'Okhaldhunga',     'Palpa' => 'Palpa',                     'Panchthar' => 'Panchthar',
-                                        'Parbat' => 'Parbat',               'Parsa' => 'Parsa',                     'Pyuthan' => 'Pyuthan',
-                                        'Ramechhap' => 'Ramechhap',         'Rasuwa' => 'Rasuwa',                   'Rautahat' => 'Rautahat',
-                                        'Rolpa' => 'Rolpa',                 'Rukum' => 'Rukum',                     'Rupandehi' => 'Rupandehi',
-                                        'Salyan' => 'Salyan',               'Sankhuwasabha' => 'Sankhuwasabha',     'Saptari' => 'Saptari',
-                                        'Sarlahi' => 'Sarlahi',             'Sindhuli' => 'Sindhuli',               'Sindhupalchok' => 'Sindhupalchok',
-                                        'Siraha' => 'Siraha',               'Solukhumbu' => 'Solukhumbu',           'Sunsari' => 'Sunsari',
-                                        'Surkhet' => 'Surkhet',             'Syangja' => 'Syangja',                 'Tanahu' => 'Tanahu',
-                                        'Taplejung' => 'Taplejung',         'Terhathum' => 'Terhathum',             'Udayapur' => 'Udayapur'
-                                    );
-                                    echo form_dropdown('district_p', $options_d, $this->input->post('district'));
-                                    ?>
+                                    <select name = 'district_p' id = 'district_p'>
+                                        <option value="">-- Select District --</option>
+                                    </select>
                                 </td>
                             </tr>
 
@@ -317,7 +287,7 @@
                                 </td>
 
                                 <td>
-                                    <?php echo form_dropdown('zone', $options_z, $this->input->post('zone'));?>
+                                    <?php echo form_dropdown('zone', $options_z, $this->input->post('zone'), ' id="zone"');?>
                                 </td>
                             </tr>
 
@@ -327,8 +297,9 @@
                                 </td>
 
                                 <td>
-                                    <?php echo form_dropdown('district', $options_d, $this->input->post('district')); ?>
-                                </td>
+                                    <select name = 'district' id = 'district'>
+                                        <option value="">-- Select District --</option>
+                                    </select></td>
                             </tr>
 
                             <tr>
@@ -591,6 +562,20 @@
             }
         });
 
+        $('#zone_p').change(function(){
+            var zone = $(this).val();
+            var dataPass = 'action=availability&zone=' + zone;
+            $.ajax({ // Send the username val to available.php
+                type: 'POST',
+                data: dataPass,
+                url: 'get_districts',
+                success: function(html){
+                    $("#district_p").html("");
+                    $("#district_p").html(html);
+                }
+            });
+        });
+
         $('#mobile_d').keyup(function(){
             var mobile_d = $(this).val(); // Get primary mobile number of personal textbox using $(this)
             var Result = $('#result4'); // Get ID of the result DIV where we display the results
@@ -637,6 +622,20 @@
             }else{
                 Result.html('Please enter only numbers').css('color','red');
             }
+        });
+
+        $('#zone').change(function(){
+            var zone = $(this).val();
+            var dataPass = 'action=availability&zone=' + zone;
+            $.ajax({ // Send the username val to available.php
+                type: 'POST',
+                data: dataPass,
+                url: 'get_districts',
+                success: function(html){
+                    $("#district").html("");
+                    $("#district").html(html);
+                }
+            });
         });
     });
 </script>
