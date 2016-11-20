@@ -9,6 +9,8 @@
 
 <div class="clearfix"></div>
 
+<?php echo $fav_msg; ?>
+
 <div class="item_category">
     <a class="main_cat">MAIN CATEGORY:</a>
     <a class="cat_description">Mobile Phones & Tablets</a> >><a class="cat_description"> Mobiles</a> >><a class="cat_description"> Nokia </a>
@@ -64,17 +66,6 @@
                 }
                 ?>
             </a>
-        </div>
-    </div>
-
-    <div class="col-sm-2">
-        <div class="col-sm-2">
-            <i class="fa fa-street-view" id="online"></i>
-        </div>
-
-        <div class="col-sm-10" id="status">
-            <a href="<?php echo base_url("ask-me/".$id)?>">Ask me</a>
-            <!--<a id="online">Online Now</a> -->
         </div>
     </div>
 
@@ -220,6 +211,22 @@
                             echo form_close();
                             */?>
                         </div><!--send_email ends-->
+
+    <div class="video_ad">
+        <video controls>
+            <source src="" type="video/mp4">
+            <source src="" type="video/ogg">
+            Your browser does not support the video tag.
+        </video>
+
+        <video controls>
+            <source src="" type="video/mp4">
+            <source src="" type="video/ogg">
+            Your browser does not support the video tag.
+        </video>
+    </div><!--video_ad ends-->
+
+
 
     <!--div class="map_section">
         MAP

@@ -87,6 +87,7 @@ class Details extends CI_Controller {
 
         $data['dealer_list'] = $this->khojeko_db_model->joinThings('user', 'khojeko_username, name', $dealer_list_joins, 'type="dealer"');
         $data["category"] = $this->categories_model->get_categories();
+        $data["fav_msg"] = $this->session->flashdata('fav_message');
 
         if ($this->session->has_userdata('logged_in')) {
             $this->load->model('database_models/recent_view_model');
@@ -155,10 +156,11 @@ class Details extends CI_Controller {
                 $this->spam_and_fav_model->add_fav($id, $p_id);
                 redirect('details/'.$id);
             } else {
-                echo "only personal user can add to favourite";
+                $this->session->set_flashdata('fav_message','<div class="alert alert-danger">Only personal user can add to favourites.</div>');
+                redirect('details/'.$id);
             }
         } else {
-            $this->load->view('login');
+            redirect('login');
         }
     }
 
@@ -168,7 +170,7 @@ class Details extends CI_Controller {
             $user_id = $this->session->userdata['logged_in']['id'];
             $this->spam_and_fav_model->add_spam($id, $user_id);
         } else {
-            $this->load->view('login');
+            redirect('login');
         }
     }
 
@@ -190,7 +192,7 @@ class Details extends CI_Controller {
                 $this->load->view('pages/details/'.$item_id);
             }
         }else {
-            $this->load->view('login');
+            redirect('login');
         }
     }
 
