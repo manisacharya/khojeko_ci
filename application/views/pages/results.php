@@ -83,7 +83,7 @@
 <div class="grid_view">
     <ul class="grid1" id="grid1">
         <?php foreach($searched_dealers as $dealer): ?>
-            <a href="#">
+            <a href="<?php echo base_url('dealer/'.$dealer->khojeko_username.'/All');?>">
                 <li>
                     <div class="col-sm-2" id="image_content">
                         <img src="<?php echo base_url();?>public/images/dealer_logos/<?php echo $dealer->logo;?>" class="img-rounded"/>
