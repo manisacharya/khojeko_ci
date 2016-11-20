@@ -37,6 +37,7 @@ $route['signup'] = "Signup/signup";
 $route['signup_done'] = "Signup/signup_done";
 $route['details_validation'] = "Signup/details_validation";
 $route['register_user/(:any)'] = "Signup/register_user/$1";
+$route['get_districts'] = "Signup/get_districts";
 //check unique username
 $route['available_username'] = "Signup/available_username";
 //check unique user email
