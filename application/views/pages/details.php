@@ -1,11 +1,3 @@
-<div class="clearfix"></div>
-
-<div class="display" >
-    <div class="col-sm-6 col-xs-12" id="left">Top banner ads 1</div>
-    <div class="col-sm-6 col-xs-12" id="right">
-        <img src="<?php echo base_url();?>public/images/image5.jpg">
-    </div>
-</div>
 
 <div class="clearfix"></div>
 
