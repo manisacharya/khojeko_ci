@@ -200,7 +200,7 @@
 
                                 <td>
                                     <select name = 'district_p' id = 'district_p'>
-                                        <option value="">-- git --</option>
+                                        <option value="">-- Select District --</option>
                                     </select>
                                 </td>
                             </tr>
