@@ -12,8 +12,9 @@ class Spam_and_fav_model extends CI_Model {
             );
 
             $this->db->insert('favourites', $data);
+            $this->session->set_flashdata('fav_message','<div class="alert alert-success">This item has been added to your favourites.</div>');
         } else {
-            echo "Page already added to favourite.";
+            $this->session->set_flashdata('fav_message','<div class="alert alert-dangerg">This item has already been added to your favourites.</div>');
         }
     }
 
