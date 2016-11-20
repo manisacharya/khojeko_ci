@@ -43,15 +43,14 @@ class Upload extends CI_Controller {
 
         if ( ! $this->upload->do_upload('userfile')) {
             $data['upload_status'] = "Logo not uploaded";
+            $this->session->set_flashdata("message", $this->upload->display_errors('<div class="alert alert-danger">', '</div>'));
+            redirect('admin/site_logo');
 
-            $data['error'] = $this->upload->display_errors('<div class="alert alert-danger">', '</div>');
-            $this->load->view('admin/'.$page, $data);
         }
         else {
             $data = array('upload_data' => $this->upload->data());
-            $data['upload_status'] = "Logo updated successfully";
-            $data['error'] = '';
-            $this->load->view('admin/'.$page, $data);
+            $this->session->set_flashdata("message", '<div class="alert alert-success">Logo updated successfully</div>');
+            redirect('admin/site_logo');
         }
     }
 }

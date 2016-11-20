@@ -113,4 +113,152 @@ class Pages extends CI_Controller {
         $this->load->view('pages/home', $data);
         $this->load->view('pages/templates/footer');
     }
+
+    public function personal_page($personal) {
+        // for dealer list
+        //$data['dealer_list'] = $this->general_database_model->getAll('dealer', 'name', 'ASC');
+        $dealer_list_joins = array(
+            array (
+                'table' => 'dealer',
+                'condition' => 'user.user_key = dealer.d_id',
+                'jointype' => 'INNER'
+            )
+        );
+        /*item/Category JOIN ARRAY*/
+        $item_joins = array(
+            array(
+                'table' => 'user',
+                'condition' => 'user.user_id = items.user_id',
+                'jointype' => 'INNER'
+            ),
+            array(
+                'table' => 'dealer',
+                'condition' => 'user.user_key = dealer.d_id',
+                'jointype' => 'INNER'
+            ),
+            array(
+                'table' => 'category',
+                'condition' => 'items.c_id = category.c_id',
+                'jointype' => 'INNER'
+            ),
+            array(
+                'table' => 'item_img',
+                'condition' => 'items.item_id = item_img.item_id',
+                'jointype' => 'INNER'
+            ),
+            array(
+                'table' => 'item_spec',
+                'condition' => 'items.item_id = item_spec.item_id',
+                'jointype' => 'INNER'
+            )
+        );
+
+        $personal_joins = array(
+            array(
+                'table' => 'user',
+                'condition' => 'user.user_id = items.user_id',
+                'jointype' => 'INNER'
+            ),
+            array(
+                'table' => 'personal',
+                'condition' => 'user.user_key = personal.p_id',
+                'jointype' => 'INNER'
+            )
+        );
+
+        //$data["category"] = $this->general_database_model->getAll('category', 'c_id', 'ASC');
+        $data["category"] = $this->categories_model->get_categories();
+        $data['dealer_list'] = $this->khojeko_db_model->joinThings('user', 'khojeko_username, name', $dealer_list_joins, 'type="dealer"');
+
+        // counts : total, used/new, dealer/user ads
+        $data["total_items"] = $this->khojeko_db_model->getCount("items", "COUNT(*) as total", "1=1");
+        $data["used_items"] = $this->khojeko_db_model->getCount("items", "COUNT(*) as total", "item_type='used'");
+        $data["new_items"] = $this->khojeko_db_model->getCount("items", "COUNT(*) as total", "item_type='new'");
+        $data['dealer_items'] = $this->khojeko_db_model->joinThingsRow('items', 'COUNT(*) as total', $item_joins, 'type="dealer"');
+        $data['user_items'] = $this->khojeko_db_model->joinThingsRow('items', 'COUNT(*) as total', $personal_joins, 'type="personal"');
+
+        if ($this->session->has_userdata('logged_in')) {
+            $this->load->model('database_models/recent_view_model');
+            $user_session = $this->session->all_userdata();
+            $data['recent_views'] = $this->recent_view_model->get_recent_view($user_session['logged_in']['id']);
+        }
+
+        $this->load->view('pages/templates/header', $data);
+        $this->load->view('pages/user_page', $data);
+        $this->load->view('pages/templates/footer');
+    }
+
+    public function dealer_panel() {
+        // for dealer list
+        //$data['dealer_list'] = $this->general_database_model->getAll('dealer', 'name', 'ASC');
+        $dealer_list_joins = array(
+            array (
+                'table' => 'dealer',
+                'condition' => 'user.user_key = dealer.d_id',
+                'jointype' => 'INNER'
+            )
+        );
+        /*item/Category JOIN ARRAY*/
+        $item_joins = array(
+            array(
+                'table' => 'user',
+                'condition' => 'user.user_id = items.user_id',
+                'jointype' => 'INNER'
+            ),
+            array(
+                'table' => 'dealer',
+                'condition' => 'user.user_key = dealer.d_id',
+                'jointype' => 'INNER'
+            ),
+            array(
+                'table' => 'category',
+                'condition' => 'items.c_id = category.c_id',
+                'jointype' => 'INNER'
+            ),
+            array(
+                'table' => 'item_img',
+                'condition' => 'items.item_id = item_img.item_id',
+                'jointype' => 'INNER'
+            ),
+            array(
+                'table' => 'item_spec',
+                'condition' => 'items.item_id = item_spec.item_id',
+                'jointype' => 'INNER'
+            )
+        );
+
+        $personal_joins = array(
+            array(
+                'table' => 'user',
+                'condition' => 'user.user_id = items.user_id',
+                'jointype' => 'INNER'
+            ),
+            array(
+                'table' => 'personal',
+                'condition' => 'user.user_key = personal.p_id',
+                'jointype' => 'INNER'
+            )
+        );
+
+        //$data["category"] = $this->general_database_model->getAll('category', 'c_id', 'ASC');
+        $data["category"] = $this->categories_model->get_categories();
+        $data['dealer_list'] = $this->khojeko_db_model->joinThings('user', 'khojeko_username, name', $dealer_list_joins, 'type="dealer"');
+
+        // counts : total, used/new, dealer/user ads
+        $data["total_items"] = $this->khojeko_db_model->getCount("items", "COUNT(*) as total", "1=1");
+        $data["used_items"] = $this->khojeko_db_model->getCount("items", "COUNT(*) as total", "item_type='used'");
+        $data["new_items"] = $this->khojeko_db_model->getCount("items", "COUNT(*) as total", "item_type='new'");
+        $data['dealer_items'] = $this->khojeko_db_model->joinThingsRow('items', 'COUNT(*) as total', $item_joins, 'type="dealer"');
+        $data['user_items'] = $this->khojeko_db_model->joinThingsRow('items', 'COUNT(*) as total', $personal_joins, 'type="personal"');
+
+        if ($this->session->has_userdata('logged_in')) {
+            $this->load->model('database_models/recent_view_model');
+            $user_session = $this->session->all_userdata();
+            $data['recent_views'] = $this->recent_view_model->get_recent_view($user_session['logged_in']['id']);
+        }
+
+        $this->load->view('pages/templates/header', $data);
+        $this->load->view('pages/dealer_panel', $data);
+        $this->load->view('pages/templates/footer');
+    }
 }
