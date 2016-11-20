@@ -73,6 +73,12 @@ class Search extends CI_Controller {
         $data['dealer_list'] = $this->khojeko_db_model->joinThings('user', 'khojeko_username, name', $dealer_list_joins, 'type="dealer"');
         $data["category"] = $this->categories_model->get_categories();
 
+        if ($this->session->has_userdata('logged_in')) {
+            $this->load->model('database_models/recent_view_model');
+            $user_session = $this->session->all_userdata();
+            $data['recent_views'] = $this->recent_view_model->get_recent_view($user_session['logged_in']['id']);
+        }
+
         // SEARCH QUERIES
         $data['searched_items'] = $this->search_model->search_items();
         $data['searched_personals'] = $this->search_model->search_personals();
