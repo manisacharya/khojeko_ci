@@ -59,7 +59,7 @@
     <?php foreach($searched_personals as $personal): ?>
         <a href="#" >  <li>
             <div class="col-sm-2" id="image_content">
-                <img src="<?php echo base_url();?>public/images/s8.jpg" class="img-rounded"/>
+                <img src="<?php echo base_url();?>public/images/user.png" class="img-rounded"/>
             </div>
             <div class="col-sm-10" id="info_content">
 
