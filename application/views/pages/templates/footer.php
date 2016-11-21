@@ -1,4 +1,4 @@
-<div class="col-sm-12">
+<div class="col-sm-12" style="margin-top: 20px;">
     <div class="dealer_listing">
         <div class="dealer_list_topic">
             <label>Dealer Listing >>></label>

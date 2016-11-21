@@ -73,3 +73,9 @@ $route['admin/sign_up'] = 'admin/users/sign_up';
 $route['admin/logout'] = 'admin/users/logout';
 $route['admin/change_password'] = 'admin/users/change_password';
 $route['admin/(:any)'] = 'admin/admin_pages/page/$1';
+
+// USER PAGE
+$route['user/(:any)'] = 'pages/personal_page/$1';
+
+// DEALER PANEL
+$route['dpanel/(:any)/(:any)'] = 'pages/dealer_panel/$1';

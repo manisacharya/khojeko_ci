@@ -55,10 +55,10 @@
 <div class="grid_view">
     <ul class="grid1" id="grid1">
     <?php foreach($searched_personals as $personal): ?>
-        <a href="#">
+        <a href="<?php echo base_url('user/'.$personal->khojeko_username)?>">
             <li>
             <div class="col-sm-2" id="image_content">
-                <img src="<?php echo base_url();?>public/images/user.png" class="img-rounded"/>
+                <img src="<?php echo base_url('public/images/user.png');?>" class="img-rounded"/>
             </div>
             <div class="col-sm-10" id="info_content">
                 <section class="list-left">
