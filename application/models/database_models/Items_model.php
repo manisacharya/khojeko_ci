@@ -37,9 +37,43 @@ class Items_model extends CI_Model {
     public $comment_count;
     public $spam_count;
 
+    public function get_dealer_items($dealer) {
+        if ($this->db->table_exists('items')) {
+            $this->db = $this->item_joins();
+            $this->db->join('dealer', 'user.user_key = dealer.d_id');
+
+            $this->where('type', 'dealer');
+            $this->where('khojeko_username', $dealer);
+            $query = $this->db->get('items');
+            return $query->result();
+        }
+        return FALSE;
+    }
+
+    public function get_personal_items($personal) {
+        if ($this->db->table_exists('items')) {
+            $this->db = $this->item_joins();
+            $this->db->join('personal', 'user.user_key = personal.p_id');
+
+            $this->db->where('type', 'personal');
+            $this->db->where('khojeko_username', $personal);
+            $query = $this->db->get('items');
+            return $query->result();
+        }
+        return FALSE;
+    }
+
+    public function item_joins() {
+        $this->db->join('item_img', 'item_img.item_id = items.item_id');
+        $this->db->join('item_spec', 'item_spec.item_id = items.item_id');
+        $this->db->join('category', 'category.c_id = items.c_id');
+        $this->db->join('user', 'user.user_id = items.user_id');
+        return $this->db;
+    }
+
     public function insert_dealer() {
         if ($this->db->table_exists('dealer')) {
-            $this->$item_id = $this->input->post('');
+            $this->$item_id = $this->input->post('yeho');
             $this->$title = $this->input->post('');
             $this->$item_type = $this->input->post('');
             $this->$bought_from = $this->input->post('');
