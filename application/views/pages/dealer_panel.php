@@ -6,8 +6,8 @@
 </div>
 
 <div class="welcome_div">
-    <a style="float:left">Welcome, Rajesh Ghirime</a>
-    <a>Your listing url:&nbsp;&nbsp;www.khojeko.com/rajesh92837</a>
+    <a style="float:left">Welcome, <?php echo $dealer_info->name; ?></a>
+    <a>Your listing url:&nbsp;&nbsp;www.khojeko.com/<?php echo $dealer_info->khojeko_username;?></a>
     <a class="online_offline" href="#!" title="online/offline"><i class="fa fa-user"></i></a>
 </div>
 <div class="clearfix"></div>
@@ -55,19 +55,25 @@
 
     <div class="owner_detail_ad">
         <ol>
+            <?php foreach ($all_dealer_items as $item): ?>
             <li>
                 <div class="col-sm-2">
-                    <img src="images/s8.jpg" alt="image" class="img-rounded">
+                    <img src="<?php echo base_url('public/images/item_images/'.$item->image); ?>" alt="image" class="img-rounded">
                 </div>
                 <div class="col-sm-2">
-                    <price>RS 16000</price><br>
-                    <name>Samsung s8</name><br>
-                    <date>12 june, 2015</date><br>
-                    <time>12:00 am</time>
+                    <price>RS <?php echo $item->price; ?></price><br>
+                    <name><?php echo $item->title; ?></name><br>
+                    <?php $published_date = date('Y-m-d', $item->published_date);?>
+                    <date><?php echo $published_date; ?></date><br>
                 </div>
                 <div class="col-sm-2" style="font-size:14px">
-                    <running>Running: 13 days</running><br>
-                    <view>247 views</view><br>
+                    <?php
+                    $today_date = date_create(date("Y-m-d"));
+                    $published_date = date_create($published_date);
+                    $difference = date_diff($today_date, $published_date);
+                    ?>
+                    <running>Running: <?php echo $difference->format("%a");?> days</running><br>
+                    <view><?php echo $item->views;?> views</view><br>
                     <a href="#!"> <comment>8 comment</comment></a>
                 </div>
                 <div class="col-sm-2" style="font-size:14px">
@@ -76,10 +82,11 @@
                     <a class="green" href="#!">Renew now</a>
                 </div>
                 <div class="col-sm-2" style="padding-left:15px;">
+                    <?php if($item->sales_status): ?>
                     <a class="red" href="#!">Sold</a>
+                    <?php else: ?>
                     <a class="green" href="#!">Unsold</a><br>
-                    <a class="red" href="#!">Hide</a>
-                    <a class="green" href="#!">Unhide</a>
+                    <?php endif; ?>
                 </div>
                 <div class="col-sm-1">
                     <a href="#!" class="red" title="delete"><i class="fa fa-trash-o"></i></a>
@@ -90,81 +97,9 @@
                     <a href="#!">View Ad</a>
                 </div>
             </li>
-
-
-            <li>
-                <div class="col-sm-2">
-                    <img src="images/s8.jpg" alt="image" class="img-rounded">
-                </div>
-                <div class="col-sm-2">
-                    <price>RS 16000</price><br>
-                    <name>Samsung s8</name><br>
-                    <date>12 june, 2015</date><br>
-                    <time>12:00 am</time>
-                </div>
-                <div class="col-sm-2" style="font-size:14px">
-                    <running>Running: 13 days</running><br>
-                    <view>247 views</view><br>
-                    <a href="#!"> <comment>8 comment</comment></a>
-                </div>
-                <div class="col-sm-2" style="font-size:14px">
-                    <extend>Extend for:30 days</extend><br>
-                    <expiry>Expiry: After 7 days</expiry><br>
-                    <a class="green" href="#!">Renew now</a>
-                </div>
-                <div class="col-sm-2" style="padding-left:15px;">
-                    <a class="red" href="#!">Sold</a>
-                    <a class="green" href="#!">Unsold</a><br>
-                    <a class="red" href="#!">Hide</a>
-                    <a class="green" href="#!">Unhide</a>
-                </div>
-                <div class="col-sm-1">
-                    <a href="#!" class="red" title="delete"><i class="fa fa-trash-o"></i></a>
-                    <a href="#!" class="blue" title="edit"><i class="fa fa-edit"></i></a>
-                </div>
-                <div class="col-sm-1" style="padding-left:5px">
-                    <a class="red" href="#!">Active</a><br>
-                    <a href="#!">View Ad</a>
-                </div>
-            </li>
-
-
-            <li>
-                <div class="col-sm-2">
-                    <img src="images/s8.jpg" alt="image" class="img-rounded">
-                </div>
-                <div class="col-sm-2">
-                    <price>RS 16000</price><br>
-                    <name>Samsung s8</name><br>
-                    <date>12 june, 2015</date><br>
-                    <time>12:00 am</time>
-                </div>
-                <div class="col-sm-2" style="font-size:14px">
-                    <running>Running: 13 days</running><br>
-                    <view>247 views</view><br>
-                    <a href="#!"> <comment>8 comment</comment></a>
-                </div>
-                <div class="col-sm-2" style="font-size:14px">
-                    <extend>Extend for:30 days</extend><br>
-                    <expiry>Expiry: After 7 days</expiry><br>
-                    <a class="green" href="#!">Renew now</a>
-                </div>
-                <div class="col-sm-2" style="padding-left:15px;">
-                    <a class="red" href="#!">Sold</a>
-                    <a class="green" href="#!">Unsold</a><br>
-                    <a class="red" href="#!">Hide</a>
-                    <a class="green" href="#!">Unhide</a>
-                </div>
-                <div class="col-sm-1 delete_edit">
-                    <a href="#!" class="red" title="delete"><i class="fa fa-trash-o"></i></a>
-                    <a href="#!" class="blue" title="edit"><i class="fa fa-edit"></i></a>
-                </div>
-                <div class="col-sm-1" style="padding-left:5px">
-                    <a class="red" href="#!">Active</a><br>
-                    <a href="#!">View Ad</a>
-                </div>
-            </li>
+            <?php endforeach;?>
         </ol>
+
         <div class="col-sm-12">
             <div class="col-sm-5"></div>
             <div class="col-sm-7">

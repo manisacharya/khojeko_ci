@@ -16,6 +16,7 @@ class Pages extends CI_Controller {
         $this->load->model('index_database_model'); // load model
         $this->load->model('khojeko_db_model');
         $this->load->model('general_database_model');
+        $this->output->enable_profiler(TRUE);
     }
 
     public function index() {
@@ -193,7 +194,7 @@ class Pages extends CI_Controller {
         $this->load->view('pages/templates/footer');
     }
 
-    public function dealer_panel() {
+    public function dealer_panel($dealer) {
         // for dealer list
         //$data['dealer_list'] = $this->general_database_model->getAll('dealer', 'name', 'ASC');
         $dealer_list_joins = array(
@@ -255,6 +256,11 @@ class Pages extends CI_Controller {
         $data["new_items"] = $this->khojeko_db_model->getCount("items", "COUNT(*) as total", "item_type='new'");
         $data['dealer_items'] = $this->khojeko_db_model->joinThingsRow('items', 'COUNT(*) as total', $item_joins, 'type="dealer"');
         $data['user_items'] = $this->khojeko_db_model->joinThingsRow('items', 'COUNT(*) as total', $personal_joins, 'type="personal"');
+
+        $this->load->model('database_models/user_model');
+        $data['dealer_info'] = $this->user_model->get_user_info('dealer', $dealer);
+        $this->load->model('database_models/items_model');
+        $data['all_dealer_items'] = $this->items_model->get_dealer_items($dealer);
 
         if ($this->session->has_userdata('logged_in')) {
             $this->load->model('database_models/recent_view_model');

@@ -42,8 +42,8 @@ class Items_model extends CI_Model {
             $this->db = $this->item_joins();
             $this->db->join('dealer', 'user.user_key = dealer.d_id');
 
-            $this->where('type', 'dealer');
-            $this->where('khojeko_username', $dealer);
+            $this->db->where('type', 'dealer');
+            $this->db->where('khojeko_username', $dealer);
             $query = $this->db->get('items');
             return $query->result();
         }
