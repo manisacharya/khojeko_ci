@@ -183,6 +183,11 @@ class Pages extends CI_Controller {
             $data['recent_views'] = $this->recent_view_model->get_recent_view($user_session['logged_in']['id']);
         }
 
+        $this->load->model('database_models/user_model');
+        $data['personal_info'] = $this->user_model->get_user_info('personal', $personal);
+        $this->load->model('database_models/items_model');
+        $data['personal_items'] = $this->items_model->get_personal_items($personal);
+
         $this->load->view('pages/templates/header', $data);
         $this->load->view('pages/user_page', $data);
         $this->load->view('pages/templates/footer');
