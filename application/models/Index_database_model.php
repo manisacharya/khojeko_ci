@@ -1,9 +1,22 @@
 <?php
 class Index_database_model extends CI_Model {
 
+    // public function xss_invoke($variable, $name){
+    //     $this->$variable = html_escape($this->security->xss_clean($this->input->post($name)));
+    // }
+
     //fetch all data from $table
     function getAll($table, $orderby, $order) {
         $this->db->select('*')->from($table)->order_by($orderby, $order);
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    //for latest ad not to show house and land
+    function getAllWhere($table, $orderby, $order){
+        $this->db->select('*')->from($table)->order_by($orderby, $order);
+        $this->db->where('item_img.primary', 1);
+        $this->db->where('visibility', 1);
         $query = $this->db->get();
         return $query->result();
     }
@@ -12,7 +25,7 @@ class Index_database_model extends CI_Model {
     function getDetails($table, $value, $id) {
         $this->db->where($value, $id)->from($table);
         $query = $this->db->get();
-        return $query->row();
+        return html_escape($this->security->xss_clean($query->row()));
     }
 
     //join $tableFrom and $tableJoin with certain $id
@@ -74,7 +87,7 @@ class Index_database_model extends CI_Model {
         $this->db->join('items', 'item_img.item_id= items.item_id');
         $this->db->where('item_img.image_id', $id);
         $query =  $this->db->get();
-        return $query->row();
+        return html_escape($this->security->xss_clean($query->row()));
     }
 
     //to be made continue
@@ -85,7 +98,7 @@ class Index_database_model extends CI_Model {
         $this->db->where('item_img.image_id', $id);
 
         $query = $this->db->get();
-        return $query->result();
+        return html_escape($this->security->xss_clean($query->result()));
     }
 
 	public function search($name){
@@ -94,13 +107,12 @@ class Index_database_model extends CI_Model {
     }
 
     public function can_log_in(){
+        $this->db->select('*')->from('user');
 
-        $this->db->where('email', $this->input->post('email'));
+        $this->db->where('khojeko_username', $this->input->post('username'));
         $this->db->where('password', $this->input->post('password'));
-        $this->db->where('type', $this->input->post('acc_type'));
-        //$this->form_validation->set_rules('form_radio', 'Type', 'required');
 
-        $query = $this->db->get('user');
+        $query = $this->db->get();
 
         if($query->num_rows() == 1)
             return true;
