@@ -85,11 +85,11 @@
         <div class="container" >
             <div class="col-sm-12 ads_number">
                 <li>
-                    <a href="#!">All Ads (<?php echo $total_items->total;?>)</a>
-                    <a href="#!">Dealer Ads (<?php echo $dealer_items->total;?>)</a>
-                    <a href="#!">Individual Ads (<?php echo $user_items->total;?>)</a>
-                    <a href="#!">New Ads (<?php echo $new_items->total;?>)</a>
-                    <a href="#!">Used Ads (<?php echo $used_items->total;?>)</a>
+                    <a href="#!">All Ads (<?php echo $total_items;?>)</a>
+                    <a href="#!">Dealer Ads (<?php echo $dealer_items;?>)</a>
+                    <a href="#!">Individual Ads (<?php echo $user_items;?>)</a>
+                    <a href="#!">New Ads (<?php echo $new_items;?>)</a>
+                    <a href="#!">Used Ads (<?php echo $used_items;?>)</a>
                 </li>
             </div>
 

@@ -73,36 +73,51 @@ class Items_model extends CI_Model {
 
     public function insert_dealer() {
         if ($this->db->table_exists('dealer')) {
-            $this->$item_id = $this->input->post('yeho');
-            $this->$title = $this->input->post('');
-            $this->$item_type = $this->input->post('');
-            $this->$bought_from = $this->input->post('');
-            $this->$price = $this->input->post('');
-            $this->$quantity = $this->input->post('');
-            $this->$used_for = $this->input->post('');
-            $this->$mkt_price = $this->input->post('');
-            $this->$verification_number = $this->input->post('');
-            $this->$isVerified = $this->input->post('');
-            $this->$avaibility_address = $this->input->post('');
-            $this->$published_date = $this->input->post('');
-            $this->$delivery = $this->input->post('');
-            $this->$delivery_charge = $this->input->post('');
-            $this->$warranty_period = $this->input->post('');
-            $this->$sales_status = $this->input->post('');
-            $this->$ad_duration = $this->input->post('');
-            $this->$views = $this->input->post('');
-            $this->$visibility = $this->input->post('');
-            $this->$video_url1 = $this->input->post('');
-            $this->$video_url2 = $this->input->post('');
-            $this->$deleted_date = $this->input->post('');
-            $this->$c_id = $this->input->post('');
-            $this->$user_id = $this->input->post('');
-            $this->$ad_id = $this->input->post('');
-            $this->$is_premium = $this->input->post('');
-            $this->$comment_count = $this->input->post('');
-            $this->$spam_count = $this->input->post('');
+            $this->item_id = $this->input->post('yeho');
+            $this->title = $this->input->post('');
+            $this->item_type = $this->input->post('');
+            $this->bought_from = $this->input->post('');
+            $this->price = $this->input->post('');
+            $this->quantity = $this->input->post('');
+            $this->used_for = $this->input->post('');
+            $this->mkt_price = $this->input->post('');
+            $this->verification_number = $this->input->post('');
+            $this->isVerified = $this->input->post('');
+            $this->avaibility_address = $this->input->post('');
+            $this->published_date = $this->input->post('');
+            $this->delivery = $this->input->post('');
+            $this->delivery_charge = $this->input->post('');
+            $this->warranty_period = $this->input->post('');
+            $this->sales_status = $this->input->post('');
+            $this->ad_duration = $this->input->post('');
+            $this->views = $this->input->post('');
+            $this->visibility = $this->input->post('');
+            $this->video_url1 = $this->input->post('');
+            $this->video_url2 = $this->input->post('');
+            $this->deleted_date = $this->input->post('');
+            $this->c_id = $this->input->post('');
+            $this->user_id = $this->input->post('');
+            $this->ad_id = $this->input->post('');
+            $this->is_premium = $this->input->post('');
+            $this->comment_count = $this->input->post('');
+            $this->spam_count = $this->input->post('');
             return TRUE;
         }
         return FALSE;
+    }
+
+    public function count_items() {
+        return $this->db->count_all('items');
+    }
+
+    public function count_status_items($item_type) { // used or new
+        $this->db->where('item_type', $item_type);
+        return $this->db->count_all_results('items');
+    }
+
+    public function count_user_items($type) {
+        $this->db->where('type', $type);
+        $this->db->join('user', 'user.user_id = items.user_id');
+        return $this->db->count_all_results('items');
     }
 }
