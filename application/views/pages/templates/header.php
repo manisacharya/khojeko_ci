@@ -59,7 +59,11 @@
                             <?php
                             $set_data = $this->session->all_userdata();
                             if (isset($set_data['logged_in'])):?>
-                                <li><?php echo anchor('upanel/'.$set_data['logged_in']['username'].'/All', 'My Account'); ?></li>
+                                <?php if($set_data['logged_in']['type'] =='dealer'):?>
+                                    <li><?php echo anchor('dpanel/'.$set_data['logged_in']['username'].'/All', 'My Account'); ?></li>
+                                <?php else:?>
+                                    <li><?php echo anchor('upanel/'.$set_data['logged_in']['username'].'/All', 'My Account'); ?></li>
+                                <?php endif ?>
                                 <li class="divider"><a>|</a></li>
                                 <li><a href="<?php echo base_url('logout')?>" class="nav"><i class="fa fa-lock"></i>&nbsp;Logout</a></a></li>
                                 <li class="divider"><a>|</a></li>
