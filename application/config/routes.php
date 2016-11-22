@@ -21,15 +21,14 @@ $route['heirarchy'] = "khojeko/heirarchy";
 $route['modify'] = "khojeko/modify";
 
 // USER PANEL CONTROLLER ROUTE
-$route['upanel'] = "user_panel/redirect";
+/*$route['upanel'] = "user_panel/redirect";
 $route['upanel/(:any)'] = "user_panel/redirect";
-$route['upanel/(:any)/(:any)'] = "user_panel/upanel/$1/$2";
+$route['upanel/(:any)/(:any)'] = "user_panel/upanel/$1/$2";*/
 
-/*// DEALER CONTROLLER ROUTE
-$route['dealer'] = "dealers/redirect";
-$route['dealer/(:any)'] = "dealers/redirect";
-$route['dealer/(:any)/(:any)'] = "dealers/dealer/$1/$2";*/
-$route['dealer'] = "dealers/redirect";
+$route['upanel/(:any)'] = "pages/personal_panel/$1";
+$route['upanel/(:any)/(:any)'] = "pages/personal_panel/$1/$2";
+
+// DEALER CONTROLLER ROUTE
 $route['dealer/(:any)'] = "pages/dealer_page/$1";
 $route['dealer/(:any)/(:any)'] = "pages/dealer_page/$1/$2";
 
@@ -81,4 +80,5 @@ $route['admin/(:any)'] = 'admin/admin_pages/page/$1';
 $route['user/(:any)'] = 'pages/personal_page/$1';
 
 // DEALER PANEL
-$route['dpanel/(:any)/(:any)'] = 'pages/dealer_panel/$1';
+$route['dpanel/(:any)'] = 'pages/dealer_panel/$1';
+$route['dpanel/(:any)/(:any)'] = 'pages/dealer_panel/$1/$2';

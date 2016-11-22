@@ -81,9 +81,9 @@ class User_session extends CI_Controller {
         $set_data = $this->session->all_userdata();
         if (isset($set_data['logged_in'])) {
             if($set_data['logged_in']['type'] == 'dealer')
-                redirect('dpanel/'.$set_data['logged_in']['username'].'/All');
+                redirect('dpanel/'.$set_data['logged_in']['username']);
             else if($set_data['logged_in']['type'] == 'personal')
-                redirect('upanel/'.$set_data['logged_in']['username'].'/All');
+                redirect('upanel/'.$set_data['logged_in']['username']);
         }
         else {
             redirect('login');
