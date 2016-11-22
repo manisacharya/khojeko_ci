@@ -64,6 +64,7 @@ class Items_model extends CI_Model {
     }
 
     public function item_joins() {
+        $this->db->where('deleted_date', 0);
         $this->db->join('item_img', 'item_img.item_id = items.item_id');
         $this->db->join('item_spec', 'item_spec.item_id = items.item_id');
         $this->db->join('category', 'category.c_id = items.c_id');
@@ -106,8 +107,11 @@ class Items_model extends CI_Model {
         return FALSE;
     }
 
-    public function count_items() {
-        return $this->db->count_all('items');
+    public function count_items($user_id = 'all') {
+        if($user_id != 'all') {
+            $this->db->where('user_id', $user_id);
+        }
+        return $this->db->count_all_results('items');
     }
 
     public function count_status_items($item_type) { // used or new
@@ -119,5 +123,40 @@ class Items_model extends CI_Model {
         $this->db->where('type', $type);
         $this->db->join('user', 'user.user_id = items.user_id');
         return $this->db->count_all_results('items');
+    }
+
+    public function count_deleted_items($user_id) {
+        $this->db->where('deleted_date != ', 0);
+        $this->db->where('user_id', $user_id);
+        return $this->db->count_all_results('items');
+    }
+
+    public function count_sales_items($user_id, $sales_status) {
+        $this->db->where('sales_status', $sales_status);
+        $this->db->where('user_id', $user_id);
+        return $this->db->count_all_results('items');
+    }
+
+    public function count_expired_items($user_id) {
+        //$this->db->where('')
+    }
+
+    public function count_user_page_items() {
+        $session_data = $this->session->userdata('logged_in');
+        $session_id = $session_data['id'];
+
+        $this->load->model('database_models/spam_model');
+        $data = array(
+            'spam_reports' => $this->spam_model->count_spam_of_user($session_id),
+            'total_items' => $this->count_items($session_id),
+            'deleted_items' => $this->count_deleted_items($session_id),
+            'sold_items' => $this->count_sales_items($session_id, 0),
+            'active_items' => $this->count_sales_items($session_id, 1)
+            /*'expired_items' => $this->count_expired_items($session_id)
+            'alert_message'
+            'admin_message'*/
+        );
+
+        return (object)$data;
     }
 }
