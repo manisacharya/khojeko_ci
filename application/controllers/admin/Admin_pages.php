@@ -19,7 +19,7 @@ class Admin_pages extends CI_Controller {
         $data['title'] = ucwords(strtolower(str_replace('_', ' ', $page))); // Capitalize the first letter
         $data['user_info'] = $this->user_model->get_user_info();
         // $data['categories'] = $this->categories_model->get_categories();
-        // $data['zones'] = $this->zones_model->getAllZones();
+        //$data['zones'] = $this->zones_model->getAllZones();
 
         $data['upload_status'] = "Upload file from here.";
         $data['message'] = $this->session->flashdata('message');

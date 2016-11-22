@@ -19,6 +19,7 @@ class Ad_post extends CI_Controller{
         $this->load->model('admin/personal_model');
         $this->load->model('admin/image_model');
         $this->load->model('admin/districts_model');
+        $this->load->model('admin/zones_model');
         $this->load->helper(array('form', 'url'));
         $this->load->helper('security');
         $this->load->library('upload');
@@ -36,7 +37,7 @@ class Ad_post extends CI_Controller{
         $this->load->library('form_validation');
         $this->form_validation->set_error_delimiters('<div class="alert alert-danger">', '</div>');
 
-        $this->load->view('admin/templates/header', $data) ;
+        $this->load->view('admin/templates/header', $data);
 
         $this->form_validation->set_rules('owner_name', 'AdOwnerName', 'required');
         $this->form_validation->set_rules('email', 'Email', 'required');
@@ -50,6 +51,7 @@ class Ad_post extends CI_Controller{
         if ($this->form_validation->run() == FALSE) {
             $data['message'] = "first";
             $this->load->view('admin/post_ad', $data);
+            $this->load->view('admin/templates/footer', $data);
         }else {
             // check for existing user through email and username
             
@@ -71,6 +73,7 @@ class Ad_post extends CI_Controller{
                 // redirect('admin/post_ad');
                 $data['message'] = "";
                 $this->load->view('admin/post_ad', $data);
+
             }else{
                 $this->item_model->add_item();
 
@@ -79,6 +82,8 @@ class Ad_post extends CI_Controller{
             
             $data['message'] = "";
             $this->load->view('admin/post_ad', $data);
+            $this->load->view('admin/templates/footer', $data);
+
             // $this->session->set_flashdata('message','<div class="alert alert-success">Successfully Added!</div>');
             
             // redirect('admin/post_ad');

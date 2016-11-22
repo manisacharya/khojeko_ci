@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Khojeko</title>
+    <title>Khojeko - Online Buying and Selling</title>
 
     <link href="<?php echo base_url('public/css/bootstrap.min.css');?>" rel="stylesheet" />
     <link href="<?php echo base_url('public/css/main.css');?>" rel="stylesheet" />
@@ -60,9 +60,9 @@
                             $set_data = $this->session->all_userdata();
                             if (isset($set_data['logged_in'])):?>
                                 <?php if($set_data['logged_in']['type'] =='dealer'):?>
-                                    <li><?php echo anchor('dpanel/'.$set_data['logged_in']['username'].'/All', 'My Account'); ?></li>
+                                    <li><?php echo anchor('dpanel/'.$set_data['logged_in']['username'], 'My Account'); ?></li>
                                 <?php else:?>
-                                    <li><?php echo anchor('upanel/'.$set_data['logged_in']['username'].'/All', 'My Account'); ?></li>
+                                    <li><?php echo anchor('upanel/'.$set_data['logged_in']['username'], 'My Account'); ?></li>
                                 <?php endif ?>
                                 <li class="divider"><a>|</a></li>
                                 <li><a href="<?php echo base_url('logout')?>" class="nav"><i class="fa fa-lock"></i>&nbsp;Logout</a></a></li>
@@ -85,11 +85,11 @@
         <div class="container" >
             <div class="col-sm-12 ads_number">
                 <li>
-                    <a href="#!">All Ads (<?php echo $total_items->total;?>)</a>
-                    <a href="#!">Dealer Ads (<?php echo $dealer_items->total;?>)</a>
-                    <a href="#!">Individual Ads (<?php echo $user_items->total;?>)</a>
-                    <a href="#!">New Ads (<?php echo $new_items->total;?>)</a>
-                    <a href="#!">Used Ads (<?php echo $used_items->total;?>)</a>
+                    <a href="#!">All Ads (<?php echo $total_items;?>)</a>
+                    <a href="#!">Dealer Ads (<?php echo $dealer_items;?>)</a>
+                    <a href="#!">Individual Ads (<?php echo $user_items;?>)</a>
+                    <a href="#!">New Ads (<?php echo $new_items;?>)</a>
+                    <a href="#!">Used Ads (<?php echo $used_items;?>)</a>
                 </li>
             </div>
 
@@ -138,5 +138,6 @@
                         <button type="submit" id="search_btn"><i class="fa fa-search"> </i> Search</button>
                         <?php echo form_close(); ?>
 
-                        <a href="adpost"><button type="button" id="ad_btn">POST FREE ADS</button></a>
+                        <a href="ad_form.html"><button type="button" id="ad_btn">POST FREE ADS</button></a>
+
                     </div>

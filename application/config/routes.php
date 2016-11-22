@@ -23,14 +23,12 @@ $route['heirarchy'] = "khojeko/heirarchy";
 $route['modify'] = "khojeko/modify";
 
 // USER PANEL CONTROLLER ROUTE
-$route['upanel'] = "user_panel/redirect";
-$route['upanel/(:any)'] = "user_panel/redirect";
-$route['upanel/(:any)/(:any)'] = "user_panel/upanel/$1/$2";
+$route['upanel/(:any)'] = "pages/personal_panel/$1";
+$route['upanel/(:any)/(:any)'] = "pages/personal_panel/$1/$2";
 
 // DEALER CONTROLLER ROUTE
-$route['dealer'] = "dealers/redirect";
-$route['dealer/(:any)'] = "dealers/redirect";
-$route['dealer/(:any)/(:any)'] = "dealers/dealer/$1/$2";
+$route['dealer/(:any)'] = "pages/dealer_page/$1";
+$route['dealer/(:any)/(:any)'] = "pages/dealer_page/$1/$2";
 
 // DETAIL CONTROLLER ROUTE
 // signup
@@ -73,15 +71,20 @@ $route['admin/category_edit'] = 'admin/admin_pages/edit_category';
 $route['admin/login'] = 'admin/users/login';
 $route['admin/sign_up'] = 'admin/users/sign_up';
 $route['admin/logout'] = 'admin/users/logout';
-$route['admin/change_password'] = 'admin/users/change_password';
-$route['admin/(:any)'] = 'admin/admin_pages/page/$1';
 
 $route['admin/post_ad'] = 'admin/ad_post/post_form';
 $route['get_district'] = 'admin/ad_post/get_district';
 $route['available_email_admin'] = 'admin/ad_post/available_email';
+
+$route['admin/change_password'] = 'admin/users/change_password';
+$route['admin/(:any)'] = 'admin/admin_pages/page/$1';
+
+
 // USER PAGE
 $route['user/(:any)'] = 'pages/personal_page/$1';
 
 // DEALER PANEL
-$route['dpanel/(:any)/(:any)'] = 'pages/dealer_panel/$1';
+
+$route['dpanel/(:any)'] = 'pages/dealer_panel/$1';
+$route['dpanel/(:any)/(:any)'] = 'pages/dealer_panel/$1/$2';
 
