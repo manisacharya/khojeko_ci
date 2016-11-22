@@ -2,7 +2,11 @@
 
 
 <div class="status_of_account">
-    <a><i class="fa fa-warning"></i> unverified ac</a>
+    <?php if($dealer_info->u_verified): ?>
+        <label style="color: green;">Verified Account</label>
+    <?php else:?>
+        <label style="color: red;">Unverified Account</label>
+    <?php endif; ?>
 </div>
 
 <div class="welcome_div">

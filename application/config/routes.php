@@ -21,10 +21,6 @@ $route['heirarchy'] = "khojeko/heirarchy";
 $route['modify'] = "khojeko/modify";
 
 // USER PANEL CONTROLLER ROUTE
-/*$route['upanel'] = "user_panel/redirect";
-$route['upanel/(:any)'] = "user_panel/redirect";
-$route['upanel/(:any)/(:any)'] = "user_panel/upanel/$1/$2";*/
-
 $route['upanel/(:any)'] = "pages/personal_panel/$1";
 $route['upanel/(:any)/(:any)'] = "pages/personal_panel/$1/$2";
 

@@ -25,7 +25,7 @@
     <link href="<?php echo base_url('public/images/icons/icon.ico')?>" rel="shortcut icon" />
 
 
-    <!--<link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet" />-->
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet" />
 </head>
 <body id="page-wrap">
     <div id="fb-root"></div>
@@ -137,6 +137,5 @@
                         <input type="text" name="search" class="search" placeholder="What are you looking for?">
                         <button type="submit" id="search_btn"><i class="fa fa-search"> </i> Search</button>
                         <?php echo form_close(); ?>
-
                         <a href="ad_form.html"><button type="button" id="ad_btn">POST FREE ADS</button></a>
                     </div>
