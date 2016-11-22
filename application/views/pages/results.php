@@ -8,18 +8,17 @@
     </div>
 
     <ul class="list">
-        <?php
-        $dateFormat = 'Y-m-d';
-        foreach ($searched_items as $oneitem): ?>
-        <a href="<?php echo base_url('details/'.$oneitem->item_id);?>">
+        <?php foreach ($searched_items as $item): ?>
+        <a href="<?php echo base_url('details/'.$item->item_id);?>">
             <li>
                 <div class="col-sm-2" id="image_content">
-                    <img src="<?php echo base_url('public/images/item_images/'.$oneitem->image); ?>" class="img-responsive"/>
+                    <img src="<?php echo base_url('public/images/item_images/'.$item->image); ?>" class="img-responsive"/>
                 </div>
                 <div class="col-sm-10" id="info_content">
                     <section class="list-right">
                         <span class="price">
-                            <a class="button"><?php echo $oneitem->c_name;?></a><br>
+                            <a class="button"><?php echo $item->c_name;?></a><br>
+                            <label><?php echo $item->views; ?></label>
                             <i class="fa fa-eye" ></i>
                             <i class="fa fa-clock-o" ></i>
                             <i class="fa fa-heart" ></i>
@@ -28,14 +27,14 @@
                     </section>
                     <section class="list-left">
                     <span class="title">
-                        <label><?php echo $oneitem->title; ?></label><br />
-                        <label>Rs <?php echo $oneitem->price; ?> (<?php echo $oneitem->item_type; ?>)</label><br>
+                        <b>Rs. <?php echo $item->price; ?><label style="color:#f00;">&nbsp;(<?php echo $item->item_type; ?>)</label></b><br>
+                        <a class="sub" href="!#"><?php echo $item->title; ?></a><br>
                         <span class="address">
-                            <span><?php echo $oneitem->avaibility_address; ?></span>
-                            <span><?php echo date($dateFormat, $oneitem->published_date);?></span>
+                            <span><?php echo $item->avaibility_address; ?></span>
+                            <span><?php echo date('Y-m-d', $item->published_date);?></span>
                         </span>
                     </span>
-                        <p><?php echo $oneitem->specs; ?></p>
+                        <p><?php echo $item->specs; ?></p>
                     </section>
 
                 </div>
@@ -50,7 +49,7 @@
 
 
 <div id="viewcontrols" data-enhance="false">
-    <a class="info"  onMouseOver="this.style.color='#ffffff'" onMouseOut="this.style.color='#ffffff'">Showing 1 - 10 of 100 results of Users.</a>
+    <a class="info"  onMouseOver="this.style.color='#ffffff'" onMouseOut="this.style.color='#ffffff'">Showing 1 - 10 of 100 results of Personals</a>
 </div>
 <div class="grid_view">
     <ul class="grid1" id="grid1">
@@ -78,7 +77,7 @@
 </div>
 
 <div id="viewcontrols" data-enhance="false">
-    <a class="info"  onMouseOver="this.style.color='#ffffff'" onMouseOut="this.style.color='#ffffff'">Showing 1 - 10 of 100 results of Users.</a>
+    <a class="info" onmouseover="this.style.color='#ffffff'" onmouseout="this.style.color='#ffffff'">Showing 1 - 10 of 100 results of Dealers</a>
 </div>
 <div class="grid_view">
     <ul class="grid1" id="grid1">
@@ -95,7 +94,7 @@
                                 <b><?php echo $dealer->name?></b><br>
                                 <a class="sub1"><?php echo $dealer->city?></a><br>
                                 <span class="name1">
-                                    Personal Account
+                                    Dealer Account
                                 </span>
                             </span>
                         </section>
