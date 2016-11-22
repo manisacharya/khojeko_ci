@@ -66,7 +66,7 @@ class Pages extends CI_Controller {
         $this->load->view('pages/templates/footer');
     }
 
-    public function personal_page($personal) {
+    public function personal_page($personal, $category = 'all') {
         $data["category"] = $this->categories_model->get_categories();
         $data['dealer_list'] = $this->dealer_model->get_all_dealers();
 
@@ -88,6 +88,37 @@ class Pages extends CI_Controller {
 
         $this->load->view('pages/templates/header', $data);
         $this->load->view('pages/user_page', $data);
+        $this->load->view('pages/templates/footer');
+    }
+
+    public function dealer_page($encoded_username, $encoded_category = 'all') {
+        $username = urldecode($encoded_username);
+        $category = urldecode($encoded_category);
+
+        $data["category"] = $this->categories_model->get_categories();
+        $data['dealer_list'] = $this->dealer_model->get_all_dealers();
+
+        // counts : total, used/new, dealer/user ads
+        $data["total_items"] = $this->items_model->count_items();
+        $data["used_items"] = $this->items_model->count_status_items('used');
+        $data["new_items"] = $this->items_model->count_status_items('new');
+        $data['dealer_items'] = $this->items_model->count_user_items('dealer');
+        $data['user_items'] = $this->items_model->count_user_items('personal');
+
+        $data['dealer_info'] = $this->user_model->get_user_info('dealer', $username);
+        $data['all_dealer_items'] = $this->items_model->get_dealer_items($username);
+        $this->load->model('database_models/store_images_model');
+        $data['store_images'] = $this->store_images_model->get_store_images($data['dealer_info']->d_id);
+
+
+        if ($this->session->has_userdata('logged_in')) {
+            $this->load->model('database_models/recent_view_model');
+            $user_session = $this->session->all_userdata();
+            $data['recent_views'] = $this->recent_view_model->get_recent_view($user_session['logged_in']['id']);
+        }
+
+        $this->load->view('pages/templates/header', $data);
+        $this->load->view('pages/dealer_page', $data);
         $this->load->view('pages/templates/footer');
     }
 

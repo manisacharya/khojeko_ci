@@ -25,10 +25,13 @@ $route['upanel'] = "user_panel/redirect";
 $route['upanel/(:any)'] = "user_panel/redirect";
 $route['upanel/(:any)/(:any)'] = "user_panel/upanel/$1/$2";
 
-// DEALER CONTROLLER ROUTE
+/*// DEALER CONTROLLER ROUTE
 $route['dealer'] = "dealers/redirect";
 $route['dealer/(:any)'] = "dealers/redirect";
-$route['dealer/(:any)/(:any)'] = "dealers/dealer/$1/$2";
+$route['dealer/(:any)/(:any)'] = "dealers/dealer/$1/$2";*/
+$route['dealer'] = "dealers/redirect";
+$route['dealer/(:any)'] = "pages/dealer_page/$1";
+$route['dealer/(:any)/(:any)'] = "pages/dealer_page/$1/$2";
 
 // DETAIL CONTROLLER ROUTE
 // signup
