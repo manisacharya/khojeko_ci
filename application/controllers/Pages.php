@@ -19,7 +19,6 @@ class Pages extends CI_Controller {
         $this->load->model('database_models/dealer_model');
         $this->load->model('database_models/items_model');
         $this->load->model('database_models/user_model');
-        $this->output->enable_profiler(TRUE);
     }
 
     public function index() {
@@ -83,13 +82,20 @@ class Pages extends CI_Controller {
     }
 
     public function personal_panel($encoded_username, $encoded_category = 'all') {
+        if (!$this->session->has_userdata('logged_in'))
+            show_error('Sorry, page broken.');
+
         $username = urldecode($encoded_username);
         $category = urldecode($encoded_category);
 
         $this->get_common_contents($data);
 
+        $data['user_item_counts'] = $this->items_model->count_user_page_items();
+
         $data['all_personal_items'] = $this->items_model->get_personal_items($username);
         $data['personal_info'] = $this->user_model->get_user_info('personal', $username);
+        $this->load->model('database_models/favourites_model');
+        $data['total_favourited_items'] = $this->favourites_model->count_favourites($data['personal_info']->user_id);
 
         $this->load->view('pages/templates/header', $data);
         $this->load->view('pages/user_panel', $data);
@@ -97,10 +103,14 @@ class Pages extends CI_Controller {
     }
 
     public function dealer_panel($encoded_username, $encoded_category = 'all') {
+        if (!$this->session->has_userdata('logged_in'))
+            show_error('Sorry, page broken.');
+
         $username = urldecode($encoded_username);
         $category = urldecode($encoded_category);
 
         $this->get_common_contents($data);
+        $data['user_item_counts'] = $this->items_model->count_user_page_items();
 
         $data['all_dealer_items'] = $this->items_model->get_dealer_items($username);
         $data['dealer_info'] = $this->user_model->get_user_info('dealer', $username);
@@ -108,10 +118,6 @@ class Pages extends CI_Controller {
         $this->load->view('pages/templates/header', $data);
         $this->load->view('pages/dealer_panel', $data);
         $this->load->view('pages/templates/footer');
-    }
-
-    public function count_user_items() {
-        
     }
 
     public function get_common_contents(&$data) {
