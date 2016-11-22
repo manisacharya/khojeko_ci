@@ -4,7 +4,13 @@
 			<img src="<?php echo base_url('public/images/dealer_logos/'.$dealer_info->logo); ?>" class="img-rounded">
 		</div>
 		<div class="col-sm-10 dealer_all_info">
-			<name><?php echo $dealer_info->name; ?></name><br>
+			<name><?php echo $dealer_info->name; ?></name>
+			<?php if($dealer_info->u_verified): ?>
+				<label style="color: green;">(Verified Account)</label>
+			<?php else:?>
+				<label style="color: red;">(Unverified Account)</label>
+			<?php endif; ?>
+			<br>
 			<address1>New Baneshwor, BICC west gate</address1><br>
 			<address2>Prime Bank Building,Ground Floor</address2><br>
 			Tel:<number><?php echo $dealer_info->tel_no; ?></number><br>

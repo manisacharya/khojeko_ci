@@ -2,7 +2,11 @@
 
 
 <div class="status_of_account">
-	<a><i class="fa fa-warning"></i> unverified ac</a>
+	<?php if($personal_info->u_verified): ?>
+		<label style="color: green;">Verified Account</label>
+	<?php else:?>
+		<label style="color: red;">Unverified Account</label>
+	<?php endif; ?>
 </div>
 
 <div class="welcome_div">
@@ -31,7 +35,7 @@
 <div class="clearfix"></div>
 
 <div class="alert_message">
-	<i class="fa fa-warning"></i>
+		<i class="fa fa-warning"></i>
 	<a>Urgent Alert ! </a><a>Your account is temporary block due to report scam/anti money laundry.</a>
 </div>
 

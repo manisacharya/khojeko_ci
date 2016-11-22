@@ -4,7 +4,13 @@
             <img src="<?php echo base_url('public/images/user.png'); ?>" class="img-rounded">
         </div>
         <div class="col-sm-10 dealer_all_info">
-            <name><?php echo $personal_info->name; ?></name><br>
+            <name><?php echo $personal_info->name; ?></name>
+            <?php if($personal_info->u_verified): ?>
+                <label style="color: green;">(Verified Account)</label>
+            <?php else:?>
+                <label style="color: red;">(Unverified Account)</label>
+            <?php endif; ?>
+            <br />
             <address1><?php echo $personal_info->full_address; ?></address1><br>
             URL:<email>www.khojeko.com/<?php echo $personal_info->khojeko_username; ?></email><br>
             <p>Contact seller via email: <?php echo $personal_info->email; ?></p>
