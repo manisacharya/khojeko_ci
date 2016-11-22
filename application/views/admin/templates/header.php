@@ -16,6 +16,12 @@
     <!-- Base Styling  -->
     <link rel="stylesheet" href="<?php echo base_url('public'); ?>/css/app/app.v1.css" />
     <link rel="stylesheet" href="<?php echo base_url('public'); ?>/css/app/admin.css" />
+
+    <!-- for admin post ad -->
+    <link rel="stylesheet" href="<?php echo base_url('public'); ?>/css/app/app.v1.css" />
+    <link rel="stylesheet" href="<?php echo base_url('public'); ?>/css/app/admin.css" />
+    <link rel="stylesheet" href="<?php echo base_url('public'); ?>/css/fileinput.css" />
+    
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>

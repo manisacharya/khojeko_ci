@@ -95,6 +95,7 @@ class Pages extends CI_Controller {
         
         //$data["category"] = $this->general_database_model->getAll('category', 'c_id', 'ASC');
         $data["category"] = $this->categories_model->get_categories();
+
         $data['dealer_list'] = $this->khojeko_db_model->joinThings('user', 'khojeko_username, name', $dealer_list_joins, 'type="dealer"');
 
         // counts : total, used/new, dealer/user ads

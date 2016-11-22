@@ -18,14 +18,18 @@ class Post_ad extends CI_Controller {
 
     public function post_form(){
         //$data['title'] = 'Post ad';
+        if (!$this->session->has_userdata('logged_in'))
+            redirect('logged_in');
+
+        $session_data = $this->session->userdata('logged_in');
+        $khojeko_username = $session_data['username'];
+
         $data['categories'] = $this->categories_model->get_categories();
 
         $this->load->library('form_validation');
         $this->form_validation->set_error_delimiters('<div class="alert alert-danger">', '</div>');
 
-        //$this->load->view('admin/templates/header', $data);     
-        $session_data = $this->session->userdata('logged_in');
-        $khojeko_username = $session_data['username'];
+        //$this->load->view('admin/templates/header', $data);
 
         $detail = $this->user_panel_model->getDetails($khojeko_username);
 
@@ -38,6 +42,9 @@ class Post_ad extends CI_Controller {
 
             $data['user_type'] = $detail->type;
 
+            //$this->session->set_flashdata('data', $data);
+
+            //redirect('adpost');
             $this->load->view('pages/freepost', $data);
         }else {
             // $this->form_validation->set_rules('ad_title', 'Ad Title', 'required');
@@ -50,8 +57,11 @@ class Post_ad extends CI_Controller {
 
             $data['user_type'] = $detail->type;
 
-            $this->load->view('pages/freepost', $data);
             $data['message'] = "Successfully Added !";
+
+            $this->session->set_flashdata('data', $data);
+            redirect('adpost');
+            //$this->load->view('pages/freepost', $data);
         }
     }
 

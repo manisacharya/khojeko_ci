@@ -7,7 +7,9 @@ $route['translate_uri_dashes'] = FALSE;
 
 // INDEX CONTROLLER ROUTE
 $route['home'] = "homepage/home";
-$route['adpost'] = "homepage/adpost";
+
+//item post
+$route['adpost'] = "post_ad/post_form";
 
 // PERSONAL SESSION CONTROLLER
 $route['login'] = "user_session/login";
@@ -74,8 +76,12 @@ $route['admin/logout'] = 'admin/users/logout';
 $route['admin/change_password'] = 'admin/users/change_password';
 $route['admin/(:any)'] = 'admin/admin_pages/page/$1';
 
+$route['admin/post_ad'] = 'admin/ad_post/post_form';
+$route['get_district'] = 'admin/ad_post/get_district';
+$route['available_email_admin'] = 'admin/ad_post/available_email';
 // USER PAGE
 $route['user/(:any)'] = 'pages/personal_page/$1';
 
 // DEALER PANEL
 $route['dpanel/(:any)/(:any)'] = 'pages/dealer_panel/$1';
+

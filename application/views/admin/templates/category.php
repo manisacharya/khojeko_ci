@@ -31,6 +31,6 @@
             </ul>";
     }
     
-    print_list(0, 0, $categories);
+     //print_list(0, 0, $categories);
 ?>
 

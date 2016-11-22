@@ -6,7 +6,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
         <title>Khojeko</title>
-        
+
         <link href="<?php echo base_url('public'); ?>/css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
         <link href="<?php echo base_url('public'); ?>/css/main.css" rel="stylesheet">
@@ -50,7 +50,7 @@
         <link rel="apple-touch-icon-precomposed" sizes="114x114" href="<?php echo base_url('public'); ?>/images/ico/apple-touch-icon-114-precomposed.png">
         <link rel="apple-touch-icon-precomposed" sizes="72x72" href="<?php echo base_url('public'); ?>/images/ico/apple-touch-icon-72-precomposed.png">
         <link rel="apple-touch-icon-precomposed" href="<?php echo base_url('public'); ?>/images/ico/apple-touch-icon-57-precomposed.png">
-        <link href='https://fonts.googleapis.com/css?family=cabin' rel='stylesheet' type='text/css'> 
+        <link href='https://fonts.googleapis.com/css?family=cabin' rel='stylesheet' type='text/css'>
 
         <script type="text/javascript" src="<?php echo base_url('public'); ?>/js/jquery-2.2.3.min.js"></script>
         <script type="text/javascript" src="<?php echo base_url('public'); ?>/js/bootstrap.min.js"></script>
@@ -85,7 +85,7 @@
             });
         </script>
 
-        <script>   
+        <script>
             $(document).bind("mobileinit", function() {
               $.mobile.ignoreContentEnabled = true;
             });
@@ -130,7 +130,7 @@
                 });
             });
          </script>
-        
+
     </head>
 
     <body id="page-wrap">
@@ -275,7 +275,7 @@
 
                                 <button id="search_btn"><i class="fa fa-search"> </i> Search</button>
 
-                                <a href="ad_form.html">  
+                                <a href="adpost">
                                     <button id="ad_btn">POST FREE ADS</button>
                                 </a>
                             </div><!--search bar ends-->
@@ -311,7 +311,9 @@
                                             <h3> Step 1&nbsp;&nbsp;(Select category for ad posting)</h3>
                                             
                                             <?php
-                                                require_once('/../admin/templates/category.php');
+                                                require_once('templates/require/category.php');
+                                                print_list(0, 0, $categories, 'front/');
+                                                //require_once('/../admin/templates/category.php');
                                             ?>
                                     
                                             <div class="search_section">
@@ -529,7 +531,7 @@
                                             <strong>
                                                 Upload Video Url ( From Youtube embeed):<br /><br> Video 1. 
                                             </strong>
-                                            <input type="text" name="video1_url" id="input"/>
+                                            <input type="text" name="video1_url" id="input">
                                             <a href="#!" class="info">
                                                 <i class="fa fa-question-circle"></i>
                                                 <span>if not leave it blank.</span>
