@@ -45,7 +45,7 @@
             <div class="col-sm-10" id="info_content">
                 <section class="list-right">
                     <span class="price">
-                        <a class="button">mobile>>nokia</a><br>
+                        <a class="button"><?php echo $item->c_name;?></a><br>
                         <label><?php echo $item->views; ?></label>
                         <i class="fa fa-eye" ></i>
                         <i class="fa fa-clock-o" ></i>
@@ -57,6 +57,10 @@
                     <span class="title">
                         <b>Rs. <?php echo $item->price; ?><label style="color:#f00;">&nbsp;(<?php echo $item->item_type; ?>)</label></b><br>
                         <a class="sub" href="!#"><?php echo $item->title; ?></a><br>
+                        <span class="address">
+                            <span><?php echo $item->avaibility_address; ?></span>
+                            <span><?php echo date('Y-m-d', $item->published_date);?></span>
+                        </span>
                     </span>
                     <p><?php echo $item->specs; ?></p>
                 </section>
