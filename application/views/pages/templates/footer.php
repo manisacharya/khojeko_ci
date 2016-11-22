@@ -6,7 +6,7 @@
         </div>
         <ul id="list">
             <?php foreach ($dealer_list as $one):?>
-            <li><?php echo anchor('dealer/'.$one->khojeko_username.'/All', $one->name);?></li>
+            <li><?php echo anchor('dealer/'.$one->khojeko_username, $one->name);?></li>
             <?php endforeach;?>
         </ul>
     </div><!--dealer listing ends-->

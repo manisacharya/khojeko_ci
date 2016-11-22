@@ -66,7 +66,10 @@ class Pages extends CI_Controller {
         $this->load->view('pages/templates/footer');
     }
 
-    public function personal_page($personal, $category = 'all') {
+    public function personal_page($encoded_username, $encoded_category = 'all') {
+        $username = urldecode($encoded_username);
+        $category = urldecode($encoded_category);
+
         $data["category"] = $this->categories_model->get_categories();
         $data['dealer_list'] = $this->dealer_model->get_all_dealers();
 
@@ -77,8 +80,8 @@ class Pages extends CI_Controller {
         $data['dealer_items'] = $this->items_model->count_user_items('dealer');
         $data['user_items'] = $this->items_model->count_user_items('personal');
 
-        $data['personal_info'] = $this->user_model->get_user_info('personal', $personal);
-        $data['personal_items'] = $this->items_model->get_personal_items($personal);
+        $data['personal_info'] = $this->user_model->get_user_info('personal', $username);
+        $data['personal_items'] = $this->items_model->get_personal_items($username);
 
         if ($this->session->has_userdata('logged_in')) {
             $this->load->model('database_models/recent_view_model');
@@ -122,7 +125,10 @@ class Pages extends CI_Controller {
         $this->load->view('pages/templates/footer');
     }
 
-    public function dealer_panel($dealer) {
+    public function personal_panel($encoded_username, $encoded_category = 'all') {
+        $username = urldecode($encoded_username);
+        $category = urldecode($encoded_category);
+
         $data["category"] = $this->categories_model->get_categories();
         $data['dealer_list'] = $this->dealer_model->get_all_dealers();
 
@@ -133,8 +139,36 @@ class Pages extends CI_Controller {
         $data['dealer_items'] = $this->items_model->count_user_items('dealer');
         $data['user_items'] = $this->items_model->count_user_items('personal');
 
-        $data['all_dealer_items'] = $this->items_model->get_dealer_items($dealer);
-        $data['dealer_info'] = $this->user_model->get_user_info('dealer', $dealer);
+        $data['all_personal_items'] = $this->items_model->get_personal_items($username);
+        $data['personal_info'] = $this->user_model->get_user_info('personal', $username);
+
+        if ($this->session->has_userdata('logged_in')) {
+            $this->load->model('database_models/recent_view_model');
+            $user_session = $this->session->all_userdata();
+            $data['recent_views'] = $this->recent_view_model->get_recent_view($user_session['logged_in']['id']);
+        }
+
+        $this->load->view('pages/templates/header', $data);
+        $this->load->view('pages/user_panel', $data);
+        $this->load->view('pages/templates/footer');
+    }
+
+    public function dealer_panel($encoded_username, $encoded_category = 'all') {
+        $username = urldecode($encoded_username);
+        $category = urldecode($encoded_category);
+
+        $data["category"] = $this->categories_model->get_categories();
+        $data['dealer_list'] = $this->dealer_model->get_all_dealers();
+
+        // counts : total, used/new, dealer/user ads
+        $data["total_items"] = $this->items_model->count_items();
+        $data["used_items"] = $this->items_model->count_status_items('used');
+        $data["new_items"] = $this->items_model->count_status_items('new');
+        $data['dealer_items'] = $this->items_model->count_user_items('dealer');
+        $data['user_items'] = $this->items_model->count_user_items('personal');
+
+        $data['all_dealer_items'] = $this->items_model->get_dealer_items($username);
+        $data['dealer_info'] = $this->user_model->get_user_info('dealer', $username);
 
         if ($this->session->has_userdata('logged_in')) {
             $this->load->model('database_models/recent_view_model');

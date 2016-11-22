@@ -25,7 +25,7 @@
     <link href="<?php echo base_url('public/images/icons/icon.ico')?>" rel="shortcut icon" />
 
 
-    <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet" />
+    <!--<link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet" />-->
 </head>
 <body id="page-wrap">
     <div id="fb-root"></div>
@@ -60,9 +60,9 @@
                             $set_data = $this->session->all_userdata();
                             if (isset($set_data['logged_in'])):?>
                                 <?php if($set_data['logged_in']['type'] =='dealer'):?>
-                                    <li><?php echo anchor('dpanel/'.$set_data['logged_in']['username'].'/All', 'My Account'); ?></li>
+                                    <li><?php echo anchor('dpanel/'.$set_data['logged_in']['username'], 'My Account'); ?></li>
                                 <?php else:?>
-                                    <li><?php echo anchor('upanel/'.$set_data['logged_in']['username'].'/All', 'My Account'); ?></li>
+                                    <li><?php echo anchor('upanel/'.$set_data['logged_in']['username'], 'My Account'); ?></li>
                                 <?php endif ?>
                                 <li class="divider"><a>|</a></li>
                                 <li><a href="<?php echo base_url('logout')?>" class="nav"><i class="fa fa-lock"></i>&nbsp;Logout</a></a></li>
