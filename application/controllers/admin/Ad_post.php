@@ -61,10 +61,6 @@ class Ad_post extends CI_Controller{
                 $this->personal_model->add_personal();
                 $u_id = $this->user_model->get_user_id();
             }
-            
-            //echo "upto here ok.";
-            //die();
-
             //$this->form_validation->set_rules('ad_title', 'Ad Title', 'required');
 
             if($u_id==NULL){
@@ -73,6 +69,7 @@ class Ad_post extends CI_Controller{
                 // redirect('admin/post_ad');
                 $data['message'] = "";
                 $this->load->view('admin/post_ad', $data);
+                $this->load->view('admin/templates/footer', $data);
 
             }else{
                 $this->item_model->add_item();

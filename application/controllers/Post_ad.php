@@ -10,6 +10,10 @@ class Post_ad extends CI_Controller {
         $this->load->model('user_panel_model');
         $this->load->model('categories_model');
         $this->load->model('item_model');
+        $this->load->model('image_model');
+        $this->load->model('database_models/items_model');
+        $this->load->model('database_models/dealer_model');
+        $this->load->model('database_models/recent_view_model');
         $this->load->library('upload');
         
         $this->output->enable_profiler(TRUE);
@@ -25,11 +29,12 @@ class Post_ad extends CI_Controller {
         $khojeko_username = $session_data['username'];
 
         $data['categories'] = $this->categories_model->get_categories();
+        $this->get_common_contents($data);
 
         $this->load->library('form_validation');
         $this->form_validation->set_error_delimiters('<div class="alert alert-danger">', '</div>');
 
-        //$this->load->view('admin/templates/header', $data);
+        $this->load->view('pages/templates/header', $data);
 
         $detail = $this->user_panel_model->getDetails($khojeko_username);
 
@@ -46,6 +51,8 @@ class Post_ad extends CI_Controller {
 
             //redirect('adpost');
             $this->load->view('pages/freepost', $data);
+            $this->load->view('pages/templates/footer', $data);
+
         }else {
             // $this->form_validation->set_rules('ad_title', 'Ad Title', 'required');
             // $this->form_validation->set_rules('shrt_description', 'Short Description', 'required');
@@ -59,9 +66,11 @@ class Post_ad extends CI_Controller {
 
             $data['message'] = "Successfully Added !";
 
-            $this->session->set_flashdata('data', $data);
-            redirect('adpost');
-            //$this->load->view('pages/freepost', $data);
+//            $this->session->set_flashdata('data', $data);
+//            redirect('adpost');
+            $this->load->view('pages/freepost', $data);
+            $this->load->view('pages/templates/footer', $data);
+
         }
     }
 
@@ -122,6 +131,23 @@ class Post_ad extends CI_Controller {
             $count++;
         }
         $this->image_model->add_img($filename_arr);
+    }
+
+    public function get_common_contents(&$data) {
+        $data["category"] = $this->categories_model->get_categories();
+        $data['dealer_list'] = $this->dealer_model->get_all_dealers();
+
+        $data["total_items"] = $this->items_model->count_items();
+        $data["used_items"] = $this->items_model->count_status_items('used');
+        $data["new_items"] = $this->items_model->count_status_items('new');
+        $data['dealer_items'] = $this->items_model->count_user_items('dealer');
+        $data['user_items'] = $this->items_model->count_user_items('personal');
+
+        if ($this->session->has_userdata('logged_in')) {
+            $this->load->model('database_models/recent_view_model');
+            $user_session = $this->session->all_userdata();
+            $data['recent_views'] = $this->recent_view_model->get_recent_view($user_session['logged_in']['id']);
+        }
     }
 
 }

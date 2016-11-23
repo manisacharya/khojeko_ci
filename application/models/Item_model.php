@@ -99,7 +99,7 @@ class Item_model extends CI_Model
 
             //$this->xss_invoke('c_id', 'parent_id');
             
-            $this->c_id = $this->input->post('parent_id');
+            $this->c_id = $this->input->post('parent');
             
             $this->user_id = $detail->user_id;
             $this->ad_id = NULL;

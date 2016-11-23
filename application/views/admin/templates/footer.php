@@ -1,4 +1,11 @@
 
+<!-- Custom JQuery -->
+<script src="<?php echo base_url('public'); ?>/js/app/custom.js" type="text/javascript"></script>
+<script src="<?php echo base_url('public'); ?>/js/plugins/nicescroll/jquery.nicescroll.min.js"></script>
+<script src="<?php echo base_url('public'); ?>/js/categori.js"></script>
+<script src="<?php echo base_url('public'); ?>/js/popup.js"></script>
+<script src="<?php echo base_url('public'); ?>/js/jquery.MultiFile.js"></script>
+
 <!-- JQuery v1.9.1 -->
 <script src="<?php echo base_url('public'); ?>/js/jquery/jquery-1.9.1.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url('public'); ?>/js/bootstrap/bootstrap.min.js"></script>
@@ -254,6 +261,7 @@
 
         $("#display_parent").css('color','red');	})
 </script>
+
 <script>
     $("#hide").on("click", function () {
         $(".statics").hide();
@@ -264,6 +272,7 @@
 
     })
 </script>
+
 <script>
     function toggle1(source) {
         checkboxes = document.getElementsByName('foo1[]');
@@ -279,11 +288,28 @@
         }
     }
 </script>
+
 <style type="text/css">
     .category3 i {
         display: none;
     }
 </style>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#select").searchable();
+    });
+</script>
+
+<script>
+    $(document).bind("mobileinit", function() {
+        $.mobile.ignoreContentEnabled = true;
+    });
+</script>
+
+
+
+
 
 </body>
 </html>

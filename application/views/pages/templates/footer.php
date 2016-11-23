@@ -225,5 +225,90 @@
     jssor_1_slider_init();
 </script>
 
+<!-- part of post ad -->
+<script>
+    $(window).load(function(){
+        var i=1;
+        $('#add').click(function(){
+            //i++;
+            if(i<=3) {
+                $('#dynamic_field').append('<div class="row"><div class="col-md-10"><input type="file" name="upload_images'+i+'" accept="image/*"  onchange="showMyImage(this)" /></div></div>');
+                i++;
+            }
+        });
+    });
+</script>
+
+<script language="javascript" type="text/javascript">
+    $(document).ready(function() {
+        var text_max = 300;
+        $('#textarea_feedback').html(text_max + ' characters remaining');
+
+        $('#ad_details').keyup(function() {
+            var text_length = $('#ad_details').val().length;
+            var text_remaining = text_max - text_length;
+
+            $('#textarea_feedback').html(text_remaining + ' characters remaining');
+        });
+    });
+</script>
+
+<style type="text/css">
+    .category3 i {
+        display: none;
+    }
+</style>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#select").searchable();
+    });
+</script>
+
+<script>
+    $(document).bind("mobileinit", function() {
+        $.mobile.ignoreContentEnabled = true;
+    });
+</script>
+
+<script>
+    $(".category0 li a" || ".category1 li a").on("click", function () {
+        var x = $(this).attr('id');
+        var y = this.text;
+        document.getElementById("parent").innerHTML = x;
+        document.getElementById("display_parent").innerHTML = y;
+        $("#display_parent").css('color','black');
+    });
+</script>
+
+
+<script type="text/javascript" src="<?php echo base_url('public'); ?>/js/jquery-2.2.3.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url('public'); ?>/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url('public'); ?>/js/categori.js"></script>
+<script type="text/javascript" src="<?php echo base_url('public'); ?>/js/display.js"></script>
+<script type="text/javascript" src="<?php echo base_url('public'); ?>/js/list_grid.js"></script>
+<script type="text/javascript" src="<?php echo base_url('public'); ?>/js/jssor.slider.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url('public'); ?>/js/back.js"></script>
+<script type="text/javascript" src="<?php echo base_url('public'); ?>/js/jquery-ui.js"></script>
+<script type="text/javascript" src="<?php echo base_url('public'); ?>/js/dropdown.js"></script>
+<script type="text/javascript" src="<?php echo base_url('public'); ?>/js/searchable_dropdown.js"></script>
+<script type="text/javascript" src="<?php echo base_url('public'); ?>/js/live_preview.js"></script>
+<script type="text/javascript" src="<?php echo base_url('public'); ?>/js/jquery.MultiFile.js"></script>
+<script type="text/javascript" src="<?php echo base_url('public'); ?>/js/jquery/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url('public'); ?>/js/livepreview.js"></script>
+<script type="text/javascript" src="<?php echo base_url('public'); ?>/js/hawa.js"></script>
+
+<script type="text/javascript" src="<?php echo base_url('public'); ?>/js/ad_detail_slider.js"></script>
+<script type="text/javascript" src="<?php echo base_url('public'); ?>/js/count.js"></script>
+<script type="text/javascript" src="<?php echo base_url('public'); ?>/js/multiple_upload.js"></script>
+
+<!-- Custom JQuery -->
+<script src="<?php echo base_url('public'); ?>/js/app/custom.js" type="text/javascript"></script>
+<script src="<?php echo base_url('public'); ?>/js/plugins/nicescroll/jquery.nicescroll.min.js"></script>
+<script src="<?php echo base_url('public'); ?>/js/categori.js"></script>
+<script src="<?php echo base_url('public'); ?>/js/popup.js"></script>
+<script src="<?php echo base_url('public'); ?>/js/jquery.MultiFile.js"></script>
+
+
 </body>
 </html>
