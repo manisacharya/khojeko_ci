@@ -82,3 +82,7 @@ $route['dpanel/(:any)/(:any)'] = 'pages/dealer_panel/$1/$2';
 // ITEMS CONTROL
 $route['delete'] = 'items/delete';
 $route['edit'] = 'items/edit';
+$route['sold_unsold/(:num)/(:num)'] = 'items/sold_unsold/$1/$2';
+$route['hide_unhide/(:num)/(:num)'] = 'items/hide_unhide/$1/$2';
+$route['extend_date/(:num)/(:num)'] = 'items/extend_date/$1/$2';
+$route['premium/(:num)/(:num)'] = 'items/premium/$1/$2';
