@@ -82,11 +82,11 @@ class Pages extends CI_Controller {
     }
 
     public function personal_panel($encoded_username, $encoded_category = 'all') {
-        if (!$this->session->has_userdata('logged_in'))
-            show_error('Sorry, page broken.');
-
         $username = urldecode($encoded_username);
         $category = urldecode($encoded_category);
+
+        if (!$this->session->has_userdata('logged_in') || $this->session->userdata['logged_in']['type'] != 'personal')
+            show_error('Sorry, page broken.');
 
         $this->session->set_flashdata('panel_url', "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]");
         $data['message'] = $this->session->flashdata('message');
@@ -106,11 +106,11 @@ class Pages extends CI_Controller {
     }
 
     public function dealer_panel($encoded_username, $encoded_category = 'all') {
-        if (!$this->session->has_userdata('logged_in'))
-            show_error('Sorry, page broken.');
-
         $username = urldecode($encoded_username);
         $category = urldecode($encoded_category);
+
+        if (!$this->session->has_userdata('logged_in') || $this->session->userdata['logged_in']['type'] != 'dealer')
+            show_error('Sorry, page broken.');
 
         $this->session->set_flashdata('panel_url', "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]");
         $data['message'] = $this->session->flashdata('message');

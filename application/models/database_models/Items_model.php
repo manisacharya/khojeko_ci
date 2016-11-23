@@ -117,11 +117,13 @@ class Items_model extends CI_Model {
 
     public function count_status_items($item_type) { // used or new
         $this->db->where('item_type', $item_type);
+        $this->db->where('deleted_date', 0);
         return $this->db->count_all_results('items');
     }
 
     public function count_user_items($type) {
         $this->db->where('type', $type);
+        $this->db->where('deleted_date', 0);
         $this->db->join('user', 'user.user_id = items.user_id');
         return $this->db->count_all_results('items');
     }
@@ -135,6 +137,14 @@ class Items_model extends CI_Model {
     public function count_sales_items($user_id, $sales_status) {
         $this->db->where('sales_status', $sales_status);
         $this->db->where('user_id', $user_id);
+        $this->db->where('deleted_date', 0);
+        return $this->db->count_all_results('items');
+    }
+
+    public function count_visibility_items($user_id) {
+        $this->db->where('visibility', 1);
+        $this->db->where('user_id', $user_id);
+        $this->db->where('deleted_date', 0);
         return $this->db->count_all_results('items');
     }
 
@@ -152,7 +162,7 @@ class Items_model extends CI_Model {
             'total_items' => $this->count_items($session_id),
             'deleted_items' => $this->count_deleted_items($session_id),
             'sold_items' => $this->count_sales_items($session_id, 0),
-            'active_items' => $this->count_sales_items($session_id, 1)
+            'active_items' => $this->count_visibility_items($session_id)
             /*'expired_items' => $this->count_expired_items($session_id)
             'alert_message'
             'admin_message'*/
@@ -162,22 +172,32 @@ class Items_model extends CI_Model {
     }
 
     public function extend_date($item_id, $extend){
-        $days = $extend + 15;
+        $extended_date = $this->input->post('extended_date');
+        $days = $extend + $extended_date;
         $this->db->update('items', array('ad_duration' => $days), "item_id=".$item_id);
+        $this->session->set_flashdata('message', '<div class="alert alert-success">'.$extended_date.' Days Extended Successfully</div>');
     }
 
     public function sold_unsold($item_id, $sales_status){
-        if($sales_status)
+        if($sales_status) {
             $this->db->update('items', array('sales_status' => 0), "item_id=".$item_id);
-        else
+            $this->session->set_flashdata('message', '<div class="alert alert-success">Item checked for Sold</div>');
+        }
+        else {
             $this->db->update('items', array('sales_status' => 1), "item_id=".$item_id);
+            $this->session->set_flashdata('message', '<div class="alert alert-success">Item checked for Unsold</div>');
+        }
     }
 
     public function hide_unhide($item_id, $visibility){
-        if($visibility)
+        if($visibility) {
             $this->db->update('items', array('visibility' => 0), "item_id=".$item_id);
-        else
+            $this->session->set_flashdata('message', '<div class="alert alert-success">Item Hidden</div>');
+        }
+        else {
             $this->db->update('items', array('visibility' => 1), "item_id=".$item_id);
+            $this->session->set_flashdata('message', '<div class="alert alert-success">Item checked for Active</div>');
+        }
     }
 
     public function delete() {

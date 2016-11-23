@@ -23,27 +23,26 @@ class Items extends CI_Controller {
 
     public function extend_date($id, $extend) {
         $this->items_model->extend_date($id, $extend);
-        redirect('admin');
+        redirect($this->panel_url);
     }
 
     public function sold_unsold($id, $sales_status) {
         $this->items_model->sold_unsold($id, $sales_status);
-        redirect('admin');
+        redirect($this->panel_url);
     }
 
     public function hide_unhide($id, $visibility) {
         $this->items_model->hide_unhide($id, $visibility);
-        redirect('admin');
+        redirect($this->panel_url);
     }
 
     public function delete() {
         $this->items_model->delete();
-
         redirect($this->panel_url);
     }
 
     public function premium($id, $premium) {
         $this->items_model->premium($id, $premium);
-        redirect('admin');
+        redirect($this->panel_url);
     }
 }

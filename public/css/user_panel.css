@@ -1,8 +1,8 @@
 @charset "utf-8";
 /* CSS Document */
 .status_of_account a{color:red;}
-.status_of_account{text-align:center}
-.welcome_div{margin-bottom:10px}
+.status_of_account{text-align:center; padding:5px;}
+.welcome_div{margin:10px 0;}
 .welcome_div a{margin-right:30px;}
 .user_menu{display:inline;border:1px solid;}
 .user_menu a{margin:2px;font-size:15px}
@@ -20,9 +20,9 @@
 .search_sec input{border-radius:8px;border:1px solid}
 .search_sec{float:right}
 .owner_detail_ad img{height:100px; width:100px;margin-bottom:10px;margin-right:10px;}
-.red{color:red}
-.green{color:green}
-.blue{color:blue}
+.red{color:red; background-color: transparent; border: 0;}
+.green{color:green; background-color: transparent; border: 0;}
+.blue{color:blue; background-color: transparent; border: 0;}
 .owner_detail_ad i{font-size:36px}
 .owner_detail_ad price{font-size:18px;color:#306}
 .owner_detail_ad name{font-weight:700}
