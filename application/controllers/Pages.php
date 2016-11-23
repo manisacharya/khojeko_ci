@@ -136,6 +136,10 @@ class Pages extends CI_Controller {
         $data['dealer_items'] = $this->items_model->count_user_items('dealer');
         $data['user_items'] = $this->items_model->count_user_items('personal');
 
+        /*$data['popular_district'] =
+        $data['popular_dealer'] =
+        $data['popular_categories'] = */
+
         if ($this->session->has_userdata('logged_in')) {
             $this->load->model('database_models/recent_view_model');
             $user_session = $this->session->all_userdata();
