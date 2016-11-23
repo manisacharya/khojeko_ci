@@ -16,10 +16,10 @@
             <a >Dealers/Retailer Partners</a>
         </div>
 
-        <div id="jssor_1" style="position: relative; margin: 0 auto; top: 0px; left: 0px; width: 980px; height: 100px; overflow: hidden; visibility: hidden;clear: both;">
+        <div id="jssor_1" class="partners">
             <!-- Loading Screen -->
 
-            <div data-u="slides" style="cursor: default; position: relative; top: 10px; left: 0px; width: 980px; height: 80px; overflow: hidden;clear: both;">
+            <div data-u="slides" class="partners_slider">
 
                 <div style="display: none;">
                     <img data-u="image" src="<?php echo base_url('public/images/logos/amazon.jpg');?>" />
@@ -90,7 +90,7 @@
 
     <div class="listing">
         <div class="col-sm-4 popular_district" >
-            <u> <a> Popular District by Listing</a></u>
+            <u><a>Popular District</a></u>
             <div class="child">
                 <ol >
                     <li> Kathmandu</li>
@@ -187,11 +187,9 @@
             </div>
 
             <div class="copy_right">
-
                 <a href="#!">Copyright Khojeko.com &copy; 2012-2014</a>&nbsp;&nbsp;
                 <a href="#!">Rojeko dot com Pvt. Ltd. Nepal.</a>&nbsp;&nbsp;
                 <a> All Rights Reserved</a>
-
             </div>
 
         </div>
