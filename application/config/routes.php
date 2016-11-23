@@ -78,3 +78,7 @@ $route['user/(:any)'] = 'pages/personal_page/$1';
 // DEALER PANEL
 $route['dpanel/(:any)'] = 'pages/dealer_panel/$1';
 $route['dpanel/(:any)/(:any)'] = 'pages/dealer_panel/$1/$2';
+
+// ITEMS CONTROL
+$route['delete'] = 'items/delete';
+$route['edit'] = 'items/edit';

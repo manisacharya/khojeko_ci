@@ -14,7 +14,7 @@
 .number{font-size:24px;font-weight:700;padding-top:20px;}
 
 .owner_ad_display{border:1px solid;border-radius:10px;margin-top:10px;overflow:auto;min-height:100px}
-.all_ads_section{margin-top:10px}
+.all_ads_section{margin:10px 5px;}
 .all_ads_section a{color:green}
 .search_sec button{background:#CCC;border-radius:8px;border:1px solid}
 .search_sec input{border-radius:8px;border:1px solid}
@@ -57,7 +57,8 @@ z-index:10;}*/
 .slider_banner span{background:#CCC}
 .slider_banner h2{text-align:center;text-decoration:underline}
 .main_banner_booking{border:1px solid;margin-top:25px;margin-bottom:15px;}
-
+.delete {color:red; background-color: transparent; border: 0;}
+.edit {color:blue; background-color: transparent; border: 0;}
 
 
 .modal-title{color:red}
