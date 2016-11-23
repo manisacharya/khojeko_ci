@@ -111,6 +111,7 @@ class Items_model extends CI_Model {
         if($user_id != 'all') {
             $this->db->where('user_id', $user_id);
         }
+        $this->db->where('deleted_date', 0);
         return $this->db->count_all_results('items');
     }
 
@@ -158,5 +159,36 @@ class Items_model extends CI_Model {
         );
 
         return (object)$data;
+    }
+
+    public function extend_date($item_id, $extend){
+        $days = $extend + 15;
+        $this->db->update('items', array('ad_duration' => $days), "item_id=".$item_id);
+    }
+
+    public function sold_unsold($item_id, $sales_status){
+        if($sales_status)
+            $this->db->update('items', array('sales_status' => 0), "item_id=".$item_id);
+        else
+            $this->db->update('items', array('sales_status' => 1), "item_id=".$item_id);
+    }
+
+    public function hide_unhide($item_id, $visibility){
+        if($visibility)
+            $this->db->update('items', array('visibility' => 0), "item_id=".$item_id);
+        else
+            $this->db->update('items', array('visibility' => 1), "item_id=".$item_id);
+    }
+
+    public function delete() {
+        $this->db->update('items', array('deleted_date' => NOW()), "item_id=".$this->input->post('item_id'));
+        $this->session->set_flashdata('message', '<div class="alert alert-success">Item Deleted</div>');
+    }
+
+    public function premium($id, $premium){
+        if($premium)
+            $this->db->update('items', array('is_premium' => 0), "item_id=".$id);
+        else
+            $this->db->update('items', array('is_premium' => 1), "item_id=".$id);
     }
 }

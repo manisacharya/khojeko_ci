@@ -58,6 +58,7 @@
 	</div><!--all_ads_section-->
 
 	<div class="owner_detail_ad">
+		<?php echo $message; ?>
 		<ol>
 			<?php foreach ($all_personal_items as $item): ?>
 				<li>
@@ -98,8 +99,14 @@
 						<?php endif; ?>
 					</div>
 					<div class="col-sm-1">
-						<a href="#!" class="red" title="delete"><i class="fa fa-trash-o"></i></a>
-						<a href="#!" class="blue" title="edit"><i class="fa fa-edit"></i></a>
+						<?php echo form_open('delete'); ?>
+							<?php echo form_hidden('item_id', $item->item_id) ?>
+							<button type="submit" class="delete"><i class="fa fa-trash-o"></i></button>
+						<?php echo form_close(); ?>
+						<?php echo form_open('edit'); ?>
+							<?php echo form_hidden('item_id', $item->item_id) ?>
+						<button type="submit" class="edit"><i class="fa fa-edit"></i></button>
+						<?php echo form_close(); ?>
 					</div>
 					<div class="col-sm-1" style="padding-left:5px">
 						<a class="red" href="#!">Active</a><br>

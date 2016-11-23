@@ -88,6 +88,9 @@ class Pages extends CI_Controller {
         $username = urldecode($encoded_username);
         $category = urldecode($encoded_category);
 
+        $this->session->set_flashdata('panel_url', "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]");
+        $data['message'] = $this->session->flashdata('message');
+
         $this->get_common_contents($data);
 
         $data['user_item_counts'] = $this->items_model->count_user_page_items();
@@ -108,6 +111,9 @@ class Pages extends CI_Controller {
 
         $username = urldecode($encoded_username);
         $category = urldecode($encoded_category);
+
+        $this->session->set_flashdata('panel_url', "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]");
+        $data['message'] = $this->session->flashdata('message');
 
         $this->get_common_contents($data);
         $data['user_item_counts'] = $this->items_model->count_user_page_items();
