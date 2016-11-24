@@ -139,6 +139,6 @@
                         <button type="submit" id="search_btn"><i class="fa fa-search"> </i> Search</button>
                         <?php echo form_close(); ?>
 
-                        <a href="adpost"><button type="button" id="ad_btn">POST FREE ADS</button></a>
+                        <a href="<?php echo base_url('adpost'); ?>"><button type="button" id="ad_btn">POST FREE ADS</button></a>
 
                     </div>

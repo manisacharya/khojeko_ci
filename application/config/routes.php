@@ -9,7 +9,7 @@ $route['translate_uri_dashes'] = FALSE;
 $route['home'] = "homepage/home";
 
 //item post
-$route['adpost'] = "post_ad/post_form";
+$route['adpost'] = "pages/post_form";
 
 // PERSONAL SESSION CONTROLLER
 $route['login'] = "user_session/login";
@@ -31,7 +31,6 @@ $route['dealer/(:any)'] = "pages/dealer_page/$1";
 $route['dealer/(:any)/(:any)'] = "pages/dealer_page/$1/$2";
 
 // DETAIL CONTROLLER ROUTE
-// signup
 // signup
 $route['signup'] = "Signup/signup";
 $route['signup_done'] = "Signup/signup_done";
@@ -72,6 +71,9 @@ $route['admin/login'] = 'admin/users/login';
 $route['admin/sign_up'] = 'admin/users/sign_up';
 $route['admin/logout'] = 'admin/users/logout';
 $route['admin/change_password'] = 'admin/users/change_password';
+$route['admin/post_ad'] = 'admin/item_post/post_form';
+$route['get_district'] = 'admin/item_post/get_district';
+$route['available_email_admin'] = 'admin/item_post/available_email';
 $route['admin/(:any)'] = 'admin/admin_pages/page/$1';
 
 // USER PAGE

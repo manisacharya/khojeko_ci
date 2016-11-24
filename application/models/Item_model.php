@@ -95,7 +95,7 @@ class Item_model extends CI_Model
             $this->video_url1 = $this->input->post("video1_url");
             $this->video_url2 = $this->input->post("video2_url");
 
-            $this->deleted_date = NULL;
+            $this->deleted_date = 0;
 
             //$this->xss_invoke('c_id', 'parent_id');
             
