@@ -28,7 +28,7 @@ class Post_ad extends CI_Controller {
         $session_data = $this->session->userdata('logged_in');
         $khojeko_username = $session_data['username'];
 
-        $data['categories'] = $this->categories_model->get_categories();
+        $data['category'] = $this->categories_model->get_categories();
         $this->get_common_contents($data);
 
         $this->load->library('form_validation');

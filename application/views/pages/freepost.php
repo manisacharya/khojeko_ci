@@ -26,7 +26,7 @@
 
                 <?php
                     require_once('templates/require/category.php');
-                    print_list(0, 0, $categories);
+                    print_list(0, 0, $category);
                 ?>
 
                 <div class="search_section">
@@ -49,7 +49,7 @@
 
                             <td>
                                 <textarea name="display_cat" id="display_parent" readonly></textarea>
-                                <textarea name="parent_id" id="parent" hidden="hidden"></textarea>
+                                <textarea name="parent" id="parent"></textarea>
                             </td>
                         </tr>
                     </table>

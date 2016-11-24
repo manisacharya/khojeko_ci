@@ -111,7 +111,7 @@
                         <div>
                             <?php
                             require_once('require/category.php');
-                            print_list(0, 0, $categories, 'front/');
+                            print_list(0, 0, $category, 'front/');
                             ?>
                         </div>
                     </div>
