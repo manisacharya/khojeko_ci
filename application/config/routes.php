@@ -71,20 +71,20 @@ $route['admin/category_edit'] = 'admin/admin_pages/edit_category';
 $route['admin/login'] = 'admin/users/login';
 $route['admin/sign_up'] = 'admin/users/sign_up';
 $route['admin/logout'] = 'admin/users/logout';
+
+$route['admin/post_ad'] = 'admin/ad_post/post_form';
+$route['get_district'] = 'admin/ad_post/get_district';
+$route['available_email_admin'] = 'admin/ad_post/available_email';
+
 $route['admin/change_password'] = 'admin/users/change_password';
 $route['admin/(:any)'] = 'admin/admin_pages/page/$1';
+
 
 // USER PAGE
 $route['user/(:any)'] = 'pages/personal_page/$1';
 
 // DEALER PANEL
+
 $route['dpanel/(:any)'] = 'pages/dealer_panel/$1';
 $route['dpanel/(:any)/(:any)'] = 'pages/dealer_panel/$1/$2';
 
-// ITEMS CONTROL
-$route['delete'] = 'items/delete';
-$route['edit'] = 'items/edit';
-$route['sold_unsold/(:num)/(:num)'] = 'items/sold_unsold/$1/$2';
-$route['hide_unhide/(:num)/(:num)'] = 'items/hide_unhide/$1/$2';
-$route['extend_date/(:num)/(:num)'] = 'items/extend_date/$1/$2';
-$route['premium/(:num)/(:num)'] = 'items/premium/$1/$2';
