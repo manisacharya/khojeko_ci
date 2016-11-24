@@ -18,6 +18,8 @@ class Ad_post extends CI_Controller{
         $this->load->model('admin/user_model');
         $this->load->model('admin/personal_model');
         $this->load->model('admin/image_model');
+        $this->load->model('admin/districts_model');
+        $this->load->model('admin/zones_model');
         $this->load->helper(array('form', 'url'));
         $this->load->helper('security');
         $this->load->library('upload');
@@ -27,9 +29,11 @@ class Ad_post extends CI_Controller{
 
     public function post_form(){
         $data['title'] = 'Post ad';
-        $data['categories'] = $this->categories_model->get_categories();
+      //  $data['categories'] = $this->categories_model->get_categories();
         $data['user_info'] = $this->user_model->get_user_info();
-
+        $data['categories'] = $this->categories_model->get_categories();
+        $data['zones'] = $this->zones_model->getAllZones();
+        
         $this->load->library('form_validation');
         $this->form_validation->set_error_delimiters('<div class="alert alert-danger">', '</div>');
 
@@ -47,6 +51,7 @@ class Ad_post extends CI_Controller{
         if ($this->form_validation->run() == FALSE) {
             $data['message'] = "first";
             $this->load->view('admin/post_ad', $data);
+            $this->load->view('admin/templates/footer', $data);
         }else {
             // check for existing user through email and username
             
@@ -56,26 +61,29 @@ class Ad_post extends CI_Controller{
                 $this->personal_model->add_personal();
                 $u_id = $this->user_model->get_user_id();
             }
-            
-            //echo "upto here ok.";
-            //die();
-
             //$this->form_validation->set_rules('ad_title', 'Ad Title', 'required');
 
             if($u_id==NULL){
-                $this->session->set_flashdata('message','<div class="alert alert-danger">Not Added !</div>');
+                // $this->session->set_flashdata('message','<div class="alert alert-danger">Not Added !</div>');
             
-                redirect('admin/post_ad');
-                //$data['message'] = "";
+                // redirect('admin/post_ad');
+                $data['message'] = "";
+                $this->load->view('admin/post_ad', $data);
+                $this->load->view('admin/templates/footer', $data);
+
             }else{
                 $this->item_model->add_item();
 
                 $this->personal_upload();
             }
-
-            $this->session->set_flashdata('message','<div class="alert alert-success">Successfully Added!</div>');
             
-            redirect('admin/post_ad');
+            $data['message'] = "";
+            $this->load->view('admin/post_ad', $data);
+            $this->load->view('admin/templates/footer', $data);
+
+            // $this->session->set_flashdata('message','<div class="alert alert-success">Successfully Added!</div>');
+            
+            // redirect('admin/post_ad');
 
             // $data['message'] = "Successfully Added !";
 
@@ -141,6 +149,10 @@ class Ad_post extends CI_Controller{
             $count++;
         }
         $this->image_model->add_img($filename_arr);
+    }
+
+    public function get_district(){
+        $this->districts_model->get_districts();
     }
 
     public function available_username(){

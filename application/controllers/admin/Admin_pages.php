@@ -8,6 +8,7 @@ class Admin_pages extends CI_Controller {
         $this->load->model('admin/categories_model');
         $this->load->model('admin/latest_verified_unverified_ad_model');
         $this->load->model('admin/user_model');
+        $this->load->model('admin/zones_model');
         //$this->output->enable_profiler(TRUE);
         if (! $this->session->has_userdata('admin_logged_in'))
             redirect('admin/login');
@@ -17,6 +18,9 @@ class Admin_pages extends CI_Controller {
         $data['error'] = 'Dimensions: 250x100 | Only PNG';
         $data['title'] = ucwords(strtolower(str_replace('_', ' ', $page))); // Capitalize the first letter
         $data['user_info'] = $this->user_model->get_user_info();
+        // $data['categories'] = $this->categories_model->get_categories();
+        //$data['zones'] = $this->zones_model->getAllZones();
+
         $data['upload_status'] = "Upload file from here.";
         $data['message'] = $this->session->flashdata('message');
 

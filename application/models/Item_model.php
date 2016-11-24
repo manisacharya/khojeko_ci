@@ -87,7 +87,7 @@ class Item_model extends CI_Model
             $this->views = 0;
 
             // check if user is verified and is user blocked
-            if($detail->u_verified == 1 && $detail->status == 1)
+            if($detail->u_verified == 1 && $detail->user_status == 1)
                 $this->visibility = 1;
             else
                 $this->visibility = 0;
@@ -99,7 +99,7 @@ class Item_model extends CI_Model
 
             //$this->xss_invoke('c_id', 'parent_id');
             
-            $this->c_id = $this->input->post('parent_id');
+            $this->c_id = $this->input->post('parent');
             
             $this->user_id = $detail->user_id;
             $this->ad_id = NULL;
@@ -120,7 +120,7 @@ class Item_model extends CI_Model
             }
             
             //$this->add_img($filename_arr);
-            //$this->specification_model->add_spec();
+            $this->specification_model->add_spec();
            // echo $this->item_id;
 
         } else {
