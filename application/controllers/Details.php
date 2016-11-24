@@ -26,6 +26,10 @@ class Details extends CI_Controller {
         $data['id'] = $id;
 
         $data['details'] = $this->detail_db_model->get_details_item($id);
+
+        if ($data['details']->deleted_date != 0)
+            show_error('Sorry, page broken.');
+
         $data['specification'] = $this->detail_db_model->get_details_specs($id);
         $data['image'] = $this->detail_db_model->get_details_img($id);
         $data['user'] = $this->detail_db_model->get_details_user($data['details']);

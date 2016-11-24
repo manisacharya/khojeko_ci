@@ -8,7 +8,7 @@
  */
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Ad_post extends CI_Controller{
+class Item_post extends CI_Controller{
 
     function __Construct(){
        

@@ -88,7 +88,7 @@
             $.ajax({ // Send the username val to available.php
                 type: 'POST',
                 data: dataPass,
-                url: 'ad_post/get_district',
+                url: 'get_district',
                 success: function(html){
                     $("#district").html("");
                     $("#district").html(html);
