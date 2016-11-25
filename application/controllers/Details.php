@@ -19,16 +19,16 @@ class Details extends CI_Controller {
 
     //For Details Page
     public function details($id) {
+        $data['details'] = $this->detail_db_model->get_details_item($id);
+        if ($data['details']->deleted_date != 0)
+            show_error('Sorry, page broken.');
+
         if ($this->session->has_userdata('logged_in')) {
             $this->add_recent_view($id);
         }
+
         $this->add_view_count($id);
         $data['id'] = $id;
-
-        $data['details'] = $this->detail_db_model->get_details_item($id);
-
-        if ($data['details']->deleted_date != 0)
-            show_error('Sorry, page broken.');
 
         $data['specification'] = $this->detail_db_model->get_details_specs($id);
         $data['image'] = $this->detail_db_model->get_details_img($id);
