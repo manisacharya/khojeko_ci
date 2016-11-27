@@ -20,7 +20,9 @@ class Detail_db_model extends CI_Model{
 
     //show details of item table
     public function get_details_item($id){
-        $info = $this->get_sql('items','item_id',$id);
+        $info = $this->get_sql('items','item_id', $id);
+        if($info->row() ==  NULL)
+            show_error('Sorry, page broken.');
         $row = $this->item_xss_clean($info->row());
         return $row;
     }

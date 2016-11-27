@@ -39,4 +39,11 @@ class Dealer_model extends CI_Model {
         }
         return FALSE;
     }
+
+    public function get_all_dealers() {
+        $this->db->where('type', 'dealer');
+        $this->db->join('user', 'user.user_key = dealer.d_id');
+        $query = $this->db->get('dealer');
+        return $query->result();
+    }
 }

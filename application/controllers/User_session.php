@@ -11,6 +11,9 @@ class User_session extends CI_Controller {
         $this->load->model('general_database_model');
         $this->load->model('user_model');
         $this->load->model('detail_db_model');
+        $this->load->model('database_models/dealer_model');
+        $this->load->model('database_models/items_model');
+        $this->load->model('database_models/user_model');
     }
 
     //Call the Login page
@@ -33,64 +36,15 @@ class User_session extends CI_Controller {
             $this->session->set_userdata('logged_in', $user_session);
             redirect('logged_in');
         } else {
-            /*item/Category JOIN ARRAY*/
-            $item_joins = array(
-                array(
-                    'table' => 'user',
-                    'condition' => 'user.user_id = items.user_id',
-                    'jointype' => 'INNER'
-                ),
-                array(
-                    'table' => 'dealer',
-                    'condition' => 'user.user_key = dealer.d_id',
-                    'jointype' => 'INNER'
-                ),
-                array(
-                    'table' => 'category',
-                    'condition' => 'items.c_id = category.c_id',
-                    'jointype' => 'INNER'
-                ),
-                array(
-                    'table' => 'item_img',
-                    'condition' => 'items.item_id = item_img.item_id',
-                    'jointype' => 'INNER'
-                ),
-                array(
-                    'table' => 'item_spec',
-                    'condition' => 'items.item_id = item_spec.item_id',
-                    'jointype' => 'INNER'
-                )
-            );
-
-            $dealer_list_joins = array(
-                array (
-                    'table' => 'dealer',
-                    'condition' => 'user.user_key = dealer.d_id',
-                    'jointype' => 'INNER'
-                )
-            );
-            $personal_joins = array(
-                array(
-                    'table' => 'user',
-                    'condition' => 'user.user_id = items.user_id',
-                    'jointype' => 'INNER'
-                ),
-                array(
-                    'table' => 'personal',
-                    'condition' => 'user.user_key = personal.p_id',
-                    'jointype' => 'INNER'
-                )
-            );
+            $data["category"] = $this->categories_model->get_categories();
+            $data['dealer_list'] = $this->dealer_model->get_all_dealers();
 
             // counts : total, used/new, dealer/user ads
-            $data["total_items"] = $this->khojeko_db_model->getCount("items", "COUNT(*) as total", "1=1");
-            $data["used_items"] = $this->khojeko_db_model->getCount("items", "COUNT(*) as total", "item_type='used'");
-            $data["new_items"] = $this->khojeko_db_model->getCount("items", "COUNT(*) as total", "item_type='new'");
-            $data['dealer_items'] = $this->khojeko_db_model->joinThingsRow('items', 'COUNT(*) as total', $item_joins, 'type="dealer"');
-            $data['user_items'] = $this->khojeko_db_model->joinThingsRow('items', 'COUNT(*) as total', $personal_joins, 'type="personal"');
-
-            $data['dealer_list'] = $this->khojeko_db_model->joinThings('user', 'khojeko_username, name', $dealer_list_joins, 'type="dealer"');
-            $data["category"] = $this->categories_model->get_categories();
+            $data["total_items"] = $this->items_model->count_items();
+            $data["used_items"] = $this->items_model->count_status_items('used');
+            $data["new_items"] = $this->items_model->count_status_items('new');
+            $data['dealer_items'] = $this->items_model->count_user_items('dealer');
+            $data['user_items'] = $this->items_model->count_user_items('personal');
 
             $this->load->view("pages/templates/header", $data);
             $this->load->view("pages/user_login");
@@ -126,8 +80,10 @@ class User_session extends CI_Controller {
     public function logged_in() {
         $set_data = $this->session->all_userdata();
         if (isset($set_data['logged_in'])) {
-            redirect('upanel/'.$set_data['logged_in']['username'].'/All');
-            //$this->load->view('login/loggedin');
+            if($set_data['logged_in']['type'] == 'dealer')
+                redirect('dpanel/'.$set_data['logged_in']['username']);
+            else if($set_data['logged_in']['type'] == 'personal')
+                redirect('upanel/'.$set_data['logged_in']['username']);
         }
         else {
             redirect('login');

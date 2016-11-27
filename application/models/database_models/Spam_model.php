@@ -12,13 +12,9 @@ class Spam_model extends CI_Model {
     public $item_id;
     public $user_id;
 
-    public function insert_dealer() {
-        if ($this->db->table_exists('dealer')) {
-            $this->spam_id = $this->input->post('spam_id');
-            $this->item_id = $this->input->post('item_id');
-            $this->user_id = $this->input->post('user_id');
-            return TRUE;
-        }
-        return FALSE;
+    public function count_spam_of_user($user_id) {
+        $this->db->where('items.user_id', $user_id);
+        $this->db->join('items', 'items.item_id = spam.item_id');
+        return $this->db->count_all_results('spam');
     }
 }
