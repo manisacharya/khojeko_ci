@@ -16,8 +16,9 @@ class Recent_view_model extends CI_Model {
             $this->db->order_by('rv_id', 'DESC');
             $this->db->join('items', 'items.item_id=recent_view.item_id');
             $this->db->join('item_img', 'item_img.item_id = items.item_id');
+            $this->db->where('primary', 1);
+            $this->db->where('deleted_date', 0);
             $this->db->where('p_id', $user_id);
-            $this->db->distinct('item_id');
             $query = $this->db->get('recent_view', 8); // limit 8
 
             $result = $query->result();

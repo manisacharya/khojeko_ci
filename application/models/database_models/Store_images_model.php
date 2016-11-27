@@ -21,4 +21,11 @@ class Store_images_model extends CI_Model {
         }
         return FALSE;
     }
+    public function get_store_images($dealer_id) {
+        $this->db->select('si_name');
+        $this->db->where('store_images.d_id', $dealer_id);
+        $this->db->join('dealer', 'dealer.d_id = store_images.d_id');
+        $query = $this->db->get('store_images');
+        return $query->result();
+    }
 }

@@ -7,7 +7,9 @@ $route['translate_uri_dashes'] = FALSE;
 
 // INDEX CONTROLLER ROUTE
 $route['home'] = "homepage/home";
-$route['adpost'] = "homepage/adpost";
+
+//item post
+$route['adpost'] = "pages/post_form";
 
 // PERSONAL SESSION CONTROLLER
 $route['login'] = "user_session/login";
@@ -21,17 +23,14 @@ $route['heirarchy'] = "khojeko/heirarchy";
 $route['modify'] = "khojeko/modify";
 
 // USER PANEL CONTROLLER ROUTE
-$route['upanel'] = "user_panel/redirect";
-$route['upanel/(:any)'] = "user_panel/redirect";
-$route['upanel/(:any)/(:any)'] = "user_panel/upanel/$1/$2";
+$route['upanel/(:any)'] = "pages/personal_panel/$1";
+$route['upanel/(:any)/(:any)'] = "pages/personal_panel/$1/$2";
 
 // DEALER CONTROLLER ROUTE
-$route['dealer'] = "dealers/redirect";
-$route['dealer/(:any)'] = "dealers/redirect";
-$route['dealer/(:any)/(:any)'] = "dealers/dealer/$1/$2";
+$route['dealer/(:any)'] = "pages/dealer_page/$1";
+$route['dealer/(:any)/(:any)'] = "pages/dealer_page/$1/$2";
 
 // DETAIL CONTROLLER ROUTE
-// signup
 // signup
 $route['signup'] = "Signup/signup";
 $route['signup_done'] = "Signup/signup_done";
@@ -72,4 +71,22 @@ $route['admin/login'] = 'admin/users/login';
 $route['admin/sign_up'] = 'admin/users/sign_up';
 $route['admin/logout'] = 'admin/users/logout';
 $route['admin/change_password'] = 'admin/users/change_password';
+$route['admin/post_ad'] = 'admin/item_post/post_form';
+$route['get_district'] = 'admin/item_post/get_district';
+$route['available_email_admin'] = 'admin/item_post/available_email';
 $route['admin/(:any)'] = 'admin/admin_pages/page/$1';
+
+// USER PAGE
+$route['user/(:any)'] = 'pages/personal_page/$1';
+
+// DEALER PANEL
+$route['dpanel/(:any)'] = 'pages/dealer_panel/$1';
+$route['dpanel/(:any)/(:any)'] = 'pages/dealer_panel/$1/$2';
+
+// ITEMS CONTROL
+$route['delete'] = 'items/delete';
+$route['edit'] = 'items/edit';
+$route['sold_unsold/(:num)/(:num)'] = 'items/sold_unsold/$1/$2';
+$route['hide_unhide/(:num)/(:num)'] = 'items/hide_unhide/$1/$2';
+$route['extend_date/(:num)/(:num)'] = 'items/extend_date/$1/$2';
+$route['premium/(:num)/(:num)'] = 'items/premium/$1/$2';

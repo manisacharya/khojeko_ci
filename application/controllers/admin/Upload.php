@@ -25,28 +25,31 @@ class Upload extends CI_Controller {
     }
 
     public function logo_upload() {
-        $data = array(
-            'title'     => 'Upload Form',
-            'message'   => 'Uploaded Successfully'
-        );
-
         $config = array(
-            'upload_path'   => './uploads/',
-            'allowed_types' => 'png',
+            'upload_path'   => './public/images',
+            'allowed_types' => 'jpg|png',
             'max_size'      => 1000,
             'max_width'     => 250,
-            'max_height'    => 100
+            'max_height'    => 100,
+            'file_name'     => 'khojeko.png',
+            'overwrite'     => TRUE
         );
         $this->load->library('upload', $config);
 
+        $page = 'site_logo';
+        $data['title'] = ucwords(strtolower(str_replace('_', ' ', $page)));
+
         $this->load->view('admin/templates/header', $data);
+
         if ( ! $this->upload->do_upload('userfile')) {
-            $data['error'] = $this->upload->display_errors('<div class="alert alert-danger">', '</div>');
-            $this->load->view('admin/site_logo', $data);
-            $this->load->view('admin/templates/footer');
+            $data['upload_status'] = "Logo not uploaded";
+            $this->session->set_flashdata("message", $this->upload->display_errors('<div class="alert alert-danger">', '</div>'));
+            redirect('admin/site_logo');
+
         }
         else {
-            $this->session->set_flashdata('message', 'File Uploded Successfully');
+            $data = array('upload_data' => $this->upload->data());
+            $this->session->set_flashdata("message", '<div class="alert alert-success">Logo updated successfully</div>');
             redirect('admin/site_logo');
         }
     }

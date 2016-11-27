@@ -12,13 +12,8 @@ class Favourites_model extends CI_Model {
     public $item_id;
     public $p_id;
 
-    public function insert_dealer() {
-        if ($this->db->table_exists('dealer')) {
-            $this->fav_id = $this->input->post('fav_id');
-            $this->item_id = $this->input->post('item_id');
-            $this->p_id = $this->input->post('p_id');
-            return TRUE;
-        }
-        return FALSE;
+    public function count_favourites($user_id) {
+        $this->db->where('p_id', $user_id);
+        return $this->db->count_all_results('favourites');
     }
 }

@@ -1,5 +1,5 @@
 <?php
-/**
+/* *
  * Created by PhpStorm.
  * User: cham11ng
  * Date: 9/27/16
@@ -18,10 +18,20 @@ class User_model extends CI_Model {
         parent::__construct();
     }
 
-    public function get_user_info() {
-        $this->db->join('admin', 'admin.a_id = user.user_key');
-        $this->db->where('user.type', 'admin');
-        $this->db->where('user.user_id', $this->session->userdata['admin_logged_in']['id']);
+    public function get_user_info($type, $value) {
+        $this->db->where('user.type', $type);
+        if ($type == 'admin') {
+            $this->db->join('admin', 'admin.a_id = user.user_key');
+            $this->db->where('user.user_id', $value);
+        }
+        else if ($type == 'dealer') {
+            $this->db->join('dealer', 'dealer.d_id = user.user_key');
+            $this->db->where('user.khojeko_username', $value);
+        }
+        else {
+            $this->db->join('personal', 'personal.p_id = user.user_key');
+            $this->db->where('user.khojeko_username', $value);
+        }
         $query = $this->db->get('user', 1);
 
         return $query->row();

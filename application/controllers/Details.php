@@ -12,17 +12,24 @@ class Details extends CI_Controller {
         $this->load->model('database_models/categories_model');
         $this->load->model('spam_and_fav_model');
         $this->load->model('ask_me_model');
+        $this->load->model('database_models/dealer_model');
+        $this->load->model('database_models/items_model');
+        $this->load->model('database_models/user_model');
     }
 
     //For Details Page
     public function details($id) {
+        $data['details'] = $this->detail_db_model->get_details_item($id);
+        if ($data['details']->deleted_date != 0)
+            show_error('Sorry, page broken.');
+
         if ($this->session->has_userdata('logged_in')) {
             $this->add_recent_view($id);
         }
+
         $this->add_view_count($id);
         $data['id'] = $id;
 
-        $data['details'] = $this->detail_db_model->get_details_item($id);
         $data['specification'] = $this->detail_db_model->get_details_specs($id);
         $data['image'] = $this->detail_db_model->get_details_img($id);
         $data['user'] = $this->detail_db_model->get_details_user($data['details']);
@@ -30,63 +37,16 @@ class Details extends CI_Controller {
         $data['date'] = $this->detail_db_model->get_date_diff($data['details']);
         $data['question'] = $this->ask_me_model->get_ques_ans($id);
 
-        $item_joins = array(
-            array(
-                'table' => 'user',
-                'condition' => 'user.user_id = items.user_id',
-                'jointype' => 'INNER'
-            ),
-            array(
-                'table' => 'dealer',
-                'condition' => 'user.user_key = dealer.d_id',
-                'jointype' => 'INNER'
-            ),
-            array(
-                'table' => 'category',
-                'condition' => 'items.c_id = category.c_id',
-                'jointype' => 'INNER'
-            ),
-            array(
-                'table' => 'item_img',
-                'condition' => 'items.item_id = item_img.item_id',
-                'jointype' => 'INNER'
-            ),
-            array(
-                'table' => 'item_spec',
-                'condition' => 'items.item_id = item_spec.item_id',
-                'jointype' => 'INNER'
-            )
-        );
-
-        $dealer_list_joins = array(
-            array (
-                'table' => 'dealer',
-                'condition' => 'user.user_key = dealer.d_id',
-                'jointype' => 'INNER'
-            )
-        );
-        $personal_joins = array(
-            array(
-                'table' => 'user',
-                'condition' => 'user.user_id = items.user_id',
-                'jointype' => 'INNER'
-            ),
-            array(
-                'table' => 'personal',
-                'condition' => 'user.user_key = personal.p_id',
-                'jointype' => 'INNER'
-            )
-        );
+        $data["category"] = $this->categories_model->get_categories();
+        $data['dealer_list'] = $this->dealer_model->get_all_dealers();
 
         // counts : total, used/new, dealer/user ads
-        $data["total_items"] = $this->khojeko_db_model->getCount("items", "COUNT(*) as total", "1=1");
-        $data["used_items"] = $this->khojeko_db_model->getCount("items", "COUNT(*) as total", "item_type='used'");
-        $data["new_items"] = $this->khojeko_db_model->getCount("items", "COUNT(*) as total", "item_type='new'");
-        $data['dealer_items'] = $this->khojeko_db_model->joinThingsRow('items', 'COUNT(*) as total', $item_joins, 'type="dealer"');
-        $data['user_items'] = $this->khojeko_db_model->joinThingsRow('items', 'COUNT(*) as total', $personal_joins, 'type="personal"');
+        $data["total_items"] = $this->items_model->count_items();
+        $data["used_items"] = $this->items_model->count_status_items('used');
+        $data["new_items"] = $this->items_model->count_status_items('new');
+        $data['dealer_items'] = $this->items_model->count_user_items('dealer');
+        $data['user_items'] = $this->items_model->count_user_items('personal');
 
-        $data['dealer_list'] = $this->khojeko_db_model->joinThings('user', 'khojeko_username, name', $dealer_list_joins, 'type="dealer"');
-        $data["category"] = $this->categories_model->get_categories();
         $data["fav_msg"] = $this->session->flashdata('fav_message');
 
         if ($this->session->has_userdata('logged_in')) {

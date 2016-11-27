@@ -13,6 +13,7 @@ class Search_model extends CI_Model {
 
         if ($this->db->table_exists('items')) {
             $this->db->like('title', $search_query);
+            $this->db->where('deleted_date', 0);
             $this->db->join('item_img', 'item_img.item_id = items.item_id');
             $this->db->join('item_spec', 'item_spec.item_id = items.item_id');
             $this->db->join('category', 'category.c_id = items.c_id');

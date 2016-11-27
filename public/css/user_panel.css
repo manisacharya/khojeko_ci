@@ -1,8 +1,8 @@
 @charset "utf-8";
 /* CSS Document */
 .status_of_account a{color:red;}
-.status_of_account{text-align:center}
-.welcome_div{margin-bottom:10px}
+.status_of_account{text-align:center; padding:5px;}
+.welcome_div{margin:10px 0;}
 .welcome_div a{margin-right:30px;}
 .user_menu{display:inline;border:1px solid;}
 .user_menu a{margin:2px;font-size:15px}
@@ -14,15 +14,15 @@
 .number{font-size:24px;font-weight:700;padding-top:20px;}
 
 .owner_ad_display{border:1px solid;border-radius:10px;margin-top:10px;overflow:auto;min-height:100px}
-.all_ads_section{margin-top:10px}
+.all_ads_section{margin:10px 5px;}
 .all_ads_section a{color:green}
 .search_sec button{background:#CCC;border-radius:8px;border:1px solid}
 .search_sec input{border-radius:8px;border:1px solid}
 .search_sec{float:right}
 .owner_detail_ad img{height:100px; width:100px;margin-bottom:10px;margin-right:10px;}
-.red{color:red}
-.green{color:green}
-.blue{color:blue}
+.red{color:red; background-color: transparent; border: 0;}
+.green{color:green; background-color: transparent; border: 0;}
+.blue{color:blue; background-color: transparent; border: 0;}
 .owner_detail_ad i{font-size:36px}
 .owner_detail_ad price{font-size:18px;color:#306}
 .owner_detail_ad name{font-weight:700}
@@ -57,7 +57,8 @@ z-index:10;}*/
 .slider_banner span{background:#CCC}
 .slider_banner h2{text-align:center;text-decoration:underline}
 .main_banner_booking{border:1px solid;margin-top:25px;margin-bottom:15px;}
-
+.delete {color:red; background-color: transparent; border: 0;}
+.edit {color:blue; background-color: transparent; border: 0;}
 
 
 .modal-title{color:red}
