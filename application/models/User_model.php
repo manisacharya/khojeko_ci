@@ -7,7 +7,7 @@ class User_model extends CI_Model {
 
         $this->db->select('khojeko_username, password')->from('user');
         $this->db->join('personal', "user.user_key = personal.p_id");
-        $where = "type='personal' AND (email = '".$username."' OR primary_mob = '".$username."' OR khojeko_username = '".$username."')";
+        $where = "type='personal' AND (email = '".$username."' OR primary_mob = '".$username."')";
         $this->db->where($where);
         $query_p = $this->db->get();
         $row_p = $query_p->row();
@@ -18,7 +18,7 @@ class User_model extends CI_Model {
 
         $this->db->select('khojeko_username , password')->from('user');
         $this->db->join('dealer', "user.user_key = dealer.d_id");
-        $where = "type='dealer' AND (email = '".$username."' OR primary_mob = '".$username."' OR khojeko_username = '".$username."')";
+        $where = "type='dealer' AND (email = '".$username."' OR primary_mob = '".$username."')";
         $this->db->where($where);
         $query_d = $this->db->get();
         $row_d = $query_d->row();
