@@ -63,7 +63,7 @@ class Categories_model extends CI_Model {
             }
 
             $data = array(
-                'c_deleted'    => 1
+                'c_deleted'    => NOW()
             );
 
 

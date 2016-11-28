@@ -76,17 +76,6 @@
                 <div class="form-group">
                     <table class="login_table">
                         <h3>Login Details:</h3>
-
-                        <tr>
-                            <td>
-                                <label class="control-label">*Username:</label>
-                            </td>
-                            <td>
-                                <?php echo form_input('user_name', $this->input->post('user_name'), 'required class="naya form-control" id="username"'); ?>
-                                <?php echo form_error('user_name', '<div class="alert alert-danger">', '</div>'); ?>
-                                <div class="result" id="result1" ></div>
-                            </td>
-                        </tr>
                         <tr>
                             <td>
                                 *User email:
@@ -144,7 +133,8 @@
                         </tr>
                     </table>
                     <div id="website">
-                        Website Address: http://www.khojeko.com/<?php echo form_input('website', $this->input->post('website'), 'class="naya"'); ?><br>
+                        Website Address: http://www.khojeko.com/<?php echo form_input('user_name', $this->input->post('user_name'), 'class="naya form-control" id="username"'); ?>
+                        <div class="result" id="result1"></div>
                     </div>
                     <a>Captcha:</a>
                     <div class='g-recaptcha' data-sitekey='6LdaZCITAAAAAJ99HnRAhCbkJ7us0MUGmXkDW94p'></div><br><br>
@@ -450,10 +440,10 @@
                     url  : 'available_username',
                     success: function(responseText){ // Get the result
                         if(responseText == 0){
-                            Result.html('<span class="success">Username available</span>').css('color','green');
+                            Result.html('<span class="success">Website Address available</span>').css('color','green');
                         }
                         else if(responseText > 0){
-                            Result.html('<span class="error">Username already taken.<br>Please choose another username.</span>').css('color','red');
+                            Result.html('<span class="error">Website Address already taken.<br>Please choose another username.</span>').css('color','red');
                         }
                         else{
                             alert('Problem with sql query');
@@ -469,13 +459,13 @@
         });
 
         $('#useremail').keyup(function(){
-            var useremail = $(this).val(); // Get username textbox using $(this)
+            var useremail = $(this).val(); // Get useremail textbox using $(this)
             var Result = $('#result2'); // Get ID of the result DIV where we display the results
             var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
             if(reg.test($(this).val())) { // check email format
                 Result.html('Loading...'); // you can use loading animation here
                 var dataPass = 'action=availability&useremail='+useremail;
-                $.ajax({ // Send the username val to available.php
+                $.ajax({ // Send the useremail val to available.php
                     type : 'POST',
                     data : dataPass,
                     url  : 'available_email',
@@ -494,7 +484,7 @@
             }else{
                 Result.html('Enter valid email address').css('color','red')
             }
-            if(username.length == 0) {
+            if(useremail.length == 0) {
                 Result.html('');
             }
         });
@@ -507,7 +497,7 @@
                 if(mobile_p.length > 9) { // if greater than 9 (minimum 10)
                     Result.html('Loading...'); // you can use loading animation here
                     var dataPass = 'action=availability&mobile_p=' + mobile_p;
-                    $.ajax({ // Send the username val to available.php
+                    $.ajax({
                         type: 'POST',
                         data: dataPass,
                         url: 'available_mobile_P',
@@ -552,8 +542,8 @@
             var Result = $('#tel_p_result'); // Get ID of the result DIV where we display the results
             var reg = /^([0-9])+$/;
             if((reg.test($(this).val()))) { // check number format
-                if(telephone_p.length < 9) { // if greater than 9 (minimum 10)
-                    Result.html('Telephone number must have 9 digits').css('color','#ff5500');
+                if(telephone_p.length < 7) { // if greater than 9 (minimum 10)
+                    Result.html('Telephone number must have 7 digits').css('color','#ff5500');
                 } else {
                     Result.html('<span class="success">This telephone number can be used</span>').css('color', 'green');
                 }
@@ -565,7 +555,7 @@
         $('#zone_p').change(function(){
             var zone = $(this).val();
             var dataPass = 'action=availability&zone=' + zone;
-            $.ajax({ // Send the username val to available.php
+            $.ajax({
                 type: 'POST',
                 data: dataPass,
                 url: 'get_districts',
@@ -584,7 +574,7 @@
                 if (mobile_d.length > 9) { // if greater than 9 (minimum 10)
                     Result.html('Loading...'); // you can use loading animation here
                     var dataPass = 'action=availability&mobile_d=' + mobile_d;
-                    $.ajax({ // Send the username val to available.php
+                    $.ajax({
                         type: 'POST',
                         data: dataPass,
                         url: 'available_mobile_d',
@@ -614,8 +604,8 @@
             var Result = $('#tel_d_result'); // Get ID of the result DIV where we display the results
             var reg = /^([0-9])+$/;
             if((reg.test($(this).val()))) { // check number format
-                if(telephone.length < 9) { // if greater than 9 (minimum 10)
-                    Result.html('Telephone number must have 9 digits').css('color','#ff5500');
+                if(telephone.length < 7) { // if greater than 9 (minimum 10)
+                    Result.html('Telephone number must have 7 digits').css('color','#ff5500');
                 } else {
                     Result.html('<span class="success">This telephone number can be used</span>').css('color', 'green');
                 }
@@ -627,7 +617,7 @@
         $('#zone').change(function(){
             var zone = $(this).val();
             var dataPass = 'action=availability&zone=' + zone;
-            $.ajax({ // Send the username val to available.php
+            $.ajax({
                 type: 'POST',
                 data: dataPass,
                 url: 'get_district',

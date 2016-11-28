@@ -1,22 +1,16 @@
 
-<!-- Custom JQuery -->
-<script src="<?php echo base_url('public'); ?>/js/app/custom.js" type="text/javascript"></script>
-<script src="<?php echo base_url('public'); ?>/js/plugins/nicescroll/jquery.nicescroll.min.js"></script>
-<script src="<?php echo base_url('public'); ?>/js/categori.js"></script>
-<script src="<?php echo base_url('public'); ?>/js/popup.js"></script>
-<script src="<?php echo base_url('public'); ?>/js/jquery.MultiFile.js"></script>
-
 <!-- JQuery v1.9.1 -->
 <script src="<?php echo base_url('public'); ?>/js/jquery/jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="<?php echo base_url('public'); ?>/js/jquery.MultiFile.js"></script>
+<script src="<?php echo base_url('public'); ?>/js/plugins/nicescroll/jquery.nicescroll.min.js"></script>
+
 <script src="<?php echo base_url('public'); ?>/js/bootstrap/bootstrap.min.js"></script>
 <!-- Custom JQuery -->
 <script src="<?php echo base_url('public'); ?>/js/app/custom.js" type="text/javascript"></script>
-<script src="<?php echo base_url('public'); ?>/js/plugins/nicescroll/jquery.nicescroll.min.js"></script>
 <script src="<?php echo base_url('public'); ?>/js/preview.js"></script>
 <script src="<?php echo base_url('public'); ?>/js/hawa.js"></script>
 <script src="<?php echo base_url('public'); ?>/js/categori.js"></script>
 <script src="<?php echo base_url('public'); ?>/js/popup.js"></script>
-<script src="<?php echo base_url('public'); ?>/js/jquery.MultiFile.js"></script>
     
 <script type="text/javascript">
     $(document).ready(function(){
@@ -221,18 +215,7 @@
     });
 </script>
 
-
 <!-- for adding category list name and id -->
-<script>
-    $(".category0 li a" || ".category1 li a").on("click", function () {
-        var x = $(this).attr('id');
-        var y = this.text;
-        document.getElementById("parent").innerHTML = x;
-        document.getElementById("display_parent").innerHTML = y;
-        $("#display_parent").css('color','black');
-    });
-</script>
-
 <script>
     $(".parent_click a").on("click", function () {
         document.getElementById("display_parent").innerHTML = 'Set as parent';
@@ -295,11 +278,11 @@
     }
 </style>
 
-<script type="text/javascript">
+<!--<script type="text/javascript">
     $(document).ready(function() {
         $("#select").searchable();
     });
-</script>
+</script>-->
 
 <script>
     $(document).bind("mobileinit", function() {

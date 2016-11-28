@@ -3,10 +3,10 @@
 class Signup_model extends CI_Model {
 
     //add user from sign up login details to temporary file
-    public function add_temp_user($key){
+    public function add_temp_user($key, $username){
         $data = array(
             'email' => $this->input->post('user_email'),
-            'khojeko_username' => $this->input->post('user_name'),
+            'khojeko_username' => $username,
             'password' =>  password_hash($this->input->post('password'), PASSWORD_DEFAULT),
             'type' => $this->input->post('acc_type'),
             'ac_created' => NOW(),
@@ -33,6 +33,18 @@ class Signup_model extends CI_Model {
         $this->db->insert('personal', $data);
         //update user table
         $this->update_user('personal', $email, $mobile, 'p_id');
+    }
+
+    //generate personal username
+    public function personal_username($full_name){
+        $random = mt_rand(00000, 99999);
+        $username = url_title($full_name.$random);
+
+        $query = $this->db->get_where('user', ['khojeko_username' => $username]);
+        if($query->num_rows() == 0 )
+            return $username;
+         else
+            $this->personal_username($full_name);
     }
 
     //add user from sign up profile:dealer details to temporary file
