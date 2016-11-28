@@ -28,13 +28,13 @@ class User_model extends CI_Model {
             $this->db->join('dealer', 'dealer.d_id = user.user_key');
             $this->db->where('user.khojeko_username', $value);
         }
-        else {
+        else if ($type == 'personal') {
             $this->db->join('personal', 'personal.p_id = user.user_key');
             $this->db->where('user.khojeko_username', $value);
         }
         $query = $this->db->get('user', 1);
-
-        return $query->row();
+        $result = $query->row();
+        return $this->user_xss_clean($result, $type);
     }
 
     public function register_user() {
@@ -102,5 +102,39 @@ class User_model extends CI_Model {
         else {
             return FALSE;
         }
+    }
+
+    public function user_xss_clean(&$user, $type) {
+        $user->khojeko_username = html_escape($this->security->xss_clean($user->khojeko_username));
+        $user->email            = html_escape($this->security->xss_clean($user->email));
+        if ($type == "dealer") {
+            $user->name             = html_escape($this->security->xss_clean($user->name));
+            $user->zone             = html_escape($this->security->xss_clean($user->zone));
+            $user->district         = html_escape($this->security->xss_clean($user->district));
+            $user->city             = html_escape($this->security->xss_clean($user->city));
+            $user->full_address     = html_escape($this->security->xss_clean($user->full_address));
+            $user->primary_mob      = html_escape($this->security->xss_clean($user->primary_mob));
+            $user->tel_no           = html_escape($this->security->xss_clean($user->tel_no));
+            $user->detail           = html_escape($this->security->xss_clean($user->detail));
+            $user->logo             = html_escape($this->security->xss_clean($user->logo));
+            $user->document         = html_escape($this->security->xss_clean($user->document));
+            $user->company_website  = html_escape($this->security->xss_clean($user->company_website));
+        } else if($type == "personal") {
+            $user->name             = html_escape($this->security->xss_clean($user->name));
+            $user->zone             = html_escape($this->security->xss_clean($user->zone));
+            $user->district         = html_escape($this->security->xss_clean($user->district));
+            $user->city             = html_escape($this->security->xss_clean($user->city));
+            $user->full_address     = html_escape($this->security->xss_clean($user->full_address));
+            $user->primary_mob      = html_escape($this->security->xss_clean($user->primary_mob));
+            $user->secondary_mob    = html_escape($this->security->xss_clean($user->secondary_mob));
+            $user->tel_no           = html_escape($this->security->xss_clean($user->tel_no));
+        } else if($type == "admin") {
+            $user->a_id             = html_escape($this->security->xss_clean($user->a_id));
+            $user->admin_name       = html_escape($this->security->xss_clean($user->admin_name));
+            $user->address          = html_escape($this->security->xss_clean($user->address));
+            $user->mob              = html_escape($this->security->xss_clean($user->mob));
+            $user->avatar           = html_escape($this->security->xss_clean($user->avatar));
+        }
+        return $user;
     }
 }
