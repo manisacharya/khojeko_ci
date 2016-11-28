@@ -47,8 +47,10 @@ class Latest_verified_unverified_ad_model extends CI_Model {
         }
     }
 
-    public function extend_date($id, $extend){
-        $days = $extend + 15;
+    public function extend_date($id, $item_days){
+        $extended_date = "extended_date".$id;
+        $extend_days = $this->input->post($extended_date);
+        $days = $item_days + $extend_days;
         $this->db->update('items', array('ad_duration' => $days), "item_id=".$id);
     }
 

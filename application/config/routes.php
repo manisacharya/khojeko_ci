@@ -75,6 +75,7 @@ $route['admin/post_ad'] = 'admin/item_post/post_form';
 $route['get_district'] = 'admin/item_post/get_district';
 $route['available_email_admin'] = 'admin/item_post/available_email';
 $route['admin/(:any)'] = 'admin/admin_pages/page/$1';
+$route['admin/extend_date/(:num)/(:num)'] = 'admin/admin_pages/extend_date/$1/$2';
 
 // USER PAGE
 $route['user/(:any)'] = 'pages/personal_page/$1';

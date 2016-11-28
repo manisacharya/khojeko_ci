@@ -2,6 +2,7 @@
 <div class="clearfix"></div>
 
 <?php echo $fav_msg; ?>
+<?php echo $spam_msg; ?>
 
 <div class="item_category">
     <a class="main_cat">MAIN CATEGORY:</a>
@@ -76,7 +77,7 @@
         </div>
 
         <div class="col-sm-10" id="fake_report">
-            <a href="<?php echo base_url("Details/add_to_spam/".$id)?>">If this ad is fake report us</a>
+            <a href="<?php echo base_url("Details/add_to_spam/".$id."/".$details->spam_count)?>">If this ad is fake report us</a>
         </div>
     </div>
 </div><!--item_info ends-->

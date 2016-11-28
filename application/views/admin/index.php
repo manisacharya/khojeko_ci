@@ -108,7 +108,7 @@
                     <a class="underline">Total Inactive Ad 10 of 26</a>
                     <a href="#">View All >></a>
                     <a>Click to:</a><!--a class="green" href="#">Verify</a-->
-                    <input class="green" type="submit" value="Verify">
+                    <input class="green" type="submit" name="verify" value="Verify">
                     <!--a class="green" href="#">Unverify</a-->
 					<a>select all   <input type="checkbox" onClick="toggle1(this)"></a>
                 </div>
@@ -138,23 +138,28 @@
                             </span>
 
                             <span>
-                                <a>
-                                    <?php
-                                    $datestring = '%d %M %Y';
-                                    $days = date_diff(date_create(mdate($datestring, $published_date)), date_create(mdate($datestring, time())));
-                                    $ad_duration = $row->ad_duration;
-                                    $edays = $ad_duration - $days->format("%a");
-                                    if(intval($edays)<0) {
-                                        $extend = $days->format("%a");
-                                        echo "<a>Extend for:15 days</a><br>";
-                                        echo "Expired";
-                                    ?>
-                                        <br><a href="<?php echo base_url("admin/Admin_pages/extend_date/".$item_id."/".$extend) ?>" class="green">Renew now</a>
-                                    <?php
-                                    } else
-                                        echo "Expiry after:".$edays." days";
-                                    ?>
-                                </a><br>
+                                <?php
+                                $datestring = '%d %M %Y';
+                                $days = date_diff(date_create(mdate($datestring, $published_date)), date_create(mdate($datestring, time())));
+                                $ad_duration = $row->ad_duration;
+                                $edays = $ad_duration - $days->format("%a");
+                                if(intval($edays)<0) {
+                                    $item_days = $days->format("%a");
+                                ?>
+                                    <expiry style="color:red;">Expired</expiry><br>
+                                    <?php echo "Extend for:"; ?>
+                                    <select name="extended_date<?php echo $item_id; ?>">
+                                        <option value="0">7</option>
+                                        <option value="14">14</option>
+                                        <option value="30">30</option>
+                                    </select>
+                                    <label>Days</label><br>
+                                    <button class="green" name="renew" type="submit" value="id:<?php echo $item_id; ?>,item_days:<?php echo $item_days; ?>">Renew</button>
+                                <?php
+                                } else
+                                    echo "Expiry after:".$edays." days";
+                                ?>
+                                <br>
                             </span>
 
                             <span>
@@ -230,23 +235,28 @@
                             </span>
 
                             <span>
-                                <a>
-                                    <?php
-                                    $datestring = '%d %M %Y';
-                                    $days = date_diff(date_create(mdate($datestring, $published_date)), date_create(mdate($datestring, time())));
-                                    $ad_duration = $row->ad_duration;
-                                    $edays = $ad_duration - $days->format("%a");
-                                    if(intval($edays)<0) {
-                                        $extend = $days->format("%a");
-                                        echo "<a>Extend for:15 days</a><br>";
-                                        echo "Expired";
-                                    ?>
-                                        <br><a href="<?php echo base_url("admin/Admin_pages/extend_date/".$item_id."/".$extend) ?>" class="green">Renew now</a>
-                                    <?php
-                                    } else
-                                        echo "Expiry after:".$edays." days";
-                                    ?>
-                                </a><br>
+                                <?php
+                                $datestring = '%d %M %Y';
+                                $days = date_diff(date_create(mdate($datestring, $published_date)), date_create(mdate($datestring, time())));
+                                $ad_duration = $row->ad_duration;
+                                $edays = $ad_duration - $days->format("%a");
+                                if(intval($edays)<=0) {
+                                    $item_days = $days->format("%a");
+                                ?>
+                                    <expiry style="color:red;">Expired</expiry><br>
+                                    <?php echo "Extend for:"; ?>
+                                    <select name="extended_date">
+                                        <option value="7">7</option>
+                                        <option value="14">14</option>
+                                        <option value="30">30</option>
+                                    </select>
+                                    <label>Days</label><br>
+                                    <button class="green" name="renew" type="submit" value="id:<?php echo $item_id; ?>,item_days:<?php echo $item_days; ?>">Renew</button>
+                                <?php
+                                } else
+                                    echo "Expiry after:".$edays." days";
+                                ?>
+                                <br>
                             </span>
 
                             <span>
@@ -306,7 +316,7 @@
                     <a class="underline">Total Active Ad 10 of 26</a>
                     <a href="#">View All >></a>
                     <!--a class="green">Inactive Now</a-->
-                    <input class="green" type="submit" value="Unverify">
+                    <input class="green" type="submit" name="unverify" value="Unverify">
                     <a>select all   <input type="checkbox" onClick="toggle2(this)"></a>
                 </div>
                 <ol>
@@ -335,23 +345,28 @@
                             </span>
 
                             <span>
-                                <a>
+                                <?php
+                                $datestring = '%d %M %Y';
+                                $days = date_diff(date_create(mdate($datestring, $published_date)), date_create(mdate($datestring, time())));
+                                $ad_duration = $row->ad_duration;
+                                $edays = $ad_duration - $days->format("%a");
+                                if(intval($edays)<0) {
+                                    $item_days = $days->format("%a");
+                                ?>
+                                <expiry style="color:red;">Expired</expiry><br>
+                                <?php echo "Extend for:"; ?>
+                                <select name="extended_date<?php echo $item_id; ?>">
+                                    <option value="0">7</option>
+                                    <option value="14">14</option>
+                                    <option value="30">30</option>
+                                </select>
+                                    <label>Days</label><br>
+                                    <button class="green" name="renew" type="submit" value="id:<?php echo $item_id; ?>,item_days:<?php echo $item_days; ?>">Renew</button>
                                     <?php
-                                    $datestring = '%d %M %Y';
-                                    $days = date_diff(date_create(mdate($datestring, $published_date)), date_create(mdate($datestring, time())));
-                                    $ad_duration = $row->ad_duration;
-                                    $edays = $ad_duration - $days->format("%a");
-                                    if(intval($edays)<0) {
-                                        $extend = $days->format("%a");
-                                        echo "<a>Extend for:15 days</a><br>";
-                                        echo "Expired";
-                                    ?>
-                                        <br><a href="<?php echo base_url("admin/Admin_pages/extend_date/".$item_id."/".$extend) ?>" class="green">Renew now</a>
-                                    <?php
-                                    } else
-                                        echo "Expiry after:".$edays." days";
-                                    ?>
-                                </a><br>
+                                } else
+                                    echo "Expiry after:".$edays." days";
+                                ?>
+                                <br>
                             </span>
 
                             <span>
@@ -425,23 +440,28 @@
                             </span>
 
                             <span>
-                                <a>
-                                    <?php
-                                    $datestring = '%d %M %Y';
-                                    $days = date_diff(date_create(mdate($datestring, $published_date)), date_create(mdate($datestring, time())));
-                                    $ad_duration = $row->ad_duration;
-                                    $edays = $ad_duration - $days->format("%a");
-                                    if(intval($edays)<0) {
-                                        $extend = $days->format("%a");
-                                        echo "<a>Extend for:15 days</a><br>";
-                                        echo "Expired";
-                                    ?>
-                                        <br><a href="<?php echo base_url("admin/Admin_pages/extend_date/".$item_id."/".$extend) ?>" class="green">Renew now</a>
-                                    <?php
-                                    } else
-                                        echo "Expiry after:".$edays." days";
-                                    ?>
-                                </a><br>
+                                <?php
+                                $datestring = '%d %M %Y';
+                                $days = date_diff(date_create(mdate($datestring, $published_date)), date_create(mdate($datestring, time())));
+                                $ad_duration = $row->ad_duration;
+                                $edays = $ad_duration - $days->format("%a");
+                                if(intval($edays)<0) {
+                                    $item_days = $days->format("%a");
+                                ?>
+                                <expiry style="color:red;">Expired</expiry><br>
+                                <?php echo "Extend for:"; ?>
+                                <select name="extended_date<?php echo $item_id; ?>">
+                                    <option value="0">7</option>
+                                    <option value="14">14</option>
+                                    <option value="30">30</option>
+                                </select>
+                                <label>Days</label><br>
+                                <button class="green" name="renew" type="submit" value="id:<?php echo $item_id; ?>,item_days:<?php echo $item_days; ?>">Renew</button>
+                                <?php
+                                } else
+                                    echo "Expiry after:".$edays." days";
+                                ?>
+                                <br>
                             </span>
 
                             <span>
@@ -483,7 +503,7 @@
                                 <?php } else { ?>
                                     <a href="<?php echo base_url("admin/Admin_pages/premium/".$item_id."/".$premium) ?>" class="red">Premium</a><br>
                                 <?php } ?>
-                                        <a href="<?php echo base_url()."details/".$item_id ?>">View Ad</a>
+                                    <a href="<?php echo base_url()."details/".$item_id ?>">View Ad</a>
                             </span>
 
                             <span><input type="checkbox" name="foo2[]" value="<?php echo $item_id; ?>"></span>

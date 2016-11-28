@@ -48,6 +48,7 @@ class Details extends CI_Controller {
         $data['user_items'] = $this->items_model->count_user_items('personal');
 
         $data["fav_msg"] = $this->session->flashdata('fav_message');
+        $data["spam_msg"] = $this->session->flashdata('spam_message');
 
         if ($this->session->has_userdata('logged_in')) {
             $this->load->model('database_models/recent_view_model');
@@ -125,10 +126,11 @@ class Details extends CI_Controller {
     }
 
     //For adding to spam
-    public function add_to_spam($id){
+    public function add_to_spam($id, $spam_count){
         if($this->session->has_userdata('logged_in')) {
             $user_id = $this->session->userdata['logged_in']['id'];
-            $this->spam_and_fav_model->add_spam($id, $user_id);
+            $this->spam_and_fav_model->add_spam($id, $user_id, $spam_count);
+            redirect('details/'.$id);
         } else {
             redirect('login');
         }
