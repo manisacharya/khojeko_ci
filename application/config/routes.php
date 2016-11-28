@@ -16,6 +16,7 @@ $route['login'] = "user_session/login";
 $route['logged_in'] = "user_session/logged_in";
 $route['logout'] = "user_session/logout";
 $route['login_validation'] = "user_session/login_validation";
+$route['lost_password'] = "user_session/lost_password";
 
 // khojeko CONTROLLER ROUTE
 $route['redirecter'] = "khojeko/redirecter";
