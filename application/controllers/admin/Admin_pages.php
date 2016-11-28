@@ -32,21 +32,35 @@ class Admin_pages extends CI_Controller {
         $this->load->view('admin/templates/footer');
     }
     public function verify_validation(){
-        $selected = $this->input->post('foo1');
-
-        $this->latest_verified_unverified_ad_model->verify($selected);
-        redirect('admin');
+        if($this->input->post('renew') != null){
+            $this->extend_date();
+        }
+        if ($this->input->post('verify') == "Verify") {
+            $selected = $this->input->post('foo1');
+            $this->latest_verified_unverified_ad_model->verify($selected);
+            redirect('admin');
+        }
     }
 
     public function unverify_validation(){
-        $selected = $this->input->post('foo2');
-
-        $this->latest_verified_unverified_ad_model->unverify($selected);
-        redirect('admin');
+        if($this->input->post('renew') != null){
+            $this->extend_date();
+        }
+        if ($this->input->post('unverify') == "Unverify") {
+            $selected = $this->input->post('foo2');
+            $this->latest_verified_unverified_ad_model->unverify($selected);
+            redirect('admin');
+        }
     }
 
-    public function extend_date($id, $extend){
-        $this->latest_verified_unverified_ad_model->extend_date($id, $extend);
+    public function extend_date(){
+        $action = explode(',', $this->input->post('renew'));
+        $data = array();
+        foreach ($action as $value) {
+            $a = explode(':', $value);
+            $data[$a[0]] = $a[1];
+        }
+        $this->latest_verified_unverified_ad_model->extend_date($data['id'], $data['item_days']);
         redirect('admin');
     }
 
