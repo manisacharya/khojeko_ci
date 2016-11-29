@@ -11,11 +11,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Item_post extends CI_Controller{
 
     function __Construct(){
-       
+
         parent::__Construct();
+        $this->load->model('database_models/user_model');
         $this->load->model('admin/item_model'); // load model
         $this->load->model('admin/categories_model');
-        $this->load->model('admin/user_model');
         $this->load->model('admin/personal_model');
         $this->load->model('admin/image_model');
         $this->load->model('admin/districts_model');
@@ -29,11 +29,10 @@ class Item_post extends CI_Controller{
 
     public function post_form(){
         $data['title'] = 'Post ad';
-      //  $data['categories'] = $this->categories_model->get_categories();
-        $data['user_info'] = $this->user_model->get_user_info();
+        $data['user_info'] = $this->user_model->get_user_info('admin', $this->session->userdata['admin_logged_in']['id']);
         $data['categories'] = $this->categories_model->get_categories();
         $data['zones'] = $this->zones_model->getAllZones();
-        
+
         $this->load->library('form_validation');
         $this->form_validation->set_error_delimiters('<div class="alert alert-danger">', '</div>');
 
@@ -54,7 +53,7 @@ class Item_post extends CI_Controller{
             $this->load->view('admin/templates/footer', $data);
         }else {
             // check for existing user through email and username
-            
+
             if($this->user_model->check_user()){
                 $u_id = $this->user_model->get_user_id();
             }else{
@@ -65,7 +64,7 @@ class Item_post extends CI_Controller{
 
             if($u_id==NULL){
                 // $this->session->set_flashdata('message','<div class="alert alert-danger">Not Added !</div>');
-            
+
                 // redirect('admin/post_ad');
                 $data['message'] = "";
                 $this->load->view('admin/post_ad', $data);
@@ -76,20 +75,20 @@ class Item_post extends CI_Controller{
 
                 $this->personal_upload();
             }
-            
+
             $data['message'] = "";
             $this->load->view('admin/post_ad', $data);
             $this->load->view('admin/templates/footer', $data);
 
             // $this->session->set_flashdata('message','<div class="alert alert-success">Successfully Added!</div>');
-            
+
             // redirect('admin/post_ad');
 
             // $data['message'] = "Successfully Added !";
 
             // $this->load->view('admin/post_ad', $data);
-            
-        }//end of upload              
+
+        }//end of upload
     }
 
     public function personal_upload(){
@@ -112,39 +111,39 @@ class Item_post extends CI_Controller{
 
         foreach ($_FILES as $key => $value) {
             //if($count>2) {
-                $config['file_name'] = $name . "_" . $ad . $a++;
-                $this->upload->initialize($config); 
-                if (!empty($value['tmp_name']) && $value['size'] > 0) {
-                    if ($this->upload->do_upload($key)) {
-                        // Code After Files Upload Success GOES HERE
-                        $data_name = $this->upload->data();
-                        if($count == 1){
-                            $filename_arr[] = array(
-                                'image' => $data_name['file_name'],
-                                'item_id' => $id,//$this->item_model->get_item_id(),
-                                'primary' => 1
-                            );
-                        }else {
-                            $filename_arr[] = array(
-                                'image' => $data_name['file_name'],
-                                'item_id' => $id,//$this->item_model->get_item_id(),
-                                'primary' => 0
-                            );
-                        }
-
-                        // if($count == 1)
-                        //     $filename_arr['primary'] = 1;
-                        // else
-                        //     $filename_arr['primary'] = 0;
-                       
-                    } else {
-                        $this->session->set_flashdata('error','<div class="alert alert-danger">'.$this->upload->display_errors().'</div>');
-            
-                        redirect('admin/post_ad');
-                        // some errors
+            $config['file_name'] = $name . "_" . $ad . $a++;
+            $this->upload->initialize($config);
+            if (!empty($value['tmp_name']) && $value['size'] > 0) {
+                if ($this->upload->do_upload($key)) {
+                    // Code After Files Upload Success GOES HERE
+                    $data_name = $this->upload->data();
+                    if($count == 1){
+                        $filename_arr[] = array(
+                            'image' => $data_name['file_name'],
+                            'item_id' => $id,//$this->item_model->get_item_id(),
+                            'primary' => 1
+                        );
+                    }else {
+                        $filename_arr[] = array(
+                            'image' => $data_name['file_name'],
+                            'item_id' => $id,//$this->item_model->get_item_id(),
+                            'primary' => 0
+                        );
                     }
+
+                    // if($count == 1)
+                    //     $filename_arr['primary'] = 1;
+                    // else
+                    //     $filename_arr['primary'] = 0;
+
+                } else {
+                    $this->session->set_flashdata('error','<div class="alert alert-danger">'.$this->upload->display_errors().'</div>');
+
+                    redirect('admin/post_ad');
+                    // some errors
                 }
-           // }
+            }
+            // }
 
             $count++;
         }

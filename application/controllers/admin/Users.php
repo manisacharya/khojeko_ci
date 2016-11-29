@@ -9,8 +9,7 @@
 class Users extends CI_Controller {
     public function __construct() {
         parent::__construct();
-        $this->load->model('admin/user_model');
-        //$this->output->enable_profiler('TRUE');
+        $this->load->model('database_models/user_model');
         $this->load->helper('form');
     }
 

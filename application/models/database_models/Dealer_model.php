@@ -44,6 +44,26 @@ class Dealer_model extends CI_Model {
         $this->db->where('type', 'dealer');
         $this->db->join('user', 'user.user_key = dealer.d_id');
         $query = $this->db->get('dealer');
-        return $query->result();
+
+        return $this->dealer_xss_clean($query->result());
+    }
+
+    public function dealer_xss_clean($array) {
+        foreach ($array as &$type) {
+            $type->name             = html_escape($this->security->xss_clean($type->name));
+            $type->zone             = html_escape($this->security->xss_clean($type->zone));
+            $type->district         = html_escape($this->security->xss_clean($type->district));
+            $type->city             = html_escape($this->security->xss_clean($type->city));
+            $type->full_address     = html_escape($this->security->xss_clean($type->full_address));
+            $type->primary_mob      = html_escape($this->security->xss_clean($type->primary_mob));
+            $type->tel_no           = html_escape($this->security->xss_clean($type->tel_no));
+            $type->detail           = html_escape($this->security->xss_clean($type->detail));
+            $type->logo             = html_escape($this->security->xss_clean($type->logo));
+            $type->document         = html_escape($this->security->xss_clean($type->document));
+            $type->company_website  = html_escape($this->security->xss_clean($type->company_website));
+        }
+        unset($type);
+
+        return $array;
     }
 }
