@@ -276,7 +276,6 @@ class Signup extends CI_Controller {
         $this->load->view('pages/signup/signup_done');
         $this->load->view('pages/templates/footer', $data);
     }
-
     //send email for confirmation after sign up
     public function email_user($email, $key){
 
@@ -292,7 +291,7 @@ class Signup extends CI_Controller {
             'newline' => "\r\n"
         ));
 
-        $this->email->from('khojeko@khojeko.com');
+        $this->email->from('noreply@khojeko.com', 'Khojeko');
         $this->email->to($email);
         $this->email->subject('Confirm your account');
 

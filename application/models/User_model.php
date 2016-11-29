@@ -67,4 +67,18 @@ class User_model extends CI_Model {
 
         return $query->row();
     }
+
+    public function check_email(){
+        $query = $this->db->get_where('user', array('email' => $this->input->post('useremail')));
+        if($query->num_rows() == 1)
+            return true;
+        else
+            return false;
+    }
+
+    public function new_password(){
+        $this->db->where('email',$this->input->post('user_email'));
+        $this->db->update('user', array('password' => password_hash($this->input->post('n_password'), PASSWORD_DEFAULT)));
+        $this->session->set_flashdata('password_changed','<div class="alert alert-success">Your password has been changed. Please login to continue.</div>');
+    }
 }
