@@ -28,6 +28,7 @@ $route['modify'] = "khojeko/modify";
 // USER PANEL CONTROLLER ROUTE
 $route['upanel/(:any)'] = "pages/personal_panel/$1";
 $route['upanel/(:any)/(:any)'] = "pages/personal_panel/$1/$2";
+$route['change_password'] = "pages/change_password";
 
 // DEALER CONTROLLER ROUTE
 $route['dealer/(:any)'] = "pages/dealer_page/$1";
