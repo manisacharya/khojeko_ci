@@ -11,7 +11,7 @@
         <tr>
             <td>Email</td>
             <td>
-                <input type="email"  class="naya" name="useremail">
+                <input type="email"  class="naya" name="useremail" required>
             </td>
         </tr>
         <tr>

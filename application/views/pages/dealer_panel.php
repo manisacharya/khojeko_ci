@@ -12,7 +12,7 @@
 <div class="clearfix"></div>
 
 <div class="user_menu">
-    <a class="users_menu_item">My Profile</a>
+    <a href="../change_password" class="users_menu_item">Change Password</a>
     <a class="users_menu_item">|</a>
     <a class="users_menu_item">My post ad</a>
     <a class="users_menu_item">|</a>
