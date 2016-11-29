@@ -236,4 +236,22 @@ class User_model extends CI_Model {
         }
         return $user;
     }
+
+    public function change_password_user(){
+        $username =  $this->session->userdata['logged_in']['username'];
+        $password =  $this->input->post('o_password');
+
+        //check old password from database
+        $this->db->select('password')->from('user');
+        $this->db->where('khojeko_username',$username);
+        $query = $this->db->get();
+        $row = $query->row();
+        $db_password = $row->password;
+
+        if(password_verify($password, $db_password)) {
+            if ($this->db->update('user', array('password' => password_hash($this->input->post('n_password'), PASSWORD_DEFAULT))))
+                $this->session->set_flashdata('change_password', '<div class="alert alert-success">Your password has been changed.</div>');
+        } else
+            $this->session->set_flashdata('change_password','<div class="alert alert-danger">Your password could not be changed.</div>');
+    }
 }
