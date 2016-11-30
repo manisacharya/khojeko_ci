@@ -1,15 +1,29 @@
 
 <script src="<?php echo base_url('public'); ?>/js/jquery-1.12.3.min.js"></script>
 
+<div>
+    <?php echo $change_pwd; ?>
+</div>
 <div class="login">
-    <?php echo form_open('new_password'); ?>
-    <input type="hidden" name="user_email" value="<?php echo $email; ?>">
+    <?php echo form_open('change_password'); ?>
     <table class="login_table2">
         <tr class="login_tr">
             <td colspan="5">
-                <h3>New Password</h3>
+                <h3>Change Password</h3>
             </td>
         <tr>
+
+        <tr>
+            <td>Old Password</td>
+            <td>
+                <input type="password" class="naya" name="o_password" required>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" style="text-align: center; color: #d43f3a">
+                <?php echo form_error('o_password');?>
+            </td>
+        </tr>
 
         <tr>
             <td>New Password</td>
