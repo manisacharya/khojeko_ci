@@ -22,7 +22,7 @@ class Signup extends CI_Controller {
 
        $this->get_common_contents($data);
 
-        $data['zones'] = $this->Signup_model->getAllZones();
+        $data['zone'] = $this->Signup_model->getAllZones();
 
         $this->load->view('pages/templates/header', $data);
         $this->load->view('pages/signup', $data);
