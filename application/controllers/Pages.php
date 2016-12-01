@@ -258,4 +258,34 @@ class Pages extends CI_Controller {
             $data['recent_views'] = $this->recent_view_model->get_recent_view($user_session['logged_in']['id']);
         }
     }
+
+    public function change_password(){
+        if (!$this->session->has_userdata('logged_in'))
+            show_error('Sorry, page broken.');
+
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('o_password', 'Old Password', 'required|trim');
+        $this->form_validation->set_rules('n_password', 'New Password', 'required|trim');
+        $this->form_validation->set_rules('c_password', 'Confirm Password', 'required|trim|matches[n_password]');
+
+        if($this->form_validation->run()){
+            $this->user_model->change_password_user();
+            redirect('change_password');
+        } else {
+            $data["category"] = $this->categories_model->get_categories();
+            $data['dealer_list'] = $this->dealer_model->get_all_dealers();
+
+            // counts : total, used/new, dealer/user ads
+            $data["total_items"] = $this->items_model->count_items();
+            $data["used_items"] = $this->items_model->count_status_items('used');
+            $data["new_items"] = $this->items_model->count_status_items('new');
+            $data['dealer_items'] = $this->items_model->count_user_items('dealer');
+            $data['user_items'] = $this->items_model->count_user_items('personal');
+            $data['change_pwd'] = $this->session->flashdata('change_password');
+
+            $this->load->view("pages/templates/header", $data);
+            $this->load->view("pages/change_password", $data);
+            $this->load->view("pages/templates/footer", $data);
+        }
+    }
 }

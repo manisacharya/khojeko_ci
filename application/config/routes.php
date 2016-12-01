@@ -17,6 +17,8 @@ $route['logged_in'] = "user_session/logged_in";
 $route['logout'] = "user_session/logout";
 $route['login_validation'] = "user_session/login_validation";
 $route['lost_password'] = "user_session/lost_password";
+$route['lost_password/(:any)'] = "user_session/lost_password_change/$1";
+$route['new_password'] = "user_session/new_password";
 
 // khojeko CONTROLLER ROUTE
 $route['redirecter'] = "khojeko/redirecter";
@@ -26,6 +28,7 @@ $route['modify'] = "khojeko/modify";
 // USER PANEL CONTROLLER ROUTE
 $route['upanel/(:any)'] = "pages/personal_panel/$1";
 $route['upanel/(:any)/(:any)'] = "pages/personal_panel/$1/$2";
+$route['change_password'] = "pages/change_password";
 
 // DEALER CONTROLLER ROUTE
 $route['dealer/(:any)'] = "pages/dealer_page/$1";
