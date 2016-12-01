@@ -42,48 +42,6 @@
                 <div style="display: none;">
                     <img data-u="image" src="<?php echo base_url('public/images/logos/ebay.jpg');?>" />
                 </div>
-                <div style="display: none;">
-                    <img data-u="image" src="<?php echo base_url('public/images/logos/facebook.jpg');?>" />
-                </div>
-                <div style="display: none;">
-                    <img data-u="image" src="<?php echo base_url('public/images/logos/google.jpg');?>" />
-                </div>
-                <div style="display: none;">
-                    <img data-u="image" src="<?php echo base_url('public/images/logos/ibm.jpg');?>" />
-                </div>
-                <div style="display: none;">
-                    <img data-u="image" src="<?php echo base_url('public/images/logos/ios.jpg');?>" />
-                </div>
-                <div style="display: none;">
-                    <img data-u="image" src="<?php echo base_url('public/images/logos/joomla.jpg');?>" />
-                </div>
-                <div style="display: none;">
-                    <img data-u="image" src="<?php echo base_url('public/images/logos/linkedin.jpg');?>" />
-                </div>
-                <div style="display: none;">
-                    <img data-u="image" src="<?php echo base_url('public/images/logos/mac.jpg');?>" />
-                </div>
-                <div style="display: none;">
-                    <img data-u="image" src="<?php echo base_url('public/images/logos/magento.jpg');?>" />
-                </div>
-                <div style="display: none;">
-                    <img data-u="image" src="<?php echo base_url('public/images/logos/pinterest.jpg');?>" />
-                </div>
-                <div style="display: none;">
-                    <img data-u="image" src="<?php echo base_url('public/images/logos/samsung.jpg');?>" />
-                </div>
-                <div style="display: none;">
-                    <img data-u="image" src="<?php echo base_url('public/images/logos/twitter.jpg');?>" />
-                </div>
-                <div style="display: none;">
-                    <img data-u="image" src="<?php echo base_url('public/images/logos/windows.jpg');?>" />
-                </div>
-                <div style="display: none;">
-                    <img data-u="image" src="<?php echo base_url('public/images/logos/wordpress.jpg');?>" />
-                </div>
-                <div style="display: none;">
-                    <img data-u="image" src="<?php echo base_url('public/images/logos/youtube.jpg');?>" />
-                </div>
             </div>
         </div><!--jssor_1 ends-->
     </div><!--logos1 ends-->
