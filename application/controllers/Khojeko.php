@@ -8,7 +8,7 @@ class Khojeko extends CI_Controller {
 		$this->load->model('Khojeko_db_model'); // load model
 		$this->load->model('General_database_model');
 		$this->load->model('Hierarchy_model');
- 	}
+	}
 
 	public function index() {
 		redirect('home');
@@ -41,7 +41,5 @@ class Khojeko extends CI_Controller {
 		$this->data["category"] = $this->general_database_model->getAll('category', 'c_id', 'ASC');
 		$this->load->view('heirarchy', $this->data);
 	}
-
-
 }
 ?>

@@ -50,21 +50,10 @@
         <div class="col-sm-4 popular_district" >
             <u><a>Popular District</a></u>
             <div class="child">
-                <ol >
-                    <li> Kathmandu</li>
-                    <li> Bhaktapur</li>
-                    <li> Lalitpur</li>
-                    <li> Kaski</li>
-                    <li> Morang</li>
-                    <li> Sunsari</li>
-                    <li> Saptari</li>
-                    <li> Kabrepalanchok</li>
-                    <li> Dolkha</li>
-                    <li> jhapa</li>
-                    <li> Banke</li>
-                    <li> mustang</li>
-                    <li> Magdi</li>
-                    <li> Gorkha</li>
+                <ol>
+                    <?php foreach ($popular_district as $one):?>
+                        <li><?php echo $one->district."(".$one->views.")";?></li>
+                    <?php endforeach;?>
                 </ol>
             </div>
         </div>
@@ -88,13 +77,9 @@
             <u><a>Popular Dealers</a></u>
             <div id="ddChild">
                 <ol>
-                    <li>Rojeko dot com</li>
-                    <li>LS Mobile</li>
-                    <li>E-Bazzar</li>
-                    <li>RedEye Trade Link</li>
-                    <li>CG Impex Pvt LTD</li>
-                    <li>Computer Bazar</li>
-                    <li>Brothers International</li>
+                    <?php foreach ($popular_dealer as $one):?>
+                        <li><?php echo $one->name."(".$one->views.")";?></li>
+                    <?php endforeach;?>
                 </ol>
             </div>
         </div>

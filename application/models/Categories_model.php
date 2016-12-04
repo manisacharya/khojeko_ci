@@ -3,6 +3,9 @@ class Categories_model extends CI_Model {
     public $c_id;
     public $c_name;
     public $parent_id;
+    public $c_slug;
+    public $c_deleted;
+    public $c_position;
 
     public function __construct() {
          // Call the CI_Model constructor

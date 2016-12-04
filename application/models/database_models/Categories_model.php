@@ -4,6 +4,7 @@ class Categories_model extends CI_Model {
     public $c_name;
     public $parent_id;
     public $c_deleted;
+    public $c_position;
 
     public function __construct() {
          // Call the CI_Model constructor
@@ -82,9 +83,22 @@ class Categories_model extends CI_Model {
             $category->parent_id    = html_escape($this->security->xss_clean($category->parent_id));
             $category->c_slug       = html_escape($this->security->xss_clean($category->c_slug));
             $category->c_deleted    = html_escape($this->security->xss_clean($category->c_deleted));
+            $category->c_position   = html_escape($this->security->xss_clean($category->c_position));
         }
         unset($category);
 
         return $array;
+    }
+
+    public function get_position(){
+        if ($this->db->table_exists('category')) {
+            $this->get_categories();
+            $this->db->where('c_position !=', 0);
+            $query = $this->db->get('category');
+
+            return $query->result();
+        } else {
+            echo show_error('We have encountered a problem !');
+        }
     }
 }

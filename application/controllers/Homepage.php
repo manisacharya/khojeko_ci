@@ -10,6 +10,7 @@ class Homepage extends CI_Controller {
         $this->load->model('khojeko_db_model');
         $this->load->model('general_database_model');
         $this->load->model('database_models/categories_model');
+        $this->load->model('categories_model');
     }
 
     public function index() {
@@ -17,9 +18,6 @@ class Homepage extends CI_Controller {
     }
 
     public function home() {
-
-        //for top ad type listing
-        $data['adList'] = $this->index_database_model->joinTable('items', 'user', 'user_id');
 
         //for the For Sales: Latest Ad --> images
         $data['dat'] = $this->index_database_model->joinTableOrder('item_img', 'items', 'item_id', 'published_date');
@@ -53,7 +51,7 @@ class Homepage extends CI_Controller {
         $data["category"] = $this->categories_model->get_categories();
         $data['dealer_list'] = $this->khojeko_db_model->joinThings('user', 'khojeko_username, name', $dealer_list_joins, 'type="dealer"');
 
-        $this->load->view('pages_templates/home', $data); // load the view file , we are passing $data array to view file
+        $this->load->view('pages/home', $data); // load the view file , we are passing $data array to view file
     }
 
     public function search($aid){
