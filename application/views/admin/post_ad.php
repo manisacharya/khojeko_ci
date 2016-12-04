@@ -46,7 +46,7 @@ echo $message;
                                     <?php echo "<label class='control-label' name='email_check'>*Email</label>"; ?>    
                                 </td>
                                 <td>
-                                    <?php echo form_input('email', $this->input->post('email'), 'maxlength="100" class="form-control" id="email" placeholder="Enter Email" autofocus required'); ?>
+                                    <?php echo form_input('email', $this->input->post('email'), 'maxlength=100 class="form-control" id="email" placeholder="Enter Email" autofocus required'); ?>
                                     <?php echo form_error('email', '<div class="alert alert-danger">', '</div>'); ?>
                                     <div class="result" id="result2"></div>
                                 </td>
@@ -57,7 +57,7 @@ echo $message;
                                     <?php echo "<label class='control-label'>*Ad Owner Name</label>"; ?>    
                                 </td>
                                 <td>
-                                    <?php echo form_input('owner_name', $this->input->post('owner_name'), 'maxlength="100" class="form-control" placeholder="Enter Owner Name" required'); ?>
+                                    <?php echo form_input('owner_name', $this->input->post('owner_name'), 'maxlength=100 class="form-control" placeholder="Enter Owner Name" required'); ?>
                                     <?php echo form_error('owner_name', '<div class="alert alert-danger">', '</div>'); ?>
                                 </td>
                             </tr>
@@ -67,7 +67,7 @@ echo $message;
                                     <?php echo "<label class='control-label'>*User Name</label>"; ?>    
                                 </td>
                                 <td>
-                                    <?php echo form_input('username', $this->input->post('username'), 'maxlength="100" class="form-control" id="username" placeholder="Enter User Name" required'); ?>
+                                    <?php echo form_input('username', $this->input->post('username'), 'maxlength=100 class="form-control" id="username" placeholder="Enter User Name" required'); ?>
                                     <?php echo form_error('username', '<div class="alert alert-danger">', '</div>'); ?>
                                     <div class="result" id="result1" ></div>
                                 </td>
@@ -160,7 +160,7 @@ echo $message;
                                     <?php echo "<label class='control-label'>*City</label>"; ?>    
                                 </td>
                                 <td>
-                                    <?php echo form_input('city', $this->input->post('city'), 'maxlength="100" class="form-control" placeholder="Enter City" required'); ?>
+                                    <?php echo form_input('city', $this->input->post('city'), 'maxlength=100 class="form-control" placeholder="Enter City" required'); ?>
                                     <?php echo form_error('city', '<div class="alert alert-danger">', '</div>'); ?>
                                 </td>
                             </tr>
@@ -170,7 +170,7 @@ echo $message;
                                     <?php echo "<label class='control-label'>*Address</label>"; ?>    
                                 </td>
                                 <td>
-                                    <?php echo form_input('address', $this->input->post('address'), 'maxlength="100" class="form-control" placeholder="Enter Address" required'); ?>
+                                    <?php echo form_input('address', $this->input->post('address'), 'maxlength=100 class="form-control" placeholder="Enter Address" required'); ?>
                                     <?php echo form_error('address', '<div class="alert alert-danger">', '</div>'); ?>
                                 </td>
                             </tr>
@@ -180,7 +180,7 @@ echo $message;
                                     <?php echo "<label class='control-label'>*Primary Mobile</label>"; ?>    
                                 </td>
                                 <td>
-                                    <input maxlength="100" name="mobile1" type="number" required class="form-control" id="mobile1" placeholder="Enter Primary Mobile" maxlength = 10/>
+                                    <input maxlength=10 name="mobile1" type="number" required class="form-control" id="mobile1" placeholder="Enter Primary Mobile" maxlength = 10/>
                                     <?php echo form_error('mobile1', '<div class="alert alert-danger">', '</div>'); ?>
                                     <div class="result" id="result3"></div>
                                 </td>
@@ -191,7 +191,7 @@ echo $message;
                                     <?php echo "<label class='control-label'>Secondary Mobile</label>"; ?>    
                                 </td>
                                 <td>
-                                    <input maxlength="100" name="mobile2" id="mobile2" type="number" class="form-control" placeholder="Enter Secondary Mobile" maxlength = 10/> 
+                                    <input maxlength=10 name="mobile2" id="mobile2" type="number" class="form-control" placeholder="Enter Secondary Mobile" maxlength = 10/>
                                     <?php echo form_error('mobile2', '<div class="alert alert-danger">', '</div>'); ?>       
                                     <div class="result" id="sec_result"></div>
                                 </td>
@@ -202,7 +202,7 @@ echo $message;
                                     <?php echo "<label class='control-label'>Landline_no</label>"; ?>    
                                 </td>
                                 <td>
-                                    <input maxlength="100" name="landline_no" id="landline_no" type="number" class="form-control" maxlength = 9 placeholder="Enter Landline No."/>  
+                                    <input maxlength=10 name="landline_no" id="landline_no" type="number" class="form-control" maxlength = 9 placeholder="Enter Landline No."/>
                                     <?php echo form_error('landline_no', '<div class="alert alert-danger">', '</div>'); ?>  
                                     <div class="result" id="tel_p_result"></div>
    
@@ -322,7 +322,7 @@ echo $message;
                          </span>
 
                           <strong>Product or Service ad details/ full specification: ( submit with full specification and product details):</strong><br />
-                          <input type="text" name="ad_details" id="ad_details" style="width:60%; height:100px;text-align:center" placeholder="TEXT EDITOR" />
+                          <input type="text" name="ad_details" id="ad_details" style="width:60%; height:100px;text-align:center" maxlength = 300 placeholder="TEXT EDITOR" />
                           <div id="textarea_feedback"></div>
                           <br /><br />
 

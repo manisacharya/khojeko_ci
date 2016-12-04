@@ -48,20 +48,20 @@
             <div id="viewcontrols" data-enhance="false">
                 <a class="info" >For Sale   ::  Latest Ads >> (
                     <?php
-                    $a = 0;
-                    foreach($dat as $i){
-                        if($i->primary == 1)
-                            $a++;
-                    }
-                    echo  $a;
+//                    $a = 0;
+//                    foreach($item_show as $i){
+//                        if($i->primary == 1)
+//                            $a++;
+//                    }
+//                    echo  $a;
                     ?>
                     ) </a>
                 <a class="gridview" href="#!"><i class="fa fa-th fa-2x" ></i></a>
                 <a class="listview" href="#!"><i class="fa fa-list fa-2x"></i></a>
                 <button value="View More" id="view_btn">View More</button>
             </div>
-            <ul class="list">
 
+            <ul class="list">
                 <?php
                 $i = 4;
                 foreach ($dat as $key) {
@@ -70,7 +70,7 @@
                         <li>
                             <div class="col-sm-2" id="image_content">
                                 <?php
-                                echo "<a href=".base_url()."details/".$key->item_id."><img src='".base_url('public')."/images/item_images/".$key->image."' class='img-responsive' width='304' height='236' value='".$key->image_id."'/></a>";
+                                    echo "<a href=".base_url()."details/".$key->item_id."><img src='".base_url('public')."/images/item_images/".$key->image."' class='img-responsive' width='304' height='236' value='".$key->image_id."'/></a>";
                                 ?>
                             </div>
 
@@ -147,282 +147,109 @@
                 ?>
             </ul>
         </div><!--listcon ends-->
+        <?php
+            //for controlling ad sections display in home page
+            foreach($section_position as $row):
+        ?>
+                <div class="clearfix"></div>
 
-        <div class="clearfix"></div>
 
-        <div class="listCon">
-            <div id="viewcontrols" data-enhance="false">
-                <a class="info" >Real State Latest Ads >> (
-                    <?php
-                    $a = 0;
-                    foreach($house as $i){
-//if($i->name=="House" || $i->name=="Land")
-                        $a++;
-
-                    }
-                    echo  $a;
-                    ?>
-                    )</a>
-                <button value="View More" id="view_btn">View More</button>
-            </div>
-
-            <ul class="grid">
-                <?php
-                $i = 8;
-                foreach ($house as $key) { ?>
-                    <li>
-                        <div class="col-sm-2" id="image_content">
+                <div class="listCon">
+                    <div id="viewcontrols" data-enhance="false">
+                        <a class="info" ><?php echo $row->c_name; ?> Latest Ads >> (
                             <?php
-                            echo "<a href=".base_url()."details/".$key->item_id."><img src='".base_url('public')."/images/item_images/".$key->image."' class='img-responsive' width='304' height='236' value='".$key->image_id."'/></a>";
+                            echo $row->c_id;
+//                            $a = 0;
+//                            foreach($house as $i){)
+//                                $a++;
+//
+//                            }
+//                            echo  $a;
                             ?>
-                        </div>
+                            )</a>
+                        <button value="View More" id="view_btn">View More</button>
+                    </div>
 
-                        <div class="col-sm-10" id="info_content">
-                            <section class="list-right">
-                                <span class="price">
-                                    <a class="button">mobile>>nokia</a><br>
-                                    <?php
-                                    foreach ($oth as $k) {
-                                        if($key->item_id == $k->item_id)
-                                            echo $k->views;
-                                    }
-                                    ?>
-                                    <i class="fa fa-eye" ></i>
-                                    <i class="fa fa-clock-o" ></i>
-                                    <i class="fa fa-heart" ></i>
-                                    <i class="fa fa-comment-o"></i>
-                                </span>
-                            </section>
+                    <ul class="grid">
+<!--                        --><?php
+//
+//                        foreach ($to_send as $k){
+//                            foreach ($k as $key) { ?>
+<!--                                <li>-->
+<!--                                    <div class="col-sm-2" id="image_content">-->
+<!--                                        --><?php
+//                                            echo "<a href=" . base_url() . "details/" . $key->item_id . "><img src='" . base_url('public') . "/images/item_images/" . $key->image . "' class='img-responsive' width='304' height='236' value='" . $key->image_id . "'/></a>";
+//                                        ?>
+<!--                                    </div>-->
+<!--                                    --><?php //echo $key->c_id; ?>
+<!--                                    <div class="col-sm-10" id="info_content">-->
+<!--                                        <section class="list-right">-->
+<!--                                        <span class="price">-->
+<!--                                            <a class="button">mobile>>nokia</a><br>-->
+<!--                                            --><?php
+//                                            foreach ($oth as $k) {
+//                                                if ($key->item_id == $k->item_id)
+//                                                    echo $k->views;
+//                                            }
+//                                            ?>
+<!--                                            <i class="fa fa-eye"></i>-->
+<!--                                            <i class="fa fa-clock-o"></i>-->
+<!--                                            <i class="fa fa-heart"></i>-->
+<!--                                            <i class="fa fa-comment-o"></i>-->
+<!--                                        </span>-->
+<!--                                        </section>-->
+<!---->
+<!--                                        <section class="list-left">-->
+<!--                                        <span class="title">-->
+<!--                                            <b>--><?php //echo "Rs. " . $key->price; ?><!--<font color="red" size="2">-->
+<!--                                                --><?php
+//                                                echo $key->title;
+//                                                ?>
+<!--                                            </font></b><br>-->
+<!--                                            <a class="sub" href="!#">--><?php //echo $key->title; ?><!--</a><br>-->
+<!--                                            <span class="name">-->
+<!--                                                --><?php
+//                                                if ($key->is_verified == 1) {
+//                                                    echo "<i class='fa fa-check-circle' id='tick'></i>";
+//                                                } else {
+//                                                    echo "<i class='fa fa-exclamation-circle' id='danger'> </i>";
+//                                                }
+//                                                ?>
+<!---->
+<!--                                                <b>-->
+<!--                                                    --><?php
+//                                                    foreach ($othUs as $ku) {
+//                                                        if ($key->item_id == $ku->item_id && $ku->type == "personal") {
+//                                                            echo "Ad By:" . $ku->khojeko_username . " ";
+//                                                        } else if ($key->item_id == $ku->item_id && $ku->type == "dealer") {
+//                                                            echo "Seller:" . $ku->khojeko_username . " ";
+//                                                        }
+//                                                    }
+//                                                    ?>
+<!--                                                </b>-->
+<!--                                            </span>-->
+<!--                                            <span class="address">-->
+<!--                                                <span>  --><?php //echo $k->avaibility_address; ?><!--,</span>-->
+<!--                                                <span>--><?php //echo date('y-M-D', $k->published_date); ?><!--</span>-->
+<!--                                            </span>-->
+<!--                                        </span>-->
+<!--                                            <p>--><?php //echo $k->specs; ?><!--</p>-->
+<!--                                            --><?php //?>
+<!--                                        </section>-->
+<!--                                    </div>-->
+<!--                                </li>-->
+<!--                                --><?php
+//
+//                            }
+//                        }
+//                        ?>
+                    </ul>
+                </div><!--listcon ends-->
+        <?php
+                $category[$i++] = $row->c_name;
+            endforeach;
 
-                            <section class="list-left">
-                                <span class="title">
-                                    <b><?php echo "Rs. ".$key->price; ?><font color="red" size="2">
-                                        <?php
-                                        echo $key->title;
-                                        ?>
-                                    </font></b><br>
-                                    <a class="sub" href="!#"><?php echo $key->title; ?></a><br>
-                                    <span class="name">
-                                        <?php
-                                        if($key->is_verified==1){
-                                            echo "<i class='fa fa-check-circle' id='tick'></i>";
-                                        }else{
-                                            echo "<i class='fa fa-exclamation-circle' id='danger'> </i>";
-                                        }
-                                        ?>
-
-                                        <b>
-                                            <?php
-                                            foreach ($othUs as $ku) {
-                                                if($key->item_id == $ku->item_id && $ku->type == "personal"){
-                                                    echo "Ad By:".$ku->khojeko_username. " ";
-                                                }else  if($key->item_id == $ku->item_id && $ku->type == "dealer"){
-                                                    echo "Seller:".$ku->khojeko_username. " ";
-                                                }
-                                            }
-                                            ?>
-                                        </b>
-                                    </span>
-                                    <span class="address">
-                                        <span>  <?php echo $k->avaibility_address; ?>,</span>
-                                        <span><?php echo date('y-M-D', $k->published_date); ?></span>
-                                    </span>
-                                </span>
-                                <p><?php echo $k->specs; ?></p>
-                                <?php ?>
-                            </section>
-                        </div>
-                    </li>
-                    <?php
-                    $i--;
-                    if($i==0)
-                        break;
-                }
-                ?>
-            </ul>
-        </div><!--listcon ends-->
-
-        <div class="clearfix"></div>
-
-        <div class="listCon">
-            <div id="viewcontrols" data-enhance="false">
-                <a class="info" >Service Ads >> (
-                    <?php
-                    $a = 0;
-                    foreach($service as $i){
-                        $a++;
-
-                    }
-                    echo  $a;
-                    ?>
-                    )</a>
-                <button value="View More" id="view_btn">View More</button>
-            </div>
-
-            <ul class="grid">
-                <?php
-                $i = 4;
-                foreach ($service as $key) { ?>
-                    <li>
-                        <div class="col-sm-2" id="image_content">
-                            <?php
-                            echo "<a href=".base_url()."details/".$key->item_id."><img src='".base_url('public')."/images/item_images/".$key->image."' class='img-responsive' width='304' height='236' value='".$key->image_id."'/></a>";
-                            ?>
-                        </div>
-
-                        <div class="col-sm-10" id="info_content">
-                            <section class="list-right">
-                                <span class="price">
-                                    <a class="button">mobile>>nokia</a><br>
-                                    <?php
-                                    foreach ($oth as $k) {
-                                        if($key->item_id == $k->item_id)
-                                            echo $k->views;
-                                    }
-                                    ?>
-                                    <i class="fa fa-eye" ></i>
-                                    <i class="fa fa-clock-o" ></i>
-                                    <i class="fa fa-heart" ></i>
-                                    <i class="fa fa-comment-o"></i>
-                                </span>
-                            </section>
-
-                            <section class="list-left">
-                                <span class="title">
-                                    <b><font color="red" size="2">
-                                        <?php
-                                        echo $key->title;
-                                        ?>
-                                    </font></b><br>
-                                    <a class="sub" href="!#"><?php echo $key->title; ?></a><br>
-                                    <span class="name">
-                                        <?php
-                                        if($key->is_verified==1){
-                                            echo "<i class='fa fa-check-circle' id='tick'></i>";
-                                        }else{
-                                            echo "<i class='fa fa-exclamation-circle' id='danger'> </i>";
-                                        }
-                                        ?>
-
-                                        <b>
-                                            <?php
-                                            foreach ($othUs as $ku) {
-                                                if($key->item_id == $ku->item_id){
-                                                    echo "Ad By:".$ku->khojeko_username. " ";
-                                                }
-                                            }
-                                            ?>
-                                        </b>
-                                    </span>
-                                    <span class="address">
-                                        <span>  <?php echo $k->avaibility_address; ?>,</span>
-                                        <span><?php echo date('y-M-D', $k->published_date); ?></span>
-                                    </span>
-                                </span>
-                                <p><?php echo $k->specs; ?></p>
-                            </section>
-                        </div>
-                    </li>
-                    <?php
-                    $i--;
-                    if($i==0)
-                        break;
-                }
-                ?>
-            </ul>
-        </div><!--listcon ends-->
-
-        <div class="clearfix"></div>
-
-        <div class="listCon">
-            <div id="viewcontrols" data-enhance="false">
-                <a class="info" >Job Ads >> (
-                    <?php
-                    $a = 0;
-                    foreach($job as $i){
-                        $a++;
-                    }
-                    echo  $a;
-                    ?>
-                    )</a>
-                <button value="View More" id="view_btn">View More</button>
-            </div>
-
-            <ul class="grid">
-                <?php
-                $i = 4;
-                foreach ($job as $key) { ?>
-                    <li>
-                        <div class="col-sm-2" id="image_content">
-                            <?php
-                            echo "<a href=".base_url()."details/".$key->item_id."><img src='".base_url('public')."/images/item_images/".$key->image."' class='img-responsive' width='304' height='236' value='".$key->image_id."'/></a>";
-                            ?>
-                        </div>
-
-                        <div class="col-sm-10" id="info_content">
-                            <section class="list-right">
-                                <span class="price">
-                                    <a class="button">mobile>>nokia</a><br>
-                                    <?php
-                                    foreach ($oth as $k) {
-                                        if($key->item_id == $k->item_id)
-                                            echo $k->views;
-                                    }
-                                    ?>
-                                    <i class="fa fa-eye" ></i>
-                                    <i class="fa fa-clock-o" ></i>
-                                    <i class="fa fa-heart" ></i>
-                                    <i class="fa fa-comment-o"></i>
-                                </span>
-                            </section>
-
-                            <section class="list-left">
-                                    <span class="title">
-                                        <b><font color="red" size="2">
-                                            <?php
-                                            echo $key->title;
-
-                                            ?>
-                                        </font></b><br>
-                                        <a class="sub" href="!#"><?php echo $key->title; ?></a><br>
-                                        <span class="name">
-                                            <?php
-                                            if($key->is_verified==1){
-                                                echo "<i class='fa fa-check-circle' id='tick'></i>";
-                                            }else{
-                                                echo "<i class='fa fa-exclamation-circle' id='danger'> </i>";
-                                            }
-                                            ?>
-
-                                            <b>
-                                                <?php
-                                                foreach ($othUs as $ku) {
-                                                    if($key->item_id == $ku->item_id){
-                                                        echo "Ad By:".$ku->khojeko_username. " ";
-                                                    }
-                                                }
-                                                ?>
-                                            </b>
-                                        </span>
-                                        <span class="address">
-                                            <span>  <?php echo $k->avaibility_address; ?>,</span>
-                                            <span><?php echo date('y-M-D', $k->published_date); ?></span>
-                                        </span>
-                                    </span>
-                                <p><?php echo $k->specs; ?></p>
-
-                                <?php ?>
-                            </section>
-                        </div>
-                    </li>
-                    <?php
-                    $i--;
-                    if($i==0)
-                        break;
-                }
-                ?>
-            </ul>
-        </div><!--listcon ends-->
+        ?>
 
 </div> <!--col-sm-9-->
 

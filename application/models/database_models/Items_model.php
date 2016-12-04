@@ -37,6 +37,10 @@ class Items_model extends CI_Model {
     public $comment_count;
     public $spam_count;
 
+    function __Construct() {
+        parent::__Construct ();
+        $this->load->model('database_models/categories_model');
+    }
     public function get_dealer_items($dealer) {
         if ($this->db->table_exists('items')) {
             $this->db = $this->item_joins();
@@ -64,6 +68,45 @@ class Items_model extends CI_Model {
         }
         return FALSE;
     }
+
+    public function get_filtered_items($cid){
+        $this->db->select('title', 'c_id');
+        $this->db->where('deleted_date', 0);
+        $this->db->where('primary', 1);
+        $this->db->where('items.c_id', $cid);
+
+        $this->db->join('item_img', 'item_img.item_id = items.item_id');
+        $this->db->join('item_spec', 'item_spec.item_id = items.item_id');
+        $this->db->join('category', 'category.c_id = items.c_id');
+        $this->db->join('user', 'user.user_id = items.user_id');
+
+        $query = $this->db->get('items');
+        return $query->result();
+    }
+//    public function get_filtered_items(){
+//        if ($this->db->table_exists('items')) {
+//            $this->db->where('deleted_date', 0);
+//            $this->db->where('primary', 1);
+//            $this->db->join('items', 'items.c_id = category.c_id');
+//            $this->db->join('item_img', 'item_img.item_id = items.item_id');
+//            $this->db->join('item_spec', 'item_spec.item_id = items.item_id');
+//           // $this->db->join('category', 'category.c_id = items.c_id');
+//            $this->db->join('user', 'user.user_id = items.user_id');
+//
+//            $categories = $this->categories_model->get_position();
+//            $item_category = array();
+//            $i=0;
+//            foreach($categories as $c):
+//                $this->db->where('c_id', $c->c_id);
+//                $query = $this->db->get('items');
+//
+//                $item_category[$i++] = $this->items_xss_clean($query->result(), 'items');
+//            endforeach;
+//
+//            return $item_category;
+//        }
+//        return FALSE;
+//    }
 
     public function item_joins() {
         $this->db->where('deleted_date', 0);
@@ -149,10 +192,6 @@ class Items_model extends CI_Model {
         $this->db->where('user_id', $user_id);
         $this->db->where('deleted_date', 0);
         return $this->db->count_all_results('items');
-    }
-
-    public function count_expired_items($user_id) {
-        //$this->db->where('')
     }
 
     public function count_user_page_items() {
