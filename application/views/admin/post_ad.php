@@ -225,8 +225,7 @@ echo $message;
                         <div class="category">
                             <?php
                             require_once('templates/category.php');
-                            print_list(0, 0, $categories, 'front/');
-                            //require_once('/../admin/templates/category.php');
+                            print_list(0, 0, $categories);
                             ?>
                         </div>
 

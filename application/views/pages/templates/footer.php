@@ -157,32 +157,24 @@
 
 <script type="text/javascript" src="<?php echo base_url('public/js/jquery.js');?>"></script>
 <script type="text/javascript" src="<?php echo base_url('public/js/bootstrap.min.js');?>"></script>
-<script type="text/javascript" src="<?php echo base_url('public/js/categori.js');?>"></script>
+<script type="text/javascript" src="<?php echo base_url('public/js/category.js');?>"></script>
 <script type="text/javascript" src="<?php echo base_url('public/js/list_grid.js');?>"></script>
 <script type="text/javascript" src="<?php echo base_url('public/js/jssor.slider.min.js');?>"></script>
-
-<script type="text/javascript" src="<?php echo base_url('public'); ?>/js/display.js"></script>
-<script type="text/javascript" src="<?php echo base_url('public'); ?>/js/back.js"></script>
-<script type="text/javascript" src="<?php echo base_url('public'); ?>/js/jquery-ui.js"></script>
-<script type="text/javascript" src="<?php echo base_url('public'); ?>/js/dropdown.js"></script>
-<script type="text/javascript" src="<?php echo base_url('public'); ?>/js/searchable_dropdown.js"></script>
-<script type="text/javascript" src="<?php echo base_url('public'); ?>/js/live_preview.js"></script>
-<script type="text/javascript" src="<?php echo base_url('public'); ?>/js/jquery.MultiFile.js"></script>
-<script type="text/javascript" src="<?php echo base_url('public'); ?>/js/jquery/jquery-1.9.1.min.js"></script>
-<script type="text/javascript" src="<?php echo base_url('public'); ?>/js/livepreview.js"></script>
-<script type="text/javascript" src="<?php echo base_url('public'); ?>/js/hawa.js"></script>
-
-<script type="text/javascript" src="<?php echo base_url('public'); ?>/js/ad_detail_slider.js"></script>
-<script type="text/javascript" src="<?php echo base_url('public'); ?>/js/count.js"></script>
-<script type="text/javascript" src="<?php echo base_url('public'); ?>/js/multiple_upload.js"></script>
-
 <!-- Custom JQuery -->
-<script src="<?php echo base_url('public'); ?>/js/app/custom.js" type="text/javascript"></script>
-<script src="<?php echo base_url('public'); ?>/js/plugins/nicescroll/jquery.nicescroll.min.js"></script>
-<script src="<?php echo base_url('public'); ?>/js/categori.js"></script>
-<script src="<?php echo base_url('public'); ?>/js/popup.js"></script>
-<script src="<?php echo base_url('public'); ?>/js/jquery.MultiFile.js"></script>
+<script type="text/javascript" src="<?php echo base_url('public/js/app/custom.js'); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url('public/js/plugins/nicescroll/jquery.nicescroll.min.js'); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url('public/js/popup.js'); ?>"></script>
 
+
+<script type="text/javascript" src="<?php echo base_url('public/js/back.js'); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url('public/js/dropdown.js'); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url('public/js/searchable_dropdown.js'); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url('public/js/live_preview.js'); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url('public/js/hawa.js'); ?>"></script>
+
+<script type="text/javascript" src="<?php echo base_url('public/js/ad_detail_slider.js'); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url('public/js/count.js'); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url('public/js/multiple_upload.js'); ?>"></script>
 
 <script>(function(d, s, id) {
         var js, fjs = d.getElementsByTagName(s)[0];

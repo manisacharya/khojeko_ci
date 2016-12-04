@@ -18,12 +18,9 @@ $(document).ready(function(){
     })
 	$(".category2 li a").click(function(){
 		$(this).next(".category3").slideToggle();
-		;
+		/*$("#content").load("page2.php");
+		 $("#guts").hide();*/
 		return false;
 	})
-	 $(".category2 li a").click(function(){
-		/*$("#content").load("page2.php");
-		$("#guts").hide();*/
-	 })
 })
 
