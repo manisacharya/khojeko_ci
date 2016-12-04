@@ -17,7 +17,7 @@ class Items_model extends CI_Model {
     public $used_for;
     public $mkt_price;
     public $verification_number;
-    public $isVerified;
+    public $is_verified;
     public $avaibility_address;
     public $published_date;
     public $delivery;
@@ -86,7 +86,7 @@ class Items_model extends CI_Model {
             $this->used_for = $this->input->post('');
             $this->mkt_price = $this->input->post('');
             $this->verification_number = $this->input->post('');
-            $this->isVerified = $this->input->post('');
+            $this->is_verified = $this->input->post('');
             $this->avaibility_address = $this->input->post('');
             $this->published_date = $this->input->post('');
             $this->delivery = $this->input->post('');
