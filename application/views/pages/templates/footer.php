@@ -42,48 +42,6 @@
                 <div style="display: none;">
                     <img data-u="image" src="<?php echo base_url('public/images/logos/ebay.jpg');?>" />
                 </div>
-                <div style="display: none;">
-                    <img data-u="image" src="<?php echo base_url('public/images/logos/facebook.jpg');?>" />
-                </div>
-                <div style="display: none;">
-                    <img data-u="image" src="<?php echo base_url('public/images/logos/google.jpg');?>" />
-                </div>
-                <div style="display: none;">
-                    <img data-u="image" src="<?php echo base_url('public/images/logos/ibm.jpg');?>" />
-                </div>
-                <div style="display: none;">
-                    <img data-u="image" src="<?php echo base_url('public/images/logos/ios.jpg');?>" />
-                </div>
-                <div style="display: none;">
-                    <img data-u="image" src="<?php echo base_url('public/images/logos/joomla.jpg');?>" />
-                </div>
-                <div style="display: none;">
-                    <img data-u="image" src="<?php echo base_url('public/images/logos/linkedin.jpg');?>" />
-                </div>
-                <div style="display: none;">
-                    <img data-u="image" src="<?php echo base_url('public/images/logos/mac.jpg');?>" />
-                </div>
-                <div style="display: none;">
-                    <img data-u="image" src="<?php echo base_url('public/images/logos/magento.jpg');?>" />
-                </div>
-                <div style="display: none;">
-                    <img data-u="image" src="<?php echo base_url('public/images/logos/pinterest.jpg');?>" />
-                </div>
-                <div style="display: none;">
-                    <img data-u="image" src="<?php echo base_url('public/images/logos/samsung.jpg');?>" />
-                </div>
-                <div style="display: none;">
-                    <img data-u="image" src="<?php echo base_url('public/images/logos/twitter.jpg');?>" />
-                </div>
-                <div style="display: none;">
-                    <img data-u="image" src="<?php echo base_url('public/images/logos/windows.jpg');?>" />
-                </div>
-                <div style="display: none;">
-                    <img data-u="image" src="<?php echo base_url('public/images/logos/wordpress.jpg');?>" />
-                </div>
-                <div style="display: none;">
-                    <img data-u="image" src="<?php echo base_url('public/images/logos/youtube.jpg');?>" />
-                </div>
             </div>
         </div><!--jssor_1 ends-->
     </div><!--logos1 ends-->
@@ -184,32 +142,24 @@
 
 <script type="text/javascript" src="<?php echo base_url('public/js/jquery.js');?>"></script>
 <script type="text/javascript" src="<?php echo base_url('public/js/bootstrap.min.js');?>"></script>
-<script type="text/javascript" src="<?php echo base_url('public/js/categori.js');?>"></script>
+<script type="text/javascript" src="<?php echo base_url('public/js/category.js');?>"></script>
 <script type="text/javascript" src="<?php echo base_url('public/js/list_grid.js');?>"></script>
 <script type="text/javascript" src="<?php echo base_url('public/js/jssor.slider.min.js');?>"></script>
-
-<script type="text/javascript" src="<?php echo base_url('public'); ?>/js/display.js"></script>
-<script type="text/javascript" src="<?php echo base_url('public'); ?>/js/back.js"></script>
-<script type="text/javascript" src="<?php echo base_url('public'); ?>/js/jquery-ui.js"></script>
-<script type="text/javascript" src="<?php echo base_url('public'); ?>/js/dropdown.js"></script>
-<script type="text/javascript" src="<?php echo base_url('public'); ?>/js/searchable_dropdown.js"></script>
-<script type="text/javascript" src="<?php echo base_url('public'); ?>/js/live_preview.js"></script>
-<script type="text/javascript" src="<?php echo base_url('public'); ?>/js/jquery.MultiFile.js"></script>
-<script type="text/javascript" src="<?php echo base_url('public'); ?>/js/jquery/jquery-1.9.1.min.js"></script>
-<script type="text/javascript" src="<?php echo base_url('public'); ?>/js/livepreview.js"></script>
-<script type="text/javascript" src="<?php echo base_url('public'); ?>/js/hawa.js"></script>
-
-<script type="text/javascript" src="<?php echo base_url('public'); ?>/js/ad_detail_slider.js"></script>
-<script type="text/javascript" src="<?php echo base_url('public'); ?>/js/count.js"></script>
-<script type="text/javascript" src="<?php echo base_url('public'); ?>/js/multiple_upload.js"></script>
-
 <!-- Custom JQuery -->
-<script src="<?php echo base_url('public'); ?>/js/app/custom.js" type="text/javascript"></script>
-<script src="<?php echo base_url('public'); ?>/js/plugins/nicescroll/jquery.nicescroll.min.js"></script>
-<script src="<?php echo base_url('public'); ?>/js/categori.js"></script>
-<script src="<?php echo base_url('public'); ?>/js/popup.js"></script>
-<script src="<?php echo base_url('public'); ?>/js/jquery.MultiFile.js"></script>
+<script type="text/javascript" src="<?php echo base_url('public/js/app/custom.js'); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url('public/js/plugins/nicescroll/jquery.nicescroll.min.js'); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url('public/js/popup.js'); ?>"></script>
 
+
+<script type="text/javascript" src="<?php echo base_url('public/js/back.js'); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url('public/js/dropdown.js'); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url('public/js/searchable_dropdown.js'); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url('public/js/live_preview.js'); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url('public/js/hawa.js'); ?>"></script>
+
+<script type="text/javascript" src="<?php echo base_url('public/js/ad_detail_slider.js'); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url('public/js/count.js'); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url('public/js/multiple_upload.js'); ?>"></script>
 
 <script>(function(d, s, id) {
         var js, fjs = d.getElementsByTagName(s)[0];

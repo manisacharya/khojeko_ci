@@ -124,6 +124,7 @@ class Signup extends CI_Controller {
                 //send email to the user
                 $this->email_user($email, $key);
             } else {
+                $data['zones'] = $this->Signup_model->getAllZones();
                 $this->load->view('pages/templates/header', $data);
                 $this->load->view('pages/signup', $data);
                 $this->load->view('pages/templates/footer', $data);
@@ -154,6 +155,7 @@ class Signup extends CI_Controller {
                 //call the done page
                 //$this->signup_done($this->input->post('key'));
             } else {
+                $data['zones'] = $this->Signup_model->getAllZones();
                 $this->load->view('pages/templates/header', $data);
                 $this->load->view('pages/signup', $data);
                 $this->load->view('pages/templates/footer', $data);
@@ -276,7 +278,6 @@ class Signup extends CI_Controller {
         $this->load->view('pages/signup/signup_done');
         $this->load->view('pages/templates/footer', $data);
     }
-
     //send email for confirmation after sign up
     public function email_user($email, $key){
 
@@ -292,7 +293,7 @@ class Signup extends CI_Controller {
             'newline' => "\r\n"
         ));
 
-        $this->email->from('khojeko@khojeko.com');
+        $this->email->from('noreply@khojeko.com', 'Khojeko');
         $this->email->to($email);
         $this->email->subject('Confirm your account');
 

@@ -19,7 +19,7 @@
 				</div>
 			</div>
 		</div>
-	<div class="setup-content step-3" id="step-3">
+	<div>
 		<div class="form-group">
 			<h3> Step 3</h3>
 

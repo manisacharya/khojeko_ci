@@ -45,9 +45,11 @@ class User_session extends CI_Controller {
             $data["new_items"] = $this->items_model->count_status_items('new');
             $data['dealer_items'] = $this->items_model->count_user_items('dealer');
             $data['user_items'] = $this->items_model->count_user_items('personal');
+            //flashdata for password changed from new_password
+            $data['pwd_changed'] = $this->session->flashdata('password_changed');
 
             $this->load->view("pages/templates/header", $data);
-            $this->load->view("pages/user_login");
+            $this->load->view("pages/user_login", $data);
             $this->load->view("pages/templates/footer", $data);
         }
     }
@@ -88,6 +90,121 @@ class User_session extends CI_Controller {
         else {
             redirect('login');
         }
+    }
+
+    public function lost_password(){
+        if ($this->session->has_userdata('logged_in'))
+            redirect('logged_in');
+
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('useremail', 'User email', 'required|trim|valid_email|callback_check_email');
+
+        if($this->form_validation->run()){
+            $this->email_user($this->input->post('useremail'));
+            redirect('lost_password');
+        } else {
+            $data["category"] = $this->categories_model->get_categories();
+            $data['dealer_list'] = $this->dealer_model->get_all_dealers();
+
+            // counts : total, used/new, dealer/user ads
+            $data["total_items"] = $this->items_model->count_items();
+            $data["used_items"] = $this->items_model->count_status_items('used');
+            $data["new_items"] = $this->items_model->count_status_items('new');
+            $data['dealer_items'] = $this->items_model->count_user_items('dealer');
+            $data['user_items'] = $this->items_model->count_user_items('personal');
+            $data['email'] = $this->session->flashdata('email_sent');
+
+            $this->load->view("pages/templates/header", $data);
+            $this->load->view("pages/login/lost_password", $data);
+            $this->load->view("pages/templates/footer", $data);
+        }
+    }
+
+    public function check_email(){
+        if($this->user_model->check_email()) {
+            return true;
+        } else {
+            $this->form_validation->set_message("check_email", "This email is invalid.");
+            return false;
+        }
+    }
+
+    //send email for lost password
+    public function email_user($email){
+
+        $this->load->library('email', array('mailtype'=>'html'));
+
+        $this->email->initialize(array(
+            'protocol' => 'smtp',
+            'smtp_host' => 'smtp.sendgrid.net',
+            'smtp_user' => 'noreply@technorio.com',
+            'smtp_pass' => 'N0replyTec#n0ri0',
+            'smtp_port' => 587,
+            'crlf' => "\r\n",
+            'newline' => "\r\n"
+        ));
+
+        $this->email->from('noreply@khojeko.com','Khojeko');
+        $this->email->to($email);
+        $this->email->subject('Lost your password');
+        $email = urlencode($email);
+
+        $message = "<p><a href='".base_url()."lost_password/$email'>Click Here</a> to change your password</p>";
+
+        $this->email->message($message);
+
+        if($this->email->send()){
+            $this->session->set_flashdata('email_sent','<div class="alert alert-success">An email has been sent to your email address.</div>');
+        } else {
+            $this->session->set_flashdata('email_sent','<div class="alert alert-danger">Email could not be sent.</div>');
+        }
+    }
+
+    public function lost_password_change($email){
+        $data['email'] = $email;
+        $this->load->view("pages/login/hidden_email", $data);
+    }
+
+    public function new_password(){
+        if ($this->session->has_userdata('logged_in'))
+            redirect('logged_in');
+
+        $this->load->library('form_validation');
+        $email = $this->input->post('email');
+
+        if($email == null) {
+            $this->form_validation->set_rules('n_password', 'New Password', 'required|trim');
+            $this->form_validation->set_rules('c_password', 'Confirm Password', 'required|trim|matches[n_password]');
+            if($this->input->post('user_email') == null) {
+                redirect('logged_in');
+            }
+            $email = $this->input->post('user_email');
+            if ($this->form_validation->run()){
+                $this->user_model->new_password();
+                redirect('login');
+            } else {
+                $this->show_page($email);
+            }
+        } else {
+            $this->show_page($email);
+        }
+    }
+
+    public function show_page($email){
+        $data["category"] = $this->categories_model->get_categories();
+        $data['dealer_list'] = $this->dealer_model->get_all_dealers();
+
+        // counts : total, used/new, dealer/user ads
+        $data["total_items"] = $this->items_model->count_items();
+        $data["used_items"] = $this->items_model->count_status_items('used');
+        $data["new_items"] = $this->items_model->count_status_items('new');
+        $data['dealer_items'] = $this->items_model->count_user_items('dealer');
+        $data['user_items'] = $this->items_model->count_user_items('personal');
+        $data['email'] = $email;
+
+        $this->load->view("pages/templates/header", $data);
+        $this->load->view("pages/login/new_password", $data);
+        $this->load->view("pages/templates/footer", $data);
     }
 }
 ?>
