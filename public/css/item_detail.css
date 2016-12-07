@@ -96,7 +96,7 @@ border-spacing:5px;}
 
 
 
-.video_ad{margin:10px;border:1px solid}
+.video_ad{margin:10px;border:1px solid; padding:0.7px;}
 
 .video_ad video{margin:5px;width:167px; height:180px;border-radius:10px}
 

@@ -206,17 +206,25 @@
                         </div><!--send_email ends-->
 
     <div class="video_ad">
-        <video controls>
-            <source src="" type="video/mp4">
-            <source src="" type="video/ogg">
-            Your browser does not support the video tag.
-        </video>
-
-        <video controls>
-            <source src="" type="video/mp4">
-            <source src="" type="video/ogg">
-            Your browser does not support the video tag.
-        </video>
+<!--        <video controls>-->
+<!--            <source src="" type="video/mp4">-->
+<!--            <source src="" type="video/ogg">-->
+<!--            Your browser does not support the video tag.-->
+<!--        </video>-->
+        <?php
+        $url1 = $details->video_url1;
+        $url2 = $details->video_url2;
+        if ($url1 != NULL){ ?>
+            <iframe width="173" height="172" src="https://www.youtube.com/embed/<?php echo $url1; ?>" frameborder="0" allowfullscreen></iframe>
+        <?php } ?>
+<!--        <video controls>-->
+<!--            <source src="" type="video/mp4">-->
+<!--            <source src="" type="video/ogg">-->
+<!--            Your browser does not support the video tag.-->
+<!--        </video>-->
+        <?php if ($url2 != NULL){ ?>
+            <iframe width="173" height="172" src="https://www.youtube.com/embed/<?php echo $url2; ?>" frameborder="0" allowfullscreen></iframe>
+        <?php } ?>
     </div><!--video_ad ends-->
 
 
