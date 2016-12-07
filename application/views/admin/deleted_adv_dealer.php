@@ -1,29 +1,32 @@
 <?php
-$item_num = ($per_page*($page_number-1)+$verified_dealer->num_rows());
+$item_num = ($per_page*($page_number-1)+$deleted_dealer->num_rows());
 if ($item_num>$total)
     $item_num = 0;
 ?>
 <div class="col-sm-12">
     <div class="active_inactive">
-        <a>Search:</a><a href="#">All Active</a>
+        <a>Search:</a><a href="#">All Deleted</a>
         <input type="text" class="search_active" placeholder="Search by name, email, city, district, product etc">
         <a href="#">Search >></a>
         <button class="default_button">POST BY ADMIN</button>
     </div><!--active_inactive-->
-    <div class="active_ads">
-        <form method="post" action="<?php echo base_url('admin/Admin_pages/unverify_validation/active_adv_dealer') ?>">
+
+    <div class="inactive_ads">
+        <form method="post" action="<?php echo base_url('admin/Admin_pages/verify_validation') ?>">
             <div class="top_title">
-                <a>Latest Ads</a> <a class="green">(Active)</a>
-                <a class="underline">Total Active Ad <?php echo $item_num; ?> of <?php echo $total; ?></a>
+                <a>Latest Ads</a> <a class="red">(Deleted ads)</a>
+                <a class="underline">Total Inactive Ad <?php echo $item_num; ?> of <?php echo $total; ?></a>
                 <a href="#">View All >></a>
-                <!--a class="green">Inactive Now</a-->
-                <input class="green" type="submit" name="unverify" value="Unverify">
-                <a>select all   <input type="checkbox" onClick="toggle2(this)"></a>
+                <!--                <a>Click to:</a><!--a class="green" href="#">Verify</a>-->
+                <!--                <input class="green" type="submit" name="verify" value="Verify">-->
+                <!--                <!--a class="green" href="#">Unverify</a>-->
+                <!--                <a>select all   <input type="checkbox" onClick="toggle1(this)"></a>-->
             </div>
             <ol>
-                <?php foreach ($verified_dealer->result() as $row): ?>
+                <?php foreach ($deleted_dealer->result() as $row):?>
                     <li>
-                        <span><img src="<?php echo base_url('public'); ?>/images/item_images/<?php echo $row->image;?>" class="img-rounded"><br>
+                        <span>
+                            <img src="<?php echo base_url('public'); ?>/images/item_images/<?php echo $row->image;?>" class="img-rounded"><br>
                             ad id:<?php $item_id = $row->item_id; echo $item_id;?>
                         </span>
 
@@ -51,18 +54,18 @@ if ($item_num>$total)
                             $days = date_diff(date_create(mdate($datestring, $published_date)), date_create(mdate($datestring, time())));
                             $ad_duration = $row->ad_duration;
                             $edays = $ad_duration - $days->format("%a");
-                            if(intval($edays)<0) {
+                            if(intval($edays)<=0) {
                                 $item_days = $days->format("%a");
                                 ?>
                                 <expiry style="color:red;">Expired</expiry><br>
-                            <?php echo "Extend for:"; ?>
-                            <select name="extended_date<?php echo $item_id; ?>">
-                                <option value="7">7</option>
-                                <option value="14">14</option>
-                                <option value="30">30</option>
-                            </select>
-                                <label>Days</label><br>
-                                <button class="green" name="renew" type="submit" value="id:<?php echo $item_id; ?>,item_days:<?php echo $item_days; ?>">Renew</button>
+<!--                                --><?php //echo "Extend for:"; ?>
+<!--                                <select name="extended_date">-->
+<!--                                    <option value="7">7</option>-->
+<!--                                    <option value="14">14</option>-->
+<!--                                    <option value="30">30</option>-->
+<!--                                </select>-->
+<!--                                <label>Days</label><br>-->
+<!--                                <button class="green" name="renew" type="submit" value="id:--><?php //echo $item_id; ?><!--,item_days:--><?php //echo $item_days; ?><!--">Renew</button>-->
                                 <?php
                             } else
                                 echo "Expiry after:".$edays." days";
@@ -82,21 +85,21 @@ if ($item_num>$total)
                             $sales_status = $row->sales_status;
                             if($sales_status){
                                 ?>
-                                <a href="<?php echo base_url("admin/Admin_pages/sold_unsold/".$item_id."/".$sales_status."/active_adv_dealer") ?>" class="red">Sold</a><br>
+                                <a href="<?php echo base_url("admin/Admin_pages/sold_unsold/".$item_id."/".$sales_status."/deleted_adv_dealer") ?>" class="red">Sold</a><br>
                             <?php } else { ?>
-                                <a href="<?php echo base_url("admin/Admin_pages/sold_unsold/".$item_id."/".$sales_status."/active_adv_dealer") ?>" class="green">Unsold</a><br>
+                                <a href="<?php echo base_url("admin/Admin_pages/sold_unsold/".$item_id."/".$sales_status."/deleted_adv_dealer") ?>" class="green">Unsold</a><br>
                             <?php }
                             $visibility = $row->visibility;
                             if($visibility){
                                 ?>
-                                <a href="<?php echo base_url("admin/Admin_pages/hide_unhide/".$item_id."/".$visibility."/active_adv_dealer") ?>" class="red">Hide</a><br>
+                                <a href="<?php echo base_url("admin/Admin_pages/hide_unhide/".$item_id."/".$visibility."/deleted_adv_dealer") ?>" class="red">Hide</a><br>
                             <?php } else { ?>
-                                <a href="<?php echo base_url("admin/Admin_pages/hide_unhide/".$item_id."/".$visibility."/active_adv_dealer") ?>" class="green">Unhide</a><br>
+                                <a href="<?php echo base_url("admin/Admin_pages/hide_unhide/".$item_id."/".$visibility."/deleted_adv_dealer") ?>" class="green">Unhide</a><br>
                             <?php } ?>
                         </span>
 
                         <span>
-                            <a title="delete" href="<?php echo base_url("admin/Admin_pages/delete/".$item_id."/active_adv_dealer") ?>"><i class="fa fa-trash" style="color:red"></i></a>
+<!--                            <a title="delete" href="--><?php //echo base_url("admin/Admin_pages/delete/".$item_id."/deleted_adv_dealer") ?><!--"><i class="fa fa-trash" style="color:red"></i></a>-->
                             <a title="edit" href="#"><i class="fa fa-edit" style="color:blue"></i></a>
                         </span>
 
@@ -105,18 +108,18 @@ if ($item_num>$total)
                             $premium = $row->is_premium;
                             if($premium){
                                 ?>
-                                <a href="<?php echo base_url("admin/Admin_pages/premium/".$item_id."/".$premium."/active_adv_dealer") ?>" class="green">Not Premium</a><br>
+                                <a href="<?php echo base_url("admin/Admin_pages/premium/".$item_id."/".$premium."/deleted_adv_dealer") ?>" class="green">Not Premium</a><br>
                             <?php } else { ?>
-                                <a href="<?php echo base_url("admin/Admin_pages/premium/".$item_id."/".$premium."/active_adv_dealer") ?>" class="red">Premium</a><br>
+                                <a href="<?php echo base_url("admin/Admin_pages/premium/".$item_id."/".$premium."/deleted_adv_dealer") ?>" class="red">Premium</a><br>
                             <?php } ?>
-                            <a href="<?php echo base_url()."details/".$item_id ?>">View Ad</a>
+<!--                            <a href="--><?php //echo base_url()."details/".$item_id ?><!--">View Ad</a>-->
                         </span>
 
-                        <span><input type="checkbox" name="foo2[]" value="<?php echo $item_id; ?>"></span>
+                        <!--                        <span><input type="checkbox" name="foo1[]" value="--><?php //echo $item_id; ?><!--"></span>-->
                     </li>
                 <?php endforeach ?>
-                <?php echo $inactive_page_links_d;?>
+                <?php echo $deleted_page_links;?>
             </ol>
         </form>
-    </div><!--acctive_ads-->
-</div><!--col-sm-12-->
+    </div><!--inacctive_ads-->
+</div>

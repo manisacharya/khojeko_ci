@@ -68,6 +68,23 @@ $route['upload_file'] = "upload/upload_file";
 // ADMIN SESSION CONTROLLER
 $route['admin'] = 'admin/admin_pages/page';
 $route['admin/logo_upload'] = 'admin/upload/logo_upload/';
+$route['admin/index'] = 'admin/admin_pages/page';
+//admin active advertisements
+$route['admin/active_adv_personal'] = 'admin/admin_pages/page/active_adv_personal';
+$route['admin/active_adv_personal/(:num)'] = 'admin/admin_pages/page/active_adv_personal/$1';
+$route['admin/active_adv_dealer'] = 'admin/admin_pages/page/active_adv_dealer';
+$route['admin/active_adv_dealer/(:num)'] = 'admin/admin_pages/page/active_adv_dealer/$1';
+//admin inactive advertisements
+$route['admin/inactive_adv_personal'] = 'admin/admin_pages/page/inactive_adv_personal';
+$route['admin/inactive_adv_personal/(:num)'] = 'admin/admin_pages/page/inactive_adv_personal/$1';
+$route['admin/inactive_adv_dealer'] = 'admin/admin_pages/page/inactive_adv_dealer';
+$route['admin/inactive_adv_dealer/(:num)'] = 'admin/admin_pages/page/inactive_adv_dealer/$1';
+//admin deleted advertisements
+$route['admin/deleted_adv_personal'] = 'admin/admin_pages/page/deleted_adv_personal';
+$route['admin/deleted_adv_personal/(:num)'] = 'admin/admin_pages/page/deleted_adv_personal/$1';
+$route['admin/deleted_adv_dealer'] = 'admin/admin_pages/page/deleted_adv_dealer';
+$route['admin/deleted_adv_dealer/(:num)'] = 'admin/admin_pages/page/deleted_adv_dealer/$1';
+
 $route['admin/category_add'] = 'admin/admin_pages/add_category';
 $route['admin/category_delete'] = 'admin/admin_pages/delete_category';
 $route['admin/category_edit'] = 'admin/admin_pages/edit_category';
@@ -78,7 +95,8 @@ $route['admin/change_password'] = 'admin/users/change_password';
 $route['admin/post_ad'] = 'admin/item_post/post_form';
 $route['get_district'] = 'admin/item_post/get_district';
 $route['available_email_admin'] = 'admin/item_post/available_email';
-$route['admin/(:any)'] = 'admin/admin_pages/page/$1';
+//$route['admin/(:any)/(:num)'] = 'admin/admin_pages/page/$1/$2';
+$route['admin/index/(:any)/(:num)'] = 'admin/admin_pages/page/index/$1/$2';
 $route['admin/extend_date/(:num)/(:num)'] = 'admin/admin_pages/extend_date/$1/$2';
 
 // USER PAGE
