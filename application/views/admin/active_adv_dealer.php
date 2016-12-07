@@ -1,6 +1,7 @@
-
-<?php echo $verified_dealer->num_rows();
-echo "<br>".$total;
+<?php
+$item_num = ($per_page*($page_number-1)+$verified_dealer->num_rows());
+if ($item_num>$total)
+    $item_num = 0;
 ?>
 <div class="col-sm-12">
     <div class="active_inactive">
@@ -13,7 +14,7 @@ echo "<br>".$total;
         <form method="post" action="<?php echo base_url('admin/Admin_pages/unverify_validation/active_adv_dealer') ?>">
             <div class="top_title">
                 <a>Latest Ads</a> <a class="green">(Active)</a>
-                <a class="underline">Total Active Ad 10 of <?php echo $total; ?></a>
+                <a class="underline">Total Active Ad <?php echo $item_num; ?> of <?php echo $total; ?></a>
                 <a href="#">View All >></a>
                 <!--a class="green">Inactive Now</a-->
                 <input class="green" type="submit" name="unverify" value="Unverify">
@@ -81,21 +82,21 @@ echo "<br>".$total;
                             $sales_status = $row->sales_status;
                             if($sales_status){
                                 ?>
-                                <a href="<?php echo base_url("admin/Admin_pages/sold_unsold/".$item_id."/".$sales_status) ?>" class="red">Sold</a><br>
+                                <a href="<?php echo base_url("admin/Admin_pages/sold_unsold/".$item_id."/".$sales_status."/active_adv_dealer") ?>" class="red">Sold</a><br>
                             <?php } else { ?>
-                                <a href="<?php echo base_url("admin/Admin_pages/sold_unsold/".$item_id."/".$sales_status) ?>" class="green">Unsold</a><br>
+                                <a href="<?php echo base_url("admin/Admin_pages/sold_unsold/".$item_id."/".$sales_status."/active_adv_dealer") ?>" class="green">Unsold</a><br>
                             <?php }
                             $visibility = $row->visibility;
                             if($visibility){
                                 ?>
-                                <a href="<?php echo base_url("admin/Admin_pages/hide_unhide/".$item_id."/".$visibility) ?>" class="red">Hide</a><br>
+                                <a href="<?php echo base_url("admin/Admin_pages/hide_unhide/".$item_id."/".$visibility."/active_adv_dealer") ?>" class="red">Hide</a><br>
                             <?php } else { ?>
-                                <a href="<?php echo base_url("admin/Admin_pages/hide_unhide/".$item_id."/".$visibility) ?>" class="green">Unhide</a><br>
+                                <a href="<?php echo base_url("admin/Admin_pages/hide_unhide/".$item_id."/".$visibility."/active_adv_dealer") ?>" class="green">Unhide</a><br>
                             <?php } ?>
                         </span>
 
                         <span>
-                            <a title="delete" href="<?php echo base_url("admin/Admin_pages/delete/".$item_id) ?>"><i class="fa fa-trash" style="color:red"></i></a>
+                            <a title="delete" href="<?php echo base_url("admin/Admin_pages/delete/".$item_id."/active_adv_dealer") ?>"><i class="fa fa-trash" style="color:red"></i></a>
                             <a title="edit" href="#"><i class="fa fa-edit" style="color:blue"></i></a>
                         </span>
 
@@ -104,9 +105,9 @@ echo "<br>".$total;
                             $premium = $row->is_premium;
                             if($premium){
                                 ?>
-                                <a href="<?php echo base_url("admin/Admin_pages/premium/".$item_id."/".$premium) ?>" class="green">Not Premium</a><br>
+                                <a href="<?php echo base_url("admin/Admin_pages/premium/".$item_id."/".$premium."/active_adv_dealer") ?>" class="green">Not Premium</a><br>
                             <?php } else { ?>
-                                <a href="<?php echo base_url("admin/Admin_pages/premium/".$item_id."/".$premium) ?>" class="red">Premium</a><br>
+                                <a href="<?php echo base_url("admin/Admin_pages/premium/".$item_id."/".$premium."/active_adv_dealer") ?>" class="red">Premium</a><br>
                             <?php } ?>
                             <a href="<?php echo base_url()."details/".$item_id ?>">View Ad</a>
                         </span>

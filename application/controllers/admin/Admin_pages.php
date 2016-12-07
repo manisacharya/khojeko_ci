@@ -14,46 +14,117 @@ class Admin_pages extends CI_Controller {
             redirect('admin/login');
     }
 
-    public function page($page = 'index') {
+    public function page($page = 'index', $page_number = 1) {
+        $per_page = 3;
+        $this->load->library('pagination');
+
         $data['error'] = 'Dimensions: 250x100 | Only PNG';
         $data['title'] = ucwords(strtolower(str_replace('_', ' ', $page))); // Capitalize the first letter
         $data['user_info'] = $this->user_model->get_user_info('admin', $this->session->userdata['admin_logged_in']['id']);
 
         $data['upload_status'] = "Upload file from here.";
         $data['message'] = $this->session->flashdata('message');
+        $data['per_page'] = $per_page;
+        $data['page_number'] = $page_number;
 
-        $data['unverified_personal'] = $this->latest_verified_unverified_ad_model->get_details_item_personal(0);
-        $data['unverified_dealer'] = $this->latest_verified_unverified_ad_model->get_details_item_dealer(0);
-        $data['verified_personal'] = $this->latest_verified_unverified_ad_model->get_details_item_personal(1);
-        $data['verified_dealer'] = $this->latest_verified_unverified_ad_model->get_details_item_dealer(1);
+        if($page == "inactive_adv_personal") {
+            //get total rows of items
+            $active_personal = $this->latest_verified_unverified_ad_model->total_items('personal', 0);
 
+            $config1['base_url'] = base_url('admin/inactive_adv_personal');
+            $config1['first_url'] = base_url('admin/inactive_adv_personal/1');
+            $config1['total_rows'] = $active_personal;
+            $config1['per_page'] = $per_page;
+            $this->pagination->initialize($config1);
+            $data['total'] = $active_personal;
+            $data['active_page_links'] = $this->pagination->create_links();
+            $data['unverified_personal'] = $this->latest_verified_unverified_ad_model->get_details_item_personal(0, $per_page, ($page_number - 1) * $per_page);
+        }
+        if($page == "inactive_adv_dealer") {
+            $active_dealer = $this->latest_verified_unverified_ad_model->total_items('dealer', 0);
+
+            $config3['base_url'] = base_url('admin/inactive_adv_dealer');
+            $config3['first_url'] = base_url('admin/inactive_adv_dealer/1');
+            $config3['total_rows'] = $active_dealer;
+            $config3['per_page'] = $per_page;
+            $this->pagination->initialize($config3);
+            $data['total'] = $active_dealer;
+            $data['active_page_links'] = $this->pagination->create_links();
+            $data['unverified_dealer'] = $this->latest_verified_unverified_ad_model->get_details_item_dealer(0, $per_page, ($page_number - 1) * $per_page);
+        }
+        if($page == "active_adv_personal") {
+            $inactive_personal = $this->latest_verified_unverified_ad_model->total_items('personal', 1);
+
+            $config2['first_url'] = base_url('admin/active_adv_personal/1');
+            $config2['base_url'] = base_url('admin/active_adv_personal');
+            $config2['total_rows'] = $inactive_personal;
+            $config2['per_page'] = $per_page;
+            $this->pagination->initialize($config2);
+            $data['total'] = $inactive_personal;
+            $data['inactive_page_links'] = $this->pagination->create_links();
+            $data['verified_personal'] = $this->latest_verified_unverified_ad_model->get_details_item_personal(1, $per_page, ($page_number - 1) * $per_page);
+        }
+        if($page == "active_adv_dealer") {
+            $inactive_dealer = $this->latest_verified_unverified_ad_model->total_items('dealer', 1);
+
+            $config4['first_url'] = base_url('admin/active_adv_dealer/1');
+            $config4['base_url'] = base_url('admin/active_adv_dealer');
+            $config4['total_rows'] = $inactive_dealer;
+            $config4['per_page'] = $per_page;
+            $this->pagination->initialize($config4);
+            $data['total'] = $inactive_dealer;
+            $data['inactive_page_links_d'] = $this->pagination->create_links();
+            $data['verified_dealer'] = $this->latest_verified_unverified_ad_model->get_details_item_dealer(1, $per_page, ($page_number - 1) * $per_page);
+        }
+        if($page == "deleted_adv_personal"){
+            $deleted_personal = $this->latest_verified_unverified_ad_model->total_deleted_items('personal');
+            $config3['first_url'] = base_url('admin/deleted_adv_personal/1');
+            $config3['base_url'] = base_url('admin/deleted_adv_personal');
+            $config3['total_rows'] = $deleted_personal;
+            $config3['per_page'] = $per_page;
+            $this->pagination->initialize($config3);
+            $data['total'] = $deleted_personal;
+            $data['deleted_page_links'] = $this->pagination->create_links();
+            $data['deleted_personal'] = $this->latest_verified_unverified_ad_model->get_details_item_deleted('personal', $per_page, ($page_number - 1) * $per_page);
+        }
+        if($page == "deleted_adv_dealer"){
+            $deleted_dealer = $this->latest_verified_unverified_ad_model->total_deleted_items('dealer');
+            $config3['first_url'] = base_url('admin/deleted_adv_dealer/1');
+            $config3['base_url'] = base_url('admin/deleted_adv_dealer');
+            $config3['total_rows'] = $deleted_dealer;
+            $config3['per_page'] = $per_page;
+            $this->pagination->initialize($config3);
+            $data['total'] = $deleted_dealer;
+            $data['deleted_page_links'] = $this->pagination->create_links();
+            $data['deleted_dealer'] = $this->latest_verified_unverified_ad_model->get_details_item_deleted('dealer', $per_page, ($page_number - 1) * $per_page);
+        }
         $this->load->view('admin/templates/header', $data);
         $this->load->view('admin/'.$page, $data);
         $this->load->view('admin/templates/footer');
     }
-    public function verify_validation(){
+    public function verify_validation($page){
         if($this->input->post('renew') != null){
-            $this->extend_date();
+            $this->extend_date($page);
         }
         if ($this->input->post('verify') == "Verify") {
             $selected = $this->input->post('foo1');
             $this->latest_verified_unverified_ad_model->verify($selected);
-            redirect('admin');
+            redirect('admin/inactive_adv');
         }
     }
 
-    public function unverify_validation(){
+    public function unverify_validation($page){
         if($this->input->post('renew') != null){
-            $this->extend_date();
+            $this->extend_date($page);
         }
         if ($this->input->post('unverify') == "Unverify") {
             $selected = $this->input->post('foo2');
             $this->latest_verified_unverified_ad_model->unverify($selected);
-            redirect('admin');
+            redirect('admin/active_adv');
         }
     }
 
-    public function extend_date(){
+    public function extend_date($page){
         $action = explode(',', $this->input->post('renew'));
         $data = array();
         foreach ($action as $value) {
@@ -61,27 +132,27 @@ class Admin_pages extends CI_Controller {
             $data[$a[0]] = $a[1];
         }
         $this->latest_verified_unverified_ad_model->extend_date($data['id'], $data['item_days']);
-        redirect('admin');
+        redirect('admin/'.$page);
     }
 
-    public function sold_unsold($id, $sales_status){
+    public function sold_unsold($id, $sales_status, $page){
         $this->latest_verified_unverified_ad_model->sold_unsold($id, $sales_status);
-        redirect('admin');
+        redirect('admin/'.$page);
     }
 
-    public function hide_unhide($id, $visibility){
+    public function hide_unhide($id, $visibility, $page){
         $this->latest_verified_unverified_ad_model->hide_unhide($id, $visibility);
-        redirect('admin');
+        redirect('admin/'.$page);
     }
 
-    public function delete($id){
+    public function delete($id, $page){
         $this->latest_verified_unverified_ad_model->delete($id);
-        redirect('admin');
+        redirect('admin/'.$page);
     }
 
-    public function premium($id, $premium){
+    public function premium($id, $premium, $page){
         $this->latest_verified_unverified_ad_model->premium($id, $premium);
-        redirect('admin');
+        redirect('admin/'.$page);
     }
 
     public function add_category() {
@@ -100,8 +171,7 @@ class Admin_pages extends CI_Controller {
 
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('admin/category_add', $data);
-        }
-        else {
+        } else {
             if ($this->categories_model->add_category() === TRUE) {
                 $message = "<div class='alert alert-success'>Successfully Added !</div>";
             }
@@ -181,5 +251,13 @@ class Admin_pages extends CI_Controller {
             $this->load->view('admin/category_edit', $data);
         }
         $this->load->view('admin/templates/footer');
+    }
+
+    public function total_active_items(){
+        if ($this->db->table_exists('items')) {
+            return $this->db->count_all('items');
+        } else {
+            echo show_error('We have encountered some problem. Visit site later.', 500, 'Opps! Something went wrong');
+        }
     }
 }
