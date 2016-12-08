@@ -67,6 +67,7 @@ $route['upload_file'] = "upload/upload_file";
 
 // ADMIN SESSION CONTROLLER
 $route['admin'] = 'admin/admin_pages/page';
+$route['admin/site_logo'] = 'admin/upload/site_logo/';
 $route['admin/logo_upload'] = 'admin/upload/logo_upload/';
 $route['admin/index'] = 'admin/admin_pages/page';
 //admin active advertisements

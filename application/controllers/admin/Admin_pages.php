@@ -18,11 +18,9 @@ class Admin_pages extends CI_Controller {
         $per_page = 3;
         $this->load->library('pagination');
 
-        $data['error'] = 'Dimensions: 250x100 | Only PNG';
         $data['title'] = ucwords(strtolower(str_replace('_', ' ', $page))); // Capitalize the first letter
         $data['user_info'] = $this->user_model->get_user_info('admin', $this->session->userdata['admin_logged_in']['id']);
 
-        $data['upload_status'] = "Upload file from here.";
         $data['message'] = $this->session->flashdata('message');
         $data['per_page'] = $per_page;
         $data['page_number'] = $page_number;
