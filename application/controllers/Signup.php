@@ -2,6 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Signup extends CI_Controller {
+
     function __Construct() {
         parent::__Construct ();
         $this->load->database(); // load database

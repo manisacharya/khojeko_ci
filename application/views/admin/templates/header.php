@@ -48,7 +48,17 @@
 
     <nav class="navigation">
         <ul class="list-unstyled">
-            <li <?php if($title == "Index") { echo "class='active'";}?>><a href="<?php echo base_url('admin');?>"><span class="nav-label">Home</span></a></li>
+            <li class="has-submenu<?php if(strpos($title, "Adv") !== FALSE) { echo ' active';}?>"><a href="<?php echo base_url('admin');?>/#"><span class="nav-label">Home</span></a>
+                <ul class="list-unstyled">
+                    <li <?php if($title == "Index") { echo "class='active'";}?>><a href="<?php echo base_url('admin');?>/index">Index</a></li>
+                    <li <?php if($title == "Active Adv Personal") { echo "class='active'";}?>><a href="<?php echo base_url('admin');?>/active_adv_personal">Active Adv (Users:Personal)</a></li>
+                    <li <?php if($title == "Active Adv Dealer") { echo "class='active'";}?>><a href="<?php echo base_url('admin');?>/active_adv_dealer">Active Adv (Users:Dealer)</a></li>
+                    <li <?php if($title == "Inactive Adv Personal") { echo "class='active'";}?>><a href="<?php echo base_url('admin');?>/inactive_adv_personal">Inactive Adv (Users:Personal)</a></li>
+                    <li <?php if($title == "Inactive Adv Dealer") { echo "class='active'";}?>><a href="<?php echo base_url('admin');?>/inactive_adv_dealer">Inactive Adv (Users:Dealer)</a></li>
+                    <li <?php if($title == "Deleted Adv Personal") { echo "class='active'";}?>><a href="<?php echo base_url('admin');?>/deleted_adv_personal">Deleted Adv (Users:Personal)</a></li>
+                    <li <?php if($title == "Deleted Adv Dealer") { echo "class='active'";}?>><a href="<?php echo base_url('admin');?>/deleted_adv_dealer">Deleted Adv (Users:Dealer)</a></li>
+                </ul>
+            </li>
             <li <?php if($title == "Post Ad") { echo "class='active'";}?>><a href="<?php echo base_url('admin');?>/post_ad">Post Ad</a></li>
 
             <li class="has-submenu<?php if(strpos($title, "Category") !== FALSE) { echo ' active';}?>"><a href="<?php echo base_url('admin');?>/#"> <span class="nav-label">Category Management</span></a>
