@@ -209,12 +209,6 @@
     });
 </script>
 
-<style type="text/css">
-    .category3 i {
-        display: none;
-    }
-</style>
-
 <script type="text/javascript">
     $(document).ready(function() {
         $("#select").searchable();
@@ -227,7 +221,7 @@
     });
 </script>
 
-<script>
+<!--<script>
     $(".category0 li a" || ".category1 li a").on("click", function () {
         var x = $(this).attr('id');
         var y = this.text;
@@ -235,7 +229,7 @@
         document.getElementById("display_parent").innerHTML = y;
         $("#display_parent").css('color','black');
     });
-</script>
+</script>-->
 
 </body>
 </html>
