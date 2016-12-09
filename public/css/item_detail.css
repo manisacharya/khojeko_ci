@@ -114,6 +114,8 @@ border-spacing:5px;}
 
 .question_section question:before{content:'Q. '}
 
+.question_section by{color:grey	;padding-left:10px;font-size: small;}
+
 .question_section answer{color:green;padding-left:10px;}
 
 .question_section answer:before{content:'A. '}

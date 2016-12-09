@@ -286,6 +286,31 @@ class Pages extends CI_Controller {
         $data['dealer_items'] = $this->items_model->count_user_items('dealer');
         $data['user_items'] = $this->items_model->count_user_items('personal');
 
+        $retrieve = $this->categories_model->retrieve_category(1);
+        $category_info = $this->categories_model->get_one_category(1);
+
+				unset($categories);
+        $categories = array ($retrieve->root);
+
+        if($category_info->c_name != $retrieve->root) {
+            if ($retrieve->leaf1) {
+              	array_push($categories, $retrieve->leaf1);
+
+                if($category_info->c_name != $retrieve->leaf1) {
+                    if ($retrieve->leaf2) {
+                        array_push($categories, $retrieve->leaf2);
+
+												if($category_info->c_name != $retrieve->leaf2) {
+		                        if ($retrieve->leaf3)
+		                            array_push($categories, $retrieve->leaf3);
+												}
+                    }
+                }
+            }
+        }
+
+        $data['categories'] = $categories;
+
         /*$data['popular_district'] =
         $data['popular_dealer'] =
         $data['popular_categories'] = */
