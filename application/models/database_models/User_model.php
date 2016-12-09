@@ -79,6 +79,7 @@ class User_model extends CI_Model {
         $username = $this->input->post('username');
         $password = $this->input->post('password');
 
+        $this->db->where('type', 'admin');
         $query = $this->db->get('user');
         foreach ($query->result() as $row) {
             if($username == $row->khojeko_username) {
