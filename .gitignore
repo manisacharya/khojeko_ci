@@ -2,13 +2,14 @@
 
 application/config/config.php
 application/config/database.php
+vendor/
 phpstorm.php
 
 # IDE Files
 #-------------------------
 /nbproject/
 .idea/*
-
+git s
 ## Sublime Text cache files
 *.tmlanguage.cache
 *.tmPreferences.cache
