@@ -109,7 +109,7 @@ class Admin_pages extends CI_Controller {
         if ($this->input->post('verify') == "Verify") {
             $selected = $this->input->post('foo1');
             $this->latest_verified_unverified_ad_model->verify($selected);
-            redirect('admin/inactive_adv');
+            redirect('admin/'.$page);
         }
     }
 
@@ -120,7 +120,7 @@ class Admin_pages extends CI_Controller {
         if ($this->input->post('unverify') == "Unverify") {
             $selected = $this->input->post('foo2');
             $this->latest_verified_unverified_ad_model->unverify($selected);
-            redirect('admin/active_adv');
+            redirect('admin/'.$page);
         }
     }
 
