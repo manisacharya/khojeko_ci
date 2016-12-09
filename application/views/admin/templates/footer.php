@@ -9,7 +9,7 @@
 <script src="<?php echo base_url('public'); ?>/js/app/custom.js" type="text/javascript"></script>
 <script src="<?php echo base_url('public'); ?>/js/preview.js"></script>
 <script src="<?php echo base_url('public'); ?>/js/hawa.js"></script>
-<script src="<?php echo base_url('public'); ?>/js/categori.js"></script>
+<script src="<?php echo base_url('public'); ?>/js/category.js"></script>
 <script src="<?php echo base_url('public'); ?>/js/popup.js"></script>
     
 <script type="text/javascript">

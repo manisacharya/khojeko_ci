@@ -50,21 +50,10 @@
         <div class="col-sm-4 popular_district" >
             <u><a>Popular District</a></u>
             <div class="child">
-                <ol >
-                    <li> Kathmandu</li>
-                    <li> Bhaktapur</li>
-                    <li> Lalitpur</li>
-                    <li> Kaski</li>
-                    <li> Morang</li>
-                    <li> Sunsari</li>
-                    <li> Saptari</li>
-                    <li> Kabrepalanchok</li>
-                    <li> Dolkha</li>
-                    <li> jhapa</li>
-                    <li> Banke</li>
-                    <li> mustang</li>
-                    <li> Magdi</li>
-                    <li> Gorkha</li>
+                <ol>
+                    <?php foreach ($popular_district as $one):?>
+                        <li><?php echo $one->district."(".$one->views.")";?></li>
+                    <?php endforeach;?>
                 </ol>
             </div>
         </div>
@@ -88,13 +77,9 @@
             <u><a>Popular Dealers</a></u>
             <div id="ddChild">
                 <ol>
-                    <li>Rojeko dot com</li>
-                    <li>LS Mobile</li>
-                    <li>E-Bazzar</li>
-                    <li>RedEye Trade Link</li>
-                    <li>CG Impex Pvt LTD</li>
-                    <li>Computer Bazar</li>
-                    <li>Brothers International</li>
+                    <?php foreach ($popular_dealer as $one):?>
+                        <li><?php echo $one->name."(".$one->views.")";?></li>
+                    <?php endforeach;?>
                 </ol>
             </div>
         </div>
@@ -157,32 +142,24 @@
 
 <script type="text/javascript" src="<?php echo base_url('public/js/jquery.js');?>"></script>
 <script type="text/javascript" src="<?php echo base_url('public/js/bootstrap.min.js');?>"></script>
-<script type="text/javascript" src="<?php echo base_url('public/js/categori.js');?>"></script>
+<script type="text/javascript" src="<?php echo base_url('public/js/category.js');?>"></script>
 <script type="text/javascript" src="<?php echo base_url('public/js/list_grid.js');?>"></script>
 <script type="text/javascript" src="<?php echo base_url('public/js/jssor.slider.min.js');?>"></script>
-
-<script type="text/javascript" src="<?php echo base_url('public'); ?>/js/display.js"></script>
-<script type="text/javascript" src="<?php echo base_url('public'); ?>/js/back.js"></script>
-<script type="text/javascript" src="<?php echo base_url('public'); ?>/js/jquery-ui.js"></script>
-<script type="text/javascript" src="<?php echo base_url('public'); ?>/js/dropdown.js"></script>
-<script type="text/javascript" src="<?php echo base_url('public'); ?>/js/searchable_dropdown.js"></script>
-<script type="text/javascript" src="<?php echo base_url('public'); ?>/js/live_preview.js"></script>
-<script type="text/javascript" src="<?php echo base_url('public'); ?>/js/jquery.MultiFile.js"></script>
-<script type="text/javascript" src="<?php echo base_url('public'); ?>/js/jquery/jquery-1.9.1.min.js"></script>
-<script type="text/javascript" src="<?php echo base_url('public'); ?>/js/livepreview.js"></script>
-<script type="text/javascript" src="<?php echo base_url('public'); ?>/js/hawa.js"></script>
-
-<script type="text/javascript" src="<?php echo base_url('public'); ?>/js/ad_detail_slider.js"></script>
-<script type="text/javascript" src="<?php echo base_url('public'); ?>/js/count.js"></script>
-<script type="text/javascript" src="<?php echo base_url('public'); ?>/js/multiple_upload.js"></script>
-
 <!-- Custom JQuery -->
-<script src="<?php echo base_url('public'); ?>/js/app/custom.js" type="text/javascript"></script>
-<script src="<?php echo base_url('public'); ?>/js/plugins/nicescroll/jquery.nicescroll.min.js"></script>
-<script src="<?php echo base_url('public'); ?>/js/categori.js"></script>
-<script src="<?php echo base_url('public'); ?>/js/popup.js"></script>
-<script src="<?php echo base_url('public'); ?>/js/jquery.MultiFile.js"></script>
+<script type="text/javascript" src="<?php echo base_url('public/js/app/custom.js'); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url('public/js/plugins/nicescroll/jquery.nicescroll.min.js'); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url('public/js/popup.js'); ?>"></script>
 
+
+<script type="text/javascript" src="<?php echo base_url('public/js/back.js'); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url('public/js/dropdown.js'); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url('public/js/searchable_dropdown.js'); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url('public/js/live_preview.js'); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url('public/js/hawa.js'); ?>"></script>
+
+<script type="text/javascript" src="<?php echo base_url('public/js/ad_detail_slider.js'); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url('public/js/count.js'); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url('public/js/multiple_upload.js'); ?>"></script>
 
 <script>(function(d, s, id) {
         var js, fjs = d.getElementsByTagName(s)[0];
@@ -232,12 +209,6 @@
     });
 </script>
 
-<style type="text/css">
-    .category3 i {
-        display: none;
-    }
-</style>
-
 <script type="text/javascript">
     $(document).ready(function() {
         $("#select").searchable();
@@ -250,7 +221,7 @@
     });
 </script>
 
-<script>
+<!--<script>
     $(".category0 li a" || ".category1 li a").on("click", function () {
         var x = $(this).attr('id');
         var y = this.text;
@@ -258,7 +229,7 @@
         document.getElementById("display_parent").innerHTML = y;
         $("#display_parent").css('color','black');
     });
-</script>
+</script>-->
 
 </body>
 </html>

@@ -4,7 +4,11 @@ class Index_database_model extends CI_Model {
     // public function xss_invoke($variable, $name){
     //     $this->$variable = html_escape($this->security->xss_clean($this->input->post($name)));
     // }
-
+    public function __construct() {
+        // Call the CI_Model constructor
+        parent::__construct();
+        $this->load->model('categories_model');
+    }
     //fetch all data from $table
     function getAll($table, $orderby, $order) {
         $this->db->select('*')->from($table)->order_by($orderby, $order);
@@ -33,6 +37,13 @@ class Index_database_model extends CI_Model {
 
         $this->db->select('*')->from($tableFrom);
         $this->db->join($tableJoin, "$tableFrom.$id = $tableJoin.$id");
+//        $this->db->where('quantity'!=0);
+//        $this->db->where('isverified'==1);
+//        $this->db->where('sales_status'==1);
+//        $this->db->where('adduration'!=0);
+//        $this->db->where('visibility'==1);
+//        $this->db->where('deleted_date'==1);
+
         $query = $this->db->get();
         return $query->result();
     }
@@ -45,6 +56,12 @@ class Index_database_model extends CI_Model {
         //$this->db->join('category', "category.cid = $tableJoin.cid");
  
         $this->db->order_by("$tableJoin.$orderAtr", 'desc');
+//        $this->db->where('quantity',!0);
+//        $this->db->where('isverified', 1);
+//        $this->db->where('sales_status', 1);
+//        $this->db->where('adduration', !0);
+//        $this->db->where('visibility', 1);
+//        $this->db->where('deleted_date', 1);
         $query = $this->db->get();
         return $query->result();
     }
@@ -106,25 +123,6 @@ class Index_database_model extends CI_Model {
         return $this->db->get('items')->result();
     }
 
-    public function can_log_in(){
-        $this->db->select('*')->from('user');
-
-        $this->db->where('khojeko_username', $this->input->post('username'));
-        $this->db->where('password', $this->input->post('password'));
-
-        $query = $this->db->get();
-
-        if($query->num_rows() == 1)
-            return true;
-        else
-            return false;
-
-    }
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
     public function joinThings($table, $columns, $joins) {
         $this->db->select($columns)->from($table);
 
@@ -136,5 +134,8 @@ class Index_database_model extends CI_Model {
         return $this->db->get()->result();
     }
 
+    public function show_section(){
+
+    }
 };
 ?>

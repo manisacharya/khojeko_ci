@@ -4,6 +4,7 @@ class Categories_model extends CI_Model {
     public $c_name;
     public $parent_id;
     public $c_deleted;
+    public $c_position;
 
     public function __construct() {
          // Call the CI_Model constructor
@@ -82,9 +83,55 @@ class Categories_model extends CI_Model {
             $category->parent_id    = html_escape($this->security->xss_clean($category->parent_id));
             $category->c_slug       = html_escape($this->security->xss_clean($category->c_slug));
             $category->c_deleted    = html_escape($this->security->xss_clean($category->c_deleted));
+            $category->c_position   = html_escape($this->security->xss_clean($category->c_position));
         }
         unset($category);
 
         return $array;
     }
+
+    public function get_position(){
+        if ($this->db->table_exists('category')) {
+            $this->get_categories();
+            $this->db->where('c_position !=', 0);
+            $query = $this->db->get('category');
+
+            return $query->result();
+        } else {
+            echo show_error('We have encountered a problem !');
+        }
+    }
+
+    public function get_one_category($id) {
+
+			$this->db->select('*')->from('category');
+			$this->db->where('c_id', $id);
+			$query = $this->db->get();
+			return $query->row();
+
+		}
+
+		public function retrieve_category($id) {
+
+			$this->db->select('one.c_name AS root, two.c_name AS leaf1, three.c_name AS leaf2, four.c_name AS leaf3');
+			$this->db->from('category AS one');
+			$this->db->join('category AS two', 'two.parent_id = one.c_id', 'LEFT');
+			$this->db->join('category AS three', 'three.parent_id = two.c_id', 'LEFT');
+			$this->db->join('category AS four', 'four.parent_id = three.c_id', 'LEFT');
+			$this->db->where('one.parent_id', 0);
+
+			$this->db->group_start();
+			$this->db->or_where('one.c_id', $id);
+			$this->db->or_where('two.c_id', $id);
+			$this->db->or_where('three.c_id', $id);
+			$this->db->or_where('four.c_id', $id);
+			$this->db->group_end();
+
+			$this->db->limit(1);
+
+			$query = $this->db->get();
+
+			return $query->row();
+
+		}
 }

@@ -374,7 +374,7 @@
                             <tr>
                                 <td>
                                     Dealer's logo:
-                                    <input id="dealerlogo" type="file" name="dealerlogo" accept="image/*"  onchange="showMyImage1(this);" />
+                                    <input id="dealerlogo" type="file" name="dealerlogo" accept="image/*"  onchange="showMyImage(this,'dealerlogo','1');" />
                                 </td>
                                 <td id="row1">
                                     <img id="thumbnail1" />
@@ -383,7 +383,7 @@
                             <tr>
                                 <td>
                                     Dealer's Registration VAT/PAN scan copy:
-                                    <input id="dealervat" type="file" name="dealervat" accept="image/*"  onchange="showMyImage2(this)" />
+                                    <input id="dealervat" type="file" name="dealervat" accept="image/*"  onchange="showMyImage(this,'dealervat','2')" />
                                 </td>
                                 <td id="row2">
                                     <img id="thumbnail2" />
@@ -396,15 +396,15 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <input id="dealerstore" type="file" name="dealerstore" accept="image/*"  onchange="showMyImage3(this)" />
+                                    <input id="dealerstore" type="file" name="dealerstore" accept="image/*"  onchange="showMyImage(this,'dealerstore','3')" />
                                 </td>
                                 <td>
-                                    <input id="dealerstore1" type="file" name="dealerstore1" accept="image/*"  onchange="showMyImage4(this)" />
+                                    <input id="dealerstore1" type="file" name="dealerstore1" accept="image/*"  onchange="showMyImage(this,'dealerstore1','4')" />
                                 </td>
                             </tr>
                             <tr>
                                 <td id="row3">
-                                    <img id="thumbnail3" />&nbsp;
+                                    <img id="thumbnail3" />
                                 </td>
                                 <td id="row4">
                                     <img id="thumbnail4" />
@@ -412,10 +412,10 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <input id="dealerstore2" type="file" name="dealerstore2" accept="image/*"  onchange="showMyImage5(this)" />
+                                    <input id="dealerstore2" type="file" name="dealerstore2" accept="image/*"  onchange="showMyImage(this,'dealerstore2','5')" />
                                 </td>
                                 <td>
-                                    <input id="dealerstore3" type="file" name="dealerstore3" accept="image/*"  onchange="showMyImage6(this)" />
+                                    <input id="dealerstore3" type="file" name="dealerstore3" accept="image/*"  onchange="showMyImage(this,'dealerstore3','6')" />
                                 </td>
                             </tr>
                             <tr>

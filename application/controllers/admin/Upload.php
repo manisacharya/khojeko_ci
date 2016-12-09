@@ -12,16 +12,20 @@ class Upload extends CI_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->helper(array('form', 'url'));
+        $this->load->model('database_models/user_model');
     }
 
-    public function index() {
-        $data = array(
-            'title' => 'Upload Form',
-            'error' => ''
-        );
-        $this->load->view('templates/header', $data);
-        $this->load->view('upload/upload_form', $data);
-        $this->load->view('templates/footer');
+    public function site_logo() {
+        $data['error'] = 'Dimensions: 250x100 | Only PNG';
+        $data['title'] = "Site Logo";
+        $data['user_info'] = $this->user_model->get_user_info('admin', $this->session->userdata['admin_logged_in']['id']);
+
+        $data['upload_status'] = "Upload file from here.";
+        $data['message'] = $this->session->flashdata('message');
+
+        $this->load->view('admin/templates/header', $data);
+        $this->load->view('admin/site_logo', $data);
+        $this->load->view('admin/templates/footer');
     }
 
     public function logo_upload() {
