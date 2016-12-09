@@ -7,6 +7,16 @@
         <button value="View More" id="view_btn">View More</button>
     </div>
 
+    <div>
+      <?php
+          foreach ($categories as $key => $one) {
+              echo $one;
+              if($key+1 != count($categories))
+                  echo " >> ";
+          }
+      ?>
+    </div>
+
     <ul class="list">
         <?php foreach ($searched_items as $item): ?>
         <a href="<?php echo base_url('details/'.$item->item_id);?>">

@@ -33,6 +33,32 @@ class Search extends CI_Controller {
             $data['recent_views'] = $this->recent_view_model->get_recent_view($user_session['logged_in']['id']);
         }
 
+
+        $retrieve = $this->categories_model->retrieve_category(2);
+        $category_info = $this->categories_model->get_one_category(2);
+
+				unset($categories);
+        $categories = array ($retrieve->root);
+
+        if($category_info->c_name != $retrieve->root) {
+            if ($retrieve->leaf1) {
+              	array_push($categories, $retrieve->leaf1);
+
+                if($category_info->c_name != $retrieve->leaf1) {
+                    if ($retrieve->leaf2) {
+                        array_push($categories, $retrieve->leaf2);
+
+												if($category_info->c_name != $retrieve->leaf2) {
+		                        if ($retrieve->leaf3)
+		                            array_push($categories, $retrieve->leaf3);
+												}
+                    }
+                }
+            }
+        }
+
+        $data['categories'] = $categories;
+
         // SEARCH QUERIES
         $data['searched_items'] = $this->search_model->search_items();
         $data['searched_personals'] = $this->search_model->search_personals();
