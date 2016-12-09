@@ -1,4 +1,9 @@
-
+<script>
+function changeDisplayImage(image) {
+target = document.getElementById('displayImage');
+target.src = image.src;
+}
+</script>
 <div class="clearfix"></div>
 
 <?php echo $fav_msg; ?>
@@ -87,7 +92,7 @@
         <?php if($details->sales_status == 0){ ?>
             <img src="<?php echo base_url('public/images/sold1.jpg'); ?>" alt="sold" id="sold" class="img-responsive">
         <?php } ?>
-        <img src="<?php echo base_url();?>public/images/item_images/<?php echo $image->row()->image;?>" id="item_img" class="img-responsive">
+        <img id="displayImage" src="<?php echo base_url();?>public/images/item_images/<?php echo $image->row()->image;?>" id="item_img" class="img-responsive">
     </div><!--item_images ends -->
 
     <div class="clearfix"></div>
@@ -97,7 +102,7 @@
             <div u="slides" style="cursor: move; width: 100%; height: 120px;margin-left:10px;">
                 <?php foreach ($image->result() as $row): ?>
                     <div class="item_image_section">
-                        <img src="<?php echo base_url();?>public/images/item_images/<?php echo $row->image; ?>" alt="mobile">
+                        <img onclick="changeDisplayImage(this)" src="<?php echo base_url();?>public/images/item_images/<?php echo $row->image; ?>" alt="mobile">
                     </div>
                 <?php endforeach ?>
 
@@ -273,8 +278,8 @@
     <div class="question_answer_section">
 
         <?php foreach ($question->result() as $row): ?>
-            <question><?php echo $row->question ?></question>-asked by: <?php echo $row->khojeko_username; ?> on
-            <?php echo mdate('%d %M %Y', $row->posted_date);?><br>
+            <question><?php echo $row->question ?></question><by>-asked by: <em><?php echo $row->khojeko_username; ?></em> on
+            <?php echo mdate('%d %M %Y', $row->posted_date);?></by><br>
             <?php
             $ans = $row->answer;
             if($ans!=NULL){
