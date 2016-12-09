@@ -44,6 +44,7 @@
             $.mobile.ignoreContentEnabled = true;
         });
     </script>
+
     <script type="text/javascript" src="<?php echo base_url('public'); ?>/js/ad_detail_slider.js"></script>
     <script type="text/javascript" src="<?php echo base_url('public'); ?>/js/count.js"></script>
     <script type="text/javascript" src="<?php echo base_url('public'); ?>/js/multiple_upload.js"></script>
@@ -258,7 +259,7 @@
 
                     <div class="second_login_dealer">
 
-                        <table class="login_table">
+                        <table class="login_table" id="dynamic_field">
                             <h3>Dealer Account</h3>
                             <tr>
                                 <td>
@@ -370,30 +371,62 @@
                                     <?php echo form_error('website', '<div class="alert alert-danger">', '</div>'); ?>
                                 </td>
                             </tr>
-                        </table>
-                        Dealer's logo:
-                        <input type="file" name="dealerlogo" accept="image/*"  onchange="showMyImage(this)" />
-                        <br/>
-                        <!--                            <img id="thumbnil" style="width:20%; margin-top:10px;"  src="" alt="image"/><br>-->
-
-                        Dealer's Registration VAT/PAN scan copy:
-                        <input type="file" name="dealervat" accept="image/*"  onchange="showMeImage(this)" />
-                        <br/>
-                        <!--                            <img id="thumbnail" class="img-rounded"  src="" alt="image"/><br>-->
-
-
-                        <div id="dynamic_field">
-                            <div class="row">
-                                <div class="col-md-10">
+                            <tr>
+                                <td>
+                                    Dealer's logo:
+                                    <input id="dealerlogo" type="file" name="dealerlogo" accept="image/*"  onchange="showMyImage(this,'dealerlogo','1');" />
+                                </td>
+                                <td id="row1">
+                                    <img id="thumbnail1" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Dealer's Registration VAT/PAN scan copy:
+                                    <input id="dealervat" type="file" name="dealervat" accept="image/*"  onchange="showMyImage(this,'dealervat','2')" />
+                                </td>
+                                <td id="row2">
+                                    <img id="thumbnail2" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
                                     Store Front Photos(if any):
-                                    <input type="file" name="dealerstore" accept="image/*"  onchange="showMyImage(this)" />
-                                </div>
-                                <div class="col-md-2">
-                                    <button type="button" name="add" id="add" class="btn btn-primary btn-xs pull-right">Add More Photos (Maximum 4)</button>
-                                </div>
-                            </div>
-                        </div>
-
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input id="dealerstore" type="file" name="dealerstore" accept="image/*"  onchange="showMyImage(this,'dealerstore','3')" />
+                                </td>
+                                <td>
+                                    <input id="dealerstore1" type="file" name="dealerstore1" accept="image/*"  onchange="showMyImage(this,'dealerstore1','4')" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td id="row3">
+                                    <img id="thumbnail3" />
+                                </td>
+                                <td id="row4">
+                                    <img id="thumbnail4" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input id="dealerstore2" type="file" name="dealerstore2" accept="image/*"  onchange="showMyImage(this,'dealerstore2','5')" />
+                                </td>
+                                <td>
+                                    <input id="dealerstore3" type="file" name="dealerstore3" accept="image/*"  onchange="showMyImage(this,'dealerstore3','6')" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td id="row5">
+                                    <img id="thumbnail5" />
+                                </td>
+                                <td id="row6">
+                                    <img id="thumbnail6" />
+                                </td>
+                            </tr>
+                        </table>
                     </div>
                     <br>
                     <button class="btn btn-default prevBtn btn-lg pull-left" type="button" >Prev</button>
@@ -648,17 +681,5 @@
 <script type="text/javascript">
     $('#butn').on('click', function() {
         $("#form1").valid();
-    });
-</script>
-<script>
-    $(window).load(function(){
-        var i=1;
-        $('#add').click(function(){
-            //i++;
-            if(i<=3) {
-                $('#dynamic_field').append('<div class="row"><div class="col-md-10"><input type="file" name="dealerstore'+i+'" accept="image/*"  onchange="showMyImage(this)" /></div></div>');
-                i++;
-            }
-        });
     });
 </script>
