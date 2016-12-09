@@ -112,7 +112,7 @@ class Signup extends CI_Controller {
             $this->form_validation->set_rules('profile', 'Company Profile', 'required|trim');
             $this->form_validation->set_rules('website', 'Company Website', 'required|trim');
 
-            $name = $this->input->post('dealer_name');
+            $name = $this->input->post('user_name');
             //add the input data to temporary table
             if($this->form_validation->run()){
                 $username = $this->input->post('user_name');
