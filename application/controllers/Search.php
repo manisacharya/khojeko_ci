@@ -8,12 +8,12 @@ class Search extends CI_Controller {
         $this->load->database(); // load database
         $this->load->model('khojeko_db_model'); // load model
         $this->load->model('general_database_model');
-        $this->load->model('hierarchy_model');
         $this->load->model('database_models/categories_model');
         $this->load->model('search_model');
         $this->load->model('database_models/dealer_model');
         $this->load->model('database_models/items_model');
         $this->load->model('database_models/user_model');
+        $this->output->enable_profiler(TRUE);
     }
 
     public function results() {
@@ -32,32 +32,6 @@ class Search extends CI_Controller {
             $user_session = $this->session->all_userdata();
             $data['recent_views'] = $this->recent_view_model->get_recent_view($user_session['logged_in']['id']);
         }
-
-
-        $retrieve = $this->categories_model->retrieve_category(2);
-        $category_info = $this->categories_model->get_one_category(2);
-
-				unset($categories);
-        $categories = array ($retrieve->root);
-
-        if($category_info->c_name != $retrieve->root) {
-            if ($retrieve->leaf1) {
-              	array_push($categories, $retrieve->leaf1);
-
-                if($category_info->c_name != $retrieve->leaf1) {
-                    if ($retrieve->leaf2) {
-                        array_push($categories, $retrieve->leaf2);
-
-												if($category_info->c_name != $retrieve->leaf2) {
-		                        if ($retrieve->leaf3)
-		                            array_push($categories, $retrieve->leaf3);
-												}
-                    }
-                }
-            }
-        }
-
-        $data['categories'] = $categories;
 
         // SEARCH QUERIES
         $data['searched_items'] = $this->search_model->search_items();

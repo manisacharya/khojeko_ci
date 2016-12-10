@@ -87,7 +87,7 @@ ul.list li a.sub:hover{
             position: relative;
         }
 
-	.button{color:#666}
+	.button{color:#666; font-size: 11pt;}
 	
 	#tick{color:green}
 	#danger{color:red}

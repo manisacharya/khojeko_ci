@@ -61,19 +61,29 @@
 
 	<ul class="list">
 		<?php foreach ($all_dealer_items as $item): ?>
-			<li>
+            <a href="<?php echo base_url('details/'.$item->item_id)?>">
+            <li>
 				<div class="col-sm-2" id="image_content">
 					<img src="<?php echo base_url('public/images/item_images/'.$item->image);?>" class="img-responsive"/>
 				</div>
 				<div class="col-sm-10" id="info_content">
 					<section class="list-right">
                     <span class="price">
-                        <a class="button"><?php echo $item->c_name; ?></a><br>
-						<label><?php echo $item->views; ?></label>
-                        <i class="fa fa-eye" ></i>
-                        <i class="fa fa-clock-o" ></i>
-                        <i class="fa fa-heart" ></i>
-                        <i class="fa fa-comment-o"></i>
+                        <a class="button">
+                            <?php
+                                echo ($item->gg_parent) ? $item->gg_parent.' >> ' : '';
+                                echo ($item->g_parent) ? $item->g_parent.' >> ' : '';
+                                echo ($item->parent) ? $item->parent.' >> ' : '';
+                                echo $item->category;
+                            ?>
+                        </a><br>
+						<label style="float: right;">
+                            <?php echo $item->views; ?>
+                            <i class="fa fa-eye" ></i>
+                            <i class="fa fa-clock-o" ></i>
+                            <i class="fa fa-heart" ></i>
+                            <i class="fa fa-comment-o"></i>
+                        </label>
                     </span>
 					</section>
 					<section class="list-left">
@@ -93,6 +103,7 @@
 					</section>
 				</div>
 			</li>
+            </a>
 		<?php endforeach;?>
 	</ul>
 
