@@ -95,11 +95,6 @@ table{border-collapse:separate;
 border-spacing:1em;
 }
 
-.category0,.category1,.category2{list-style-type:none;}
-
-.category0 li a,.category1 li a,.category2 li a{text-decoration:none;color:#000;font-size:16px;font-weight:500}
-
-
 input.readonly{width:520px;}
 
 .step-3 input.sstep{width:500px}

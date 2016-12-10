@@ -87,7 +87,7 @@ ul.list li a.sub:hover{
             position: relative;
         }
 
-	.button{color:#666; font-size: 11pt;}
+	.button{color:#666; font-size:11pt;}
 	
 	#tick{color:green}
 	#danger{color:red}
@@ -105,7 +105,7 @@ border-spacing: 10px;
 ul.grid #image_content{width:100%;}
 ul.grid #image_content img{display:block;margin:auto;height:150px;width:200px;margin-top:5px;}
 ul.grid #info_content{width:100%}
-   ul.grid li { width: 215px; min-height:210px;background: #e6e6e6;list-style-type: none;padding-left:4px;display:inline-block;border-radius:10px;margin-right:4px;margin-bottom:10px;}
+   ul.grid li { width: 208px; min-height:210px;background: #e6e6e6;list-style-type: none;display:inline-block;border-radius:10px;margin-bottom:10px;}
 	ul.grid li p{display:none;}
 	ul.grid li .list-left{text-align:center;margin-top:0px;}
 ul.grid li a.sub{
@@ -157,7 +157,7 @@ ul.grid1 {
 ul.grid1 #image_content{width:100%;}
 ul.grid1 #image_content img{display:block;margin:auto;height:150px;width:200px;margin-top:5px;}
 ul.grid1 #info_content{width:100%}
-   ul.grid1 li { width: 215px; min-height:200px;background: #e6e6e6;list-style-type: none;padding-left:4px;display:inline-block;border-radius:10px;margin-right:4px;margin-bottom:10px;}
+   ul.grid1 li { width: 208px; min-height:200px;background: #e6e6e6;list-style-type: none;display:inline-block;border-radius:10px;margin-bottom:10px;}
 	ul.grid1 li .list-left{text-align:center;margin-top:0px;}
 ul.grid1 li a.sub1{
         text-decoration: none;

@@ -1,12 +1,8 @@
 @charset "utf-8";
 /* CSS Document */
-body{font-family:Verdana, Geneva, sans-serif;width:99%;margin:auto}
+
+a {color: #000;  }
 a:hover{text-decoration:none}
-@font-face {
-  font-family: 'Glyphicons Halflings';
-  src: url('Content/fonts/glyphicons-halflings-regular.eot');
-  src: url('Content/fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded- opentype'), url('Content/fonts/glyphicons-halflings-regular.woff') format('woff'), url('Content/fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('Content/fonts/glyphicons-halflings-regular.svg#glyphicons-halflingsregular') format('svg');
-}
 /*header*/
 .navbar-toggle{background:black}
 nav{background:#1077b2;color:white}
@@ -207,5 +203,5 @@ a#scrollUp i{
 .category0 li a,.category1 li a,.category2 li a{text-decoration:none;color:#000;font-size:16px;font-weight:500}
 
 .partners {position: relative; margin: 0 auto; top: 0px; left: 0px; width: 1000px; height: 80px; overflow: hidden; visibility: hidden;clear: both;}
-.partners_slider {cursor: default; position: relative; top: 10px; left: 0px; width: 1000px; height: 60px; overflow: hidden;clear: both;}
+.partners_slider {cursor: default; position: relative; left: 0px; width: 1000px; height: 80px; overflow: hidden;clear: both;}
 .navbar {margin:0px;}
