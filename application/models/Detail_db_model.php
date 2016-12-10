@@ -20,7 +20,15 @@ class Detail_db_model extends CI_Model{
 
     //show details of item table
     public function get_details_item($id){
-        $info = $this->get_sql('items','item_id', $id);
+        $this->db->select('items.*, item_spec.specs, four.c_name AS gg_parent, three.c_name AS g_parent, two.c_name AS parent, one.c_name AS category');
+        $this->db->where('items.item_id', $id);
+        $this->db->join('item_spec', 'items.item_id = item_spec.item_id');
+
+        $this->db->join('category AS one', 'one.c_id = items.c_id');
+        $this->db->join('category AS two', 'one.parent_id = two.c_id', 'LEFT');
+        $this->db->join('category AS three', 'two.parent_id = three.c_id', 'LEFT');
+        $this->db->join('category AS four', 'three.parent_id = four.c_id', 'LEFT');
+        $info = $this->db->get('items');
         if($info->row() ==  NULL)
             show_error('Sorry, page broken.');
         $row = $this->item_xss_clean($info->row());

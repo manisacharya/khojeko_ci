@@ -9,7 +9,7 @@ nav{background:#1077b2;color:white}
 .menu{border-radius:8px; float:right;}
 #myNavbar{background:#1077b2;color:white; }
 #myNavbar ul li a{color:white;font-size:14px;margin:0px;}
-#myNavbar ul li a:hover{color:black}
+#myNavbar ul li a:hover{opacity: 0.9; background-color: #1077b2; }
 .nav > li > a {
     position: relative;
     display: block;

@@ -24,9 +24,6 @@
     <link href="<?php echo base_url('public/images/ico/apple-touch-icon-57-precomposed.png');?>" rel="apple-touch-icon-precomposed" />
     <link href="<?php echo base_url('public/images/icons/icon.ico')?>" rel="shortcut icon" />
 
-    <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet" />
-
-
 </head>
 <body id="page-wrap">
     <div id="fb-root"></div>
@@ -107,7 +104,7 @@
                         </select>
                     </div>
 
-                    <div class="cat">
+                    <div class="hierarchy">
                         <div>
                             <?php
                             require_once('require/category.php');

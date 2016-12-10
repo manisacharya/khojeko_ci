@@ -110,3 +110,7 @@ padding-left:10px;
   /* show children when item is checked */
   display: block;
 }
+
+.hierarchy {
+  margin-top: 10px;
+}

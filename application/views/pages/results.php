@@ -1,7 +1,7 @@
 
 <div class="listCon">
-    <div id="viewcontrols" data-enhance="false">
-        <a class="info"  onMouseOver="this.style.color='#ffffff'" onMouseOut="this.style.color='#ffffff'">Showing 1 - 10 of 100 results of Items</a>
+    <div id="viewcontrols">
+        <a class="info" onMouseOver="this.style.color='#ffffff'" onMouseOut="this.style.color='#ffffff'">Showing 1 - 10 of 100 results of Items</a>
         <a class="gridview" href="#!"><span class="glyphicon glyphicon-th"></span></a>
         <a class="listview" href="#!"><span class="glyphicon glyphicon-th-list"></span></a>
         <button value="View More" id="view_btn">View More</button>
@@ -50,7 +50,6 @@
             </li>
         </a>
         <?php endforeach;?>
-
     </ul>
 
 </div><!--listcon ends-->

@@ -19,8 +19,8 @@ function print_list($parent, $level, $array) {
             <?php if ( ! $child->c_deleted): ?>
                 <li>
                     <a href="#" id="<?php echo $child->c_id; ?>">
-                        <span class="glyphicon glyphicon-plus"></span>
-                        <span class="glyphicon glyphicon-minus"></span>
+                        <span class="glyphicon glyphicon-plus-sign"></span>
+                        <span class="glyphicon glyphicon-minus-sign"></span>
                         <?php echo $child->c_name; ?>
                     </a>
                     <?php print_list($child->c_id, $level+1, $array); ?>

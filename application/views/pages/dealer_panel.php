@@ -86,7 +86,7 @@
                         <?php echo form_close(); ?>
                     <?php endif; ?>
                 </div>
-                <div class="col-sm-2" style="padding-left:15px;">
+                <div class="col-sm-1" style="padding-left:15px;">
                     <?php echo form_open('sold_unsold/'.$item->item_id.'/'.$item->sales_status); ?>
                         <?php if(!$item->sales_status): ?>
                             <button type="submit" class="red">Unsold</button>
@@ -106,11 +106,20 @@
                 <div class="col-sm-1">
                     <?php echo form_open('delete'); ?>
                         <?php echo form_hidden('item_id', $item->item_id) ?>
-                        <button type="submit" class="delete"><i class="fa fa-trash-o"></i></button>
+                        <button type="submit" class="delete"><span class="glyphicon glyphicon-trash"></span></button>
                     <?php echo form_close(); ?>
                     <?php echo form_open('edit'); ?>
                         <?php echo form_hidden('item_id', $item->item_id) ?>
-                        <button type="submit" class="edit"><i class="fa fa-edit"></i></button>
+                        <button type="submit" class="edit"><span class="glyphicon glyphicon-edit"></span></button>
+                    <?php echo form_close(); ?>
+                </div>
+                <div class="col-sm-2">
+                    <?php echo form_open('premium/'.$item->item_id.'/'.$item->is_premium); ?>
+                    <?php if(!$item->is_premium): ?>
+                        <button type="submit" class="blue">Premium</button>
+                    <?php else: ?>
+                        <button type="submit" class="green">Not Premium</button>
+                    <?php endif; ?>
                     <?php echo form_close(); ?>
                 </div>
             </li>
