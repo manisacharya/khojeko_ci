@@ -94,7 +94,7 @@ target.src = image.src;
 <div class="col-sm-7" style="clear:both">
     <div class="item_image">
         <?php if($details->sales_status == 0){ ?>
-            <img src="<?php echo base_url('public/images/sold1.jpg'); ?>" alt="sold" id="sold" class="img-responsive">
+            <img src="<?php echo base_url('public/images/sold.png'); ?>" alt="sold" id="sold" class="img-responsive">
         <?php } ?>
         <img id="displayImage" src="<?php echo base_url();?>public/images/item_images/<?php echo $image->row()->image;?>" id="item_img" class="img-responsive">
     </div><!--item_images ends -->
