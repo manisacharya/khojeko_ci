@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Khojeko - Online Buying and Selling</title>
 
+    <link href="<?php echo base_url('public/css/jquery.mobile-1.4.5.min.css');?>" rel="stylesheet" />
     <link href="<?php echo base_url('public/css/bootstrap/bootstrap.css');?>" rel="stylesheet" />
     <link href="<?php echo base_url('public/css/main.css');?>" rel="stylesheet" />
     <link href="<?php echo base_url('public/css/responsive.css');?>" rel="stylesheet" />
@@ -16,12 +17,6 @@
     <link href="<?php echo base_url('public/css/login.css');?>" rel="stylesheet" />
     <link href="<?php echo base_url('public/css/signup.css'); ?>"  rel="stylesheet">
 
-    <link href="<?php echo base_url('public');?>/css/jquery.mobile-1.4.5.min.css" rel="stylesheet" />
-
-    <link href="<?php echo base_url('public/images/ico/apple-touch-icon-144-precomposed.png');?>" rel="apple-touch-icon-precomposed" sizes="144x144" />
-    <link href="<?php echo base_url('public/images/ico/apple-touch-icon-114-precomposed.png');?>" rel="apple-touch-icon-precomposed" sizes="114x114" />
-    <link href="<?php echo base_url('public/images/ico/apple-touch-icon-72-precomposed.png');?>" rel="apple-touch-icon-precomposed" sizes="72x72" />
-    <link href="<?php echo base_url('public/images/ico/apple-touch-icon-57-precomposed.png');?>" rel="apple-touch-icon-precomposed" />
     <link href="<?php echo base_url('public/images/icons/icon.ico')?>" rel="shortcut icon" />
 
 </head>
@@ -113,6 +108,27 @@
                         </div>
                     </div>
                 </div><!--category_block End-->
+
+                <div id="filter">
+                    <a class="tt">Condition</a><hr class="clas1"/><br>
+                    <a class="st">New</a><br>
+                    <a class="st">Used</a><br>
+                    <a class="tt">Price:</a><hr class="clas2"/>
+
+                    <div data-demo-html="true">
+                        <form>
+
+                            <div data-role="rangeslider" id="range">
+                                <input type="range" name="range-1a" id="range-1a" min="100" max="10000" value="400" style="width:50px;font-size:9px">
+                                <input type="range" name="range-1b" id="range-1b" min="100" max="10000" value="8000" style="width:50px;font-size:9px;margin-left:40px;">
+                            </div>
+                        </form>
+                    </div><!-- /demo-html -->
+
+
+                    <a class="st">Apply Filter</a><br>
+                    <a class="st" style="padding-left: 120px;">Clear all filters<i class="fa fa-times" style="color: red"></i></a>
+                </div>
 
                 <div class="banner">
                     <img src="<?php echo base_url('public/images/shipping.jpg');?>" class="img-responsive">

@@ -17,9 +17,9 @@ nav{background:#1077b2;color:white}
 }
 #menuid{background:#1077b2;color:white}
 /*.ads_number{margin-top:10px}*/
-.ads_number {margin:5px 0;}
+.ads_number {margin:3px 0; font-size: 12pt;}
 .ads_number li{list-style-type:none;float:right}
-.ads_number li a{margin-right:20px;color:#333;text-decoration:none}
+.ads_number li a{margin-right:15px;color:#333;text-decoration:none}
 
 /*add section*/
 #left{display:inline-block;border:1px solid black;height:100px}
@@ -66,9 +66,9 @@ li.dropdown:hover > ul.submenu{
 
 
 #test{color:white;float:right;margin-right:20px;}
-#list li{list-style-type:none;color:black;font-weight:300}
+#list li{list-style-type:none;color:black;font-weight:300;}
 
-.dealer_list_topic{background:#999;color:white;padding-left:30px;font-size:18px;border-radius:5px;display:inline-block;width:100%}
+.dealer_list_topic{background:#999;color:white;padding:5px;font-size:14px;display:inline-block;width:100%}
 
 #list{-moz-column-count: 4;
 -moz-column-gap: 20px;
@@ -77,17 +77,29 @@ li.dropdown:hover > ul.submenu{
 column-count: 4;
 column-span: all;
 column-gap: 20px;
+font-size: 11pt;
 list-style-type: none;
 text-decoration: none;
 overflow: hidden;
+margin: 0;
+padding: 5px 20px;
 color: #03C;}
 
-#dealer_logo{background:#999;border-radius:5px;}
+#dealer_logo{background:#999;}
 #dealer_logo a{color:white;margin-left:20px;font-size:18px}
-.dealer_listing{margin-bottom:20px;border:1px solid #999;border-radius:5px;background:#CCC;}
+.dealer_listing{margin-bottom:20px;border:1px solid #999;background:#CCC;}
 
-.logosl{border:1px solid #999;border-radius:5px;margin-bottom:20px}
+.listing {
+    background-color: #ccc;
+    height:200px;
+}
+.listing ol {
+    margin: 0;
+    padding: 20px;
+}
+.listing div strong {text-decoration: underline;}
 
+.logosl{border:1px solid #999;margin-bottom:20px}
 
 .child{-moz-column-count: 2;
 -moz-column-gap: 10px;
@@ -101,21 +113,18 @@ text-decoration: none;
 overflow: hidden;
 }
 
-.popular_district{background:#CCC;border-radius:5px;padding-left:10px;color:white}
+.popular {color:#000; background:#CCC;border-radius:0px; padding:10px; border: 1px rgba(10, 76, 114, 0.6) solid; height:200px;}
+.popular_title {text-align: center;}
 
-.popular_district,.popular_cat,.popular_Dea,.popular_district a,.popular_cat a,.popular_Dea a {color:#360}
-.popular_district li,.popular_cat li,.popular_Dea li{color:#333}
-.popular_cat{background:#Ccc;border-radius:5px;padding-left:10px}
-.popular_Dea{background:#Ccc;border-radius:5px;padding-left:10px}
 .history{margin-top:20px;}
 .history h4{color:#360;}
 .a_history{float:right}
 .history_section{border:1px solid;color:#390;}
-.history_section img{height:150;width:150px}
+.history_section img{height:150px;width:150px}
 .history_section li{list-style-type:none;display:inline-block;text-align:center}
 .history_section .title{color:#036;text-align:center}
 .history_section .title .sub{color:#333}
-.history_title{display:inline;margin-top:10px;font-size:18px;}
+.history_title{display:inline;font-size:14px; padding:10px;}
 .history_title a{color:#360}
 .down_menu{text-align:center;margin-top:10px;}
 .down_menu li{display:inline-block;font-size:16px}
