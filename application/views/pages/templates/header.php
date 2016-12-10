@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Khojeko - Online Buying and Selling</title>
 
-    <link href="<?php echo base_url('public/css/bootstrap.min.css');?>" rel="stylesheet" />
+    <link href="<?php echo base_url('public/css/bootstrap/bootstrap.css');?>" rel="stylesheet" />
     <link href="<?php echo base_url('public/css/main.css');?>" rel="stylesheet" />
     <link href="<?php echo base_url('public/css/responsive.css');?>" rel="stylesheet" />
     <link href="<?php echo base_url('public/css/category.css');?>" rel="stylesheet" />
@@ -37,7 +37,7 @@
             </div>
 
             <div class="col-md-9">
-                <nav class="navbar navbar-inverse menu">
+                <nav class="navbar menu">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar" id="nav-buttton">
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>

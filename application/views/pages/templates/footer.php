@@ -42,6 +42,24 @@
                 <div style="display: none;">
                     <img data-u="image" src="<?php echo base_url('public/images/logos/ebay.jpg');?>" />
                 </div>
+                <div style="display: none;">
+                    <img data-u="image" src="<?php echo base_url('public/images/logos/dnn.jpg');?>" />
+                </div>
+                <div style="display: none;">
+                    <img data-u="image" src="<?php echo base_url('public/images/logos/drupal.jpg');?>" />
+                </div>
+                <div style="display: none;">
+                    <img data-u="image" src="<?php echo base_url('public/images/logos/ebay.jpg');?>" />
+                </div>
+                <div style="display: none;">
+                    <img data-u="image" src="<?php echo base_url('public/images/logos/dnn.jpg');?>" />
+                </div>
+                <div style="display: none;">
+                    <img data-u="image" src="<?php echo base_url('public/images/logos/drupal.jpg');?>" />
+                </div>
+                <div style="display: none;">
+                    <img data-u="image" src="<?php echo base_url('public/images/logos/ebay.jpg');?>" />
+                </div>
             </div>
         </div><!--jssor_1 ends-->
     </div><!--logos1 ends-->

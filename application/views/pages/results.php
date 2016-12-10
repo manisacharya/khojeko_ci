@@ -2,8 +2,8 @@
 <div class="listCon">
     <div id="viewcontrols" data-enhance="false">
         <a class="info"  onMouseOver="this.style.color='#ffffff'" onMouseOut="this.style.color='#ffffff'">Showing 1 - 10 of 100 results of Items</a>
-        <a class="gridview" href="#"><i class="fa fa-th fa-2x" ></i></a>
-        <a class="listview" href="#"><i class="fa fa-list fa-2x"></i></a>
+        <a class="gridview" href="#!"><span class="glyphicon glyphicon-th"></span></a>
+        <a class="listview" href="#!"><span class="glyphicon glyphicon-th-list"></span></a>
         <button value="View More" id="view_btn">View More</button>
     </div>
 
@@ -27,10 +27,10 @@
                             </a><br>
                             <label style="float: right;">
                                 <?php echo $item->views; ?>
-                                <i class="fa fa-eye" ></i>
-                                <i class="fa fa-clock-o" ></i>
-                                <i class="fa fa-heart" ></i>
-                                <i class="fa fa-comment-o"></i>
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="glyphicon glyphicon-time"></span>
+                                <span class="glyphicon glyphicon-heart"></span>
+                                <span class="glyphicon glyphicon-comment"></span>
                             </label>
                         </span>
                     </section>
