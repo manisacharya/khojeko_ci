@@ -44,6 +44,7 @@
 .stepwizard {
     display: table;
     width: 100%;
+    margin-top: 10px;
     position: relative;
 }
 
@@ -71,13 +72,13 @@
 }
 
 .btn-circle {
-  width:auto;
+  width:50px;
   height:50px;
   text-align: center;
   padding: 6px 0;
   font-size: 25px;
   line-height: 1.428571429;
-  border-radius: 5px;
+  border-radius: 50px;
 }
 
 .btn-circle2 {
