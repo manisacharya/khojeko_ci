@@ -157,6 +157,8 @@
 <a href="#" class="back-to-top"><i class="fa fa-arrow-up"></i></a>
 
 <script type="text/javascript" src="<?php echo base_url('public/js/jquery.js');?>"></script>
+<script type="text/javascript" src="<?php echo base_url('public/js/wNumb.js'); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url('public/js/slider/nouislider.min.js'); ?>"></script>
 <script type="text/javascript" src="<?php echo base_url('public/js/bootstrap.min.js');?>"></script>
 <script type="text/javascript" src="<?php echo base_url('public/js/category.js');?>"></script>
 <script type="text/javascript" src="<?php echo base_url('public/js/list_grid.js');?>"></script>
@@ -176,6 +178,8 @@
 <script type="text/javascript" src="<?php echo base_url('public/js/ad_detail_slider.js'); ?>"></script>
 <script type="text/javascript" src="<?php echo base_url('public/js/count.js'); ?>"></script>
 <script type="text/javascript" src="<?php echo base_url('public/js/multiple_upload.js'); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url('public/js/slider/price_slider.js'); ?>"></script>
+
 
 <script>(function(d, s, id) {
         var js, fjs = d.getElementsByTagName(s)[0];

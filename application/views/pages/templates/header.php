@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Khojeko - Online Buying and Selling</title>
 
-    <link href="<?php echo base_url('public/css/jquery.mobile-1.4.5.min.css');?>" rel="stylesheet" />
+    <link href="<?php echo base_url('public/css/slider/nouislider.min.css'); ?>"  rel="stylesheet">
     <link href="<?php echo base_url('public/css/bootstrap/bootstrap.css');?>" rel="stylesheet" />
     <link href="<?php echo base_url('public/css/main.css');?>" rel="stylesheet" />
     <link href="<?php echo base_url('public/css/responsive.css');?>" rel="stylesheet" />
@@ -87,10 +87,11 @@
             </div>
 
             <div class="col-sm-3 col-xs-12 left_block">
+                <?php echo form_open('filter', array('method' => 'GET')); ?>
                 <div class="category_block">
                     <div class="category">
-                        Categories
-                        <select name="dropdown" id="drop1">
+                        <label for="drop1">Categories</label>
+                        <select name="type" id="drop1">
                             <option>All Ads</option>
                             <option>Dealer Ads</option>
                             <option>Individual Ads</option>
@@ -101,6 +102,7 @@
 
                     <div class="hierarchy">
                         <div>
+                            <input type="hidden" name="category" id="category_filter" value="all" />
                             <?php
                             require_once('require/category.php');
                             print_list(0, 0, $category);
@@ -110,24 +112,21 @@
                 </div><!--category_block End-->
 
                 <div id="filter">
-                    <a class="tt">Condition</a><hr class="clas1"/><br>
-                    <a class="st">New</a><br>
-                    <a class="st">Used</a><br>
-                    <a class="tt">Price:</a><hr class="clas2"/>
-
-                    <div data-demo-html="true">
-                        <form>
-
-                            <div data-role="rangeslider" id="range">
-                                <input type="range" name="range-1a" id="range-1a" min="100" max="10000" value="400" style="width:50px;font-size:9px">
-                                <input type="range" name="range-1b" id="range-1b" min="100" max="10000" value="8000" style="width:50px;font-size:9px;margin-left:40px;">
+                    <label class="tt">Condition Price:</label>
+                    <span id="min_price">500</span>
+                    <span id="max_price">1000</span>
+                    <div class="price_slider">
+                        <div id="slider-snap"></div>
+                            <div class="col-sm-2">
+                                <input type="text" name="min" readonly id="slider-snap-value-lower"/>
                             </div>
-                        </form>
-                    </div><!-- /demo-html -->
-
-
-                    <a class="st">Apply Filter</a><br>
-                    <a class="st" style="padding-left: 120px;">Clear all filters<i class="fa fa-times" style="color: red"></i></a>
+                            <div class="col-sm-8"></div>
+                            <div class="col-sm-2">
+                                <input type="text" name="max" readonly id="slider-snap-value-upper"/>
+                            </div>
+                            <button class="btn btn-default" type="submit">Apply Filter</button>
+                        <?php echo form_close();?>
+                    </div>
                 </div>
 
                 <div class="banner">

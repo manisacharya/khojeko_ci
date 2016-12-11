@@ -24,3 +24,6 @@ $(document).ready(function(){
 	})
 })
 
+$("ul.category li a").click(function() {
+    document.getElementById("category_filter").value = $(this).attr('id');
+});

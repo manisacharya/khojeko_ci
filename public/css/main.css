@@ -141,7 +141,7 @@ overflow: hidden;
 
 #range{display:list-item;list-style-type:none}
 
-#filter{border: 1px solid;margin-top: 10px;margin-bottom: 10px;clear: both}
+#filter{margin: 5px 0; height:auto; clear: both; padding:10px;}
 .tt{
     color: #73AD21;
     font-size: 20px;
@@ -214,3 +214,24 @@ a#scrollUp i{
 .partners {position: relative; margin: 0 auto; top: 0px; left: 0px; width: 1000px; height: 80px; overflow: hidden; visibility: hidden;clear: both;}
 .partners_slider {cursor: default; position: relative; left: 0px; width: 1000px; height: 80px; overflow: hidden;clear: both;}
 .navbar {margin:0px;}
+
+#slider-snap {
+    margin: 0 5px;
+}
+
+.left_block form {
+    padding: 0;
+}
+
+.price_slider input {
+    margin: 10px 0;
+    border: 0px solid;
+}
+
+.price_slider button {
+    text-align: center;
+}
+
+#max_price, #min_price {
+    display: none;
+}
