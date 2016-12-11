@@ -9,7 +9,6 @@ if ($item_num>$total)
             <a>Search:</a><a href="#">All Inactive</a>
             <input type="text" name="search" class="search_active" placeholder="Search by productor adv by or user email">
             <button type="submit" id="search_btn"><i class="fa fa-search"> </i> </button>
-            <button class="default_button">POST BY ADMIN</button>
         </form>
     </div><!--active_inactive-->
 
