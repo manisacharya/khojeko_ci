@@ -7,6 +7,7 @@ class Admin_pages extends CI_Controller {
         parent::__Construct();
         $this->load->model('admin/categories_model');
         $this->load->model('admin/latest_verified_unverified_ad_model');
+        $this->load->model('admin/search_model');
         $this->load->model('database_models/user_model');
         $this->load->model('admin/zones_model');
         //$this->output->enable_profiler(TRUE);
@@ -15,7 +16,7 @@ class Admin_pages extends CI_Controller {
     }
 
     public function page($page = 'index', $page_number = 1) {
-        $per_page = 3;
+        $per_page = 10;
         $this->load->library('pagination');
 
         $data['title'] = ucwords(strtolower(str_replace('_', ' ', $page))); // Capitalize the first letter
@@ -26,80 +27,113 @@ class Admin_pages extends CI_Controller {
         $data['page_number'] = $page_number;
 
         if($page == "inactive_adv_personal") {
-            //get total rows of items
-            $active_personal = $this->latest_verified_unverified_ad_model->total_items('personal', 0);
-
             $config1['base_url'] = base_url('admin/inactive_adv_personal');
             $config1['first_url'] = base_url('admin/inactive_adv_personal/1');
-            $config1['total_rows'] = $active_personal;
             $config1['per_page'] = $per_page;
+            $search_query = $this->input->get('search');
+            if($search_query){
+                $active_personal = $this->search_model->total_items('personal', 0, '=0', $search_query);
+                $data['unverified_personal'] = $this->search_model->search_active_inactive(0, 'personal', '=0', $search_query, $per_page, ($page_number - 1) * $per_page);
+            }else {
+                //get total rows of items
+                $active_personal = $this->latest_verified_unverified_ad_model->total_items('personal', 0);
+                $data['unverified_personal'] = $this->latest_verified_unverified_ad_model->get_details_item_personal(0, $per_page, ($page_number - 1) * $per_page);
+            }
+            $config1['total_rows'] = $active_personal;
             $this->pagination->initialize($config1);
-            $data['total'] = $active_personal;
             $data['active_page_links'] = $this->pagination->create_links();
-            $data['unverified_personal'] = $this->latest_verified_unverified_ad_model->get_details_item_personal(0, $per_page, ($page_number - 1) * $per_page);
+            $data['total'] = $active_personal;
         }
         if($page == "inactive_adv_dealer") {
-            $active_dealer = $this->latest_verified_unverified_ad_model->total_items('dealer', 0);
-
             $config3['base_url'] = base_url('admin/inactive_adv_dealer');
             $config3['first_url'] = base_url('admin/inactive_adv_dealer/1');
-            $config3['total_rows'] = $active_dealer;
             $config3['per_page'] = $per_page;
+            $search_query = $this->input->get('search');
+            if($search_query){
+                $active_dealer = $this->search_model->total_items('dealer', 0, '=0', $search_query);
+                $data['unverified_dealer'] = $this->search_model->search_active_inactive(0, 'dealer', '=0', $search_query, $per_page, ($page_number - 1) * $per_page);
+            }else {
+                $active_dealer = $this->latest_verified_unverified_ad_model->total_items('dealer', 0);
+                $data['unverified_dealer'] = $this->latest_verified_unverified_ad_model->get_details_item_dealer(0, $per_page, ($page_number - 1) * $per_page);
+            }
+            $config3['total_rows'] = $active_dealer;
             $this->pagination->initialize($config3);
-            $data['total'] = $active_dealer;
             $data['active_page_links'] = $this->pagination->create_links();
-            $data['unverified_dealer'] = $this->latest_verified_unverified_ad_model->get_details_item_dealer(0, $per_page, ($page_number - 1) * $per_page);
+            $data['total'] = $active_dealer;
         }
         if($page == "active_adv_personal") {
-            $inactive_personal = $this->latest_verified_unverified_ad_model->total_items('personal', 1);
-
             $config2['first_url'] = base_url('admin/active_adv_personal/1');
             $config2['base_url'] = base_url('admin/active_adv_personal');
-            $config2['total_rows'] = $inactive_personal;
             $config2['per_page'] = $per_page;
+            $search_query = $this->input->get('search');
+            if($search_query){
+                $inactive_personal = $this->search_model->total_items('personal', 1, '=0', $search_query);
+                $data['verified_personal'] = $this->search_model->search_active_inactive(1, 'personal', '=0', $search_query, $per_page, ($page_number - 1) * $per_page);
+            }else {
+                $inactive_personal = $this->latest_verified_unverified_ad_model->total_items('personal', 1);
+                $data['verified_personal'] = $this->latest_verified_unverified_ad_model->get_details_item_personal(1, $per_page, ($page_number - 1) * $per_page);
+            }
+            $config2['total_rows'] = $inactive_personal;
             $this->pagination->initialize($config2);
-            $data['total'] = $inactive_personal;
             $data['inactive_page_links'] = $this->pagination->create_links();
-            $data['verified_personal'] = $this->latest_verified_unverified_ad_model->get_details_item_personal(1, $per_page, ($page_number - 1) * $per_page);
+            $data['total'] = $inactive_personal;
         }
         if($page == "active_adv_dealer") {
-            $inactive_dealer = $this->latest_verified_unverified_ad_model->total_items('dealer', 1);
-
             $config4['first_url'] = base_url('admin/active_adv_dealer/1');
             $config4['base_url'] = base_url('admin/active_adv_dealer');
-            $config4['total_rows'] = $inactive_dealer;
             $config4['per_page'] = $per_page;
+            $search_query = $this->input->get('search');
+            if($search_query){
+                $inactive_dealer = $this->search_model->total_items('dealer', 1, '=0', $search_query);
+                $data['verified_dealer'] = $this->search_model->search_active_inactive(1, 'dealer', '=0', $search_query, $per_page, ($page_number - 1) * $per_page);
+            }else {
+                $inactive_dealer = $this->latest_verified_unverified_ad_model->total_items('dealer', 1);
+                $data['verified_dealer'] = $this->latest_verified_unverified_ad_model->get_details_item_dealer(1, $per_page, ($page_number - 1) * $per_page);
+            }
+            $config4['total_rows'] = $inactive_dealer;
             $this->pagination->initialize($config4);
-            $data['total'] = $inactive_dealer;
             $data['inactive_page_links_d'] = $this->pagination->create_links();
-            $data['verified_dealer'] = $this->latest_verified_unverified_ad_model->get_details_item_dealer(1, $per_page, ($page_number - 1) * $per_page);
+            $data['total'] = $inactive_dealer;
         }
         if($page == "deleted_adv_personal"){
-            $deleted_personal = $this->latest_verified_unverified_ad_model->total_deleted_items('personal');
             $config3['first_url'] = base_url('admin/deleted_adv_personal/1');
             $config3['base_url'] = base_url('admin/deleted_adv_personal');
-            $config3['total_rows'] = $deleted_personal;
             $config3['per_page'] = $per_page;
+            $search_query = $this->input->get('search');
+            if($search_query){
+                $deleted_personal = $this->search_model->total_items('personal', 0, '!=0', $search_query);
+                $data['deleted_personal'] = $this->search_model->search_active_inactive(0, 'personal', '!=0', $search_query, $per_page, ($page_number - 1) * $per_page);
+            }else {
+                $deleted_personal = $this->latest_verified_unverified_ad_model->total_deleted_items('personal');
+                $data['deleted_personal'] = $this->latest_verified_unverified_ad_model->get_details_item_deleted('personal', $per_page, ($page_number - 1) * $per_page);
+            }
+            $config3['total_rows'] = $deleted_personal;
             $this->pagination->initialize($config3);
             $data['total'] = $deleted_personal;
             $data['deleted_page_links'] = $this->pagination->create_links();
-            $data['deleted_personal'] = $this->latest_verified_unverified_ad_model->get_details_item_deleted('personal', $per_page, ($page_number - 1) * $per_page);
         }
         if($page == "deleted_adv_dealer"){
-            $deleted_dealer = $this->latest_verified_unverified_ad_model->total_deleted_items('dealer');
             $config3['first_url'] = base_url('admin/deleted_adv_dealer/1');
             $config3['base_url'] = base_url('admin/deleted_adv_dealer');
-            $config3['total_rows'] = $deleted_dealer;
             $config3['per_page'] = $per_page;
+            $search_query = $this->input->get('search');
+            if($search_query){
+                $deleted_dealer = $this->search_model->total_items('dealer', 0, '!=0', $search_query);
+                $data['deleted_dealer'] = $this->search_model->search_active_inactive(0, 'dealer', '!=0', $search_query, $per_page, ($page_number - 1) * $per_page);
+            }else {
+                $deleted_dealer = $this->latest_verified_unverified_ad_model->total_deleted_items('dealer');
+                $data['deleted_dealer'] = $this->latest_verified_unverified_ad_model->get_details_item_deleted('dealer', $per_page, ($page_number - 1) * $per_page);
+            }
+            $config3['total_rows'] = $deleted_dealer;
             $this->pagination->initialize($config3);
             $data['total'] = $deleted_dealer;
             $data['deleted_page_links'] = $this->pagination->create_links();
-            $data['deleted_dealer'] = $this->latest_verified_unverified_ad_model->get_details_item_deleted('dealer', $per_page, ($page_number - 1) * $per_page);
         }
         $this->load->view('admin/templates/header', $data);
         $this->load->view('admin/'.$page, $data);
         $this->load->view('admin/templates/footer');
     }
+
     public function verify_validation($page){
         if($this->input->post('renew') != null){
             $this->extend_date($page);
