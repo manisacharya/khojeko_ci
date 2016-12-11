@@ -16,7 +16,7 @@ class Admin_pages extends CI_Controller {
     }
 
     public function page($page = 'index', $page_number = 1) {
-        $per_page = 3;
+        $per_page = 10;
         $this->load->library('pagination');
 
         $data['title'] = ucwords(strtolower(str_replace('_', ' ', $page))); // Capitalize the first letter
