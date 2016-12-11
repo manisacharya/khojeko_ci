@@ -18,7 +18,7 @@ class Users extends CI_Controller {
             redirect('admin/login');
 
         $data['title'] = 'New Member';
-        $data['user_info'] = $this->user_model->get_user_info();
+        $data['user_info'] = $this->user_model->get_user_info('admin', $this->session->userdata['admin_logged_in']['id']);
 
         $this->load->library('form_validation');
 
@@ -49,7 +49,7 @@ class Users extends CI_Controller {
 
         $this->load->library('form_validation');
         $data['title'] = "Change Password";
-        $data['user_info'] = $this->user_model->get_user_info();
+        $data['user_info'] = $this->user_model->get_user_info('admin', $this->session->userdata['admin_logged_in']['id']);
 
         $this->form_validation->set_error_delimiters('<div class="alert alert-danger">', '</div>');
 
