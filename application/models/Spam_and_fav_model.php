@@ -24,7 +24,8 @@ class Spam_and_fav_model extends CI_Model {
         if(! $info->num_rows()) {
             $data = array(
                 'item_id' => $id,
-                'user_id' => $user_id
+                'user_id' => $user_id,
+                'spam_message' => $this->input->post('fake_comment')
             );
 
             $this->db->insert('spam', $data);

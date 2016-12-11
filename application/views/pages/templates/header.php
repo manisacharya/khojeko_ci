@@ -16,8 +16,8 @@
     <link href="<?php echo base_url('public/css/login.css');?>" rel="stylesheet" />
     <link href="<?php echo base_url('public/css/signup.css'); ?>"  rel="stylesheet">
 
-    <link href="<?php echo base_url('public');?>/css/jquery.mobile-1.4.5.min.css" rel="stylesheet" />
-
+    <!--<link href="<?php /*echo base_url('public');*/?>/css/jquery.mobile-1.4.5.min.css" rel="stylesheet" />
+-->
     <link href="<?php echo base_url('public/images/ico/apple-touch-icon-144-precomposed.png');?>" rel="apple-touch-icon-precomposed" sizes="144x144" />
     <link href="<?php echo base_url('public/images/ico/apple-touch-icon-114-precomposed.png');?>" rel="apple-touch-icon-precomposed" sizes="114x114" />
     <link href="<?php echo base_url('public/images/ico/apple-touch-icon-72-precomposed.png');?>" rel="apple-touch-icon-precomposed" sizes="72x72" />

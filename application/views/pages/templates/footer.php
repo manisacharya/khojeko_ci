@@ -140,7 +140,7 @@
 </footer>
 <a href="#" class="back-to-top"><i class="fa fa-arrow-up"></i></a>
 
-<script type="text/javascript" src="<?php echo base_url('public/js/jquery.js');?>"></script>
+<script type="text/javascript" src="<?php echo base_url('public/js/jquery-2.2.3.min.js');?>"></script>
 <script type="text/javascript" src="<?php echo base_url('public/js/bootstrap.min.js');?>"></script>
 <script type="text/javascript" src="<?php echo base_url('public/js/category.js');?>"></script>
 <script type="text/javascript" src="<?php echo base_url('public/js/list_grid.js');?>"></script>

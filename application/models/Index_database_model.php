@@ -56,16 +56,15 @@ class Index_database_model extends CI_Model {
         //$this->db->join('category', "category.cid = $tableJoin.cid");
  
         $this->db->order_by("$tableJoin.$orderAtr", 'desc');
-//        $this->db->where('quantity',!0);
-//        $this->db->where('isverified', 1);
-//        $this->db->where('sales_status', 1);
-//        $this->db->where('adduration', !0);
-//        $this->db->where('visibility', 1);
-//        $this->db->where('deleted_date', 1);
+        //$this->db->where('quantity',!0);
+        $this->db->where('is_verified', 1);
+        $this->db->where('sales_status', 1);
+        //$this->db->where('ad_duration', !0);
+        $this->db->where('visibility', 1);
+        $this->db->where('deleted_date', 0);
         $query = $this->db->get();
         return $query->result();
     }
-
 
     function selHouLand(){
 
@@ -134,8 +133,5 @@ class Index_database_model extends CI_Model {
         return $this->db->get()->result();
     }
 
-    public function show_section(){
-
-    }
 };
 ?>

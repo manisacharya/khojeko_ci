@@ -47,6 +47,34 @@
             }
             return $this->db->get()->result();
         }
+
+        public function popular_listing(){
+
+            $personal = array (
+                'table' => 'personal',
+                'condition' => 'user.user_key = personal.p_id',
+                'jointype' => 'INNER'
+            );
+
+            $dealer = array (
+                'table' => 'dealer',
+                'condition' => 'user.type = "dealer" AND user.user_key = dealer.d_id',
+                'jointype' => 'INNER'
+            );
+
+            $items = array (
+                'table' => 'items',
+                'condition' => 'user.user_id= items.user_id',
+                'jointype' => 'INNER'
+            );
+
+            $popular_district = array($personal, $items);
+            $popular_dealer = array($items, $dealer);
+
+            $district = $this->khojeko_db_model->joinThingsOrder('user', $popular_district, 'items.views');
+            $dealer = $this->khojeko_db_model->joinThingsOrder('user', $popular_dealer, 'items.views');
+        }
+
         public function joinThingsRow($table, $columns, $joins, $where) {
 
             $this->db->select($columns)->from($table);

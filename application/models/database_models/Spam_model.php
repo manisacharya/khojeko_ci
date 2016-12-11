@@ -11,6 +11,7 @@ class Spam_model extends CI_Model {
     public $spam_id;
     public $item_id;
     public $user_id;
+    public $spam_message;
 
     public function count_spam_of_user($user_id) {
         $this->db->where('items.user_id', $user_id);
