@@ -118,3 +118,4 @@ input.readonly{width:520px;}
 .prevBtn{color:#333;background:#999}
 #display_cname, #display_parent {border:1px solid;height:25px;padding-left:10px;width:60%}
 form{padding-left:25px;  padding:25px;}
+form.search{padding:0px;}

@@ -1,7 +1,7 @@
 
-<div class="stat_report">
+    <!--<div class="stat_report">
         <a>Statistics Report: </a><button class="default_button" id="show">Show</button><button class="default_button" id="hide">Hide</button>
-    </div>
+    </div>-->
     <div class="col-sm-12 statics">
 
         <div class="col-sm-4 ">
