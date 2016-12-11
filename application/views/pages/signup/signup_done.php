@@ -8,13 +8,13 @@
 			<div class="stepwizard">
 				<div class="stepwizard-row setup">
 					<div class="stepwizard-step">
-						<a type="button" class="btn btn-default btn-circle steps" disabled="disabled">1.Login Details</a>
+						<a type="#" class="btn btn-default btn-circle steps" disabled="disabled">1</a>
 					</div>
 					<div class="stepwizard-step">
-						<a href="#step-2" type="button" class="btn btn-default btn-circle steps" disabled="disabled">2.Profile</a>
+						<a href="#" class="btn btn-default btn-circle steps" disabled="disabled">2</a>
 					</div>
-					<div class="stepwizard-step-panel">
-						<a href="#step-3" type="button" class="btn btn-primary btn-circle steps">3.Done</a>
+					<div class="stepwizard-step">
+						<a class="btn btn-primary btn-circle steps">3</a>
 					</div>
 				</div>
 			</div>
