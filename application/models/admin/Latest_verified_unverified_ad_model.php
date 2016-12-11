@@ -40,10 +40,12 @@ class Latest_verified_unverified_ad_model extends CI_Model {
     public function get_details_item_deleted($type, $limit = 1, $offset = 0){
         $this->db->select('*');
         $this->db->join('user', "items.user_id = user.user_id");
+
         if($type==='dealer')
             $this->db->join('dealer', "user.user_key = dealer.d_id");
         if($type==='personal')
             $this->db->join('personal', "user.user_key = personal.p_id ");
+
         $this->db->join('item_img', "items.item_id = item_img.item_id");
         $where = "type='".$type."' AND primary=1 AND deleted_date!=0";
         $this->db->where($where);
@@ -100,7 +102,8 @@ class Latest_verified_unverified_ad_model extends CI_Model {
         if ($this->db->table_exists('items')) {
             $this->db->select('*')->from('items');
             $this->db->join('user', "items.user_id = user.user_id");
-            $where = "type='".$type."' AND is_verified=".$id." AND deleted_date=0";
+            $this->db->join('item_img', "items.item_id = item_img.item_id");
+            $where = "type='".$type."' AND is_verified=".$id." AND primary=1  AND deleted_date=0";
             $this->db->where($where);
             $query = $this->db->get();
 
@@ -114,7 +117,8 @@ class Latest_verified_unverified_ad_model extends CI_Model {
         if ($this->db->table_exists('items')) {
             $this->db->select('*')->from('items');
             $this->db->join('user', "items.user_id = user.user_id");
-            $where = "type='".$type."' AND deleted_date!=0";
+            $this->db->join('item_img', "items.item_id = item_img.item_id");
+            $where = "type='".$type."' AND primary=1  AND deleted_date!=0";
             $this->db->where($where);
             $query = $this->db->get();
 
