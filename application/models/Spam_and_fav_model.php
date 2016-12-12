@@ -32,9 +32,9 @@ class Spam_and_fav_model extends CI_Model {
 
             $spam_count = $spam_count + 1;
             $this->db->update('items',array('spam_count' => $spam_count), "item_id=".$id);
-            $this->session->set_flashdata('spam_message','<div class="alert alert-success">Fake report has been registered for this item.</div>');
+            $this->session->set_flashdata('spam_message','<div class="alert alert-success">Your report has been registered for this item.</div>');
         } else {
-            $this->session->set_flashdata('spam_message','<div class="alert alert-danger">Fake report already registered for this item.</div>');
+            $this->session->set_flashdata('spam_message','<div class="alert alert-danger">Your report already registered for this item.</div>');
         }
     }
 

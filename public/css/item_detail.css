@@ -11,7 +11,7 @@
 
 .cat_description:hover{color:black}
 
-.warning_tips{border:1px solid;border-radius:5px;margin-top:10px; padding: 10px;}
+.warning_tips{border:1px solid;border-radius:5px;margin-top:10px;margin-bottom:10px; padding: 10px;}
 
 .warning_tips p{color: rgba(181, 49, 37, 0.98)
 }
