@@ -57,6 +57,9 @@ $route['details/(:any)'] = "details/details/$1";
 // SEARCH CONTROLLER
 $route['results'] = "search/results";
 
+// FILTER CONTROLLER
+$route['filter'] = "filter";
+
 // UPLOAD CONTROLLER
 $route['upload_view'] = "upload/upload_view";
 $route['upload_file'] = "upload/upload_file";

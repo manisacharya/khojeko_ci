@@ -245,35 +245,6 @@ class Pages extends CI_Controller {
         $data['popular_district'] = $this->khojeko_db_model->popular_district();
         $data['popular_dealer'] = $this->khojeko_db_model->popular_dealer();
 
-        $retrieve = $this->categories_model->retrieve_category(1);
-        $category_info = $this->categories_model->get_one_category(1);
-
-				unset($categories);
-        $categories = array ($retrieve->root);
-
-        if($category_info->c_name != $retrieve->root) {
-            if ($retrieve->leaf1) {
-              	array_push($categories, $retrieve->leaf1);
-
-                if($category_info->c_name != $retrieve->leaf1) {
-                    if ($retrieve->leaf2) {
-                        array_push($categories, $retrieve->leaf2);
-
-												if($category_info->c_name != $retrieve->leaf2) {
-		                        if ($retrieve->leaf3)
-		                            array_push($categories, $retrieve->leaf3);
-												}
-                    }
-                }
-            }
-        }
-
-        $data['categories'] = $categories;
-
-        /*$data['popular_district'] =
-        $data['popular_dealer'] =
-        $data['popular_categories'] = */
-
         if ($this->session->has_userdata('logged_in')) {
             $this->load->model('database_models/recent_view_model');
             $user_session = $this->session->all_userdata();
