@@ -194,7 +194,11 @@
 <script type="text/javascript">
     $("#ques").hide();
     $(".post").click(function() {
-        $("#ques").show().focus();
+        <?php if($this->session->has_userdata('logged_in')) { ?>
+            $("#ques").show().focus();
+        <?php } else { ?>
+            window.location.href = "<?php echo base_url('login'); ?>";
+        <?php   }   ?>
     })
 </script>
 
