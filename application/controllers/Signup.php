@@ -322,7 +322,7 @@ class Signup extends CI_Controller {
 
         if($this->Signup_model->is_key_valid_add_user($key)){
             echo "You can now successfully login";
-            redirect('/login');
+            redirect('login');
         } else {
             echo "Your account is not valid. Please signup again.";
         }
