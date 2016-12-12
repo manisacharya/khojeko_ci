@@ -23,20 +23,8 @@ class Pages extends CI_Controller {
     }
 
     public function index() {
-        $send = array();
 
         $data['section_position'] = $this->categories_model->get_position();
-//        $i=0;
-//        //echo $this->items_model->get_filtered_items(1);
-//        foreach($data['section_position'] as $row) {
-//            $data['get_filtered_items'][$i++] = $this->items_model->get_filtered_items($row->c_id);
-//            echo $row->c_id;
-//            echo "<br>";
-//        }
-//        echo "<pre>";
-//        //print_r($data['section_position']);
-//        print_r($data['get_filtered_items']);
-//        echo "</pre>";
 
         //for the For Sales: Latest Ad --> images
         $data['dat'] = $this->index_database_model->joinTableOrder('item_img', 'items', 'item_id', 'published_date');
@@ -50,42 +38,10 @@ class Pages extends CI_Controller {
         //for populating ad by greatest view
         $data['grtView'] = $this->index_database_model->joinTableOrder('item_img', 'items', 'item_id', 'views');
 
-        //for realstate
-        $data['house'] = $this->index_database_model->selHouLand();
-
-        $data['service'] = $this->index_database_model->selectWhat('Services');
-
-        $data['job'] = $this->index_database_model->selectWhat('Jobs');
-
         $this->get_common_contents($data);
-
-        $personal = array (
-                'table' => 'personal',
-                'condition' => 'user.user_key = personal.p_id',
-                'jointype' => 'INNER'
-            );
-
-        $dealer = array (
-                'table' => 'dealer',
-                'condition' => 'user.type = "dealer" AND user.user_key = dealer.d_id',
-                'jointype' => 'INNER'
-            );
-
-        $items = array (
-                'table' => 'items',
-                'condition' => 'user.user_id= items.user_id',
-                'jointype' => 'INNER'
-            );
-
-        $popular_district = array($personal, $items);
-        $popular_dealer = array($items, $dealer);
-
-        $data['popular_district'] = $this->khojeko_db_model->joinThingsOrder('user', $popular_district, 'items.views');
-        $data['popular_dealer'] = $this->khojeko_db_model->joinThingsOrder('user', $popular_dealer, 'items.views');
 
         $this->load->view('pages/templates/header', $data);
         $this->load->view('pages/home', $data);
-        //$this->load->view('pages/home', $data_array);
         $this->load->view('pages/templates/footer', $data);
     }
 
@@ -286,6 +242,9 @@ class Pages extends CI_Controller {
         $data['dealer_items'] = $this->items_model->count_user_items('dealer');
         $data['user_items'] = $this->items_model->count_user_items('personal');
 
+        $data['popular_district'] = $this->khojeko_db_model->popular_district();
+        $data['popular_dealer'] = $this->khojeko_db_model->popular_dealer();
+
         $retrieve = $this->categories_model->retrieve_category(1);
         $category_info = $this->categories_model->get_one_category(1);
 
@@ -351,4 +310,5 @@ class Pages extends CI_Controller {
             $this->load->view("pages/templates/footer", $data);
         }
     }
+
 }

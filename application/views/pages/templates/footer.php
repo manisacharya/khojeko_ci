@@ -159,6 +159,7 @@
 <script type="text/javascript" src="<?php echo base_url('public/js/jquery.js');?>"></script>
 <script type="text/javascript" src="<?php echo base_url('public/js/wNumb.js'); ?>"></script>
 <script type="text/javascript" src="<?php echo base_url('public/js/slider/nouislider.min.js'); ?>"></script>
+
 <script type="text/javascript" src="<?php echo base_url('public/js/bootstrap.min.js');?>"></script>
 <script type="text/javascript" src="<?php echo base_url('public/js/category.js');?>"></script>
 <script type="text/javascript" src="<?php echo base_url('public/js/list_grid.js');?>"></script>
@@ -241,15 +242,15 @@
     });
 </script>
 
-<!--<script>
-    $(".category0 li a" || ".category1 li a").on("click", function () {
-        var x = $(this).attr('id');
-        var y = this.text;
-        document.getElementById("parent").innerHTML = x;
-        document.getElementById("display_parent").innerHTML = y;
-        $("#display_parent").css('color','black');
-    });
-</script>-->
+<!--<script>-->
+<!--    $(".category0 li a" || ".category1 li a").on("click", function () {-->
+<!--        var x = $(this).attr('id');-->
+<!--        var y = this.text;-->
+<!--        document.getElementById("parent").innerHTML = x;-->
+<!--        document.getElementById("display_parent").innerHTML = y;-->
+<!--        $("#display_parent").css('color','black');-->
+<!--    });-->
+<!--</script>-->
 
 </body>
 </html>

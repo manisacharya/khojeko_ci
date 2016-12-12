@@ -92,6 +92,9 @@ class Signup extends CI_Controller {
         $data['dealer_list'] = $this->khojeko_db_model->joinThings('user', 'khojeko_username, name', $dealer_list_joins, 'type="dealer"');
         $data["category"] = $this->categories_model->get_categories();
 
+        $data['popular_district'] = $this->khojeko_db_model->popular_district();
+        $data['popular_dealer'] = $this->khojeko_db_model->popular_dealer();
+
         $email = $this->input->post('user_email');
         //generate random key
         $key = md5(uniqid());

@@ -134,7 +134,6 @@ class Detail_db_model extends CI_Model{
         $items->deleted_date            = html_escape($this->security->xss_clean($items->deleted_date));
         $items->c_id                    = html_escape($this->security->xss_clean($items->c_id));
         $items->user_id                 = html_escape($this->security->xss_clean($items->user_id));
-        $items->ad_id                   = html_escape($this->security->xss_clean($items->ad_id));
         $items->is_premium              = html_escape($this->security->xss_clean($items->is_premium));
         $items->comment_count           = html_escape($this->security->xss_clean($items->comment_count));
         $items->spam_count              = html_escape($this->security->xss_clean($items->spam_count));

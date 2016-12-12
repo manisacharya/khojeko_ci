@@ -17,7 +17,7 @@
     <link href="<?php echo base_url('public/css/login.css');?>" rel="stylesheet" />
     <link href="<?php echo base_url('public/css/signup.css'); ?>"  rel="stylesheet">
 
-    <link href="<?php echo base_url('public/images/icons/icon.ico')?>" rel="shortcut icon" />
+     <link href="<?php echo base_url('public/images/icons/icon.ico')?>" rel="shortcut icon" />
 
 </head>
 <body id="page-wrap">

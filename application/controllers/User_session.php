@@ -45,6 +45,10 @@ class User_session extends CI_Controller {
             $data["new_items"] = $this->items_model->count_status_items('new');
             $data['dealer_items'] = $this->items_model->count_user_items('dealer');
             $data['user_items'] = $this->items_model->count_user_items('personal');
+
+            $data['popular_district'] = $this->khojeko_db_model->popular_district();
+            $data['popular_dealer'] = $this->khojeko_db_model->popular_dealer();
+
             //flashdata for password changed from new_password
             $data['pwd_changed'] = $this->session->flashdata('password_changed');
 

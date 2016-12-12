@@ -7,6 +7,7 @@ class Details extends CI_Controller {
         parent::__Construct ();
         $this->load->database(); // load database
         $this->load->model('detail_db_model');
+        $this->load->model('user_model');
         $this->load->model('khojeko_db_model'); // load model
         $this->load->model('general_database_model');
         $this->load->model('database_models/categories_model');
@@ -15,6 +16,7 @@ class Details extends CI_Controller {
         $this->load->model('database_models/dealer_model');
         $this->load->model('database_models/items_model');
         $this->load->model('database_models/user_model');
+        $this->load->model('database_models/spam_model');
     }
 
     //For Details Page
@@ -46,6 +48,9 @@ class Details extends CI_Controller {
         $data["new_items"] = $this->items_model->count_status_items('new');
         $data['dealer_items'] = $this->items_model->count_user_items('dealer');
         $data['user_items'] = $this->items_model->count_user_items('personal');
+
+        $data['popular_district'] = $this->khojeko_db_model->popular_district();
+        $data['popular_dealer'] = $this->khojeko_db_model->popular_dealer();
 
         $data["fav_msg"] = $this->session->flashdata('fav_message');
         $data["spam_msg"] = $this->session->flashdata('spam_message');
@@ -130,6 +135,7 @@ class Details extends CI_Controller {
         if($this->session->has_userdata('logged_in')) {
             $user_id = $this->session->userdata['logged_in']['id'];
             $this->spam_and_fav_model->add_spam($id, $user_id, $spam_count);
+
             redirect('details/'.$id);
         } else {
             redirect('login');
@@ -198,6 +204,7 @@ class Details extends CI_Controller {
         // 	echo "ERROR";
         // }
     }
+
 
     public function add_recent_view($item_id) {
         $this->load->model('database_models/recent_view_model');

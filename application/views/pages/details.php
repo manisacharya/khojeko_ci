@@ -85,11 +85,48 @@ target.src = image.src;
             <span class="glyphicon glyphicon-warning-sign symbol"></span>
         </div>
 
-        <div class="col-sm-11" id="fake_report">
-            <a href="<?php echo base_url("Details/add_to_spam/".$id."/".$details->spam_count)?>">Report</a>
+        <div class="col-sm-10" id="fake_report">
+            <?php if($this->session->has_userdata('logged_in')){?>
+                <a href="" data-toggle="modal" data-target="#myModal">Report Us</a>
+            <?php } else { ?>
+                <a href="<?php echo base_url("Details/add_to_spam/".$id."/".$details->spam_count)?>">Report Us</a>
+            <?php } ?>
         </div>
     </div>
 </div><!--item_info ends-->
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Fake Report</h4>
+            </div>
+            <div class="modal-body">
+                <?php
+                    $fake_url = base_url("Details/add_to_spam/".$id."/".$details->spam_count);
+                    echo form_open($fake_url);
+                ?>
+                <strong>
+                    Fake Report Comment:
+                </strong><br />
+                <input type="text" name="fake_comment" id="ad_details" style="width:60%; height:100px;text-align:center" placeholder="TEXT EDITOR" maxlength=300 required="required"/>
+                <div id="textarea_feedback"></div>
+                <br /><br />
+            </div>
+            <div class="modal-footer">
+                <input type="submit" name="submit" value="Submit" class="btn btn-success">
+
+                <?php echo form_close(); ?>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
 
 <div class="col-sm-7" style="clear:both">
     <div class="item_image">

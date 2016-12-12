@@ -81,4 +81,5 @@ class User_model extends CI_Model {
         $this->db->update('user', array('password' => password_hash($this->input->post('n_password'), PASSWORD_DEFAULT)));
         $this->session->set_flashdata('password_changed','<div class="alert alert-success">Your password has been changed. Please login to continue.</div>');
     }
+
 }
