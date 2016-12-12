@@ -35,7 +35,6 @@ class Item_model extends CI_Model
     public $deleted_date;
     public $c_id;
     public $user_id;
-    public $ad_id;
     public $is_premium;
 
     public function __construct() {
@@ -102,7 +101,6 @@ class Item_model extends CI_Model
             $this->c_id = $this->input->post('parent_id');
             
             $this->user_id = $this->user_model->get_user_id();
-            $this->ad_id = NULL;
             $this->is_premium = 0;
                     
            // if($this->title!=NULL)
