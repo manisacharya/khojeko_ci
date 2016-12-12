@@ -70,7 +70,7 @@
             </div>
 
             <?php
-            echo form_open_multipart('details_validation');
+            echo form_open_multipart('signup');
             //echo validation_errors();
             ?>
             <div class="setup-content" id="step-1">
@@ -82,8 +82,8 @@
                                 *User email:
                             </td>
                             <td>
-                                <input type="email" name="user_email" required class="nayanaya form-control" id="useremail" value="<?php echo $this->input->post('user_email');?>">
-                                <?php //echo form_input('user_email', $this->input->post('user_email'), 'type="email" required class="naya form-control" id="useremail"');?>
+<!--                                <input type="email" name="user_email" required="required" class="naya form-control" id="useremail" value="--><?php //echo $this->input->post('user_email');?><!--">-->
+                                <?php echo form_input('user_email', $this->input->post('user_email'), 'required class="naya form-control" id="useremail"');?>
                                 <?php echo form_error('user_email', '<div class="alert alert-danger">', '</div>'); ?>
                                 <div class="result" id="result2"></div>
                             </td>
