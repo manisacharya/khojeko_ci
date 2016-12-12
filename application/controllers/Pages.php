@@ -121,8 +121,10 @@ class Pages extends CI_Controller {
         $this->load->model('item_model');
         $this->load->model('image_model');
         //$data['title'] = 'Post ad';
-        if (!$this->session->has_userdata('logged_in'))
-            redirect('logged_in');
+        if (!$this->session->has_userdata('logged_in')) {
+            $this->session->set_flashdata('previous_url', "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]");
+            redirect('login');
+        }
 
         $session_data = $this->session->userdata('logged_in');
 
