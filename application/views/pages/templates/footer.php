@@ -241,5 +241,15 @@
     });
 </script>
 
+<!--<script>
+    $(".category0 li a" || ".category1 li a").on("click", function () {
+        var x = $(this).attr('id');
+        var y = this.text;
+        document.getElementById("parent").innerHTML = x;
+        document.getElementById("display_parent").innerHTML = y;
+        $("#display_parent").css('color','black');
+    });
+</script>-->
+
 </body>
 </html>
