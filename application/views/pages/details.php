@@ -133,7 +133,7 @@ target.src = image.src;
         <?php if($details->sales_status == 0){ ?>
             <img src="<?php echo base_url('public/images/sold.png'); ?>" alt="sold" id="sold" class="img-responsive">
         <?php } ?>
-        <img id="displayImage" src="<?php echo base_url();?>public/images/item_images/<?php echo $image->row()->image;?>" id="item_img" class="img-responsive">
+        <img id="displayImage" src="<?php echo base_url();?>public/images/item_images/<?php echo $image->row()->image;?>" id="item_img" class="img-big">
     </div><!--item_images ends -->
 
     <div class="clearfix"></div>
@@ -252,24 +252,14 @@ target.src = image.src;
                         </div><!--send_email ends-->
 
     <div class="video_ad">
-<!--        <video controls>-->
-<!--            <source src="" type="video/mp4">-->
-<!--            <source src="" type="video/ogg">-->
-<!--            Your browser does not support the video tag.-->
-<!--        </video>-->
         <?php
         $url1 = $details->video_url1;
         $url2 = $details->video_url2;
         if ($url1 != NULL){ ?>
-            <iframe width="173" height="172" src="https://www.youtube.com/embed/<?php echo $url1; ?>" frameborder="0" allowfullscreen></iframe>
+            <iframe width="161" height="172" src="https://www.youtube.com/embed/<?php echo $url1; ?>" frameborder="0" allowfullscreen></iframe>
         <?php } ?>
-<!--        <video controls>-->
-<!--            <source src="" type="video/mp4">-->
-<!--            <source src="" type="video/ogg">-->
-<!--            Your browser does not support the video tag.-->
-<!--        </video>-->
         <?php if ($url2 != NULL){ ?>
-            <iframe width="173" height="172" src="https://www.youtube.com/embed/<?php echo $url2; ?>" frameborder="0" allowfullscreen></iframe>
+            <iframe width="161" height="172" src="https://www.youtube.com/embed/<?php echo $url2; ?>" frameborder="0" allowfullscreen></iframe>
         <?php } ?>
     </div><!--video_ad ends-->
 
@@ -294,7 +284,10 @@ target.src = image.src;
 <div class="question_section">
     <div class="question_title">
         <a class="ask">ASK ME Box</a>
-        <a class="post" href="#!">Click to question</a>
+        <?php if($this->session->has_userdata('logged_in')) $is_session = 1;
+            else $is_session = 0;
+        ?>
+        <a class="post" href="#!" onclick="showBox(<?php echo $is_session; ?>,'<?php echo base_url('login');?>')">Click to question</a>
         <!--a class="post" href="<?php //echo base_url("Details/ask_me_validation/".$id)?>">Click to question(USE JavaScript)</a-->
     </div>
     <div class="clearfix"></div>
