@@ -143,7 +143,7 @@ class Details extends CI_Controller {
     }
 
     //ask_me validation to add questions in table
-    public function ask_me_validation(){
+    public function ask_me_validation($comment_count){
         if($this->session->has_userdata('logged_in')) {
             $this->load->library('form_validation');
             $this->form_validation->set_rules('question', 'Question', 'required|trim');
@@ -154,7 +154,7 @@ class Details extends CI_Controller {
             //add the question in table
             if($this->form_validation->run()){
                 //$this->ask_me_model->add_question($ques, $item_id, $user_id);
-                $this->ask_me_model->add_question($item_id,$user_id);
+                $this->ask_me_model->add_question($item_id,$user_id,$comment_count);
                 redirect('details/'.$item_id);
             } else {
                 $this->load->view('pages/details/'.$item_id);

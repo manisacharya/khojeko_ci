@@ -15,7 +15,7 @@ class Ask_me_model extends CI_Model {
         return $query;
     }
 
-    public function add_question($item_id,$user_id){
+    public function add_question($item_id,$user_id,$comment_count){
         $data = array(
             'question' => $this->input->post('question'),
             'answer' => NULL,
@@ -25,5 +25,8 @@ class Ask_me_model extends CI_Model {
         );
 
         $this->db->insert('ask_me', $data);
+
+        $comment_count = $comment_count + 1;
+        $this->db->update('items',array('comment_count' => $comment_count), "item_id=".$item_id);
     }
 }

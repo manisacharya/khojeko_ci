@@ -54,10 +54,6 @@ $route['available_mobile_d'] = "Signup/available_mobile_d";
 $route['details'] = "details/details";
 $route['details/(:any)'] = "details/details/$1";
 
-//ask me
-$route['ask-me/(:any)'] = "details/add_question_ask_me/$1";
-$route['ask-me/(:any)'] = "details/ask_me_validation/$1";
-
 // SEARCH CONTROLLER
 $route['results'] = "search/results";
 

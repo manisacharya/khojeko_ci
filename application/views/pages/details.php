@@ -6,9 +6,6 @@ target.src = image.src;
 </script>
 <div class="clearfix"></div>
 
-<?php echo $fav_msg; ?>
-<?php echo $spam_msg; ?>
-
 <div class="item_category">
     <a class="main_cat">MAIN CATEGORY:</a>
     <?php
@@ -24,6 +21,11 @@ target.src = image.src;
         Safety Tips !!! : Before buying any product and services be carefull..1. ................................. 2. ............................................ 3. ........................................ 4. ........................................ 5. ........................................ 6. .......................................... 7. ................................................. 8. .......................
     </p>
 </div><!--warning_tips-->
+
+<div>
+    <?php echo $fav_msg; ?>
+    <?php echo $spam_msg; ?>
+</div>
 
 <div class="item_info">
     <div class="col-sm-4">
@@ -293,7 +295,7 @@ target.src = image.src;
     <div class="clearfix"></div>
     <div>
         <?php
-        echo form_open('Details/ask_me_validation');
+        echo form_open('Details/ask_me_validation/'.$details->comment_count);
         echo validation_errors();
 
         echo form_hidden('item_id', $id);
