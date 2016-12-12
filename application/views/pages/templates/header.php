@@ -101,7 +101,7 @@
                     </div>
 
                     <div class="hierarchy">
-                        <div class="parent">
+                        <div class="cname">
                             <?php
                             require_once('require/category.php');
                             print_list(0, 0, $category);
@@ -115,8 +115,10 @@
                     <span id="max_price">1000</span>
                     <div class="price_slider">
                         <label class="tt">Condition Filter</label><br />
-                        <label>Select Category<div id="display_parent">All</div></label>
-                        <textarea name="category" id="parent" hidden="hidden" readonly></textarea></br>
+                        <label>Select Category<div id="display_cname">All</div></label>
+
+                        <textarea name="c_id" id="c_id" hidden="hidden" readonly></textarea></br>
+
                         <div id="slider-snap"></div>
                             <div class="col-sm-2">
                                 <input type="text" name="min" readonly id="slider-snap-value-lower"/>

@@ -3,6 +3,7 @@ $(document).ready(function(){
 	$(".category2").hide();
 	$(".category3").hide();
 	$(".glyphicon-minus-sign").hide();
+    $(".category3 li a").find('span').hide('glyphicon-plus-sign glyphicon-minus-sign');
     $(".category0 li a").click(function(){
         $(this).next(".category1").slideToggle();
 		$(this).find('span').toggleClass('glyphicon-plus-sign glyphicon-minus-sign');

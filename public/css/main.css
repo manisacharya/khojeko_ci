@@ -210,6 +210,7 @@ a#scrollUp i{
 .category0,.category1,.category2{list-style-type:none;}
 
 .category0 li a,.category1 li a,.category2 li a{text-decoration:none;color:#000;font-size:16px;font-weight:500}
+.category0 li a:hover, .category1 li a:hover, .category2 li a:hover {  opacity:0.8;  }
 
 .partners {position: relative; margin: 0 auto; top: 0px; left: 0px; width: 1000px; height: 80px; overflow: hidden; visibility: hidden;clear: both;}
 .partners_slider {cursor: default; position: relative; left: 0px; width: 1000px; height: 80px; overflow: hidden;clear: both;}
@@ -244,7 +245,7 @@ a#scrollUp i{
     background: #1077b2;
  }
 
-#display_parent {
+#display_cname {
     text-decoration: none;
     font-weight: 100;
 }
