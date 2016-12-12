@@ -40,9 +40,6 @@ class Pages extends CI_Controller {
 
         $this->get_common_contents($data);
 
-        $data['popular_district'] =
-        $data['popular_dealer'] =
-
         $this->load->view('pages/templates/header', $data);
         $this->load->view('pages/home', $data);
         $this->load->view('pages/templates/footer', $data);
@@ -244,6 +241,9 @@ class Pages extends CI_Controller {
         $data["new_items"] = $this->items_model->count_status_items('new');
         $data['dealer_items'] = $this->items_model->count_user_items('dealer');
         $data['user_items'] = $this->items_model->count_user_items('personal');
+
+        $data['popular_district'] = $this->khojeko_db_model->popular_district();
+        $data['popular_dealer'] = $this->khojeko_db_model->popular_dealer();
 
         $retrieve = $this->categories_model->retrieve_category(1);
         $category_info = $this->categories_model->get_one_category(1);

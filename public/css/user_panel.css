@@ -10,7 +10,7 @@
 .users_menu_item{color:green}
 .alert_message{background:#F30;margin-top:10px;margin-bottom:10px;}
 .ad_count button{height:100px;width:100px;margin-top:10px;border-radius:10px;border:1px solid}
-.ad_count{padding-left:20px;}
+.ad_count{padding:0 5px;}
 .number{font-size:24px;font-weight:700;padding-top:20px;}
 
 .owner_ad_display{border:1px solid;border-radius:10px;margin-top:10px;overflow:auto;min-height:100px}

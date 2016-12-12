@@ -1,5 +1,8 @@
 @charset "utf-8";
 /* CSS Document */
+.symbol {
+	font-size: 12pt;
+}
 .item_category{background:#69F;margin-top:10px;padding:5px 5px 5px;color:white}
 
 .main_cat{color:#036;font-weight:600}
@@ -8,9 +11,10 @@
 
 .cat_description:hover{color:black}
 
-.warning_tips{border:1px solid;border-radius:8px;margin-top:10px;}
+.warning_tips{border:1px solid;border-radius:5px;margin-top:10px; padding: 10px;}
 
-.warning_tips p{color:red}
+.warning_tips p{color: rgba(181, 49, 37, 0.98)
+}
 
 .item_info i{font-size:28px;}
 .item_info > div{display:inline}
@@ -19,9 +23,7 @@
   white-space: pre;
  }
 
-.item_info{min-height:75px;margin-top:10px;padding-top:5px;padding-bottom:10px;border:1px solid;}
-
-.item_info > div img{height:35px;width:25px}
+.item_info{ height:40px; padding:10px; margin-top:10px; border:1px solid;}
 
 #fake_report a{color:red}
 
@@ -44,11 +46,11 @@
 
 #item_img{max-height:400px;width:100%;margin:auto;display:block}
 
-.item_image{margin-top:10px;border:1px solid;}
+.item_image{margin-top:10px;border:1px solid; padding:10px;}
 
 #item_spec{background:#099;margin-top:10px;font-size:24px;padding-left:10px;color:black}
 
-.item_spec_sub{border:1px solid;height:700px;margin-bottom:10px;}
+.item_spec_sub{border:1px solid;height:auto; padding: 10px;}
 
 .item_detail_price{font-size:24px;color:#309;font-weight:700}
 
@@ -100,11 +102,15 @@ border-spacing:5px;}
 
 .video_ad video{margin:5px;width:167px; height:180px;border-radius:10px}
 
-.question_section{border:1px solid;margin:10px;}
+question {text-decoration: underline;}
+.question_section{border:1px solid;margin:10px 0;}
 
-.question_answer_section{overflow-y: scroll; height:250px;}
+.question_section form {padding: 0px;}
+.question_section form input {padding: 5px;}
 
-.question_title{background:#06C;height:auto}
+.question_answer_section{overflow-y: scroll; height:auto; padding: 10px;}
+
+.question_title{background:#06C;height:auto; padding: 5px;}
 
 .question_title a{color:white}
 
@@ -131,6 +137,6 @@ border-spacing:5px;}
 
 	}
 	
-.item_image_section img{height:120px;width:115px;border:1px solid;}
+.item_image_section img{height:120px;width:115px;}
 
-.item_img_slider{border:1px solid;margin-top:10px;}
+.item_img_slider{border:1px solid;margin-top:10px; padding:2px;}

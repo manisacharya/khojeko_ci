@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Khojeko - Online Buying and Selling</title>
 
-    <link href="<?php echo base_url('public/css/bootstrap.min.css');?>" rel="stylesheet" />
+    <link href="<?php echo base_url('public/css/slider/nouislider.min.css'); ?>"  rel="stylesheet">
+    <link href="<?php echo base_url('public/css/bootstrap/bootstrap.css');?>" rel="stylesheet" />
     <link href="<?php echo base_url('public/css/main.css');?>" rel="stylesheet" />
     <link href="<?php echo base_url('public/css/responsive.css');?>" rel="stylesheet" />
     <link href="<?php echo base_url('public/css/category.css');?>" rel="stylesheet" />
@@ -16,16 +17,7 @@
     <link href="<?php echo base_url('public/css/login.css');?>" rel="stylesheet" />
     <link href="<?php echo base_url('public/css/signup.css'); ?>"  rel="stylesheet">
 
-    <!--<link href="<?php /*echo base_url('public');*/?>/css/jquery.mobile-1.4.5.min.css" rel="stylesheet" />
--->
-    <link href="<?php echo base_url('public/images/ico/apple-touch-icon-144-precomposed.png');?>" rel="apple-touch-icon-precomposed" sizes="144x144" />
-    <link href="<?php echo base_url('public/images/ico/apple-touch-icon-114-precomposed.png');?>" rel="apple-touch-icon-precomposed" sizes="114x114" />
-    <link href="<?php echo base_url('public/images/ico/apple-touch-icon-72-precomposed.png');?>" rel="apple-touch-icon-precomposed" sizes="72x72" />
-    <link href="<?php echo base_url('public/images/ico/apple-touch-icon-57-precomposed.png');?>" rel="apple-touch-icon-precomposed" />
-    <link href="<?php echo base_url('public/images/icons/icon.ico')?>" rel="shortcut icon" />
-
-    <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet" />
-
+     <link href="<?php echo base_url('public/images/icons/icon.ico')?>" rel="shortcut icon" />
 
 </head>
 <body id="page-wrap">
@@ -37,7 +29,7 @@
             </div>
 
             <div class="col-md-9">
-                <nav class="navbar navbar-inverse menu">
+                <nav class="navbar menu">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar" id="nav-buttton">
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
@@ -95,10 +87,11 @@
             </div>
 
             <div class="col-sm-3 col-xs-12 left_block">
+                <?php echo form_open('filter', array('method' => 'GET')); ?>
                 <div class="category_block">
                     <div class="category">
-                        Categories
-                        <select name="dropdown" id="drop1">
+                        <label for="drop1">Categories</label>
+                        <select name="type" id="drop1">
                             <option>All Ads</option>
                             <option>Dealer Ads</option>
                             <option>Individual Ads</option>
@@ -107,8 +100,9 @@
                         </select>
                     </div>
 
-                    <div class="cat">
+                    <div class="hierarchy">
                         <div>
+                            <input type="hidden" name="category" id="category_filter" value="all" />
                             <?php
                             require_once('require/category.php');
                             print_list(0, 0, $category);
@@ -116,6 +110,24 @@
                         </div>
                     </div>
                 </div><!--category_block End-->
+
+                <div id="filter">
+                    <label class="tt">Condition Price:</label>
+                    <span id="min_price">500</span>
+                    <span id="max_price">1000</span>
+                    <div class="price_slider">
+                        <div id="slider-snap"></div>
+                            <div class="col-sm-2">
+                                <input type="text" name="min" readonly id="slider-snap-value-lower"/>
+                            </div>
+                            <div class="col-sm-8"></div>
+                            <div class="col-sm-2">
+                                <input type="text" name="max" readonly id="slider-snap-value-upper"/>
+                            </div>
+                            <button class="btn btn-default" type="submit">Apply Filter</button>
+                        <?php echo form_close();?>
+                    </div>
+                </div>
 
                 <div class="banner">
                     <img src="<?php echo base_url('public/images/shipping.jpg');?>" class="img-responsive">

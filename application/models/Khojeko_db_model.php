@@ -48,31 +48,30 @@
             return $this->db->get()->result();
         }
 
-        public function popular_listing(){
+        public function popular_district(){
+                $this->db->select('*')->from('user');
+                $this->db->join('personal', 'user.user_key = personal.p_id');
+                $this->db->join('items', 'user.user_id= items.user_id');
+                $this->db->order_by('items.views', 'desc');
 
-            $personal = array (
-                'table' => 'personal',
-                'condition' => 'user.user_key = personal.p_id',
-                'jointype' => 'INNER'
-            );
+                return $this->db->get()->result();
+        }
 
-            $dealer = array (
-                'table' => 'dealer',
-                'condition' => 'user.type = "dealer" AND user.user_key = dealer.d_id',
-                'jointype' => 'INNER'
-            );
+        public function popular_category(){
+            $this->db->select('*')->from('items');
+            $this->db->join('category', 'user.user_key = cate.p_id');
+            $this->db->join('items', 'user.user_id= items.user_id');
 
-            $items = array (
-                'table' => 'items',
-                'condition' => 'user.user_id= items.user_id',
-                'jointype' => 'INNER'
-            );
+            return $this->db->get()->result();
+        }
 
-            $popular_district = array($personal, $items);
-            $popular_dealer = array($items, $dealer);
+        public function popular_dealer(){
+            $this->db->select('*')->from('user');
+            $this->db->join('dealer', 'user.user_key = dealer.d_id');
+            $this->db->join('items', 'user.user_id= items.user_id');
+            $this->db->order_by('items.views', 'desc');
 
-            $district = $this->khojeko_db_model->joinThingsOrder('user', $popular_district, 'items.views');
-            $dealer = $this->khojeko_db_model->joinThingsOrder('user', $popular_dealer, 'items.views');
+            return $this->db->get()->result();
         }
 
         public function joinThingsRow($table, $columns, $joins, $where) {

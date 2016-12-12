@@ -106,11 +106,11 @@
 					<div class="col-sm-1">
 						<?php echo form_open('delete'); ?>
 						<?php echo form_hidden('item_id', $item->item_id) ?>
-						<button type="submit" class="delete"><i class="fa fa-trash-o"></i></button>
+						<button type="submit" class="delete"><span class="glyphicon glyphicon-trash"></span></button>
 						<?php echo form_close(); ?>
 						<?php echo form_open('edit'); ?>
 						<?php echo form_hidden('item_id', $item->item_id) ?>
-						<button type="submit" class="edit"><i class="fa fa-edit"></i></button>
+						<button type="submit" class="edit"><span class="glyphicon glyphicon-edit"></span></button>
 						<?php echo form_close(); ?>
 					</div>
 					<div class="col-sm-2">

@@ -11,7 +11,12 @@ target.src = image.src;
 
 <div class="item_category">
     <a class="main_cat">MAIN CATEGORY:</a>
-    <a class="cat_description">Mobile Phones & Tablets</a> >><a class="cat_description"> Mobiles</a> >><a class="cat_description"> Nokia </a>
+    <?php
+        echo ($details->gg_parent) ? $details->gg_parent.' >> ' : '';
+        echo ($details->g_parent) ? $details->g_parent.' >> ' : '';
+        echo ($details->parent) ? $details->parent.' >> ' : '';
+        echo $details->category;
+    ?>
 </div><!--item_category ends-->
 
 <div class="warning_tips">
@@ -21,13 +26,12 @@ target.src = image.src;
 </div><!--warning_tips-->
 
 <div class="item_info">
-    <div class="col-sm-2">
-        <div class="col-sm-2">
-            <i class="fa fa-clock-o" id="clock"></i>
+    <div class="col-sm-4">
+        <div class="col-sm-1">
+            <span class="glyphicon glyphicon-time symbol" id="clock"></span>
         </div>
 
-        <div class="col-sm-10" id="date">
-            <a></a>
+        <div class="col-sm-11" id="date">
             <a>
                 <?php
                 //default_timezone_set in config.php
@@ -39,20 +43,20 @@ target.src = image.src;
     </div>
 
     <div class="col-sm-2" style="padding-left:4px">
-        <div class="col-sm-2">
-            <i class="fa fa-eye"></i>
+        <div class="col-sm-1">
+            <span class="glyphicon glyphicon-eye-open symbol"></span>
         </div>
-        <div class="col-sm-10" id="view">
+        <div class="col-sm-11" id="view">
             <a><?php echo $details->views;?> views</a>
         </div>
     </div>
 
     <div class="col-sm-2">
-        <div class="col-sm-2">
-            <i class="fa fa-eye"></i>
+        <div class="col-sm-1">
+            <span class="glyphicon glyphicon-calendar symbol"></span>
         </div>
 
-        <div class="col-sm-10 expiry_date">
+        <div class="col-sm-11 expiry_date">
             <a>
                 <?php
                 $edays = $details->ad_duration - $days->format("%a");
@@ -68,21 +72,25 @@ target.src = image.src;
     </div>
 
     <div class="col-sm-2">
-        <div class="col-sm-2">
-            <i class="fa fa-heart"></i>
+        <div class="col-sm-1">
+            <span class="glyphicon glyphicon-heart symbol"></span>
         </div>
-        <div class="col-sm-10" id="favourite">
-            <a href="<?php echo base_url("Details/add_to_fav/".$id)?>">Add to favourite</a>
+        <div class="col-sm-11" id="favourite">
+            <a href="<?php echo base_url("Details/add_to_fav/".$id)?>">Favourite</a>
         </div>
     </div>
 
     <div class="col-sm-2">
-        <div class="col-sm-2">
-            <img src="<?php echo base_url();?>public/images/danger.png" alt="warning">
+        <div class="col-sm-1">
+            <span class="glyphicon glyphicon-warning-sign symbol"></span>
         </div>
 
         <div class="col-sm-10" id="fake_report">
-            <a href="" data-toggle="modal" data-target="#myModal">If this ad is fake report us</a>
+            <?php if($this->session->has_userdata('logged_in')){?>
+                <a href="" data-toggle="modal" data-target="#myModal">Report Us</a>
+            <?php } else { ?>
+                <a href="<?php echo base_url("Details/add_to_spam/".$id."/".$details->spam_count)?>">Report Us</a>
+            <?php } ?>
         </div>
     </div>
 </div><!--item_info ends-->
@@ -123,7 +131,7 @@ target.src = image.src;
 <div class="col-sm-7" style="clear:both">
     <div class="item_image">
         <?php if($details->sales_status == 0){ ?>
-            <img src="<?php echo base_url('public/images/sold1.jpg'); ?>" alt="sold" id="sold" class="img-responsive">
+            <img src="<?php echo base_url('public/images/sold.png'); ?>" alt="sold" id="sold" class="img-responsive">
         <?php } ?>
         <img id="displayImage" src="<?php echo base_url();?>public/images/item_images/<?php echo $image->row()->image;?>" id="item_img" class="img-responsive">
     </div><!--item_images ends -->
@@ -280,7 +288,7 @@ target.src = image.src;
 </div><!--item_spec--->
 
 <div class="item_spec_sub">
-
+    <?php echo $details->specs;?>
 </div><!--item_spec_sub-->
 
 <div class="question_section">
@@ -299,6 +307,7 @@ target.src = image.src;
 
         $data = array(
             'name' => 'question',
+            'placeholder' => 'Type your question here',
             'id' => 'ques',
             'style' => 'width: 100%'
         );

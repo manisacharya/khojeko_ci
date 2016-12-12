@@ -21,8 +21,8 @@
 
 <div class="listCon">
     <div id="viewcontrols" data-enhance="false">
-        <a class="gridview" href="#!"><i class="fa fa-th fa-2x" ></i></a>
-        <a class="listview" href="#!"><i class="fa fa-list fa-2x"></i></a>
+        <a class="gridview" href="#!"><span class="glyphicon glyphicon-th"></span></a>
+        <a class="listview" href="#!"><span class="glyphicon glyphicon-th-list"></span></a>
         <a class="info" onMouseOver="this.style.color='#ffffff'" onMouseOut="this.style.color='#ffffff'">Ads by This User</a>
 
         <a class="filter_dropdown">Filter By:</a>
@@ -45,12 +45,21 @@
             <div class="col-sm-10" id="info_content">
                 <section class="list-right">
                     <span class="price">
-                        <a class="button"><?php echo $item->c_name;?></a><br>
-                        <label><?php echo $item->views; ?></label>
-                        <i class="fa fa-eye" ></i>
-                        <i class="fa fa-clock-o" ></i>
-                        <i class="fa fa-heart" ></i>
-                        <i class="fa fa-comment-o"></i>
+                        <a class="button">
+                            <?php
+                                echo ($item->gg_parent) ? $item->gg_parent.' >> ' : '';
+                                echo ($item->g_parent) ? $item->g_parent.' >> ' : '';
+                                echo ($item->parent) ? $item->parent.' >> ' : '';
+                                echo $item->category;
+                            ?>
+                        </a><br>
+                        <label style="float: right;">
+                            <?php echo $item->views; ?>
+                            <span class="glyphicon glyphicon-eye-open"></span>
+                            <span class="glyphicon glyphicon-time"></span>
+                            <span class="glyphicon glyphicon-heart"></span>
+                            <span class="glyphicon glyphicon-comment"></span>
+                        </label>
                     </span>
                 </section>
                 <section class="list-left">

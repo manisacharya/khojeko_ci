@@ -56,8 +56,8 @@
 //                    echo  $a;
                     ?>
                     ) </a>
-                <a class="gridview" href="#!"><i class="fa fa-th fa-2x" ></i></a>
-                <a class="listview" href="#!"><i class="fa fa-list fa-2x"></i></a>
+                <a class="gridview" href="#!"><span class="glyphicon glyphicon-th"></span></a>
+                <a class="listview" href="#!"><span class="glyphicon glyphicon-th-list"></span></a>
                 <button value="View More" id="view_btn">View More</button>
             </div>
 

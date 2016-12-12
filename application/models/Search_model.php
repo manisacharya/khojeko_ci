@@ -12,11 +12,17 @@ class Search_model extends CI_Model {
         $search_query = $this->input->get('search');
 
         if ($this->db->table_exists('items')) {
+            $this->db->select('items.*, item_spec.specs, item_img.image, four.c_name AS gg_parent, three.c_name AS g_parent, two.c_name AS parent, one.c_name AS category');
+
             $this->db->like('title', $search_query);
             $this->db->where('deleted_date', 0);
             $this->db->join('item_img', 'item_img.item_id = items.item_id');
             $this->db->join('item_spec', 'item_spec.item_id = items.item_id');
-            $this->db->join('category', 'category.c_id = items.c_id');
+
+            $this->db->join('category AS one', 'one.c_id = items.c_id');
+            $this->db->join('category AS two', 'one.parent_id = two.c_id', 'LEFT');
+            $this->db->join('category AS three', 'two.parent_id = three.c_id', 'LEFT');
+            $this->db->join('category AS four', 'three.parent_id = four.c_id', 'LEFT');
 
             $query = $this->db->get('items');
             return $this->items_xss_clean($query->result());
@@ -84,6 +90,10 @@ class Search_model extends CI_Model {
             $items->user_id                 = html_escape($this->security->xss_clean($items->user_id));
             $items->ad_id                   = html_escape($this->security->xss_clean($items->ad_id));
             $items->specs                   = html_escape($this->security->xss_clean($items->specs));
+            $items->gg_parent               = html_escape($this->security->xss_clean($items->gg_parent));
+            $items->g_parent                = html_escape($this->security->xss_clean($items->g_parent));
+            $items->parent                  = html_escape($this->security->xss_clean($items->parent));
+            $items->category                = html_escape($this->security->xss_clean($items->category));
         }
         unset($items);
 

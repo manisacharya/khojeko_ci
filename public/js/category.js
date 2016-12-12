@@ -2,10 +2,10 @@ $(document).ready(function(){
 	$(".category1").hide();
 	$(".category2").hide();
 	$(".category3").hide();
-	$(".minus0").hide();
+	$(".glyphicon-minus-sign").hide();
     $(".category0 li a").click(function(){
         $(this).next(".category1").slideToggle();
-		$(this).find('i').toggleClass('fa-plus-circle fa-minus-circle');
+		$(this).find('span').toggleClass('glyphicon-plus-sign glyphicon-minus-sign');
 		/*$("#content").load("page.php");
 		$("#guts").hide();*/
 		return false;
@@ -24,3 +24,6 @@ $(document).ready(function(){
 	})
 })
 
+$("ul.category li a").click(function() {
+    document.getElementById("category_filter").value = $(this).attr('id');
+});

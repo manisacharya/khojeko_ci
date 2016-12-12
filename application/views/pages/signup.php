@@ -58,13 +58,13 @@
             <div class="stepwizard">
                 <div class="stepwizard-row setup-panel">
                     <div class="stepwizard-step">
-                        <a href="#step-1" type="button" class="btn btn-primary btn-circle steps">1.Login Details</a>
+                        <a href="#step-1" type="button" class="btn btn-primary btn-circle steps">1</a>
                     </div>
                     <div class="stepwizard-step">
-                        <a href="#step-2" type="button" class="btn btn-default btn-circle steps" disabled="disabled">2.Profile</a>
+                        <a href="#step-2" type="button" class="btn btn-default btn-circle steps" disabled="disabled">2</a>
                     </div>
                     <div class="stepwizard-step">
-                        <a href="#step-3" type="button" class="btn btn-default btn-circle steps" disabled="disabled">3.Done</a>
+                        <a href="#step-3" type="button" class="btn btn-default btn-circle steps" disabled="disabled">3</a>
                     </div>
                 </div>
             </div>
@@ -82,8 +82,8 @@
                                 *User email:
                             </td>
                             <td>
-                                <!--input type="email" name="user_email" required class="naya"-->
-                                <?php echo form_input('user_email', $this->input->post('user_email'), 'required class="naya form-control" id="useremail"');?>
+                                <input type="email" name="user_email" required class="nayanaya form-control" id="useremail" value="<?php echo $this->input->post('user_email');?>">
+                                <?php //echo form_input('user_email', $this->input->post('user_email'), 'type="email" required class="naya form-control" id="useremail"');?>
                                 <?php echo form_error('user_email', '<div class="alert alert-danger">', '</div>'); ?>
                                 <div class="result" id="result2"></div>
                             </td>

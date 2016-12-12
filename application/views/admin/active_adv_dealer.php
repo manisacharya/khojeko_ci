@@ -5,10 +5,11 @@ if ($item_num>$total)
 ?>
 <div class="col-sm-12">
     <div class="active_inactive">
-        <a>Search:</a><a href="#">All Active</a>
-        <input type="text" class="search_active" placeholder="Search by name, email, city, district, product etc">
-        <a href="#">Search >></a>
-        <button class="default_button">POST BY ADMIN</button>
+        <form class="search" method="get" action="<?php echo base_url('admin/active_adv_dealer') ?>">
+            <a>Search:</a><a href="#">All Inactive</a>
+            <input type="text" name="search" class="search_active" placeholder="Search by product or adv by or user email">
+            <button type="submit" id="search_btn"><i class="fa fa-search"> </i> </button>
+        </form>
     </div><!--active_inactive-->
     <div class="active_ads">
         <form method="post" action="<?php echo base_url('admin/Admin_pages/unverify_validation/active_adv_dealer') ?>">

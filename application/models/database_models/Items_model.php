@@ -43,6 +43,7 @@ class Items_model extends CI_Model {
     }
     public function get_dealer_items($dealer) {
         if ($this->db->table_exists('items')) {
+            $this->db->select('items.*, user.*, dealer.*, item_spec.specs, item_img.image, four.c_name AS gg_parent, three.c_name AS g_parent, two.c_name AS parent, one.c_name AS category');
             $this->db = $this->item_joins();
             $this->db->join('dealer', 'user.user_key = dealer.d_id');
 
@@ -57,6 +58,7 @@ class Items_model extends CI_Model {
 
     public function get_personal_items($personal) {
         if ($this->db->table_exists('items')) {
+            $this->db->select('items.*, user.*, personal.*, item_spec.specs, item_img.image, four.c_name AS gg_parent, three.c_name AS g_parent, two.c_name AS parent, one.c_name AS category');
             $this->db = $this->item_joins();
             $this->db->join('personal', 'user.user_key = personal.p_id');
 
@@ -113,8 +115,12 @@ class Items_model extends CI_Model {
         $this->db->where('primary', 1);
         $this->db->join('item_img', 'item_img.item_id = items.item_id');
         $this->db->join('item_spec', 'item_spec.item_id = items.item_id');
-        $this->db->join('category', 'category.c_id = items.c_id');
         $this->db->join('user', 'user.user_id = items.user_id');
+
+        $this->db->join('category AS one', 'one.c_id = items.c_id');
+        $this->db->join('category AS two', 'one.parent_id = two.c_id', 'LEFT');
+        $this->db->join('category AS three', 'two.parent_id = three.c_id', 'LEFT');
+        $this->db->join('category AS four', 'three.parent_id = four.c_id', 'LEFT');
         return $this->db;
     }
 
@@ -279,6 +285,10 @@ class Items_model extends CI_Model {
             $items->user_id                 = html_escape($this->security->xss_clean($items->user_id));
             $items->ad_id                   = html_escape($this->security->xss_clean($items->ad_id));
             $items->specs                   = html_escape($this->security->xss_clean($items->specs));
+            $items->gg_parent               = html_escape($this->security->xss_clean($items->gg_parent));
+            $items->g_parent                = html_escape($this->security->xss_clean($items->g_parent));
+            $items->parent                  = html_escape($this->security->xss_clean($items->parent));
+            $items->category                = html_escape($this->security->xss_clean($items->category));
         }
         unset($items);
 

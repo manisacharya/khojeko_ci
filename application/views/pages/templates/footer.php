@@ -1,7 +1,7 @@
 <div class="col-sm-12" style="margin-top: 20px;">
     <div class="dealer_listing">
         <div class="dealer_list_topic">
-            <label>Dealer Listing >>></label>
+            <label>Dealer Listing</label>
             <a href="!#" id="test">Show List in alphabetic order</a>
         </div>
         <ul id="list">
@@ -12,8 +12,8 @@
     </div><!--dealer listing ends-->
 
     <div class="logosl">
-        <div id="dealer_logo">
-            <a >Dealers/Retailer Partners</a>
+        <div class="dealer_list_topic">
+            <label>Dealers/Retailer Partners</label>
         </div>
 
         <div id="jssor_1" class="partners">
@@ -42,13 +42,31 @@
                 <div style="display: none;">
                     <img data-u="image" src="<?php echo base_url('public/images/logos/ebay.jpg');?>" />
                 </div>
+                <div style="display: none;">
+                    <img data-u="image" src="<?php echo base_url('public/images/logos/dnn.jpg');?>" />
+                </div>
+                <div style="display: none;">
+                    <img data-u="image" src="<?php echo base_url('public/images/logos/drupal.jpg');?>" />
+                </div>
+                <div style="display: none;">
+                    <img data-u="image" src="<?php echo base_url('public/images/logos/ebay.jpg');?>" />
+                </div>
+                <div style="display: none;">
+                    <img data-u="image" src="<?php echo base_url('public/images/logos/dnn.jpg');?>" />
+                </div>
+                <div style="display: none;">
+                    <img data-u="image" src="<?php echo base_url('public/images/logos/drupal.jpg');?>" />
+                </div>
+                <div style="display: none;">
+                    <img data-u="image" src="<?php echo base_url('public/images/logos/ebay.jpg');?>" />
+                </div>
             </div>
         </div><!--jssor_1 ends-->
     </div><!--logos1 ends-->
 
     <div class="listing">
-        <div class="col-sm-4 popular_district" >
-            <u><a>Popular District</a></u>
+        <div class="col-sm-4 popular" >
+            <div class="popular_title"><strong>Popular District</strong></div>
             <div class="child">
                 <ol>
                     <?php foreach ($popular_district as $one):?>
@@ -57,10 +75,9 @@
                 </ol>
             </div>
         </div>
-        <div class="col-sm-1"></div>
-        <div class="col-sm-3 popular_cat">
-            <u><a>Popular Categories</a></u>
-            <div id="ppChild">
+        <div class="col-sm-4 popular">
+            <div class="popular_title"><strong>Popular Categories</strong></div>
+            <div class="child">
                 <ol>
                     <li>Mobile & Tablet Pcs</li>
                     <li>Mobile </li>
@@ -72,10 +89,9 @@
                 </ol>
             </div>
         </div>
-        <div class="col-sm-1"></div>
-        <div class="col-sm-3 popular_Dea">
-            <u><a>Popular Dealers</a></u>
-            <div id="ddChild">
+        <div class="col-sm-4 popular">
+            <div class="popular_title"><strong>Popular Dealer</strong></div>
+            <div class="child">
                 <ol>
                     <?php foreach ($popular_dealer as $one):?>
                         <li><?php echo $one->name."(".$one->views.")";?></li>
@@ -89,8 +105,8 @@
     <?php if ($this->session->has_userdata('logged_in')): ?>
     <div class="history">
         <div class="history_title">
-            <a>Your recently viewed Ads</a>
-            <a class="a_history">View your all browsing history>></a>
+            <a>Your recently viewed Advertisements</a>
+            <a class="a_history">View your all browsing history</a>
         </div>
 
         <div class="history_section">
@@ -140,7 +156,10 @@
 </footer>
 <a href="#" class="back-to-top"><i class="fa fa-arrow-up"></i></a>
 
-<script type="text/javascript" src="<?php echo base_url('public/js/jquery-2.2.3.min.js');?>"></script>
+<script type="text/javascript" src="<?php echo base_url('public/js/jquery.js');?>"></script>
+<script type="text/javascript" src="<?php echo base_url('public/js/wNumb.js'); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url('public/js/slider/nouislider.min.js'); ?>"></script>
+
 <script type="text/javascript" src="<?php echo base_url('public/js/bootstrap.min.js');?>"></script>
 <script type="text/javascript" src="<?php echo base_url('public/js/category.js');?>"></script>
 <script type="text/javascript" src="<?php echo base_url('public/js/list_grid.js');?>"></script>
@@ -160,6 +179,8 @@
 <script type="text/javascript" src="<?php echo base_url('public/js/ad_detail_slider.js'); ?>"></script>
 <script type="text/javascript" src="<?php echo base_url('public/js/count.js'); ?>"></script>
 <script type="text/javascript" src="<?php echo base_url('public/js/multiple_upload.js'); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url('public/js/slider/price_slider.js'); ?>"></script>
+
 
 <script>(function(d, s, id) {
         var js, fjs = d.getElementsByTagName(s)[0];
