@@ -24,6 +24,30 @@ $(document).ready(function(){
 	})
 })
 
-$("ul.category li a").click(function() {
-    document.getElementById("category_filter").value = $(this).attr('id');
-});
+$(".parent_click a").on("click", function () {
+    document.getElementById("display_parent").innerHTML = 'Set as parent';
+    document.getElementById("parent").innerHTML = 0;
+    $("#display_parent").css('color','green');
+})
+
+$(".cname .category0 li a" || ".cname .category1 li a").on("click", function () {
+    var x = this.text;
+    var y = $(this).attr('id');
+    document.getElementById("display_cname").innerHTML = x;
+    document.getElementById("c_id").innerHTML = y;
+    $("#display_cname").css('color','black');
+})
+
+$(".parent .category0 li a" || ".parent .category1 li a").on("click", function () {
+    var x = this.text;
+    var y = $(this).attr('id');
+    document.getElementById("display_parent").innerHTML = x;
+    document.getElementById("parent").innerHTML = y;
+    $("#display_parent").css('color','black');
+})
+
+$(".parent .category3 li a").on("click", function () {
+    document.getElementById("display_parent").innerHTML = 'you cannot choose this as parent category';
+
+    $("#display_parent").css('color','red');
+})

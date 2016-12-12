@@ -223,6 +223,10 @@ a#scrollUp i{
     padding: 0;
 }
 
+.price_slider {
+    text-align: center;
+}
+
 .price_slider input {
     margin: 10px 0;
     border: 0px solid;
@@ -234,4 +238,13 @@ a#scrollUp i{
 
 #max_price, #min_price {
     display: none;
+}
+
+.noUi-draggable {
+    background: #1077b2;
+ }
+
+#display_parent {
+    text-decoration: none;
+    font-weight: 100;
 }
