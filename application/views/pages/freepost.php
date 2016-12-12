@@ -20,9 +20,9 @@
     </div>
 
     <?php echo form_open_multipart("adpost"); ?>
-        <div class="setup-content" id="step-1">
-            <div class="form-group">
-                <h3> Step 1&nbsp;&nbsp;(Select category for ad posting)</h3>
+        <div class="setup-content col-sm-12" id="step-1">
+            <div class="form-group post-ad-category">
+                <h3> Step 1: (Select category for ad posting)</h3>
 
                 <?php
                     require_once('templates/require/category.php');
@@ -30,36 +30,15 @@
                 ?>
 
                 <div class="search_section">
-                    <table>
-                        <tr>
-                            <td style="width:30%">
-                                To find best category quick search is here:
-                            </td>
-
-                            <td style="width:50%">
-                                <input type="text" class="search" style="width:40%">
-                                <button>Search</button>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>
-                                Suggested Category:
-                            </td>
-
-                            <td>
-                                <textarea name="display_cat" id="display_parent" readonly></textarea>
-                                <textarea name="parent" id="parent"></textarea>
-                            </td>
-                        </tr>
-                    </table>
+                    <label>Suggested Category: &nbsp<div id="post_cname"></div></label>
+                    <textarea name="postc_slug" id="post_c_slug" hidden="hidden" readonly></textarea>
                 </div><!--search_section ends-->
 
                 <button class="btn btn-primary nextBtn btn-lg pull-right" type="button" >Next</button>
             </div>
         </div>
 
-        <div class="setup-content step-2" id="step-2">
+        <div class="setup-content step-2 col-sm-12" id="step-2">
             <div class="form-group">
                 <h3> Step 2</h3>
 
