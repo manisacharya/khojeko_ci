@@ -1,4 +1,8 @@
+<div class="login_title">
+    <h2>Post Advertisements Here</h2>
+    <p>Advertisement anything that may be 1st hand or 2nd hand stuffs, post service ads, vacancies, events, jobs, rent, real state land and building, all advertisement services are available free of cost. Enjoy.</p>
 
+</div><!--login_title-->
 <div class="post_admin">
     <div class="stepwizard">
         <div class="stepwizard">
