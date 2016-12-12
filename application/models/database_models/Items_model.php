@@ -283,7 +283,6 @@ class Items_model extends CI_Model {
             $items->video_url2              = html_escape($this->security->xss_clean($items->video_url2));
             $items->c_id                    = html_escape($this->security->xss_clean($items->c_id));
             $items->user_id                 = html_escape($this->security->xss_clean($items->user_id));
-            $items->ad_id                   = html_escape($this->security->xss_clean($items->ad_id));
             $items->specs                   = html_escape($this->security->xss_clean($items->specs));
             $items->gg_parent               = html_escape($this->security->xss_clean($items->gg_parent));
             $items->g_parent                = html_escape($this->security->xss_clean($items->g_parent));
