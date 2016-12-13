@@ -1,9 +1,7 @@
 
     function showMyImage(input,id,num) {
-        if(document.getElementById(id).value.length == 0) {
-            $('#thumbnail'+num).removeAttr('src').removeAttr('style');
-            $('#btn'+num).remove();
-        }
+        $('#thumbnail'+num).removeAttr('src').removeAttr('style');
+        $('#btn'+num).remove();
         if (input.files && input.files[0]) {
             var reader = new FileReader();
 
