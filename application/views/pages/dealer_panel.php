@@ -69,19 +69,18 @@
                     <running>Running: <?php echo $difference->format("%a");?> days</running><br>
                     <view><?php echo $item->views;?> views</view><br>
                 </div>
-                <div class="col-sm-2" style="font-size:14px">
+                <div class="col-sm-2 text-center" style="font-size:14px">
                     <?php $remaining = $item->ad_duration-$difference->format("%a"); ?>
                     <?php if($remaining >= 0): ?>
                         <expiry>Expiry: After <?php echo $remaining;?> days</expiry><br>
                     <?php else: ?>
-                        <expiry style="color:red;">Expired</expiry><br>
                         <?php echo form_open('extend_date/'.$item->item_id.'/'.$difference->format("%a")); ?>
-                            <select name="extended_date">
-                                <option value="7">7</option>
-                                <option value="14">14</option>
-                                <option value="30">30</option>
+                            <select name="extended_date" id="renew" class="form-control input-sm">
+                                <option value="7">7 Days</option>
+                                <option value="14">14 Days</option>
+                                <option value="30">30 Days</option>
                             </select>
-                            <label>Days</label>
+                            <label for="renew"></label>
                             <button type="submit" class="green">Renew</button>
                         <?php echo form_close(); ?>
                     <?php endif; ?>
@@ -127,11 +126,8 @@
         </ol>
 
         <div class="col-sm-12">
-            <div class="col-sm-5"></div>
-            <div class="col-sm-7">
-                <a class="green"><< Previous</a>
-                <a class="green" style="float:right">Next >></a>
-            </div>
+            <a class="green" style="float:left;"><< Previous</a>
+            <a class="green" style="float:right;">Next >></a>
         </div>
     </div><!--owner_detail_ad-->
 </div><!--owner_ad_display-->
