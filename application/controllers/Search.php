@@ -13,6 +13,7 @@ class Search extends CI_Controller {
         $this->load->model('database_models/dealer_model');
         $this->load->model('database_models/items_model');
         $this->load->model('database_models/user_model');
+        $this->output->enable_profiler(TRUE);
     }
 
     public function results() {
@@ -39,6 +40,10 @@ class Search extends CI_Controller {
         $data['searched_items'] = $this->search_model->search_items();
         $data['searched_personals'] = $this->search_model->search_personals();
         $data['searched_dealers'] = $this->search_model->search_dealers();
+
+        $data['total_searched_items'] = $this->search_model->count_search_items();
+        $data['total_searched_personals'] = $this->search_model->count_search_personals();
+        $data['total_searched_dealers'] = $this->search_model->count_search_dealers();
 
         $this->load->view('pages/templates/header', $data);
         $this->load->view('pages/results', $data);
