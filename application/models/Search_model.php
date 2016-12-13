@@ -16,6 +16,7 @@ class Search_model extends CI_Model {
 
             $this->db->like('title', $search_query);
             $this->db->where('deleted_date', 0);
+            $this->db->where('primary', 1);
             $this->db->join('item_img', 'item_img.item_id = items.item_id');
             $this->db->join('item_spec', 'item_spec.item_id = items.item_id');
 
@@ -88,7 +89,6 @@ class Search_model extends CI_Model {
             $items->video_url2              = html_escape($this->security->xss_clean($items->video_url2));
             $items->c_id                    = html_escape($this->security->xss_clean($items->c_id));
             $items->user_id                 = html_escape($this->security->xss_clean($items->user_id));
-            $items->ad_id                   = html_escape($this->security->xss_clean($items->ad_id));
             $items->specs                   = html_escape($this->security->xss_clean($items->specs));
             $items->gg_parent               = html_escape($this->security->xss_clean($items->gg_parent));
             $items->g_parent                = html_escape($this->security->xss_clean($items->g_parent));
