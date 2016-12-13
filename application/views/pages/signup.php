@@ -21,21 +21,22 @@
     </script>
     <script type="text/javascript">
         $(document).ready(function() {
-            $(".second_login_dealer").hide();
-            $("#website").hide();
+            //$(".second_login_dealer").hide();
+            if(document.getElementById('personal').checked) { personal_div(); }
+            if(document.getElementById('dealer').checked) { dealer_div(); }
+            $("input[id$='personal']").click(function() { personal_div(); })
+            $("input[id$='dealer']").click(function() { dealer_div(); })
 
-            $("input[id$='personal']").click(function() {
+            function personal_div() {
                 $("#website").hide();
                 $(".second_login_personal").show();
                 $(".second_login_dealer").hide();
-
-            })
-            $("input[id$='dealer']").click(function() {
+            }
+            function dealer_div() {
                 $("#website").show();
                 $(".second_login_dealer").show();
                 $(".second_login_personal").hide();
-            })
-
+            }
         });
     </script>
 
@@ -110,13 +111,14 @@
                                 'name' => 'acc_type',
                                 'value' => 'personal',
                                 'id' => 'personal',
-                                'checked' => TRUE
+                                'checked' => set_radio('acc_type', 'personal',TRUE)
                             );
 
                             $data_radio2 = array(
                                 'name' => 'acc_type',
                                 'value' => 'dealer',
-                                'id' => 'dealer'
+                                'id' => 'dealer',
+                                'checked' => set_radio('acc_type', 'dealer')
                             );
                             ?>
                             <div class="col-sm-5 text-center">
@@ -133,6 +135,7 @@
                         <div class="col-sm-7">
                             <?php echo form_input('user_name', $this->input->post('user_name'), 'class="naya form-control" id="username"'); ?>
                             <label style="margin-top: 10px;">http://www.khojeko.com/</label>
+                            <?php echo form_error('user_name', '<div class="alert alert-danger">', '</div>'); ?>
                             <div class="result" id="result1"></div>
                         </div>
                     </div>
@@ -141,7 +144,7 @@
                         <div class='col-sm-7 g-recaptcha' data-sitekey='6LdaZCITAAAAAJ99HnRAhCbkJ7us0MUGmXkDW94p'></div><br>
                     </div>
                     <div class="row">
-                        <div class="col-sm-12 text-center"><?php echo form_checkbox('termsandcondition', 'accept', '', 'required checked').'I Agree with the '."<a class='terms' href='#'>Terms and Conditions.</a>"; ?></div>
+                        <div class="col-sm-12 text-center"><?php echo form_checkbox('termsandcondition', 'accept', '', 'required').'I Agree with the '."<a class='terms' href='#'>Terms and Conditions.</a>"; ?></div>
                         <?php echo form_error('termsandcondition', '<div class="alert alert-danger">', '</div>'); ?>
                     </div>
                 </div>
@@ -327,6 +330,7 @@
                             <div class="col-sm-7" id="row1">
                                 <input id="dealerlogo" type="file" name="dealerlogo" accept="image/*"  onchange="showMyImage(this,'dealerlogo','1');" />
                                 <img id="thumbnail1" />
+                                <?php echo form_error('dealerlogo', '<div class="alert alert-danger">', '</div>'); ?>
                             </div>
                         </div>
                         <div class="row">
