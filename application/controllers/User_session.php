@@ -53,6 +53,8 @@ class User_session extends CI_Controller {
             $data['popular_district'] = $this->khojeko_db_model->popular_district();
             $data['popular_dealer'] = $this->khojeko_db_model->popular_dealer();
 
+            $data["login_msg"] = $this->session->flashdata('login_msg');
+
             //flashdata for password changed from new_password
             $data['pwd_changed'] = $this->session->flashdata('password_changed');
 
