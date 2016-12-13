@@ -252,6 +252,7 @@ class Pages extends CI_Controller {
     }
 
     public function change_password(){
+        $this->get_common_contents($data);
         if (!$this->session->has_userdata('logged_in'))
             show_error('Sorry, page broken.');
 
@@ -264,15 +265,6 @@ class Pages extends CI_Controller {
             $this->user_model->change_password_user();
             redirect('change_password');
         } else {
-            $data["category"] = $this->categories_model->get_categories();
-            $data['dealer_list'] = $this->dealer_model->get_all_dealers();
-
-            // counts : total, used/new, dealer/user ads
-            $data["total_items"] = $this->items_model->count_items();
-            $data["used_items"] = $this->items_model->count_status_items('used');
-            $data["new_items"] = $this->items_model->count_status_items('new');
-            $data['dealer_items'] = $this->items_model->count_user_items('dealer');
-            $data['user_items'] = $this->items_model->count_user_items('personal');
             $data['change_pwd'] = $this->session->flashdata('change_password');
 
             $this->load->view("pages/templates/header", $data);
