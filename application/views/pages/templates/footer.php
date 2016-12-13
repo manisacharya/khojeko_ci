@@ -213,7 +213,7 @@
         $('#add').click(function(){
             //i++;
             if(i<=3) {
-                $('#dynamic_field').append('<div class="row"><div class="col-md-10"><input type="file" name="upload_images'+i+'" accept="image/*"  onchange="showMyImage(this)" /></div></div>');
+                $('#dynamic_field').append('<input type="file" name="upload_images'+i+'" accept="image/*"  onchange="showMyImage(this)" />');
                 i++;
             }
         });
