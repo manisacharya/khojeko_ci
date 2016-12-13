@@ -46,7 +46,6 @@
         });
     </script>
 
-    <script type="text/javascript" src="<?php echo base_url('public'); ?>/js/ad_detail_slider.js"></script>
     <script type="text/javascript" src="<?php echo base_url('public'); ?>/js/count.js"></script>
     <script type="text/javascript" src="<?php echo base_url('public'); ?>/js/multiple_upload.js"></script>
 
@@ -70,13 +69,10 @@
                 </div>
             </div>
 
-            <?php
-            echo form_open_multipart('signup');
-            //echo validation_errors();
-            ?>
+            <?php echo form_open_multipart('signup'); ?>
             <div class="setup-content col-sm-12" id="step-1">
                 <div class="form-group">
-                    <h3 class="text-center">Login Details:</h3>
+                    <h3>Login Details:</h3>
                     <div class="row">
                         <div class="col-sm-3 input-title"><label>* Email :</label></div>
                         <div class="col-sm-7 input-text">
@@ -157,7 +153,7 @@
             <div class="setup-content col-sm-12" id="step-2">
                 <div class="form-group">
                     <div class="second_login_personal">
-                        <h3 class="text-center">Personal Account</h3>
+                        <h3>Personal Account</h3>
                         <div class="row">
                             <div class="col-sm-3 input-title"><label>Full Name:</label></div>
 
@@ -178,7 +174,7 @@
                                 foreach($zones as $row) {
                                     $options_z[$row->zone_name] = $row->zone_name;
                                 }
-                                echo form_dropdown('zone_p', $options_z, $this->input->post('zone'), ' id="zone_p"');
+                                echo form_dropdown('zone_p', $options_z, $this->input->post('zone'), ' id="zone_p" class="form-control"');
                                 ?>
                             </div>
                         </div>
@@ -186,7 +182,7 @@
                         <div class="row">
                             <div class="col-sm-3 input-title" ><label for='district_p'>Select District:</div>
                             <div class="col-sm-7">
-                                <select name = 'district_p' id = 'district_p'>
+                                <select name = 'district_p' id = 'district_p' class="form-control">
                                     <option value="">-- Select District --</option>
                                 </select>
                             </div>
@@ -367,7 +363,7 @@
                             </div>
                         </div>
                     </div>
-                    <button class="btn btn-default prevBtn btn-lg pull-left" type="button" >Prev</button>
+                    <button class="btn btn-primary prevBtn btn-lg pull-left" type="button" >Prev</button>
                     <!--                        <button class="btn btn-primary nextBtn btn-lg pull-right" type="button" >Next</button>-->
                     <?php echo form_submit('signup_next', 'Next', 'class="btn btn-success btn-lg pull-right"');
                     echo form_close();
@@ -376,7 +372,7 @@
             </div>
             <div class="setup-content step-3" id="step-3">
                 <div class="form-group">
-                    <h3> Step 3</h3>
+                    <h3>Step 3</h3>
 
 
                     <div class="message">
