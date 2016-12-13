@@ -1,68 +1,41 @@
 <div class="category_display">
     <h4>Sub Category >></h4>
     <div class="subcategory_display">
-        <ul
-        <a class="heading">Mobile Phones</a>
-
-            <li><a>Nokia (123)</a></li>
-            <li><a>Samsung (23)</a></li>
-            <li><a>Colors (123)</a></li>
-            <li><a>LG (23)</a></li>
-            <li><a>Huawei</a></li>
-            <li><a>Philips</a></li>
-            <li><a>Micromax</a></li>
-            <li><a>Sony</a></li>
-            <li><a>Apple</a></li>
-            <li><a>Carbon</a></li>
-            <li><a>Xolo</a></li>
-            <li><a>BlackBerry</a></li>
-        </ul>
-        <ul>                <a class="heading">Tablets Pcs</a>
-
-            <li><a>Nokia (123)</a></li>
-            <li><a>Samsung (23)</a></li>
-            <li><a>Colors (123)</a></li>
-            <li><a>LG (23)</a></li>
-            <li><a>Huawei</a></li>
-            <li><a>Philips</a></li>
-            <li><a>Micromax</a></li>
-            <li><a>Sony</a></li>
-            <li><a>Apple</a></li>
-            <li><a>Carbon</a></li>
-            <li><a>Xolo</a></li>
-            <li><a>BlackBerry</a></li>
-        </ul>
-
-        <ul>  <a class="heading">Tablets Pcs</a>
-
-            <li><a>Nokia (123)</a></li>
-            <li><a>Samsung (23)</a></li>
-            <li><a>Colors (123)</a></li>
-            <li><a>LG (23)</a></li>
-            <li><a>Huawei</a></li>
-            <li><a>Philips</a></li>
-            <li><a>Micromax</a></li>
-            <li><a>Sony</a></li>
-            <li><a>Apple</a></li>
-            <li><a>Carbon</a></li>
-            <li><a>Xolo</a></li>
-            <li><a>BlackBerry</a></li>
-        </ul>
-        <ul>                <a class="heading">Tablets Pcs</a>
-
-            <li><a>Nokia (123)</a></li>
-            <li><a>Samsung (23)</a></li>
-            <li><a>Colors (123)</a></li>
-            <li><a>LG (23)</a></li>
-            <li><a>Huawei</a></li>
-            <li><a>Philips</a></li>
-            <li><a>Micromax</a></li>
-            <li><a>Sony</a></li>
-            <li><a>Apple</a></li>
-            <li><a>Carbon</a></li>
-            <li><a>Xolo</a></li>
-            <li><a>BlackBerry</a></li>
-        </ul>
+        <div class="childs">
+            <div class="heading">Mobile Phones</div>
+            <div>
+                <ul>
+                    <li><a>Nokia (123)</a></li>
+                    <li><a>Samsung (23)</a></li>
+                    <li><a>Colors (123)</a></li>
+                    <li><a>LG (23)</a></li>
+                    <li><a>Huawei</a></li>
+                    <li><a>Philips</a></li>
+                    <li><a>Micromax</a></li>
+                    <li><a>Sony</a></li>
+                    <li><a>Apple</a></li>
+                    <li><a>Carbon</a></li>
+                    <li><a>Xolo</a></li>
+                    <li><a>BlackBerry</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="childs">
+            <div class="heading">Mobile Phones</div>
+            <div>
+                <ul>
+                    <li><a>Nokia (123)</a></li>
+                    <li><a>Samsung (23)</a></li>
+                    <li><a>Colors (123)</a></li>
+                    <li><a>LG (23)</a></li>
+                    <li><a>Apple</a></li>
+                    <li><a>Carbon</a></li>
+                    <li><a>Xolo</a></li>
+                    <li><a>BlackBerry</a></li>
+                    <li><a>BlackBerry</a></li>
+                </ul>
+            </div>
+        </div>
     </div>
 </div>
 

@@ -4,7 +4,7 @@
 .status_of_account{text-align:center; padding:5px;}
 .welcome_div{margin:10px 0;}
 .welcome_div a{margin-right:30px;}
-.user_menu{display:inline;border:1px solid;}
+.user_menu{display:inline;}
 .user_menu a{margin:2px;font-size:15px}
 .premium{color:#906}
 .users_menu_item{color:green}

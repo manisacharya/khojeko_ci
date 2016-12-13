@@ -13,7 +13,6 @@ class Search extends CI_Controller {
         $this->load->model('database_models/dealer_model');
         $this->load->model('database_models/items_model');
         $this->load->model('database_models/user_model');
-        $this->output->enable_profiler(TRUE);
     }
 
     public function results() {
