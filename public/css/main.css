@@ -91,11 +91,10 @@ color: #03C;}
 
 .listing {
     background-color: #ccc;
-    height:200px;
+    height:auto;
 }
 .listing ol {
     margin: 0;
-    padding: 20px;
 }
 .listing div strong {text-decoration: underline;}
 
@@ -113,8 +112,8 @@ text-decoration: none;
 overflow: hidden;
 }
 
-.popular {color:#000; background:#CCC;border-radius:0px; padding:10px; border: 1px rgba(10, 76, 114, 0.6) solid; height:200px;}
-.popular_title {text-align: center;}
+.popular {color:#000; background:#CCC;border-radius:0px; padding:10px; border: 1px rgba(10, 76, 114, 0.6) solid; height:auto;}
+.popular_title {text-align: center; margin-bottom: 10px;}
 
 .history{margin-top:20px;}
 .history h4{color:#360;}
