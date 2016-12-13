@@ -8,7 +8,7 @@ class Signup extends CI_Controller {
         $this->load->database(); // load database
         $this->load->library('form_validation');
         $this->load->library('upload');
-        $this->load->model('signup_model');
+        $this->load->model('Signup_model');
         $this->load->model('khojeko_db_model');
         $this->load->model('database_models/categories_model');
         $this->load->model('database_models/dealer_model');
@@ -21,84 +21,13 @@ class Signup extends CI_Controller {
         if ($this->session->has_userdata('logged_in'))
             redirect('logged_in');
 
-       $this->get_common_contents($data);
+        $this->get_common_contents($data);
 
-        $data['zones'] = $this->signup_model->getAllZones();
-
-        $this->load->view('pages/templates/header', $data);
-        $this->load->view('pages/signup', $data);
-        $this->load->view('pages/templates/footer', $data);
-    }
-
-    //Validate login details from signup page and store in temporary file
-    public function details_validation(){
-
-        /*item/Category JOIN ARRAY*/
-        $item_joins = array(
-            array(
-                'table' => 'user',
-                'condition' => 'user.user_id = items.user_id',
-                'jointype' => 'INNER'
-            ),
-            array(
-                'table' => 'dealer',
-                'condition' => 'user.user_key = dealer.d_id',
-                'jointype' => 'INNER'
-            ),
-            array(
-                'table' => 'category',
-                'condition' => 'items.c_id = category.c_id',
-                'jointype' => 'INNER'
-            ),
-            array(
-                'table' => 'item_img',
-                'condition' => 'items.item_id = item_img.item_id',
-                'jointype' => 'INNER'
-            ),
-            array(
-                'table' => 'item_spec',
-                'condition' => 'items.item_id = item_spec.item_id',
-                'jointype' => 'INNER'
-            )
-        );
-
-        $dealer_list_joins = array(
-            array (
-                'table' => 'dealer',
-                'condition' => 'user.user_key = dealer.d_id',
-                'jointype' => 'INNER'
-            )
-        );
-        $personal_joins = array(
-            array(
-                'table' => 'user',
-                'condition' => 'user.user_id = items.user_id',
-                'jointype' => 'INNER'
-            ),
-            array(
-                'table' => 'personal',
-                'condition' => 'user.user_key = personal.p_id',
-                'jointype' => 'INNER'
-            )
-        );
-
-        // counts : total, used/new, dealer/user ads
-        $data["total_items"] = $this->khojeko_db_model->getCount("items", "COUNT(*) as total", "1=1");
-        $data["used_items"] = $this->khojeko_db_model->getCount("items", "COUNT(*) as total", "item_type='used'");
-        $data["new_items"] = $this->khojeko_db_model->getCount("items", "COUNT(*) as total", "item_type='new'");
-        $data['dealer_items'] = $this->khojeko_db_model->joinThingsRow('items', 'COUNT(*) as total', $item_joins, 'type="dealer"');
-        $data['user_items'] = $this->khojeko_db_model->joinThingsRow('items', 'COUNT(*) as total', $personal_joins, 'type="personal"');
-
-        $data['dealer_list'] = $this->khojeko_db_model->joinThings('user', 'khojeko_username, name', $dealer_list_joins, 'type="dealer"');
-        $data["category"] = $this->categories_model->get_categories();
-
-        $data['popular_district'] = $this->khojeko_db_model->popular_district();
-        $data['popular_dealer'] = $this->khojeko_db_model->popular_dealer();
+        $data['zones'] = $this->Signup_model->getAllZones();
 
         $email = $this->input->post('user_email');
         //generate random key
         $key = md5(uniqid());
-
         //insert into table according to user type
         if(strtoupper($this->input->post('acc_type')) == "DEALER"){
             //form validation for step 1
@@ -119,26 +48,20 @@ class Signup extends CI_Controller {
             //add the input data to temporary table
             if($this->form_validation->run()){
                 $username = $this->input->post('user_name');
-                $this->signup_model->add_temp_user($key, $username);
+                $this->Signup_model->add_temp_user($key, $username);
                 $dealerlogo = $this->dealer_logo($name);
                 $dealerdoc = $this->dealer_vat($name);
-                $id = $this->signup_model->add_temp_dealer($email, $dealerlogo, $dealerdoc);
+                $id = $this->Signup_model->add_temp_dealer($email, $dealerlogo, $dealerdoc);
                 $this->dealer_store($name, $id);
 
                 //send email to the user
                 $this->email_user($email, $key);
-            } else {
-                $data['zones'] = $this->signup_model->getAllZones();
-                $this->load->view('pages/templates/header', $data);
-                $this->load->view('pages/signup', $data);
-                $this->load->view('pages/templates/footer', $data);
-                //echo "error dealer";
             }
         } else {
             //form validation for step 1
             $this->signup_step1();
             //generate unique username for personal user
-            $username = $this->signup_model->personal_username($this->input->post('full_name'));
+            $username = $this->Signup_model->personal_username($this->input->post('full_name'));
             //Validate personal profile from signup page and store in temporary file
             $this->form_validation->set_rules('full_name', 'Full Name', 'required|trim');
             $this->form_validation->set_rules('zone_p', 'Zone', 'required|trim');
@@ -150,22 +73,17 @@ class Signup extends CI_Controller {
             $this->form_validation->set_rules('telephone_p', 'Telephone No.', 'required|trim');
             //add the input data to temporary table
             if ($this->form_validation->run()) {
-                $this->signup_model->add_temp_user($key, $username);
-                $this->signup_model->add_temp_personal($email);
+                $this->Signup_model->add_temp_user($key, $username);
+                $this->Signup_model->add_temp_personal($email);
 
                 //send email to the user
                 $this->email_user($email, $key);
-
-                //call the done page
-                //$this->signup_done($this->input->post('key'));
-            } else {
-                $data['zones'] = $this->signup_model->getAllZones();
-                $this->load->view('pages/templates/header', $data);
-                $this->load->view('pages/signup', $data);
-                $this->load->view('pages/templates/footer', $data);
-                //echo "error";
             }
         }
+        $this->load->view('pages/templates/header', $data);
+        $this->load->view('pages/signup', $data);
+        $this->load->view('pages/templates/footer', $data);
+
     }
 
     public function dealer_logo($name){
@@ -248,7 +166,7 @@ class Signup extends CI_Controller {
             }
             $count++;
         }
-        $this->signup_model->store_front($filename_arr);
+        $this->Signup_model->store_front($filename_arr);
 
     }
 
@@ -320,51 +238,56 @@ class Signup extends CI_Controller {
     //to send the data from temp tables to the original tables
     public function register_user($key){
 
-        if($this->signup_model->is_key_valid_add_user($key)){
-            echo "You can now successfully login";
+        if($this->Signup_model->is_key_valid_add_user($key)){
+            $this->session->set_flashdata('login_msg','<div class="alert alert-success">You can now successfully login.</div>');
             redirect('login');
         } else {
-            echo "Your account is not valid. Please signup again.";
+            $this->session->set_flashdata('login_msg','<div class="alert alert-danger">Your account has already been verified.</div>');
+            redirect('login');
         }
     }
 
     public function get_districts(){
-        $this->signup_model->get_districts();
+        $this->Signup_model->get_districts();
     }
 
     public function available_username(){
-        $this->signup_model->available_username();
+        $this->Signup_model->available_username();
     }
 
     public function available_email(){
-        $this->signup_model->available_email();
+        $this->Signup_model->available_email();
     }
 
     public function available_mobile_P(){
-        $this->signup_model->available_mobile_P();
+        $this->Signup_model->available_mobile_P();
     }
 
     public function available_mobile_d(){
-        $this->signup_model->available_mobile_d();
+        $this->Signup_model->available_mobile_d();
     }
 
     public function get_common_contents(&$data) {
-    $data["category"] = $this->categories_model->get_categories();
-    $data['dealer_list'] = $this->dealer_model->get_all_dealers();
+        $data["category"] = $this->categories_model->get_categories();
+        $data['dealer_list'] = $this->dealer_model->get_all_dealers();
 
-    $data["total_items"] = $this->items_model->count_items();
-    $data["used_items"] = $this->items_model->count_status_items('used');
-    $data["new_items"] = $this->items_model->count_status_items('new');
-    $data['dealer_items'] = $this->items_model->count_user_items('dealer');
-    $data['user_items'] = $this->items_model->count_user_items('personal');
+        $data["total_items"] = $this->items_model->count_items();
+        $data["used_items"] = $this->items_model->count_status_items('used');
+        $data["new_items"] = $this->items_model->count_status_items('new');
+        $data['dealer_items'] = $this->items_model->count_user_items('dealer');
+        $data['user_items'] = $this->items_model->count_user_items('personal');
 
-    $data['popular_district'] = $this->khojeko_db_model->popular_district();
-    $data['popular_dealer'] = $this->khojeko_db_model->popular_dealer();
+        $data['popular_district'] = $this->khojeko_db_model->popular_district();
+        $data['popular_dealer'] = $this->khojeko_db_model->popular_dealer();
 
-    if ($this->session->has_userdata('logged_in')) {
-        $this->load->model('database_models/recent_view_model');
-        $user_session = $this->session->all_userdata();
-        $data['recent_views'] = $this->recent_view_model->get_recent_view($user_session['logged_in']['id']);
+        /*$data['popular_district'] =
+        $data['popular_dealer'] =
+        $data['popular_categories'] = */
+
+        if ($this->session->has_userdata('logged_in')) {
+            $this->load->model('database_models/recent_view_model');
+            $user_session = $this->session->all_userdata();
+            $data['recent_views'] = $this->recent_view_model->get_recent_view($user_session['logged_in']['id']);
+        }
     }
-}
 }
