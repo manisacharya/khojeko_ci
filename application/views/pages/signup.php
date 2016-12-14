@@ -75,7 +75,7 @@
                     <div class="row">
                         <div class="col-sm-3 input-title"><label>* Email :</label></div>
                         <div class="col-sm-7 input-text">
-                            <input type="email" name="user_email" class="nayanaya form-control" id="useremail" value="<?php echo $this->input->post('user_email');?>" required>
+                            <input type="email" name="user_email" class="naya form-control" id="useremail" value="<?php echo $this->input->post('user_email');?>" required>
                             <?php //echo form_input('user_email', $this->input->post('user_email'), 'type="email" class="naya form-control" id="useremail" required');?>
                             <?php echo form_error('user_email', '<div class="alert alert-danger">', '</div>'); ?>
                             <div class="result" id="result2"></div>
@@ -86,7 +86,7 @@
                         <div class="col-sm-7 input-text">
                             <?php echo form_password('password', '', 'class="naya form-control" id="txtNewPassword" required'); ?>
                             <?php echo form_error('password', '<div class="alert alert-danger">', '</div>'); ?>
-                            <!--input type="password" required class="naya"-->
+                            <div class="result" id="error1"></div>
                         </div>
                     </div>
                     <div class="row">
@@ -139,12 +139,23 @@
                         <div class='col-sm-7 g-recaptcha' data-sitekey='6LdaZCITAAAAAJ99HnRAhCbkJ7us0MUGmXkDW94p'></div><br>
                     </div>
                     <div class="row">
-                        <div class="col-sm-12 text-center"><?php echo form_checkbox('termsandcondition', 'accept', '', 'id="termsandcondition" required').'I Agree with the '."<a class='terms' href='#'>Terms and Conditions.</a>"; ?></div>
-                        <?php echo form_error('termsandcondition', '<div class="alert alert-danger">', '</div>'); ?>
+                        <div class="col-sm-12 text-center">
+                            <?php
+                            $data_check = array(
+                            'name' => 'termsandcondition',
+                            'value' => 'accept',
+                            'id' => 'termsandcondition',
+                            'required' => 'required',
+                            'checked' => set_checkbox('termsandcondition', 'accept')
+                            );
+                            echo form_checkbox($data_check).'I Agree with the '."<a class='terms' href='#'>Terms and Conditions.</a>"; ?></div>
+                            <?php echo form_error('termsandcondition', '<div class="alert alert-danger">', '</div>'); ?>
+                        </div>
+                        <div class="result" id="error2"></div>
                     </div>
                 </div>
 
-                    <button class="btn btn-primary nextBtn btn-lg pull-right" type="button" onclick="checkRequired()">Next</button>
+                    <button class="btn btn-primary nextBtn btn-lg pull-right" type="button"> <!--onclick="checkRequired()"-->Next</button>
 
                     <?php //echo form_submit('signup_next', 'Next', 'class="btn btn-success btn-lg pull-right"'); ?>
                     <?php //echo form_close(); ?>
@@ -393,6 +404,14 @@
 <script type="text/javascript" src="<?php echo base_url('public'); ?>/js/jquery-1.8.0.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function(){
+        $('#txtNewPassword').keyup(function(){
+            $('#error1').hide();
+        });
+
+        $('#termsandcondition').click(function(){
+            $('#error2').hide();
+        });
+
         $('#username').keyup(function(){
             var username = $(this).val(); // Get username textbox using $(this)
             var Result = $('#result1'); // Get ID of the result DIV where we display the results
