@@ -88,9 +88,13 @@ target.src = image.src;
         </div>
 
         <div class="col-sm-10" id="fake_report">
-            <?php if($this->session->has_userdata('logged_in')){?>
-                <a href="" data-toggle="modal" data-target="#myModal">Report Us</a>
-            <?php } else { ?>
+            <?php if($this->session->has_userdata('logged_in')){
+                if($this->session->flashdata('spam_check')){ ?>
+                    <a href="<?php echo base_url("Details/add_to_spam/".$id."/".$details->spam_count)?>" data-toggle="modal" data-target="#myModal">Report Us</a>
+                <?php } else { ?>
+                    <a href="#" id="spam_repeat" onclick="return same_spam();">Report Us</a>
+<!--                    <div class="alert alert-danger" id="repeat_report">Your report already registered for this item.</div>-->
+            <?php }} else { ?>
                 <a href="<?php echo base_url("Details/add_to_spam/".$id."/".$details->spam_count)?>">Report Us</a>
             <?php } ?>
         </div>

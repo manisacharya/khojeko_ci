@@ -425,4 +425,4 @@ echo $message;
         </div><!--end of post_admin-->
     </div><!--col-sm-12-->
 </section>
-    
+

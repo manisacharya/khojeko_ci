@@ -25,6 +25,9 @@ class Item_post extends CI_Controller{
         $this->load->library('upload');
 
         $this->output->enable_profiler(TRUE);
+
+        if (! $this->session->has_userdata('admin_logged_in'))
+            redirect('admin/login');
     }
 
     public function post_form(){
@@ -48,7 +51,7 @@ class Item_post extends CI_Controller{
         // $this->form_validation->set_rules('address', 'Address', 'required');
 
         if ($this->form_validation->run() == FALSE) {
-            $data['message'] = "first";
+            $data['message'] = "";
             $this->load->view('admin/post_ad', $data);
             $this->load->view('admin/templates/footer', $data);
         }else {
@@ -150,19 +153,19 @@ class Item_post extends CI_Controller{
         $this->image_model->add_img($filename_arr);
     }
 
-    public function get_district(){
+    public function get_district_admin(){
         $this->districts_model->get_districts();
     }
 
-    public function available_username(){
+    public function available_username_admin(){
         $this->user_model->available_username();
     }
 
-    public function available_email(){
+    public function available_email_admin(){
         $this->user_model->available_email();
     }
 
-    public function available_mobile(){
+    public function available_mobile_admin(){
         $this->personal_model->available_mobile();
     }
 }

@@ -20,6 +20,7 @@ class Pages extends CI_Controller {
     }
 
     public function index() {
+        //$data['details'] = $this->detail_db_model->get_details_item($id);
 
         $data['section_position'] = $this->categories_model->get_position();
 

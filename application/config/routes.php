@@ -93,8 +93,11 @@ $route['admin/sign_up'] = 'admin/users/sign_up';
 $route['admin/logout'] = 'admin/users/logout';
 $route['admin/change_password'] = 'admin/users/change_password';
 $route['admin/post_ad'] = 'admin/item_post/post_form';
-$route['get_district'] = 'admin/item_post/get_district';
-$route['available_email_admin'] = 'admin/item_post/available_email';
+
+$route['admin/get_districts_admin'] = 'admin/item_post/get_district_admin';
+$route['admin/available_email_admin'] = 'admin/item_post/available_email_admin';
+$route['admin/available_username_admin'] = "admin/item_post/available_username_admin";
+$route['admin/available_mobile_admin'] = "admin/item_post/available_mobile_admin";
 //$route['admin/(:any)/(:num)'] = 'admin/admin_pages/page/$1/$2';
 $route['admin/index/(:any)/(:num)'] = 'admin/admin_pages/page/index/$1/$2';
 $route['admin/extend_date/(:num)/(:num)'] = 'admin/admin_pages/extend_date/$1/$2';

@@ -134,8 +134,14 @@ class Details extends CI_Controller {
     public function add_to_spam($id, $spam_count){
         if($this->session->has_userdata('logged_in')) {
             $user_id = $this->session->userdata['logged_in']['id'];
-            $this->spam_and_fav_model->add_spam($id, $user_id, $spam_count);
+            $spam_check = $this->spam_and_fav_model->add_spam($id, $user_id, $spam_count);
 
+            if($spam_check)
+                $data['check'] = true;
+            else
+                $data['check'] = false;
+
+            $this->session->set_flashdata('spam_check', $data);
             redirect('details/'.$id);
         } else {
             redirect('login');
