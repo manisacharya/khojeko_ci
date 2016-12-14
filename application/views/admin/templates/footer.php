@@ -242,27 +242,10 @@
     }
 </script>
 
-<style type="text/css">
-    .category3 i {
-        display: none;
-    }
-</style>
-
-<!--<script type="text/javascript">
-    $(document).ready(function() {
-        $("#select").searchable();
-    });
-</script>-->
-
 <script>
     $(document).bind("mobileinit", function() {
         $.mobile.ignoreContentEnabled = true;
     });
 </script>
-
-
-
-
-
 </body>
 </html>
