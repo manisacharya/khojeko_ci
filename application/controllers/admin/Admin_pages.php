@@ -15,7 +15,7 @@ class Admin_pages extends CI_Controller {
             redirect('admin/login');
     }
 
-    public function page($page = 'index', $page_number = 1) {
+    public function page($page = 'adv_index', $page_number = 1) {
         $per_page = 10;
         $this->load->library('pagination');
 

@@ -5,27 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Khojeko - Admin Panel</title>
-    <meta name="description" content="">
-    <meta name="author" content="Mukesh">
-    <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="<?php echo base_url('public'); ?>/css/bootstrap/bootstrap.css" />
-    <!-- Calendar Styling  -->
     <link rel="stylesheet" href="<?php echo base_url('public'); ?>/css/plugins/calendar/calendar.css" />
-    <!-- Base Styling  -->
     <link rel="stylesheet" href="<?php echo base_url('public'); ?>/css/app/app.v1.css" />
     <link rel="stylesheet" href="<?php echo base_url('public'); ?>/css/app/admin.css" />
     <link href="<?php echo base_url('public/images/icons/icon.ico')?>" rel="shortcut icon" />
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
 </head>
 <body data-ng-app>
 <aside class="left-panel">
-
     <div class="user text-center">
         <img src="<?php echo base_url('public'); ?>/images/avtar/user.png" class="img-circle" alt="...">
         <h4 class="user-name"><?php echo $user_info->admin_name?></h4>
@@ -48,7 +35,7 @@
         <ul class="list-unstyled">
             <li class="has-submenu<?php if(strpos($title, "Adv") !== FALSE) { echo ' active';}?>"><a href="<?php echo base_url('admin');?>/#"><span class="nav-label">Home</span></a>
                 <ul class="list-unstyled">
-                    <li <?php if($title == "Index") { echo "class='active'";}?>><a href="<?php echo base_url('admin');?>/index">Index</a></li>
+                    <li <?php if($title == "Adv Index") { echo "class='active'";}?>><a href="<?php echo base_url('admin');?>/adv_index">Index</a></li>
                     <li <?php if($title == "Active Adv Personal") { echo "class='active'";}?>><a href="<?php echo base_url('admin');?>/active_adv_personal">Active Adv (Users:Personal)</a></li>
                     <li <?php if($title == "Active Adv Dealer") { echo "class='active'";}?>><a href="<?php echo base_url('admin');?>/active_adv_dealer">Active Adv (Users:Dealer)</a></li>
                     <li <?php if($title == "Inactive Adv Personal") { echo "class='active'";}?>><a href="<?php echo base_url('admin');?>/inactive_adv_personal">Inactive Adv (Users:Personal)</a></li>
