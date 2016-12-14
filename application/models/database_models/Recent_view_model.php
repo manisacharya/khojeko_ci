@@ -9,7 +9,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Recent_view_model extends CI_Model {
     public $item_id;
-    public $p_id;
+    public $user_id;
 
     public function get_recent_view($user_id) {
         if ($this->db->table_exists('recent_view')) {
@@ -18,7 +18,7 @@ class Recent_view_model extends CI_Model {
             $this->db->join('item_img', 'item_img.item_id = items.item_id');
             $this->db->where('primary', 1);
             $this->db->where('deleted_date', 0);
-            $this->db->where('p_id', $user_id);
+            $this->db->where('items.user_id', $user_id);
             $query = $this->db->get('recent_view', 8); // limit 8
 
             $result = $query->result();
@@ -31,7 +31,7 @@ class Recent_view_model extends CI_Model {
     public function insert_recent_view($item_id, $user_id) {
         if ($this->db->table_exists('recent_view')) {
             $this->item_id = $item_id;
-            $this->p_id = $user_id;
+            $this->user_id = $user_id;
 
             $this->db->insert('recent_view', $this);
             return TRUE;

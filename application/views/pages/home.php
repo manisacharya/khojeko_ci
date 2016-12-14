@@ -77,7 +77,14 @@
                             <div class="col-sm-10" id="info_content">
                                 <section class="list-right">
                                     <span class="price">
-                                        <a class="button">mobile>>nokia</a><br>
+                                        <a class="button">
+<!--                                            --><?php
+//                                                echo ($details->gg_parent) ? $details->gg_parent.' >> ' : '';
+//                                                echo ($details->g_parent) ? $details->g_parent.' >> ' : '';
+//                                                echo ($details->parent) ? $details->parent.' >> ' : '';
+//                                                echo $details->category;
+//                                            ?>
+                                        </a><br>
                                         <?php foreach ($oth as $k) {
                                             if($key->item_id == $k->item_id)
                                                 echo $k->views;

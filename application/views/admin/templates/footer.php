@@ -1,6 +1,5 @@
 
-<!-- JQuery v1.9.1 -->
-<script src="<?php echo base_url('public'); ?>/js/jquery/jquery-1.9.1.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="<?php echo base_url('public/js/jquery.js');?>"></script>
 <script src="<?php echo base_url('public'); ?>/js/jquery.MultiFile.js"></script>
 <script src="<?php echo base_url('public'); ?>/js/plugins/nicescroll/jquery.nicescroll.min.js"></script>
 
@@ -24,7 +23,7 @@
                 $.ajax({ // Send the username val to available.php
                     type : 'POST',
                     data : dataPass,
-                    url  : 'available_username',
+                    url  : 'available_username_admin',
                     success: function(responseText){ // Get the result
                         if(responseText == 0){
                             Result.html('<span class="success">Username available</span>').css('color','green');
@@ -52,10 +51,10 @@
             if(reg.test($(this).val())) { // check email format
                 Result.html('Loading...'); // you can use loading animation here
                 var dataPass = 'action=availability&email='+useremail;
-                $.ajax({ // Send the username val to available.php
+                $.ajax({
                     type : 'POST',
                     data : dataPass,
-                    url  : 'available_email',
+                    url  : 'available_email_admin',
                     success: function(responseText){ // Get the result
                         if(responseText == 0){
                             Result.html('<span class="success">User email available</span>').css('color','green');
@@ -79,10 +78,10 @@
         $('#zone').change(function(){
             var zone = $(this).val();
             var dataPass = 'action=availability&zone=' + zone;
-            $.ajax({ // Send the username val to available.php
+            $.ajax({
                 type: 'POST',
                 data: dataPass,
-                url: 'get_district',
+                url: 'get_districts_admin',
                 success: function(html){
                     $("#district").html("");
                     $("#district").html(html);
@@ -99,7 +98,7 @@
                 $.ajax({ // Send the username val to available.php
                     type : 'POST',
                     data : dataPass,
-                    url  : 'available_mobile',
+                    url  : 'available_mobile_admin',
                     success: function(responseText){ // Get the result
                         if(responseText == 0){
                             Result.html('<span class="success">This mobile number can be used</span>').css('color','green');
@@ -260,8 +259,12 @@
     });
 </script>
 
-
-
+<!--to check spam click from same user on same item.-->
+<script type="text/javascript">
+    function same_spam () {
+        alert ("Your report already registered for this item.");
+    }
+</script>
 
 
 </body>
