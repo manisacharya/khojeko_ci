@@ -6,14 +6,14 @@
 
 <script language="javascript" type="text/javascript">
     $(document).ready(function() {
-        var text_max = 300;
-        $('#textarea_feedback').html(text_max + ' characters remaining');
+        var text_maximun = 300;
+        $('#textareaa_feedback').html(text_maximun + ' characters remaining');
 
         $('#profile').keyup(function() {
             var text_length = $('#profile').val().length;
-            var text_remaining = text_max - text_length;
+            var text_remaining = text_maximum - text_length;
 
-            $('#textarea_feedback').html(text_remaining + ' characters remaining');
+            $('#textareaa_feedback').html(text_remaining + ' characters remaining');
         });
     });
 </script>
@@ -148,8 +148,9 @@
                     echo form_checkbox($data_check).'I Agree with the '."<a class='terms' href='#'>Terms and Conditions.</a>";
                 ?></div>
                 <?php echo form_error('termsandcondition', '<div class="alert alert-danger">', '</div>'); ?>
+                <div class="col-sm-3 input-title"></div>
+                <div class="col-sm-7 text-center" id="error2"></div>
             </div>
-            <div class="result" id="error2"></div>
         </div>
 
         <button class="btn btn-primary nextBtn btn-lg pull-right" type="button" onclick="checkRequired()">Next</button>
@@ -181,7 +182,7 @@
                         foreach($zones as $row) {
                             $options_z[$row->zone_name] = $row->zone_name;
                         }
-                        echo form_dropdown('zone_p', $options_z, set_value('zone'), ' id="zone_p" class="form-control"');
+                        echo form_dropdown('zone_p', $options_z, set_value('zone_p'), ' id="zone_p" class="form-control"');
                         ?>
                     </div>
                 </div>
@@ -254,14 +255,14 @@
             <div class="row">
                 <div class="col-sm-3 input-title"><label>Select Zone:</label></div>
                 <div class="col-sm-7">
-                    <?php echo form_dropdown('zone', $options_z, set_value('zone'), ' id="zone"');?>
+                    <?php echo form_dropdown('zone', $options_z, set_value('zone'), ' id="zone" class="form-control"');?>
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-sm-3 input-title"><label for="district">Select District:</label></div>
                 <div class="col-sm-7">
-                    <select name='district' id='district'>
+                    <select name='district' id='district' class="form-control">
                         <option value="">-- Select District --</option>
                     </select>
                 </div>
@@ -317,7 +318,7 @@
                     echo form_textarea($data);
                     echo form_error('profile', '<div class="alert alert-danger">', '</div>');
                     ?>
-                    <div id="textarea_feedback"></div>
+                    <div id="textareaa_feedback"></div>
                 </div>
             </div>
 
