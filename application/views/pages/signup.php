@@ -21,11 +21,10 @@
     </script>
     <script type="text/javascript">
         $(document).ready(function() {
-            //$(".second_login_dealer").hide();
             if(document.getElementById('personal').checked) { personal_div(); }
             if(document.getElementById('dealer').checked) { dealer_div(); }
-            $("input[id$='personal']").click(function() { personal_div(); })
-            $("input[id$='dealer']").click(function() { dealer_div(); })
+            $("input[id$='personal']").click(function() { personal_div(); });
+            $("input[id$='dealer']").click(function() { dealer_div(); });
 
             function personal_div() {
                 $("#website").hide();
@@ -80,8 +79,8 @@
                     <div class="row">
                         <div class="col-sm-3 input-title"><label>* Email :</label></div>
                         <div class="col-sm-7 input-text">
-<!--                            <input type="email" name="user_email" required class="nayanaya form-control" id="useremail" value="--><?php //echo $this->input->post('user_email');?><!--">-->
-                            <?php echo form_input('user_email', $this->input->post('user_email'), 'type="email" required class="naya form-control" id="useremail"');?>
+                            <input type="email" name="user_email" class="nayanaya form-control" id="useremail" value="<?php echo $this->input->post('user_email');?>" required>
+                            <?php //echo form_input('user_email', $this->input->post('user_email'), 'type="email" class="naya form-control" id="useremail" required');?>
                             <?php echo form_error('user_email', '<div class="alert alert-danger">', '</div>'); ?>
                             <div class="result" id="result2"></div>
                         </div>
@@ -89,7 +88,7 @@
                     <div class="row">
                         <div class="col-sm-3 input-title"><label>* Password:</label></div>
                         <div class="col-sm-7 input-text">
-                            <?php echo form_password('password', '', 'required class="naya form-control" id="txtNewPassword"'); ?>
+                            <?php echo form_password('password', '', 'class="naya form-control" id="txtNewPassword" required'); ?>
                             <?php echo form_error('password', '<div class="alert alert-danger">', '</div>'); ?>
                             <!--input type="password" required class="naya"-->
                         </div>
@@ -97,7 +96,7 @@
                     <div class="row">
                         <div class="col-sm-3 input-title"><label>*Re-type Password:</label></div>
                         <div class="col-sm-7 input-text">
-                            <?php echo form_password('re-password', '', 'required class="naya form-control" id="txtConfirmPassword" onChange="checkPasswordMatch();"'); ?>
+                            <?php echo form_password('re-password', '', 'class="naya form-control" id="txtConfirmPassword" onChange="checkPasswordMatch();" required'); ?>
                             <?php echo form_error('re-password', '<div class="alert alert-danger">', '</div>'); ?>
                             <div class="registrationFormAlert" id="divCheckPasswordMatch"></div>
                         </div>
@@ -144,12 +143,12 @@
                         <div class='col-sm-7 g-recaptcha' data-sitekey='6LdaZCITAAAAAJ99HnRAhCbkJ7us0MUGmXkDW94p'></div><br>
                     </div>
                     <div class="row">
-                        <div class="col-sm-12 text-center"><?php echo form_checkbox('termsandcondition', 'accept', '', 'required').'I Agree with the '."<a class='terms' href='#'>Terms and Conditions.</a>"; ?></div>
+                        <div class="col-sm-12 text-center"><?php echo form_checkbox('termsandcondition', 'accept', '', 'id="termsandcondition" required').'I Agree with the '."<a class='terms' href='#'>Terms and Conditions.</a>"; ?></div>
                         <?php echo form_error('termsandcondition', '<div class="alert alert-danger">', '</div>'); ?>
                     </div>
                 </div>
 
-                    <button class="btn btn-primary nextBtn btn-lg pull-right" type="button" style="float:left">Next</button>
+                    <button class="btn btn-primary nextBtn btn-lg pull-right" type="button" onclick="checkRequired()">Next</button>
 
                     <?php //echo form_submit('signup_next', 'Next', 'class="btn btn-success btn-lg pull-right"'); ?>
                     <?php //echo form_close(); ?>
