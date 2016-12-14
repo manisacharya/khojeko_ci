@@ -1,7 +1,7 @@
 
 <div class="listCon">
     <div id="viewcontrols">
-        <a class="info" onMouseOver="this.style.color='#ffffff'" onMouseOut="this.style.color='#ffffff'"><?php echo 'Showing 1 - '.count($searched_items).' of '.$total_searched_items.' results of Advertisement';?></a>
+        <a class="info" onMouseOver="this.style.color='#ffffff'" onMouseOut="this.style.color='#ffffff'"><?php echo 'Showing '.count($searched_items).' of '.$total_searched_items.' results of Advertisement';?></a>
         <a class="gridview" href="#!"><span class="glyphicon glyphicon-th"></span></a>
         <a class="listview" href="#!"><span class="glyphicon glyphicon-th-list"></span></a>
         <button value="View More" id="view_btn">View More</button>
@@ -56,7 +56,7 @@
 
 
 <div id="viewcontrols" data-enhance="false">
-    <a class="info"  onMouseOver="this.style.color='#ffffff'" onMouseOut="this.style.color='#ffffff'"><?php echo 'Showing 1 - '.count($searched_personals).' of '.$total_searched_personals.' results of Personal User';?></a>
+    <a class="info"  onMouseOver="this.style.color='#ffffff'" onMouseOut="this.style.color='#ffffff'"><?php echo 'Showing '.count($searched_personals).' of '.$total_searched_personals.' results of Personal User';?></a>
 </div>
 <div class="grid_view">
     <ul class="grid1" id="grid1">
@@ -84,7 +84,7 @@
 </div>
 
 <div id="viewcontrols" data-enhance="false">
-    <a class="info" onmouseover="this.style.color='#ffffff'" onmouseout="this.style.color='#ffffff'"><?php echo 'Showing 1 - '.count($searched_dealers).' of '.$total_searched_dealers.' results of Dealers';?></a>
+    <a class="info" onmouseover="this.style.color='#ffffff'" onmouseout="this.style.color='#ffffff'"><?php echo 'Showing '.count($searched_dealers).' of '.$total_searched_dealers.' results of Dealers';?></a>
 </div>
 <div class="grid_view">
     <ul class="grid1" id="grid1">
