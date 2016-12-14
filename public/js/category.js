@@ -7,14 +7,10 @@ $(document).ready(function(){
     $(".category0 li a").click(function(){
         $(this).next(".category1").slideToggle();
 		$(this).find('span').toggleClass('glyphicon-plus-sign glyphicon-minus-sign');
-		/*$("#content").load("page.php");
-		$("#guts").hide();*/
 		return false;
     })
      $(".category1 li a").click(function(){
         $(this).next(".category2").slideToggle();
-		/*$("#content").load("page1.php");
-		$("#guts").hide();*/
 		return false;
     })
 	$(".category2 li a").click(function(){
@@ -25,13 +21,13 @@ $(document).ready(function(){
 	})
 })
 
-$(".parent_click a").on("click", function () {
+$("button.parent_click").on("click", function () {
     document.getElementById("display_parent").innerHTML = 'Set as parent';
     document.getElementById("parent").innerHTML = 0;
     $("#display_parent").css('color','green');
 })
 
-$(".cname .category0 li a" || ".cname .category1 li a").on("click", function () {
+$(".cname li a").on("click", function () {
     var x = this.text;
     var y = $(this).attr('id');
     document.getElementById("display_cname").innerHTML = x;
@@ -39,7 +35,7 @@ $(".cname .category0 li a" || ".cname .category1 li a").on("click", function () 
     $("#display_cname").css('color','black');
 })
 
-$(".parent .category0 li a" || ".parent .category1 li a").on("click", function () {
+$(".parent li a").on("click", function () {
     var x = this.text;
     var y = $(this).attr('id');
     document.getElementById("display_parent").innerHTML = x;
@@ -47,7 +43,7 @@ $(".parent .category0 li a" || ".parent .category1 li a").on("click", function (
     $("#display_parent").css('color','black');
 })
 
-$(".post-ad-category .category0 li a" || ".post-ad-category .category1 li a").on("click", function () {
+$(".post-ad-category li a").on("click", function () {
     var x = this.text;
     var y = $(this).attr('id');
     document.getElementById("post_cname").innerHTML = x;
@@ -55,8 +51,7 @@ $(".post-ad-category .category0 li a" || ".post-ad-category .category1 li a").on
     $("#post_cname").css('color','black');
 })
 
-$(".parent .category3 li a").on("click", function () {
-    document.getElementById("display_parent").innerHTML = 'you cannot choose this as parent category';
-
+$(".parent .category3 li div").on("click", function () {
+    document.getElementById("display_parent").innerHTML = 'You cannot choose Parent Category';
     $("#display_parent").css('color','red');
 })

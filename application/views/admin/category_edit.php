@@ -27,9 +27,7 @@
             ?>
         </div>
 
-        <label style="border:1px solid #ff404b; padding:3px;" class="parent_click">
-            <a href="#">Set as parent</a>
-        </label><br />
+        <button type="button" class="btn btn-default parent_click">Set Parent</button><br />
 
         <label>Selected Parent:</label>
         <div id="display_parent"></div><br />
