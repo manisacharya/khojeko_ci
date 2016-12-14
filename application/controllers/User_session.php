@@ -2,24 +2,28 @@
 class User_session extends CI_Controller {
 
     private $khojeko_username;
+    public $previous_url;
 
     function __construct() {
         parent::__construct();
         $this->user_data = array();
         $this->load->model('database_models/categories_model');
         $this->load->model('khojeko_db_model');
-        $this->load->model('general_database_model');
         $this->load->model('user_model');
         $this->load->model('detail_db_model');
         $this->load->model('database_models/dealer_model');
         $this->load->model('database_models/items_model');
         $this->load->model('database_models/user_model');
+        $this->previous_url = $this->session->flashdata('previous_url');
     }
 
     //Call the Login page
     public function login() {
-        if ($this->session->has_userdata('logged_in'))
+        $this->session->set_flashdata('previous_url', $this->previous_url);
+
+        if ($this->session->has_userdata('logged_in')) {
             redirect('logged_in');
+        }
 
         $this->load->library('form_validation');
         $this->form_validation->set_rules('user_name', 'User name', 'required|trim');
@@ -48,6 +52,8 @@ class User_session extends CI_Controller {
 
             $data['popular_district'] = $this->khojeko_db_model->popular_district();
             $data['popular_dealer'] = $this->khojeko_db_model->popular_dealer();
+
+            $data["login_msg"] = $this->session->flashdata('login_msg');
 
             //flashdata for password changed from new_password
             $data['pwd_changed'] = $this->session->flashdata('password_changed');
@@ -86,10 +92,15 @@ class User_session extends CI_Controller {
     public function logged_in() {
         $set_data = $this->session->all_userdata();
         if (isset($set_data['logged_in'])) {
-            if($set_data['logged_in']['type'] == 'dealer')
-                redirect('dpanel/'.$set_data['logged_in']['username']);
-            else if($set_data['logged_in']['type'] == 'personal')
-                redirect('upanel/'.$set_data['logged_in']['username']);
+            if (strlen($this->previous_url) == 0) {
+                /*if ($set_data['logged_in']['type'] == 'dealer')
+                    redirect('dpanel/' . $set_data['logged_in']['username']);
+                else if ($set_data['logged_in']['type'] == 'personal')
+                    redirect('upanel/' . $set_data['logged_in']['username']);*/
+                redirect();
+            } else {
+                redirect($this->previous_url);
+            }
         }
         else {
             redirect('login');

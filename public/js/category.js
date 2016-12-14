@@ -47,6 +47,14 @@ $(".parent .category0 li a" || ".parent .category1 li a").on("click", function (
     $("#display_parent").css('color','black');
 })
 
+$(".post-ad-category .category0 li a" || ".post-ad-category .category1 li a").on("click", function () {
+    var x = this.text;
+    var y = $(this).attr('id');
+    document.getElementById("post_cname").innerHTML = x;
+    document.getElementById("post_c_slug").innerHTML = y;
+    $("#post_cname").css('color','black');
+})
+
 $(".parent .category3 li a").on("click", function () {
     document.getElementById("display_parent").innerHTML = 'you cannot choose this as parent category';
 

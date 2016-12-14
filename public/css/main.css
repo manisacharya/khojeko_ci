@@ -91,11 +91,10 @@ color: #03C;}
 
 .listing {
     background-color: #ccc;
-    height:200px;
+    height:auto;
 }
 .listing ol {
     margin: 0;
-    padding: 20px;
 }
 .listing div strong {text-decoration: underline;}
 
@@ -113,8 +112,8 @@ text-decoration: none;
 overflow: hidden;
 }
 
-.popular {color:#000; background:#CCC;border-radius:0px; padding:10px; border: 1px rgba(10, 76, 114, 0.6) solid; height:200px;}
-.popular_title {text-align: center;}
+.popular {color:#000; background:#CCC;border-radius:0px; padding:10px; border: 1px rgba(10, 76, 114, 0.6) solid; height:auto;}
+.popular_title {text-align: center; margin-bottom: 10px;}
 
 .history{margin-top:20px;}
 .history h4{color:#360;}
@@ -159,10 +158,13 @@ hr.clas2 { width:75%; height:1px; color: #73AD21;float:  right;margin-right: 5px
 
 
 /*Category display css*/
-.category_display{background:#CC6;padding-bottom:15px;border-radius:8px;overflow: hidden;margin-bottom:10px;margin-top:10px;}
-.category_display h4{padding-left:20px;}
+.category_display{background:#CC6;padding-bottom:10px;border-radius:8px;overflow: hidden;margin-bottom:10px;margin-top:10px;}
+.category_display h4{margin: 10px 15px;}
 .subcategory_display{width:98%;height:90%;margin:auto;display:block;background:white;border-radius:8px;overflow-x:scroll;
 white-space: nowrap;}
+
+.subcategory_display .childs { float:left; margin:10px; border: 2px #000;}
+.subcategory_display .childs .heading { text-align: center; color: red}
 .subcategory_display ul{display:inline-block;-moz-column-count: 3;
 -moz-column-gap: 10px;
 -webkit-column-count: 3;
@@ -172,11 +174,8 @@ column-span: all;
 column-gap: 10px;
 list-style-type: none;
 text-decoration: none;
-
 margin-bottom:0px;
-padding-left:4px;
-
-padding-top:23px;
+padding:10px;
 }
 
 .subcategory_display ul li{}
@@ -245,7 +244,8 @@ a#scrollUp i{
     background: #1077b2;
  }
 
-#display_cname {
+#display_cname,  #post_cname {
     text-decoration: none;
     font-weight: 100;
+    float: right;
 }

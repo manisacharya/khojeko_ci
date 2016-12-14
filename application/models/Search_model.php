@@ -2,20 +2,23 @@
 
 class Search_model extends CI_Model {
 
+    public $district;
+    public $search_query;
+
     public function __construct() {
         // Call the CI_Model constructor
         parent::__construct();
+        $this->district = $this->input->get('district');
+        $this->search_query = $this->input->get('search');
     }
 
     public function search_items() {
-        $district = $this->input->get('district');
-        $search_query = $this->input->get('search');
-
         if ($this->db->table_exists('items')) {
             $this->db->select('items.*, item_spec.specs, item_img.image, four.c_name AS gg_parent, three.c_name AS g_parent, two.c_name AS parent, one.c_name AS category');
 
-            $this->db->like('title', $search_query);
+            $this->db->like('title', $this->search_query);
             $this->db->where('deleted_date', 0);
+            $this->db->where('primary', 1);
             $this->db->join('item_img', 'item_img.item_id = items.item_id');
             $this->db->join('item_spec', 'item_spec.item_id = items.item_id');
 
@@ -24,7 +27,7 @@ class Search_model extends CI_Model {
             $this->db->join('category AS three', 'two.parent_id = three.c_id', 'LEFT');
             $this->db->join('category AS four', 'three.parent_id = four.c_id', 'LEFT');
 
-            $query = $this->db->get('items');
+            $query = $this->db->get('items', 8);
             return $this->items_xss_clean($query->result());
 
         } else {
@@ -33,33 +36,59 @@ class Search_model extends CI_Model {
     }
 
     public function search_personals() {
-        $district = $this->input->get('district');
-        $search_query = $this->input->get('search');
-
         if ($this->db->table_exists('user')) {
-            $this->db->like('name', $search_query);
+            $this->db->like('name', $this->search_query);
             $this->db->where('type', 'personal');
             //$this->db->where('district', $district);
             $this->db->join('personal', 'user.user_key=personal.p_id');
 
-            $query = $this->db->get('user');
+            $query = $this->db->get('user', 8);
             return $this->user_type_xss_clean($query->result(), 'personal');
         } else {
             echo show_error('We have encountered a problem !');
         }
     }
     public function search_dealers() {
-        $district = $this->input->get('district');
-        $search_query = $this->input->get('search');
-
         if ($this->db->table_exists('user')) {
-            $this->db->like('name', $search_query);
+            $this->db->like('name', $this->search_query);
             $this->db->where('type', 'dealer');
             //$this->db->where('district', $district);
             $this->db->join('dealer', 'user.user_key=dealer.d_id');
 
-            $query = $this->db->get('user');
+            $query = $this->db->get('user', 8);
             return $this->user_type_xss_clean($query->result(), 'dealer');
+        } else {
+            echo show_error('We have encountered a problem !');
+        }
+    }
+
+    public function count_search_items() {
+        if ($this->db->table_exists('items')) {
+            $this->db->like('title', $this->search_query);
+            $this->db->where('deleted_date', 0);
+            return $this->db->count_all_results('items');
+        } else {
+            echo show_error('We have encountered a problem !');
+        }
+    }
+
+    public function count_search_personals() {
+        if ($this->db->table_exists('user')) {
+            $this->db->like('name', $this->search_query);
+            $this->db->join('personal', 'user.user_key=personal.p_id');
+            $this->db->where('type', 'personal');
+            return $this->db->count_all_results('user');
+        } else {
+            echo show_error('We have encountered a problem !');
+        }
+    }
+
+    public function count_search_dealers() {
+        if ($this->db->table_exists('user')) {
+            $this->db->like('name', $this->search_query);
+            $this->db->join('dealer', 'user.user_key=dealer.d_id');
+            $this->db->where('type', 'dealer');
+            return $this->db->count_all_results('user');
         } else {
             echo show_error('We have encountered a problem !');
         }
@@ -88,7 +117,6 @@ class Search_model extends CI_Model {
             $items->video_url2              = html_escape($this->security->xss_clean($items->video_url2));
             $items->c_id                    = html_escape($this->security->xss_clean($items->c_id));
             $items->user_id                 = html_escape($this->security->xss_clean($items->user_id));
-            $items->ad_id                   = html_escape($this->security->xss_clean($items->ad_id));
             $items->specs                   = html_escape($this->security->xss_clean($items->specs));
             $items->gg_parent               = html_escape($this->security->xss_clean($items->gg_parent));
             $items->g_parent                = html_escape($this->security->xss_clean($items->g_parent));

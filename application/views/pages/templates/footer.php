@@ -80,7 +80,14 @@
             <div class="child">
                 <ol>
                     <li>Mobile & Tablet Pcs</li>
-                    <li>Mobile </li>
+                    <li>Apple </li>
+                    <li>Mobile & Tablet Pcs</li>
+                    <li>Apple </li>
+                    <li>Mobile & Tablet Pcs</li>
+                    <li>Apple </li>
+                    <li>Mobile & Tablet Pcs</li>
+                    <li>Apple </li>
+                    <li>Apple </li>
                     <li>Mobile & Tablet Pcs</li>
                     <li>Mobile  Pcs</li>
                     <li>Mobile & Tablet Pcs</li>
@@ -174,22 +181,13 @@
 <script type="text/javascript" src="<?php echo base_url('public/js/dropdown.js'); ?>"></script>
 <script type="text/javascript" src="<?php echo base_url('public/js/searchable_dropdown.js'); ?>"></script>
 <script type="text/javascript" src="<?php echo base_url('public/js/live_preview.js'); ?>"></script>
-<script type="text/javascript" src="<?php echo base_url('public/js/hawa.js'); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url('public/js/next-prev-btn.js'); ?>"></script>
 
 <script type="text/javascript" src="<?php echo base_url('public/js/ad_detail_slider.js'); ?>"></script>
 <script type="text/javascript" src="<?php echo base_url('public/js/count.js'); ?>"></script>
 <script type="text/javascript" src="<?php echo base_url('public/js/multiple_upload.js'); ?>"></script>
 <script type="text/javascript" src="<?php echo base_url('public/js/slider/price_slider.js'); ?>"></script>
 
-
-<script>(function(d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) return;
-        js = d.createElement(s); js.id = id;
-        js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6";
-        fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
-</script>
 
 <script type="text/javascript">
     $("#ques").hide();
@@ -213,7 +211,7 @@
         $('#add').click(function(){
             //i++;
             if(i<=3) {
-                $('#dynamic_field').append('<div class="row"><div class="col-md-10"><input type="file" name="upload_images'+i+'" accept="image/*"  onchange="showMyImage(this)" /></div></div>');
+                $('#dynamic_field').append('<input type="file" name="upload_images'+i+'" accept="image/*"  onchange="showMyImage(this)" />');
                 i++;
             }
         });
@@ -234,27 +232,26 @@
     });
 </script>
 
-<script type="text/javascript">
-    $(document).ready(function() {
-        $("#select").searchable();
-    });
-</script>
-
 <script>
     $(document).bind("mobileinit", function() {
         $.mobile.ignoreContentEnabled = true;
     });
 </script>
 
-<!--<script>-->
-<!--    $(".category0 li a" || ".category1 li a").on("click", function () {-->
-<!--        var x = $(this).attr('id');-->
-<!--        var y = this.text;-->
-<!--        document.getElementById("parent").innerHTML = x;-->
-<!--        document.getElementById("display_parent").innerHTML = y;-->
-<!--        $("#display_parent").css('color','black');-->
-<!--    });-->
-<!--</script>-->
+<script>
+    $(document).ready(function(){
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+</script>
+
+<script>(function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+</script>
 
 </body>
 </html>

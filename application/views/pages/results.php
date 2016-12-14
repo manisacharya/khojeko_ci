@@ -1,7 +1,7 @@
 
 <div class="listCon">
     <div id="viewcontrols">
-        <a class="info" onMouseOver="this.style.color='#ffffff'" onMouseOut="this.style.color='#ffffff'">Showing 1 - 10 of 100 results of Items</a>
+        <a class="info" onMouseOver="this.style.color='#ffffff'" onMouseOut="this.style.color='#ffffff'"><?php echo 'Showing '.count($searched_items).' of '.$total_searched_items.' results of Advertisement';?></a>
         <a class="gridview" href="#!"><span class="glyphicon glyphicon-th"></span></a>
         <a class="listview" href="#!"><span class="glyphicon glyphicon-th-list"></span></a>
         <button value="View More" id="view_btn">View More</button>
@@ -26,8 +26,7 @@
                                 ?>
                             </a><br>
                             <label style="float: right;">
-                                <?php echo $item->views; ?>
-                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <a href="#" data-toggle="tooltip" data-placement="top" title="<?php echo $item->views; ?>"><span class="glyphicon glyphicon-eye-open"></span></a>
                                 <span class="glyphicon glyphicon-time"></span>
                                 <span class="glyphicon glyphicon-heart"></span>
                                 <span class="glyphicon glyphicon-comment"></span>
@@ -57,7 +56,7 @@
 
 
 <div id="viewcontrols" data-enhance="false">
-    <a class="info"  onMouseOver="this.style.color='#ffffff'" onMouseOut="this.style.color='#ffffff'">Showing 1 - 10 of 100 results of Personals</a>
+    <a class="info"  onMouseOver="this.style.color='#ffffff'" onMouseOut="this.style.color='#ffffff'"><?php echo 'Showing '.count($searched_personals).' of '.$total_searched_personals.' results of Personal User';?></a>
 </div>
 <div class="grid_view">
     <ul class="grid1" id="grid1">
@@ -85,7 +84,7 @@
 </div>
 
 <div id="viewcontrols" data-enhance="false">
-    <a class="info" onmouseover="this.style.color='#ffffff'" onmouseout="this.style.color='#ffffff'">Showing 1 - 10 of 100 results of Dealers</a>
+    <a class="info" onmouseover="this.style.color='#ffffff'" onmouseout="this.style.color='#ffffff'"><?php echo 'Showing '.count($searched_dealers).' of '.$total_searched_dealers.' results of Dealers';?></a>
 </div>
 <div class="grid_view">
     <ul class="grid1" id="grid1">

@@ -1,8 +1,7 @@
 @charset "utf-8";
 /* CSS Document */
 .login_title{padding-left:10px;}
-.login_title h2{color:green;}
-.login_title p{margin-left:30px;}
+.login_title h2{color:green; text-align: center;}
 @media(min-width:767px)
 {.first_login{padding-left:30px;margin-top:10px;}
 
@@ -25,13 +24,23 @@
 @charset "utf-8";
 /* CSS Document */
 
-
+.input-title {
+    height: 24px;
+    margin: 5px 0;
+    padding-right: 20px;
+    text-align: right;
+}
+.setup-content .row {
+    margin-bottom: 20px;
+}
+.input-text {
+}
 
 .setup-content{
 	display:inline-block; 
  }
  
- .setup-content h3{color:green}
+ .setup-content h3{color:green; margin-bottom: 20px; text-align: center;}
 
 .stepwizard-step p {
     margin-top: 10px;
@@ -103,6 +112,9 @@ input.readonly{width:520px;}
 #MultiFile1_list{display:inline-flex;max-width:700px;overflow:hidden;white-space:nowrap}
 .MultiFile-remove{font-size:18px;font-weight:bolder}
 .MultiFile-label{margin-right:10px;width:120px;}
-.prevBtn{color:#333;background:#999}
+.prevBtn{color:#fff;background:#3071a9}
 #demo{border:1px solid;height:25px;padding-left:10px;width:60%}
 form{padding-left:30px;}
+.input-text label {
+    font-weight: normal;
+}

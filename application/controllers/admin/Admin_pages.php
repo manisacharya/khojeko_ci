@@ -5,9 +5,9 @@ class Admin_pages extends CI_Controller {
 
     function __Construct() {
         parent::__Construct();
-        $this->load->model('admin/categories_model');
         $this->load->model('admin/latest_verified_unverified_ad_model');
         $this->load->model('admin/search_model');
+        $this->load->model('database_models/categories_model');
         $this->load->model('database_models/user_model');
         $this->load->model('admin/zones_model');
         //$this->output->enable_profiler(TRUE);
@@ -15,7 +15,7 @@ class Admin_pages extends CI_Controller {
             redirect('admin/login');
     }
 
-    public function page($page = 'index', $page_number = 1) {
+    public function page($page = 'adv_index', $page_number = 1) {
         $per_page = 10;
         $this->load->library('pagination');
 

@@ -115,7 +115,7 @@
                     <span id="max_price">1000</span>
                     <div class="price_slider">
                         <label class="tt">Condition Filter</label><br />
-                        <label>Select Category<div id="display_cname">All</div></label>
+                        <label>Select Category: &nbsp<div id="display_cname">All</div></label>
 
                         <textarea name="c_id" id="c_id" hidden="hidden" readonly></textarea></br>
 

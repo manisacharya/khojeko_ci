@@ -9,6 +9,14 @@ class Categories_model extends CI_Model {
     public function __construct() {
          // Call the CI_Model constructor
         parent::__construct();
+        $config = array(
+            'table' => 'category',
+            'id' => 'c_id',
+            'field' => 'c_slug',
+            'title' => 'title',
+            'replacement' => 'dash' // Either dash or underscore
+        );
+        $this->load->library('slug', $config);
     }
 
     public function get_categories() {
@@ -27,9 +35,10 @@ class Categories_model extends CI_Model {
     public function add_category() {
         if ($this->db->table_exists('category')) {
             $this->c_name       = $this->input->post('c_name');
-            $this->c_slug       = url_title($this->c_name, 'dash', TRUE);
+            $this->c_slug       = $this->slug->create_uri($this->c_name);
             $this->parent_id    = $this->input->post('parent_id');
             $this->c_deleted    = 0;
+            $this->c_position   = 0;
 
             $this->db->insert('category', $this);
             return TRUE;
@@ -41,7 +50,7 @@ class Categories_model extends CI_Model {
     public function edit_category() {
         if ($this->db->table_exists('category')) {
             $this->c_name       = $this->input->post('c_name');
-            $this->c_slug       = url_title($this->c_name, 'dash', TRUE);
+            $this->c_slug       = $this->slug->create_uri($this->c_name);
             $this->parent_id    = $this->input->post('parent_id');
             $this->c_deleted    = 0;
 

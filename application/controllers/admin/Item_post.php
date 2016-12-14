@@ -15,7 +15,7 @@ class Item_post extends CI_Controller{
         parent::__Construct();
         $this->load->model('database_models/user_model');
         $this->load->model('admin/item_model'); // load model
-        $this->load->model('admin/categories_model');
+        $this->load->model('database_models/categories_model');
         $this->load->model('admin/personal_model');
         $this->load->model('admin/image_model');
         $this->load->model('admin/districts_model');

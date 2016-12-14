@@ -9,7 +9,6 @@ class Details extends CI_Controller {
         $this->load->model('detail_db_model');
         $this->load->model('user_model');
         $this->load->model('khojeko_db_model'); // load model
-        $this->load->model('general_database_model');
         $this->load->model('database_models/categories_model');
         $this->load->model('spam_and_fav_model');
         $this->load->model('ask_me_model');
@@ -17,6 +16,7 @@ class Details extends CI_Controller {
         $this->load->model('database_models/items_model');
         $this->load->model('database_models/user_model');
         $this->load->model('database_models/spam_model');
+        $this->session->set_flashdata('previous_url', "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]");
     }
 
     //For Details Page
@@ -165,7 +165,7 @@ class Details extends CI_Controller {
             } else {
                 $this->load->view('pages/details/'.$item_id);
             }
-        }else {
+        } else {
             redirect('login');
         }
     }

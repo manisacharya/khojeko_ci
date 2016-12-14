@@ -1,4 +1,8 @@
+<div class="login_title">
+    <h2>Post Advertisements Here</h2>
+    <p>Advertisement anything that may be 1st hand or 2nd hand stuffs, post service ads, vacancies, events, jobs, rent, real state land and building, all advertisement services are available free of cost. Enjoy.</p>
 
+</div><!--login_title-->
 <div class="post_admin">
     <div class="stepwizard">
         <div class="stepwizard">
@@ -20,247 +24,250 @@
     </div>
 
     <?php echo form_open_multipart("adpost"); ?>
-        <div class="setup-content" id="step-1">
-            <div class="form-group">
-                <h3> Step 1&nbsp;&nbsp;(Select category for ad posting)</h3>
-
+        <div class="setup-content col-sm-12" id="step-1">
+            <div class="form-group post-ad-category">
+                <h3>Step 1 : Select Category</h3>
                 <?php
                     require_once('templates/require/category.php');
                     print_list(0, 0, $category);
                 ?>
 
                 <div class="search_section">
-                    <table>
-                        <tr>
-                            <td style="width:30%">
-                                To find best category quick search is here:
-                            </td>
-
-                            <td style="width:50%">
-                                <input type="text" class="search" style="width:40%">
-                                <button>Search</button>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>
-                                Suggested Category:
-                            </td>
-
-                            <td>
-                                <textarea name="display_cat" id="display_parent" readonly></textarea>
-                                <textarea name="parent" id="parent"></textarea>
-                            </td>
-                        </tr>
-                    </table>
+                    <label>Suggested Category: &nbsp<div id="post_cname"></div></label>
+                    <textarea name="postc_slug" id="post_c_slug" hidden="hidden" readonly></textarea>
                 </div><!--search_section ends-->
 
                 <button class="btn btn-primary nextBtn btn-lg pull-right" type="button" >Next</button>
             </div>
         </div>
 
-        <div class="setup-content step-2" id="step-2">
+        <div class="setup-content step-2 col-sm-12" id="step-2">
             <div class="form-group">
-                <h3> Step 2</h3>
-
-                <?php
-                    echo "<strong>*Ad Title:</strong><br>";
-                    echo form_input('ad_title', $this->input->post('ad_title'), 'maxlength="100" class="sstep" placeholder="Title of the product" required');
-                ?>
-
-                <br /><br />
-
-                <?php
-                   // echo "<strong>*Short Description:</strong><br>";
-                    //echo form_input('shrt_description', $this->input->post('shrt_description'), 'maxlength="100" class="sstep" placeholder="Description of the product" ');
-                ?>
-
-                <!-- <br /><br /> -->
-
-                <?php
-                    if($user_type == "personal"){
-                        echo '
-                        <span class="ad_type">
-                            <strong>Ad Type:</strong><br />
-
-                            <input type="radio" name="ad_type_personal" id="used" value="Used" checked="checked">Used<br />
-                            <input type="radio" name="ad_type_personal" id="like_new" value="Likely New">Likely New<br />
-                        </span>';
-                    } else {
-                        echo '
-                        <span id="ad_type">
-                          <strong>Ad Type:</strong><br /> 
-                            <input type="radio" name="ad_type_dealer" id="used" value="Used" checked="checked" onclick="serviceCheck(this)">Used
-                            <input type="radio" name="ad_type_dealer" id="new" value="Brand_New" onclick="serviceCheck(this)">Brand New (For Dealer ad)
-                            <input type="radio" name="ad_type_dealer" id="service" value="Service" onclick="serviceCheck(this)">Service Ad/ General Ad
-                            <input type="radio" name="ad_type_dealer" id="event" value="Event" onclick="serviceCheck(this)">Event (Time Based)<br /> <br />
-                        </span>';
-                    }
-                ?>
-
-                <br /><br />
-
-                <span id="bought_from">
-                    <strong>Bought From:</strong><br />
-
-                    <input type="radio" name="bought_from" id="nepal" value="Nepal" checked="checked">Nepal<br />
-                    <input type="radio" name="bought_from" id="abroad" value="Abroad">Abroad<br />
-                    <input type="text" placeholder="Type Country Name" name="abroad_country" id="country_name">
-                </span>
-
-                <br /><br />
-
-                <span id="offer" style="display: block;">
-                    <strong>Offer Price:</strong><br>
-                    <input name="offer" type="text" class="sstep"/>
-
-                    <span>
-                        <a href="#!"><i class="fa fa-question-circle" id="popup1"></i></a>
-                        <a class="popuptext" id="myPopup1" >If it is Service or Advertisement ad leave box blank</a>
-                    </span><br/><br/>
-                </span>
-
-                <span id="used_for" style="display: block;">
-                    <strong>Used for days/month/year:</strong><br>
-                    <input type="text" name="used_for" class="sstep"/>
-
-                    <span>
-                        <a href="#!">
-                            <i class="fa fa-question-circle" id="popup2"></i>
-                        </a>
-                        <a class="popuptext" id="myPopup2"> If service related ad (ignore it)</a>
-                    </span><br /><br />
-                </span>
-
-                <span id="market_price" style="display: block;">
-                    <strong>Market Price:</strong><br>
-                    <input type="text" name="market_price" class="sstep"/>
-                    <span>
-                        <a href="#!">
-                            <i class="fa fa-question-circle" id="popup3"></i>
-                        </a>
-                        <a class="popuptext" id="myPopup3">If you don't know indicative market price leave it blank.</a>
-                    </span>
-                    <br /><br />
-                </span>
-
-                <span id="document_no">
-                    <strong>(Identification no/Chasis no/Document no/IMEI no):</strong><br>
-
-                    <input type="text" name="document_no" class="sstep"/>
-                    <span>
-                        <a href="#!">
-                            <i class="fa fa-question-circle" id="popup4"></i>
-                        </a>
-
-                        <a class="popuptext" id="myPopup4" >this is optional but if you mention ad id no. your ad is fully verified and trustful and may sold out quickly</a>
-                    </span>
-                    <br /><br />
-                </span>
-
-                <strong>
-                    Product or Service ad details/ full specification: ( submit with full specification and product details):
-                </strong><br />
-                <input type="text" name="ad_details" id="ad_details" style="width:60%; height:100px;text-align:center" placeholder="TEXT EDITOR" required="required"/>
-                <div id="textarea_feedback"></div>
-                <br /><br />
-
-                <strong>Please select your free ad running time</strong>
-                <select name="ad_running_time">
-                    <option>7 days</option>
-                    <option>15 days</option>
-                    <option>30 days</option>
-                    <option>60 days</option>
-                    <option>90 days</option>
-                </select><br /><br />
-
-                <strong>Own Web site url link:</strong>
-                <input type="text" name="site_url" class="sstep"/>
-                <a href="#!" id="popup5">
-                    <i class="fa fa-question-circle"  ></i>
-                </a>
-                <a class="popuptext" id="myPopup5">if not leave it blank.</a>
-                <br /><br />
-
-                <span id="home_delivery">
-                    <strong>Home delivery facility:</strong><br>
-                    <input type="radio" name="home_delivery" id="yes" value="yes" checked="checked" onclick="deliveryCheck(this)" />Yes<br>
-                    <input type="radio" name="home_delivery" id="no" value="no" onclick="deliveryCheck(this)" />No<br /><br />
-                </span>
-
-                <div id="delivery_charge" style="display: block;">
-                    <strong>Delivery Charges:</strong><br>
-                    <input type="text" name="delivery_charge" class="sstep"/>
-                    <a href="#!" id="popup6">
-                        <i class="fa fa-question-circle"  ></i>
-                    </a>
-                    <a class="popuptext" id="myPopup6">if not leave it blank.</a><br /><br />
+                <h3>Step 2 : Advertisement Information</h3>
+                <div class="row">
+                    <div class="col-sm-3 input-title"><label>*Ad Title:</label></div>
+                    <div class="col-sm-7 input-text">
+                        <?php echo form_input('ad_title', $this->input->post('ad_title'), 'maxlength="100" class="sstep form-control" placeholder="Title of the product" required'); ?>
+                        <?php echo form_error('ad_title'); ?>
+                    </div>
+                </div>
+                <?php if($user_type == "personal") : ?>
+                    <div class="row" id="ad_type">
+                        <div class="col-sm-3 input-title"><label>Ad Type:</label></div>
+                        <div class="col-sm-7 input-text">
+                            <div class="col-sm-5 text-center">
+                                <input type="radio" name="ad_type_personal" id="used" value="Used" checked="checked">
+                                <label for="used">Used</label>
+                            </div>
+                            <div class="col-sm-7 text-center">
+                                <input type="radio" name="ad_type_personal" id="like_new" value="Likely New">
+                                <label for="like_new">Likely New</label>
+                            </div>
+                        </div>
+                    </div>
+                <?php else: ?>
+                    <div class="row" id="ad_type">
+                        <div class="col-sm-3 input-title"><label>Ad Type:</label></div>
+                        <div class="col-sm-7 input-text">
+                            <div class="col-sm-3 text-center">
+                                <input type="radio" name="ad_type_dealer" id="used" value="Used" checked="checked" onclick="serviceCheck(this)">
+                                <label for="used">Used</label>
+                            </div>
+                            <div class="col-sm-3 text-center">
+                                <input type="radio" name="ad_type_dealer" id="new" value="Brand_New" onclick="serviceCheck(this)">
+                                <label for="new">Brand New</label>
+                            </div>
+                            <div class="col-sm-3 text-center">
+                                <input type="radio" name="ad_type_dealer" id="service" value="Service" onclick="serviceCheck(this)">
+                                <label for="service">Service </label>
+                            </div>
+                            <div class="col-sm-3 text-center">
+                                <input type="radio" name="ad_type_dealer" id="event" value="Event" onclick="serviceCheck(this)">
+                                <label for="event">Event</label>
+                            </div>
+                        </div>
+                    </div>
+                <?php endif; ?>
+                <div class="row" id="bought_from">
+                    <div class="col-sm-3 input-title"><label>Bought From:</label></div>
+                    <div class="col-sm-7 input-text">
+                        <div class="col-sm-5 text-center">
+                            <input type="radio" name="bought_from" id="nepal" value="Nepal" checked="checked">
+                            <label for="nepal">Nepal</label>
+                        </div>
+                        <div class="col-sm-7 text-center">
+                            <input type="radio" name="bought_from" id="abroad" value="Abroad">
+                            <label for="abroad">Abroad</label>
+                            <input type="text" placeholder="Type Country Name" name="abroad_country" id="country_name" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <div class="row" id="offer">
+                    <div class="col-sm-3 input-title"><label for="offer_input">Offer Price:</label></div>
+                    <div class="col-sm-7 input-text">
+                        <input name="offer" type="text" class="sstep form-control" id="offer_input"/>
+                        <?php echo form_error('offer'); ?>
+                    </div>
+                </div>
+                <div class="row" id="used_for">
+                    <div class="col-sm-3 input-title"><label for="used_input">Used for:</label></div>
+                    <div class="col-sm-7 input-text">
+                        <input type="date" name="used_for" class="sstep form-control" id="used_input" />
+                        <?php echo form_error('used_for'); ?>
+                    </div>
+                </div>
+                <div class="row" id="market_price">
+                    <div class="col-sm-3 input-title"><label for="market_price_input">Market Price:</label></div>
+                    <div class="col-sm-7 input-text">
+                        <input type="text" name="market_price" class="sstep form-control" id="market_price_input" />
+                        <?php echo form_error('market_price'); ?>
+                    </div>
                 </div>
 
-                <span id="warranty">
-                    <strong>Warranty Time:</strong><br>
-                    <input type="text" name="warranty" id="input" class="sstep"/>
-                    <a href="#!" id="popup7">
-                        <i class="fa fa-question-circle"></i>
-                    </a>
-                    <a class="popuptext" id="myPopup7">if not leave it blank.</a><br /><br />
-                </span>
-
-                <button class="btn btn-default prevBtn btn-lg pull-left" type="button" >Prev</button>
+                <div class="row">
+                    <div class="col-sm-3 input-title"><label for="document_input">(ID No / Chasis No / Document no/IMEI no):</label></div>
+                    <div class="col-sm-7 input-text">
+                        <input type="text" name="document_no" class="sstep form-control" id="document_input"/>
+                        <?php echo form_error('document_no'); ?>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3 input-title"><label for="ad_details">Advertisement Details:</label></div>
+                    <div class="col-sm-7 input-text">
+                        <?php
+                        $data = array(
+                            'name' => 'ad_details',
+                            'rows' => 6,
+                            'cols' => 25,
+                            'maxlength' => 300,
+                            'id' => 'ad_details',
+                            'placeholder' => 'Full specification and Product details',
+                            'class'=>'form-control'
+                        );
+                        echo form_textarea($data);
+                        echo form_error('ad_details');
+                        ?>
+                        <div id="textarea_feedback"></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3 input-title"><label for="ad_duration">Advertisement Durations:</label></div>
+                    <div class="col-sm-7 input-text">
+                        <select name="ad_running_time" id="ad_duration" class="form-control">
+                            <option>7 days</option>
+                            <option>14 days</option>
+                            <option>30 days</option>
+                            <option>60 days</option>
+                            <option>90 days</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3 input-title"><label for="url_link">URL Link:</label></div>
+                    <div class="col-sm-7 input-text">
+                        <input type="text" name="site_url" class="sstep form-control" id="url_link"/>
+                        <?php echo form_error('site_url'); ?>
+                    </div>
+                </div>
+                <div class="row" id="home_delivery">
+                    <div class="col-sm-3 input-title"><label>Home delivery:</label></div>
+                    <div class="col-sm-7 input-text">
+                        <div class="col-sm-6 text-center">
+                            <input type="radio" name="home_delivery" id="yes" value="yes" checked="checked" onclick="deliveryCheck(this)" />
+                            <label for="yes">Yes</label>
+                        </div>
+                        <div class="col-sm-6 text-center">
+                            <input type="radio" name="home_delivery" id="no" value="no" onclick="deliveryCheck(this)" />
+                            <label for="no">No</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" id="delivery_charge">
+                    <div class="col-sm-3 input-title"><label for="input_delivery">Delivery Charges:</label></div>
+                    <div class="col-sm-7 input-text">
+                        <input type="text" name="delivery_charge" id="input_delivery" class="sstep form-control"/>
+                        <?php echo form_error('delivery_charge'); ?>
+                    </div>
+                </div>
+                <div class="row" id="warranty">
+                    <div class="col-sm-3 input-title"><label for="input_warranty">Warranty Period:</label></div>
+                    <div class="col-sm-7 input-text">
+                        <input type="text" name="warranty" id="input_warranty" class="sstep form-control"/>
+                    </div>
+                </div>
+                <button class="btn btn-primary prevBtn btn-lg pull-left" type="button" >Prev</button>
                 <button class="btn btn-primary nextBtn btn-lg pull-right" type="button" >Next</button>
             </div>
         </div>
-
-        <div class="setup-content" id="step-3">
+        <div class="setup-content step-3 col-sm-12" id="step-3">
             <div class="form-group">
-                <h3> Step 3</h3>
+                <h3>Step 3 : Documents:</h3>
+                <div class="row">
+                    <div class="col-sm-3 input-title"><label>Proof Document:</label></div>
+                    <div class="col-sm-7 input-text">
+                        <div class="col-sm-3 text-center">
+                            <input type="checkbox" name="owner_proof[]" noneoption="false" value="Vat/Pan Bill" id="vat_bill" />
+                            <label for="vat_bill">Vat/Pan Bill</label>
+                        </div>
+                        <div class="col-sm-3 text-center">
+                            <input type="checkbox" name="owner_proof[]" noneoption="false" value="Warranty card" id="warranty_card" />
+                            <label for="warranty_card">Warranty</label>
+                        </div>
+                        <div class="col-sm-3 text-center">
+                            <input type="checkbox" name="owner_proof[]" noneoption="false" value="Product Packing Box" id="packing_box" />
+                            <label for="packing_box">Pack</label>
+                        </div>
+                        <div class="col-sm-3 text-center">
+                            <input type="checkbox" name="owner_proof[]" id="none" noneoption="true" value="Not" id="nothing" />
+                            <label for="nothing">Not Any</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" id="reason">
+                    <div class="col-sm-3 input-title"><label for="reason">Specify Reason:</label></div>
+                    <div class="col-sm-7 input-text">
+                        <input type="text" name="reason" id="reason" class="form-control" />
+                        <?php echo form_error('reason'); ?>
+                    </div>
+                </div>
 
-                <strong> owner proof document:</strong><br />
-                <input type="checkbox" name="owner_proof[]" noneoption="false" value="Vat/Pan Bill" />Vat/Pan Bill<br />
-                <input type="checkbox" name="owner_proof[]" noneoption="false" value="Product warranty card" />Product warranty card<br />
-                <input type="checkbox" name="owner_proof[]" noneoption="false" value="Product Paking Box" />Product Paking Box<br />
-                <input type="checkbox" name="owner_proof[]" id="none" noneoption="true" value="Not" />Not any above<br /><br />
-
-                <span id="reason">
-                    <strong>If not any above.<br />specify reason</strong>
-                    <input type="text" name="reason" style="height:30px; width:160px" />
-                </span><br /><br />
-
-                <div id="dynamic_field">
-                    <div class="row">
-                        <div class="col-md-10">
-                            <strong>Upload your images here:</strong>
-                            <h5 style="color:blue">First image will be displayed as primary.</h5>
+                <div class="row">
+                    <div class="col-md-3 input-title"><label for="image_upload">Upload Images:</label></div>
+                    <div class="col-md-7 input-text">
+                        <div class="col-md-7 text-center" id="dynamic_field">
                             <input type="file" name="upload_images" accept="image/*" onchange="showMyImage(this)" />
                         </div>
-                        <div class="col-md-2">
-                            <button type="button" name="add" id="add" class="btn btn-primary btn-xs pull-right">Add More Photos (Maximum 4)</button>
+                        <div class="col-md-5 text-center">
+                            <button type="button" name="add" id="add" class="btn btn-primary btn-xs">Add Photos (Max 4)</button>
+                            <label style="color:blue; margin-top:5px;">First image will default set as primary</label>
                         </div>
                     </div>
                 </div>
 
-                <hr/>
+                <div class="row">
+                    <div class="col-sm-12 text-center">
+                        <label>Upload Video Url From Youtube embeed</label>
+                    </div>
+                </div>
 
-                <strong>
-                    Upload Video Url ( From Youtube embeed):<br /><br> Video 1.
-                </strong>
-                <input type="text" name="video1_url" id="input"/>
-                <a href="#!" class="info">
-                    <i class="fa fa-question-circle"></i>
-                    <span>if not leave it blank.</span>
-                </a>
-                <br />
+                <div class="row">
+                    <div class="col-sm-3 input-title"><label for="video_url1">Video Url 1:</label></div>
+                    <div class="col-sm-7 input-text">
+                        <input type="text" name="video1_url" id="video_url1" class="form-control" />
+                        <?php echo form_error('video1_url'); ?>
+                    </div>
+                </div>
 
-                <strong>Video 2.</strong>
-                <input type="text" name="video2_url" id="input"/>
-                <a href="#!" class="info">
-                    <i class="fa fa-question-circle"  ></i>
-                    <span>if not leave it blank.</span>
-                </a>
-                <br /><br>
+                <div class="row">
+                    <div class="col-sm-3 input-title"><label for="video_url2">Video Url 2:</label></div>
+                    <div class="col-sm-7 input-text">
+                        <input type="text" name="video2_url" id="video_url2" class="form-control" />
+                        <?php echo form_error('video2_url'); ?>
+                    </div>
+                </div>
 
-                <button class="btn btn-default prevBtn btn-lg pull-left" type="button" >Prev</button>
-                <button class="btn btn-success btn-lg pull-right" type="submit">Done!</button>
+                <button class="btn btn-primary prevBtn btn-lg pull-left" type="button" >Prev</button>
+                <button class="btn btn-success btn-lg pull-right" type="submit">Done</button>
             </div>
         </div>
     <?php echo form_close(); ?>

@@ -1,458 +1,399 @@
+<script type="text/javascript" src="<?php echo base_url('public'); ?>/js/jquery.MultiFile.js"></script>
+<script type="text/javascript" src="<?php echo base_url('public'); ?>/js/livepreview.js"></script>
+<script src='https://www.google.com/recaptcha/api.js'></script>
+<script type="text/javascript" src="<?php echo base_url('public'); ?>/js/jquery-1.12.4.min.js"></script>
+<script src="<?php echo base_url('public'); ?>/js/jquery-1.12.3.min.js"></script>
 
-    <script type="text/javascript" src="<?php echo base_url('public'); ?>/js/jquery.MultiFile.js"></script>
-    <script type="text/javascript" src="<?php echo base_url('public'); ?>/js/livepreview.js"></script>
-    <script src='https://www.google.com/recaptcha/api.js'></script>
-    <script type="text/javascript" src="<?php echo base_url('public'); ?>/js/jquery-1.12.4.min.js"></script>
-    <script src="<?php echo base_url('public'); ?>/js/hawa.js"></script>
-    <script src="<?php echo base_url('public'); ?>/js/jquery-1.12.3.min.js"></script>
+<script language="javascript" type="text/javascript">
+    $(document).ready(function() {
+        var text_max = 300;
+        $('#textarea_feedback').html(text_max + ' characters remaining');
 
-    <script language="javascript" type="text/javascript">
-        $(document).ready(function() {
-            var text_max = 300;
-            $('#textarea_feedback').html(text_max + ' characters remaining');
+        $('#profile').keyup(function() {
+            var text_length = $('#profile').val().length;
+            var text_remaining = text_max - text_length;
 
-            $('#profile').keyup(function() {
-                var text_length = $('#profile').val().length;
-                var text_remaining = text_max - text_length;
-
-                $('#textarea_feedback').html(text_remaining + ' characters remaining');
-            });
+            $('#textarea_feedback').html(text_remaining + ' characters remaining');
         });
-    </script>
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $(".second_login_dealer").hide();
+    });
+</script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        if(document.getElementById('personal').checked) { personal_div(); }
+        if(document.getElementById('dealer').checked) { dealer_div(); }
+        $("input[id$='personal']").click(function() { personal_div(); });
+        $("input[id$='dealer']").click(function() { dealer_div(); });
+
+        function personal_div() {
             $("#website").hide();
+            $(".second_login_personal").show();
+            $(".second_login_dealer").hide();
+        }
+        function dealer_div() {
+            $("#website").show();
+            $(".second_login_dealer").show();
+            $(".second_login_personal").hide();
+        }
+    });
+</script>
 
-            $("input[id$='personal']").click(function() {
-                $("#website").hide();
-                $(".second_login_personal").show();
-                $(".second_login_dealer").hide();
+<script>
+    $(document).bind("mobileinit", function() {
+        $.mobile.ignoreContentEnabled = true;
+    });
+</script>
 
-            })
-            $("input[id$='dealer']").click(function() {
-                $("#website").show();
-                $(".second_login_dealer").show();
-                $(".second_login_personal").hide();
-            })
+<script type="text/javascript" src="<?php echo base_url('public'); ?>/js/count.js"></script>
+<script type="text/javascript" src="<?php echo base_url('public'); ?>/js/multiple_upload.js"></script>
 
-        });
-    </script>
+<div class="login_title">
+    <h2>Free Registration Page </h2>
+    <p>Buy and sell anything that may be 1st hand or 2nd hand stuffs, post service ads, vacancies, events, jobs, rent, real state land and building, all advertisement services are available free of cost. Enjoy.</p>
 
-    <script>
-        $(document).bind("mobileinit", function() {
-            $.mobile.ignoreContentEnabled = true;
-        });
-    </script>
+</div><!--login_title-->
+<div class="post_admin">
+    <div class="stepwizard">
+        <div class="stepwizard-row setup-panel">
+            <div class="stepwizard-step">
+                <a href="#step-1" type="button" class="btn btn-primary btn-circle steps">1</a>
+            </div>
+            <div class="stepwizard-step">
+                <a href="#step-2" type="button" class="btn btn-default btn-circle steps" disabled="disabled">2</a>
+            </div>
+            <div class="stepwizard-step">
+                <a href="#step-3" type="button" class="btn btn-default btn-circle steps" disabled="disabled">3</a>
+            </div>
+        </div>
+    </div>
 
-    <script type="text/javascript" src="<?php echo base_url('public'); ?>/js/ad_detail_slider.js"></script>
-    <script type="text/javascript" src="<?php echo base_url('public'); ?>/js/count.js"></script>
-    <script type="text/javascript" src="<?php echo base_url('public'); ?>/js/multiple_upload.js"></script>
-
-        <div class="login_title">
-            <h2>Free Registration Page </h2>
-            <p>Buy and sell anything that may be 1st hand or 2nd hand stuffs, post service ads, vacancies, events, jobs, rent, real state land and building, all advertisement services are available free of cost. Enjoy.</p>
-
-        </div><!--login_title-->
-        <div class="post_admin">
-            <div class="stepwizard">
-                <div class="stepwizard-row setup-panel">
-                    <div class="stepwizard-step">
-                        <a href="#step-1" type="button" class="btn btn-primary btn-circle steps">1</a>
-                    </div>
-                    <div class="stepwizard-step">
-                        <a href="#step-2" type="button" class="btn btn-default btn-circle steps" disabled="disabled">2</a>
-                    </div>
-                    <div class="stepwizard-step">
-                        <a href="#step-3" type="button" class="btn btn-default btn-circle steps" disabled="disabled">3</a>
-                    </div>
+    <?php echo form_open_multipart('signup'); ?>
+    <div class="setup-content col-sm-12" id="step-1">
+        <div class="form-group">
+            <h3>Login Details:</h3>
+            <div class="row">
+                <div class="col-sm-3 input-title"><label>* Email :</label></div>
+                <div class="col-sm-7 input-text">
+                    <input type="email" name="user_email" class="naya form-control" id="useremail" value="<?php echo set_value('user_email');?>" required>
+                    <?php echo form_error('user_email', '<div class="alert alert-danger">', '</div>'); ?>
+                    <div class="result" id="result2"></div>
                 </div>
             </div>
-
-            <?php
-            echo form_open_multipart('details_validation');
-            //echo validation_errors();
-            ?>
-            <div class="setup-content" id="step-1">
-                <div class="form-group">
-                    <table class="login_table">
-                        <h3>Login Details:</h3>
-                        <tr>
-                            <td>
-                                *User email:
-                            </td>
-                            <td>
-                                <input type="email" name="user_email" required class="nayanaya form-control" id="useremail" value="<?php echo $this->input->post('user_email');?>">
-                                <?php //echo form_input('user_email', $this->input->post('user_email'), 'type="email" required class="naya form-control" id="useremail"');?>
-                                <?php echo form_error('user_email', '<div class="alert alert-danger">', '</div>'); ?>
-                                <div class="result" id="result2"></div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                *Password:
-                            </td>
-                            <td>
-                                <?php echo form_password('password', '', 'required class="naya form-control" id="txtNewPassword"'); ?>
-                                <?php echo form_error('password', '<div class="alert alert-danger">', '</div>'); ?>
-                                <!--input type="password" required class="naya"-->
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                *Re-type Password:
-                            </td>
-                            <td>
-                                <?php echo form_password('re-password', '', 'required class="naya form-control" id="txtConfirmPassword" onChange="checkPasswordMatch();"'); ?>
-                                <?php echo form_error('re-password', '<div class="alert alert-danger">', '</div>'); ?>
-                                <div class="registrationFormAlert" id="divCheckPasswordMatch"></div>
-                            </td>
-
-                        </tr>
-                        <tr>
-                            <td>
-                                <a>*Account Type:</a>
-                            </td>
-                            <td>
-                                <?php
-                                $data_radio1 = array(
-                                    'name' => 'acc_type',
-                                    'value' => 'personal',
-                                    'id' => 'personal',
-                                    'checked' => TRUE
-                                );
-                                echo form_radio($data_radio1)."Personal Ac<br />";
-                                $data_radio2 = array(
-                                    'name' => 'acc_type',
-                                    'value' => 'dealer',
-                                    'id' => 'dealer'
-                                );
-                                echo form_radio($data_radio2)."Company Ac(Distributed/Dealer/Retail)";
-                                ?>
-                                <?php echo form_error('acc_type', '<div class="alert alert-danger">', '</div>'); ?>
-                            </td>
-                        </tr>
-                    </table>
-                    <div id="website">
-                        Website Address: http://www.khojeko.com/<?php echo form_input('user_name', $this->input->post('user_name'), 'class="naya form-control" id="username"'); ?>
-                        <div class="result" id="result1"></div>
-                    </div>
-                    <a>Captcha:</a>
-                    <div class='g-recaptcha' data-sitekey='6LdaZCITAAAAAJ99HnRAhCbkJ7us0MUGmXkDW94p'></div><br><br>
-
-                    <?php echo form_checkbox('termsandcondition', 'accept', '', 'required checked').'I Agree with the '."<a class='terms' href='#'>Terms and Conditions.</a>"; ?>
-                    <?php echo form_error('termsandcondition', '<div class="alert alert-danger">', '</div>'); ?>
-
-                    <button class="btn btn-primary nextBtn btn-lg pull-right" type="button" style="float:left">Next</button>
-
-                    <?php //echo form_submit('signup_next', 'Next', 'class="btn btn-success btn-lg pull-right"'); ?>
-                    <?php //echo form_close(); ?>
+            <div class="row">
+                <div class="col-sm-3 input-title"><label>* Password:</label></div>
+                <div class="col-sm-7 input-text">
+                    <?php echo form_password('password', '', 'class="naya form-control" id="txtNewPassword" required'); ?>
+                    <?php echo form_error('password', '<div class="alert alert-danger">', '</div>'); ?>
+                    <div class="result" id="error1"></div>
                 </div>
             </div>
-            <div class="setup-content" id="step-2">
-                <div class="form-group">
-                    <div class="second_login_personal">
+            <div class="row">
+                <div class="col-sm-3 input-title"><label>*Re-type Password:</label></div>
+                <div class="col-sm-7 input-text">
+                    <?php echo form_password('re-password', '', 'class="naya form-control" id="txtConfirmPassword" onChange="checkPasswordMatch();" required'); ?>
+                    <?php echo form_error('re-password', '<div class="alert alert-danger">', '</div>'); ?>
+                    <div class="registrationFormAlert" id="divCheckPasswordMatch"></div>
+                </div>
 
-                        <table class="login_table">
-                            <h3>Personal Account</h3>
-                            <tr>
-                                <td>
-                                    Full Name:
-                                </td>
+            </div>
+            <div class="row">
+                <div class="col-sm-3 input-title"><label>*Account Type:</label></div>
+                <div class="col-sm-7 input-text">
+                    <?php
+                    $data_radio1 = array(
+                        'name' => 'acc_type',
+                        'value' => 'personal',
+                        'id' => 'personal',
+                        'checked' => set_radio('acc_type', 'personal',TRUE)
+                    );
 
-                                <td>
-                                    <?php echo form_input('full_name', $this->input->post('full_name'), 'class="naya"'); ?>
-                                    <?php echo form_error('full_name', '<div class="alert alert-danger">', '</div>'); ?>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>
-                                    Select Zone:
-                                </td>
-
-                                <td>
-                                    <?php
-                                    $options_z = array();
-                                    $options_z[] = "--Select Zone--";
-
-                                    foreach($zones as $row) {
-                                        $options_z[$row->zone_name] = $row->zone_name;
-                                    }
-                                    echo form_dropdown('zone_p', $options_z, $this->input->post('zone'), ' id="zone_p"');
-                                    ?>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>
-                                    Select District:
-                                </td>
-
-                                <td>
-                                    <select name = 'district_p' id = 'district_p'>
-                                        <option value="">-- Select District --</option>
-                                    </select>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>
-                                    Type City/Area Name:
-                                </td>
-
-                                <td>
-                                    <?php echo form_input('city_p', $this->input->post('city_p'), 'class="naya"'); ?>
-                                    <?php echo form_error('city_p', '<div class="alert alert-danger">', '</div>'); ?>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>
-                                    Full Address:
-                                </td>
-
-                                <td>
-                                    <?php echo form_input('address_p', $this->input->post('address_p'), 'class="naya"'); ?>
-                                    <?php echo form_error('address_p', '<div class="alert alert-danger">', '</div>'); ?>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>
-                                    Mobile No.:
-                                </td>
-
-                                <td>
-                                    <?php echo form_input('mobile_p', $this->input->post('mobile_p'), 'class="naya form-control" id="mobile_p" maxlength = 10'); ?>
-                                    <?php echo form_error('mobile_p', '<div class="alert alert-danger">', '</div>'); ?>
-                                    <div class="result" id="result3"></div>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>
-                                    Another Mobile No.:
-                                </td>
-
-                                <td>
-                                    <?php echo form_input('sec_mobile', $this->input->post('sec_mobile'), 'class="naya" id="sec_mobile" maxlength = 10'); ?>
-                                    <?php echo form_error('sec_mobile', '<div class="alert alert-danger">', '</div>'); ?>
-                                    <div class="result" id="sec_result"></div>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>
-                                    Tel No.:
-                                </td>
-
-                                <td>
-                                    <?php echo form_input('telephone_p', $this->input->post('telephone_p'), 'class="naya" id="telephone_p" maxlength = 9'); ?>
-                                    <?php echo form_error('telephone_p', '<div class="alert alert-danger">', '</div>'); ?>
-                                    <div class="result" id="tel_p_result"></div>
-                                </td>
-                            </tr>
-
-                        </table>
-                    </div><!--second_login_personal-->
-
-                    <div class="second_login_dealer">
-
-                        <table class="login_table" id="dynamic_field">
-                            <h3>Dealer Account</h3>
-                            <tr>
-                                <td>
-                                    Dealer's Name:
-                                </td>
-
-                                <td>
-                                    <?php echo form_input('dealer_name', $this->input->post('dealer_name'), 'class="naya"'); ?>
-                                    <?php echo form_error('dealer_name', '<div class="alert alert-danger">', '</div>'); ?>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>
-                                    Select Zone:
-                                </td>
-
-                                <td>
-                                    <?php echo form_dropdown('zone', $options_z, $this->input->post('zone'), ' id="zone"');?>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>
-                                    Select District:
-                                </td>
-
-                                <td>
-                                    <select name = 'district' id = 'district'>
-                                        <option value="">-- Select District --</option>
-                                    </select></td>
-                            </tr>
-
-                            <tr>
-                                <td>
-                                    Type City Name:
-                                </td>
-
-                                <td>
-                                    <?php echo form_input('city', $this->input->post('city'), 'class="naya"'); ?>
-                                    <?php echo form_error('city', '<div class="alert alert-danger">', '</div>'); ?>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>
-                                    Full Address:
-                                </td>
-
-                                <td>
-                                    <?php echo form_input('address', $this->input->post('address'), 'class="naya"'); ?>
-                                    <?php echo form_error('address', '<div class="alert alert-danger">', '</div>'); ?>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>
-                                    Mobile No.:
-                                </td>
-
-                                <td>
-                                    <?php echo form_input('mobile', $this->input->post('mobile'), 'class="naya form-control" id="mobile_d" maxlength = 10'); ?>
-                                    <?php echo form_error('mobile', '<div class="alert alert-danger">', '</div>'); ?>
-                                    <div class="result" id="result4"></div>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>
-                                    Tel No.:
-                                </td>
-
-                                <td>
-                                    <?php echo form_input('telephone', $this->input->post('telephone'), 'class="naya" id="telephone" maxlength = 9'); ?>
-                                    <?php echo form_error('telephone', '<div class="alert alert-danger">', '</div>'); ?>
-                                    <div class="result" id="tel_d_result"></div>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>
-                                    Company Profile and deals in:
-                                </td>
-
-                                <td>
-                                    <?php
-                                    $data = array(
-                                        'name' => 'profile',
-                                        'value' => $this->input->post('profile'),
-                                        'rows' => 6,
-                                        'cols' => 25,
-                                        'maxlength' => 300,
-                                        'id' => 'profile'
-                                    );
-                                    echo form_textarea($data);
-                                    echo form_error('profile', '<div class="alert alert-danger">', '</div>');
-                                    ?>
-                                    <div id="textarea_feedback"></div>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>
-                                    Company own website address:
-                                </td>
-
-                                <td>
-                                    <?php  echo form_input('website', $this->input->post('website')); ?>
-                                    <?php echo form_error('website', '<div class="alert alert-danger">', '</div>'); ?>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    Dealer's logo:
-                                    <input id="dealerlogo" type="file" name="dealerlogo" accept="image/*"  onchange="showMyImage(this,'dealerlogo','1');" />
-                                </td>
-                                <td id="row1">
-                                    <img id="thumbnail1" />
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    Dealer's Registration VAT/PAN scan copy:
-                                    <input id="dealervat" type="file" name="dealervat" accept="image/*"  onchange="showMyImage(this,'dealervat','2')" />
-                                </td>
-                                <td id="row2">
-                                    <img id="thumbnail2" />
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    Store Front Photos(if any):
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <input id="dealerstore" type="file" name="dealerstore" accept="image/*"  onchange="showMyImage(this,'dealerstore','3')" />
-                                </td>
-                                <td>
-                                    <input id="dealerstore1" type="file" name="dealerstore1" accept="image/*"  onchange="showMyImage(this,'dealerstore1','4')" />
-                                </td>
-                            </tr>
-                            <tr>
-                                <td id="row3">
-                                    <img id="thumbnail3" />
-                                </td>
-                                <td id="row4">
-                                    <img id="thumbnail4" />
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <input id="dealerstore2" type="file" name="dealerstore2" accept="image/*"  onchange="showMyImage(this,'dealerstore2','5')" />
-                                </td>
-                                <td>
-                                    <input id="dealerstore3" type="file" name="dealerstore3" accept="image/*"  onchange="showMyImage(this,'dealerstore3','6')" />
-                                </td>
-                            </tr>
-                            <tr>
-                                <td id="row5">
-                                    <img id="thumbnail5" />
-                                </td>
-                                <td id="row6">
-                                    <img id="thumbnail6" />
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-                    <br>
-                    <button class="btn btn-default prevBtn btn-lg pull-left" type="button" >Prev</button>
-                    <!--                        <button class="btn btn-primary nextBtn btn-lg pull-right" type="button" >Next</button>-->
-                    <?php echo form_submit('signup_next', 'Next', 'class="btn btn-success btn-lg pull-right"');
-                    echo form_close();
+                    $data_radio2 = array(
+                        'name' => 'acc_type',
+                        'value' => 'dealer',
+                        'id' => 'dealer',
+                        'checked' => set_radio('acc_type', 'dealer')
+                    );
                     ?>
-                </div>
-            </div>
-            <div class="setup-content step-3" id="step-3">
-                <div class="form-group">
-                    <h3> Step 3</h3>
-
-
-                    <div class="message">
-                        <a id="success-message">Congratulation your account is successfully created.</a>
-                        <a id="unsuccess-message">Please check your email and verify your account soon.</a>
+                    <div class="col-sm-5 text-center">
+                        <?php echo form_radio($data_radio1)."Personal Account<br />"; ?>
                     </div>
-
-                    <!--input class="btn btn-success btn-lg pull-right" type="submit" value="Done!"></input-->
+                    <div class="col-sm-7 text-center">
+                        <?php echo form_radio($data_radio2)."Company Account"; ?>
+                    </div>
+                    <?php echo form_error('acc_type', '<div class="alert alert-danger">', '</div>'); ?>
                 </div>
             </div>
-            <?php echo form_close(); ?>
+            <div class="row" id="website">
+                <div class="col-sm-3 input-title"><label>Website Address:</label></div>
+                <div class="col-sm-7">
+                    <?php echo form_input('user_name', set_value('user_name'), 'class="naya form-control" id="username"'); ?>
+                    <label style="margin-top: 10px;">http://www.khojeko.com/</label>
+                    <?php echo form_error('user_name', '<div class="alert alert-danger">', '</div>'); ?>
+                    <div class="result" id="result1"></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3 input-title"><label>Captcha:</label></div>
+                <div class='col-sm-7 g-recaptcha' data-sitekey='6LdaZCITAAAAAJ99HnRAhCbkJ7us0MUGmXkDW94p'></div><br>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 text-center">
+                    <?php
+                    $data_check = array(
+                        'name' => 'termsandcondition',
+                        'value' => 'accept',
+                        'id' => 'termsandcondition',
+                        'required' => 'required',
+                        'checked' => set_checkbox('termsandcondition', 'accept')
+                    );
+                    echo form_checkbox($data_check).'I Agree with the '."<a class='terms' href='#'>Terms and Conditions.</a>";
+                ?></div>
+                <?php echo form_error('termsandcondition', '<div class="alert alert-danger">', '</div>'); ?>
+            </div>
+            <div class="result" id="error2"></div>
+        </div>
 
-        </div><!--end of post_admin-->
-    </div><!--guts-->
+        <button class="btn btn-primary nextBtn btn-lg pull-right" type="button" onclick="checkRequired()">Next</button>
+
+        <?php //echo form_submit('signup_next', 'Next', 'class="btn btn-success btn-lg pull-right"'); ?>
+        <?php //echo form_close(); ?>
+    </div>
+    <div class="setup-content col-sm-12" id="step-2">
+        <div class="form-group">
+            <div class="second_login_personal">
+                <h3>Personal Account</h3>
+                <div class="row">
+                    <div class="col-sm-3 input-title"><label>Full Name:</label></div>
+
+                    <div class="col-sm-7">
+                        <?php echo form_input('full_name', set_value('full_name'), 'class="naya"'); ?>
+                        <?php echo form_error('full_name', '<div class="alert alert-danger">', '</div>'); ?>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-3 input-title"><label for="zone_p"> Zone:</label></div>
+
+                    <div class="col-sm-7">
+                        <?php
+                        $options_z = array();
+                        $options_z[] = "--Select Zone--";
+
+                        foreach($zones as $row) {
+                            $options_z[$row->zone_name] = $row->zone_name;
+                        }
+                        echo form_dropdown('zone_p', $options_z, set_value('zone'), ' id="zone_p" class="form-control"');
+                        ?>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-3 input-title" ><label for='district_p'>Select District:</div>
+                    <div class="col-sm-7">
+                        <select name = 'district_p' id = 'district_p' class="form-control">
+                            <option value="">-- Select District --</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-3 input-title"><label>Type City/Area Name:</label></div>
+
+                    <div class="col-sm-7">
+                        <?php echo form_input('city_p', set_value('city_p'), 'class="naya"'); ?>
+                        <?php echo form_error('city_p', '<div class="alert alert-danger">', '</div>'); ?>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-3 input-title"><label>Full Address:</label></div>
+
+                    <div class="col-sm-7">
+                        <?php echo form_input('address_p', set_value('address_p'), 'class="naya"'); ?>
+                        <?php echo form_error('address_p', '<div class="alert alert-danger">', '</div>'); ?>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-3 input-title"><label>Mobile No.:</label></div>
+                    <div class="col-sm-7">
+                        <?php echo form_input('mobile_p', set_value('mobile_p'), 'class="naya form-control" id="mobile_p" maxlength = 10'); ?>
+                        <?php echo form_error('mobile_p', '<div class="alert alert-danger">', '</div>'); ?>
+                        <div class="result" id="result3"></div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-3 input-title"><label>Another Mobile No.:</label></div>
+                    <div class="col-sm-7">
+                        <?php echo form_input('sec_mobile', set_value('sec_mobile'), 'class="naya" id="sec_mobile" maxlength = 10'); ?>
+                        <?php echo form_error('sec_mobile', '<div class="alert alert-danger">', '</div>'); ?>
+                        <div class="result" id="sec_result"></div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-3 input-title"><label>Tel No.:</label></div>
+                    <div class="col-sm-7">
+                        <?php echo form_input('telephone_p', set_value('telephone_p'), 'class="naya" id="telephone_p" maxlength = 9'); ?>
+                        <?php echo form_error('telephone_p', '<div class="alert alert-danger">', '</div>'); ?>
+                        <div class="result" id="tel_p_result"></div>
+                    </div>
+                </div>
+            </div><!--second_login_personal-->
+
+            <div class="second_login_dealer">
+                <h3>Dealer Account</h3>
+                <div class="row">
+                    <div class="col-sm-3 input-title""><label>Dealer's Name:</label></div>
+                <div class="col-sm-7">
+                    <?php echo form_input('dealer_name', set_value('dealer_name'), 'class="naya"'); ?>
+                    <?php echo form_error('dealer_name', '<div class="alert alert-danger">', '</div>'); ?>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-3 input-title"><label>Select Zone:</label></div>
+                <div class="col-sm-7">
+                    <?php echo form_dropdown('zone', $options_z, set_value('zone'), ' id="zone"');?>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-3 input-title"><label for="district">Select District:</label></div>
+                <div class="col-sm-7">
+                    <select name='district' id='district'>
+                        <option value="">-- Select District --</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-3 input-title"><label>Type City Name:</label></div>
+                <div class="col-sm-7">
+                    <?php echo form_input('city', set_value('city'), 'class="naya"'); ?>
+                    <?php echo form_error('city', '<div class="alert alert-danger">', '</div>'); ?>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-3 input-title"><label>Full Address:</label></div>
+                <div class="col-sm-7">
+                    <?php echo form_input('address', set_value('address'), 'class="naya"'); ?>
+                    <?php echo form_error('address', '<div class="alert alert-danger">', '</div>'); ?>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-3 input-title"><label>Mobile No.:</label></div>
+                <div class="col-sm-7">
+                    <?php echo form_input('mobile', set_value('mobile'), 'class="naya form-control" id="mobile_d" maxlength = 10'); ?>
+                    <?php echo form_error('mobile', '<div class="alert alert-danger">', '</div>'); ?>
+                    <div class="result" id="result4"></div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-3 input-title"><label>Tel No.:</label></div>
+                <div class="col-sm-7">
+                    <?php echo form_input('telephone', set_value('telephone'), 'class="naya" id="telephone" maxlength = 9'); ?>
+                    <?php echo form_error('telephone', '<div class="alert alert-danger">', '</div>'); ?>
+                    <div class="result" id="tel_d_result"></div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-3 input-title"><label>Company Profile:</label></div>
+                <div class="col-sm-7">
+                    <?php
+                    $data = array(
+                        'name' => 'profile',
+                        'value' => set_value('profile'),
+                        'rows' => 6,
+                        'cols' => 25,
+                        'maxlength' => 300,
+                        'id' => 'profile',
+                        'class'=>'form-control'
+                    );
+                    echo form_textarea($data);
+                    echo form_error('profile', '<div class="alert alert-danger">', '</div>');
+                    ?>
+                    <div id="textarea_feedback"></div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-3 input-title"><label>Company own website address:</label></div>
+                <div class="col-sm-7">
+                    <?php  echo form_input('website', set_value('website'), 'class="naya form-control"'); ?>
+                    <?php echo form_error('website', '<div class="alert alert-danger">', '</div>'); ?>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3 input-title"><label>Dealer's logo:</label></div>
+                <div class="col-sm-7" id="row1">
+                    <input id="dealerlogo" type="file" name="dealerlogo" accept="image/*"  onchange="showMyImage(this,'dealerlogo','1');" />
+                    <img id="thumbnail1" />
+                    <?php echo form_error('dealerlogo', '<div class="alert alert-danger">', '</div>'); ?>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3 input-title"><label>Dealer's Registration VAT/PAN scan copy:</label></div>
+                <div class="col-sm-7" id="row2">
+                    <input id="dealervat" type="file" name="dealervat" accept="image/*"  onchange="showMyImage(this,'dealervat','2')" />
+                    <img id="thumbnail2" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3 input-title"><label>Store Front Photos(if any):</label></div>
+                <div class="col-sm-7">
+                    <input id="dealerstore" type="file" name="dealerstore" accept="image/*"  onchange="showMyImage(this,'dealerstore','3')" />
+                    <input id="dealerstore1" type="file" name="dealerstore1" accept="image/*"  onchange="showMyImage(this,'dealerstore1','4')" />
+                    <input id="dealerstore2" type="file" name="dealerstore2" accept="image/*"  onchange="showMyImage(this,'dealerstore2','5')" />
+                    <input id="dealerstore3" type="file" name="dealerstore3" accept="image/*"  onchange="showMyImage(this,'dealerstore3','6')" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3 input-title"></div>
+                <div class="col-sm-9">
+                    <div id="row3" style="float:left;">
+                        <img id="thumbnail3"  />
+                    </div>
+                    <div id="row4" style="float:left;">
+                        <img id="thumbnail4" />
+                    </div>
+                    <div id="row5" style="float:left;">
+                        <img id="thumbnail5" />
+                    </div>
+                    <div id="row6" style="float:left;">
+                        <img id="thumbnail6" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button class="btn btn-primary prevBtn btn-lg pull-left" type="button" >Prev</button>
+        <!--                        <button class="btn btn-primary nextBtn btn-lg pull-right" type="button" >Next</button>-->
+        <?php echo form_submit('signup_next', 'Next', 'class="btn btn-success btn-lg pull-right"');
+        echo form_close();
+        ?>
+    </div>
+</div>
+<div class="setup-content step-3" id="step-3">
+    <div class="form-group">
+        <h3>Step 3</h3>
+
+
+        <div class="message">
+            <a id="success-message">Congratulation your account is successfully created.</a>
+            <a id="unsuccess-message">Please check your email and verify your account soon.</a>
+        </div>
+
+        <!--input class="btn btn-success btn-lg pull-right" type="submit" value="Done!"></input-->
+    </div>
+</div>
+<?php echo form_close(); ?>
+
+</div><!--end of post_admin-->
+</div><!--guts-->
 
 </div>
 </div>
@@ -460,6 +401,14 @@
 <script type="text/javascript" src="<?php echo base_url('public'); ?>/js/jquery-1.8.0.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function(){
+        $('#txtNewPassword').keyup(function(){
+            $('#error1').hide();
+        });
+
+        $('#termsandcondition').click(function(){
+            $('#error2').hide();
+        });
+
         $('#username').keyup(function(){
             var username = $(this).val(); // Get username textbox using $(this)
             var Result = $('#result1'); // Get ID of the result DIV where we display the results

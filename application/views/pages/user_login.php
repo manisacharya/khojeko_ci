@@ -1,6 +1,7 @@
 
             <div>
                 <?php echo $pwd_changed;?>
+                <?php echo $login_msg;?>
             </div>
             <div class="login">
                 <?php echo form_open('login'); ?>
