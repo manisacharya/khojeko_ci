@@ -2,7 +2,6 @@
 <script type="text/javascript" src="<?php echo base_url('public'); ?>/js/livepreview.js"></script>
 <script src='https://www.google.com/recaptcha/api.js'></script>
 <script type="text/javascript" src="<?php echo base_url('public'); ?>/js/jquery-1.12.4.min.js"></script>
-<script src="<?php echo base_url('public'); ?>/js/hawa.js"></script>
 <script src="<?php echo base_url('public'); ?>/js/jquery-1.12.3.min.js"></script>
 
 <script language="javascript" type="text/javascript">
