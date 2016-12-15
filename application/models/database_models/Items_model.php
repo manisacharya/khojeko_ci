@@ -49,6 +49,7 @@ class Items_model extends CI_Model {
 
             $this->db->where('type', 'dealer');
             $this->db->where('khojeko_username', $dealer);
+            $this->db->order_by('item_id', 'DESC');
             $query = $this->db->get('items');
             $cleaned = $this->items_xss_clean($query->result(), 'dealer');
             return $cleaned;
@@ -64,6 +65,7 @@ class Items_model extends CI_Model {
 
             $this->db->where('type', 'personal');
             $this->db->where('khojeko_username', $personal);
+            $this->db->order_by('item_id', 'DESC');
             $query = $this->db->get('items');
             $cleaned = $this->items_xss_clean($query->result(), 'personal');
             return $cleaned;
