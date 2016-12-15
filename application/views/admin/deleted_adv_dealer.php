@@ -1,5 +1,5 @@
 <?php
-$item_num = ($per_page*($page_number-1)+$deleted_dealer->num_rows());
+$item_num = ($per_page*($page_number-1)+count($deleted_dealer)/*->num_rows()*/);
 if ($item_num>$total)
     $item_num = 0;
 ?>
@@ -24,7 +24,7 @@ if ($item_num>$total)
                 <!--                <a>select all   <input type="checkbox" onClick="toggle1(this)"></a>-->
             </div>
             <ol>
-                <?php foreach ($deleted_dealer->result() as $row):?>
+                <?php foreach ($deleted_dealer as $row):?>
                     <li>
                         <span>
                             <img src="<?php echo base_url('public'); ?>/images/item_images/<?php echo $row->image;?>" class="img-rounded"><br>
