@@ -11,7 +11,9 @@ class Search_model extends CI_Model {
             $this->db->join('personal', "user.user_key = personal.p_id ");
 
         $this->db->join('item_img', "items.item_id = item_img.item_id");
-        $where = "type='".$type."' AND is_verified=".$id." AND primary=1  AND deleted_date".$deleted_id;
+        $where = "type='".$type."' AND primary=1  AND deleted_date".$deleted_id;
+        if($deleted_id == "=0")
+            $where .= " AND is_verified=".$id;
         $this->db->where($where);
         $this->db->group_start()->like('title', $search_query);
         $this->db->or_like('name', $search_query);
@@ -32,7 +34,9 @@ class Search_model extends CI_Model {
                 $this->db->join('personal', "user.user_key = personal.p_id ");
 
             $this->db->join('item_img', "items.item_id = item_img.item_id");
-            $where = "type='".$type."' AND is_verified=".$id." AND primary=1  AND deleted_date".$deleted_id;
+            $where = "type='".$type."' AND primary=1  AND deleted_date".$deleted_id;
+            if($deleted_id == "=0")
+                $where .= " AND is_verified=".$id;
             $this->db->where($where);
             $this->db->group_start()->like('title', $search_query);
             $this->db->or_like('name', $search_query);
