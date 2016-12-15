@@ -10,19 +10,16 @@ class Item_model extends CI_Model
 {
     public $item_id;
     public $title;
-    //public $description;
     public $item_type;
     public $bought_from;
     public $price;
+    public $quantity;
     public $used_for;
     public $mkt_price;
     public $verification_number;
     public $is_verified;
-   
     public $avaibility_address;
-   
     public $published_date;
-    //public $spec_url;
     public $delivery;
     public $delivery_charge;
     public $warranty_period;
@@ -35,13 +32,15 @@ class Item_model extends CI_Model
     public $deleted_date;
     public $c_id;
     public $user_id;
-    public $ad_id;
     public $is_premium;
+    public $comment_count;
+    public $spam_count;
 
     public function __construct() {
         // Call the CI_Model constructor
         parent::__construct();
-        $this->load->model('specification_model');
+        $this->load->model('database_models/item_spec_model');
+        $this->load->model('database_models/categories_model');
     }
 
     public function add_item($detail){
@@ -49,10 +48,14 @@ class Item_model extends CI_Model
 
             $this->title = $this->input->post('ad_title');
 
-            if($detail->type == 'personal')
+            if ($detail->type == 'personal'){
                 $this->item_type = $this->input->post('ad_type_personal');
-            else if($detail->type == 'dealer')
+                $this->quantity = 1;
+            }
+            else if($detail->type == 'dealer') {
                 $this->item_type = $this->input->post('ad_type_dealer');
+                $this->quantity = $this->input->post('quantity');
+            }
 
             if($this->input->post('bought_from') == "Abroad")
                 $this->bought_from = $this->input->post('abroad_country');
@@ -65,24 +68,22 @@ class Item_model extends CI_Model
             $this->verification_number = $this->input->post('document_no');
 
             $this->is_verified = 0;
-            $this->avaibility_address;
+            $this->avaibility_address = NULL;
 
             $this->published_date = NOW();
             
             $this->ad_duration = $this->input->post('ad_running_time');
 
-            //$this->xss_invoke('spec_url', 'site_url');
-            //$this->spec_url = $this->input->post('site_url');
-
-            //$this->xss_invoke('delivery', 'home_delivery');
             $this->delivery = $this->input->post('home_delivery');
             
             if($this->delivery == "Yes")
                 $this->delivery_charge = $this->input->post('delivery_charge');
+            else
+                $this->delivery_charge = 0;
             
             $this->warranty_period = $this->input->post('warranty');
 
-            $this->sales_status = 0;
+            $this->sales_status = 1;
 
             $this->views = 0;
 
@@ -97,14 +98,14 @@ class Item_model extends CI_Model
 
             $this->deleted_date = 0;
 
-            //$this->xss_invoke('c_id', 'parent_id');
-            
-            $this->c_id = $this->input->post('parent');
+            $this->c_id = $this->categories_model->get_cid_c_slug($this->input->post('postc_slug'));;
             
             $this->user_id = $detail->user_id;
-            $this->ad_id = NULL;
+
             $this->is_premium = 0;
-                    
+            $this->comment_count = 0;
+            $this->spam_count = 0;
+
             if($this->title!=NULL)
                 $this->db->insert('items', $this);
 
@@ -120,7 +121,7 @@ class Item_model extends CI_Model
             }
             
             //$this->add_img($filename_arr);
-            $this->specification_model->add_spec();
+            $this->item_spec_model->add_spec();
            // echo $this->item_id;
 
         } else {

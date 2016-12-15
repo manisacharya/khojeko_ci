@@ -40,4 +40,14 @@ class Spam_and_fav_model extends CI_Model {
         }
     }
 
+    public function spam_check($id, $user_id){
+        $info = $this->db->get_where('spam', array('item_id' => $id, 'user_id' => $user_id));
+
+        if(!$info->num_rows()){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
 }

@@ -14,6 +14,7 @@ class Item_model extends CI_Model
     public $item_type;
     public $bought_from;
     public $price;
+    public $quantity;
     public $used_for;
     public $mkt_price;
     public $verification_number;
@@ -36,6 +37,8 @@ class Item_model extends CI_Model
     public $c_id;
     public $user_id;
     public $is_premium;
+    public $comment_count;
+    public $spam_count;
 
     public function __construct() {
         // Call the CI_Model constructor
@@ -43,19 +46,12 @@ class Item_model extends CI_Model
         $this->load->model('admin/specification_model'); 
         $this->load->model('admin/user_model');
         $this->load->model('admin/document_model');
-
     }
 
     public function add_item(){
         if ($this->db->table_exists('items')) {
-
-            // $this->xss_invoke('title', 'ad_title');
-
-            // $this->xss_invoke('item_type', 'ad_type');
             
             $this->title = $this->input->post('ad_title');
-           // $this->description = $this->input->post('shrt_description');
-
             $this->item_type = $this->input->post('ad_type');
 
             if($this->input->post('bought_from') == "Abroad")
