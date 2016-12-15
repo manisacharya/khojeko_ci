@@ -77,28 +77,21 @@
             <span class="glyphicon glyphicon-heart symbol"></span>
         </div>
         <div class="col-sm-10 text-center" id="favourite">
-            <a href="<?php echo base_url("Details/add_to_fav/".$id)?>">Favourite</a>
+            <a href="<?php echo base_url("add_to_fav/".$id)?>">Favourite</a>
         </div>
     </div>
 
     <div class="col-sm-2">
-        <div class="col-sm-1">
+        <div class="col-sm-2">
             <span class="glyphicon glyphicon-warning-sign symbol"></span>
         </div>
 
-        <div class="col-sm-10" id="fake_report">
-            <?php
-            $spam_msg = $this->session->flashdata('spam_check');
-            if($this->session->has_userdata('logged_in')){
-
-                if(1){ ?>
-                    <a href="<?php echo base_url("Details/add_to_spam/".$id."/".$details->spam_count)?>" data-toggle="modal" data-target="#myModal">Report Us</a>
-                <?php } else { ?>
-                    <a href="#" id="spam_repeat" onclick="return same_spam();">Report</a>
-                <?php }
-            } else { ?>
-                <a href="<?php echo base_url("Details/add_to_spam/".$id."/".$details->spam_count)?>">Report Us</a>
-            <?php } ?>
+        <div class="col-sm-10 text-center" id="fake_report">
+            <?php if($this->session->has_userdata('logged_in')) : ?>
+                <a href="#" data-toggle="modal" data-target="#myModal">Report Us</a>
+            <?php else : ?>
+                <a href="<?php echo base_url("add_to_spam/".$id.'/'.$details->spam_count)?>">Report Us</a>
+            <?php endif; ?>
         </div>
     </div>
 </div><!--item_info ends-->
@@ -110,24 +103,18 @@
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Fake Report</h4>
+                <button type="button" class="close" data-dismiss="modal">x</button>
+                <h3 class="modal-title">Report</h3>
             </div>
             <div class="modal-body">
-                <?php
-                $fake_url = base_url("Details/add_to_spam/".$id."/".$details->spam_count);
-                echo form_open($fake_url);
-                ?>
-                <strong>
-                    Fake Report Comment:
-                </strong><br />
-                <input type="text" name="fake_comment" id="ad_details" style="width:60%; height:100px;text-align:center" placeholder="TEXT EDITOR" maxlength=300 required="required"/>
+                <?php echo form_open("add_to_spam/".$id."/".$details->spam_count); ?>
+                <label for="ad_details">Report Purpose:</label><br />
+                <input name="fake_comment" id="ad_details" placeholder="Report Message" maxlength=150 required="required" autofocus="autofocus" class="form-control" />
                 <div id="textarea_feedback"></div>
                 <br /><br />
             </div>
             <div class="modal-footer">
-                <input type="submit" name="submit" value="Submit" class="btn btn-success">
-
+                <button type="submit" name="submit" class="btn btn-success">Report</button>
                 <?php echo form_close(); ?>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             </div>
@@ -154,7 +141,6 @@
                         <img onclick="changeDisplayImage(this)" src="<?php echo base_url();?>public/images/item_images/<?php echo $row->image; ?>" alt="mobile">
                     </div>
                 <?php endforeach ?>
-
 
                 <style>
                     .jssora11l, .jssora11r {
@@ -223,41 +209,41 @@
     </div>
 
     <!--<div class="send_email">
-                            <div class="send_email_title">
-                                <a>Send Email to Ad owner (Private)</a>
-                            </div>
-                            <?/*php
-                            echo form_open('khojekopage/email_validation');
-                            echo validation_errors();
+        <div class="send_email_title">
+            <a>Send Email to Ad owner (Private)</a>
+        </div>
+        <?/*php
+        echo form_open('khojekopage/email_validation');
+        echo validation_errors();
 
-                            echo form_hidden('id',$details->item_id);
-                            echo form_hidden('tomsg',$user->email);
-                            echo form_hidden('username',$user_type->name);
+        echo form_hidden('id',$details->item_id);
+        echo form_hidden('tomsg',$user->email);
+        echo form_hidden('username',$user_type->name);
 
-                            echo "<table class='email_send' style='width:100%'>";
+        echo "<table class='email_send' style='width:100%'>";
 
-                            echo "<tr><td> Your Name: </td>";
-                            echo "<td>".form_input("name")."</td>";
-                            echo "</tr>";
+        echo "<tr><td> Your Name: </td>";
+        echo "<td>".form_input("name")."</td>";
+        echo "</tr>";
 
-                            echo "<tr><td> Email Id: </td>";
-                            echo "<td>".form_input("email")."</td>";
-                            echo "</tr>";
+        echo "<tr><td> Email Id: </td>";
+        echo "<td>".form_input("email")."</td>";
+        echo "</tr>";
 
-                            echo "<tr><td> Mobile No.: </td>";
-                            echo "<td>".form_input("mobile")."</td>";
-                            echo "</tr>";
+        echo "<tr><td> Mobile No.: </td>";
+        echo "<td>".form_input("mobile")."</td>";
+        echo "</tr>";
 
-                            echo "<tr><td> Message: </td>";
-                            echo "<td><textarea rows='4' name='message' cols='' placeholder='Enter Message here'></textarea></td>";
-                            echo "</tr>";
+        echo "<tr><td> Message: </td>";
+        echo "<td><textarea rows='4' name='message' cols='' placeholder='Enter Message here'></textarea></td>";
+        echo "</tr>";
 
-                            echo "<tr><td></td><td>".form_submit("login_submit", "Send")."</td></tr>";
+        echo "<tr><td></td><td>".form_submit("login_submit", "Send")."</td></tr>";
 
-                            echo "</table>";
-                            echo form_close();
-                            */?>
-                        </div><!--send_email ends-->
+        echo "</table>";
+        echo form_close();
+        */?>
+    </div><!--send_email ends-->
 
     <div class="video_ad">
         <?php

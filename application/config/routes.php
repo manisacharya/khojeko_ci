@@ -53,6 +53,8 @@ $route['available_mobile_d'] = "Signup/available_mobile_d";
 // details
 $route['details'] = "details/details";
 $route['details/(:any)'] = "details/details/$1";
+$route['add_to_fav/(:num)'] = "details/add_to_fav/$1";
+$route['add_to_spam/(:num)/(:num)'] = "details/add_to_spam/$1/$2";
 
 // SEARCH CONTROLLER
 $route['results'] = "search/results";

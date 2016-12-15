@@ -16,7 +16,6 @@ class Details extends CI_Controller {
         $this->load->model('database_models/items_model');
         $this->load->model('database_models/user_model');
         $this->load->model('database_models/spam_model');
-        $this->session->set_flashdata('previous_url', "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]");
     }
 
     //For Details Page
@@ -114,18 +113,17 @@ class Details extends CI_Controller {
 
     //For adding to favourites
     public function add_to_fav($id){
-        //$data['fname'] = $this->session->userdata('username');
         if($this->session->has_userdata('logged_in')) {
             $type = $this->session->userdata['logged_in']['type'];
             if(strtoupper($type) == 'PERSONAL') {
                 $p_id = $this->session->userdata['logged_in']['id'];
                 $this->spam_and_fav_model->add_fav($id, $p_id);
-                redirect('details/'.$id);
             } else {
                 $this->session->set_flashdata('fav_message','<div class="alert alert-danger">Only personal user can add to favourites.</div>');
-                redirect('details/'.$id);
             }
+            redirect('details/'.$id);
         } else {
+            $this->session->set_flashdata('previous_url', base_url('details/'.$id));
             redirect('login');
         }
     }
@@ -135,16 +133,9 @@ class Details extends CI_Controller {
         if($this->session->has_userdata('logged_in')) {
             $user_id = $this->session->userdata['logged_in']['id'];
             $this->spam_and_fav_model->add_spam($id, $user_id, $spam_count);
-
-            $spam_check = $this->spam_and_fav_model->spam_check($id, $user_id);
-
-            $data['check'] = $spam_check;
-           // echo $data['check'];
-           // die();
-            $this->load->view('details/'.$id, $data);
-            //$this->session->set_flashdata('spam_check', $data);
-            //redirect();
+            redirect(base_url('details/'.$id));
         } else {
+            $this->session->set_flashdata('previous_url', base_url('details/'.$id));
             redirect('login');
         }
     }
