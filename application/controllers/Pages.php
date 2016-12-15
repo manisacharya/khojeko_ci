@@ -50,7 +50,7 @@ class Pages extends CI_Controller {
         $this->get_common_contents($data);
 
         $data['personal_info'] = $this->user_model->get_user_info('personal', $username);
-        $data['personal_items'] = $this->items_model->get_personal_items($username);
+        $data['personal_items'] = $this->items_model->get_personal_items($username, TRUE); // visibility check
 
         $this->load->view('pages/templates/header', $data);
         $this->load->view('pages/user_page', $data);
@@ -64,7 +64,7 @@ class Pages extends CI_Controller {
         $this->get_common_contents($data);
 
         $data['dealer_info'] = $this->user_model->get_user_info('dealer', $username);
-        $data['all_dealer_items'] = $this->items_model->get_dealer_items($username);
+        $data['all_dealer_items'] = $this->items_model->get_dealer_items($username, TRUE); // visibility check
         $this->load->model('database_models/store_images_model');
         $data['store_images'] = $this->store_images_model->get_store_images($data['dealer_info']->d_id);
 

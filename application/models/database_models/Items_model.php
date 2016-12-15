@@ -41,12 +41,14 @@ class Items_model extends CI_Model {
         parent::__Construct ();
         $this->load->model('database_models/categories_model');
     }
-    public function get_dealer_items($dealer) {
+    public function get_dealer_items($dealer, $visibility = FALSE) {
         if ($this->db->table_exists('items')) {
             $this->db->select('items.*, user.*, dealer.*, item_spec.specs, item_img.image, four.c_name AS gg_parent, three.c_name AS g_parent, two.c_name AS parent, one.c_name AS category');
             $this->db = $this->item_joins();
             $this->db->join('dealer', 'user.user_key = dealer.d_id');
 
+            if($visibility)
+                $this->db->where('visibility', 1);
             $this->db->where('type', 'dealer');
             $this->db->where('khojeko_username', $dealer);
             $this->db->order_by('item_id', 'DESC');
@@ -57,12 +59,14 @@ class Items_model extends CI_Model {
         return FALSE;
     }
 
-    public function get_personal_items($personal) {
+    public function get_personal_items($personal, $visibility = FALSE) {
         if ($this->db->table_exists('items')) {
             $this->db->select('items.*, user.*, personal.*, item_spec.specs, item_img.image, four.c_name AS gg_parent, three.c_name AS g_parent, two.c_name AS parent, one.c_name AS category');
             $this->db = $this->item_joins();
             $this->db->join('personal', 'user.user_key = personal.p_id');
 
+            if($visibility)
+                $this->db->where('visibility', 1);
             $this->db->where('type', 'personal');
             $this->db->where('khojeko_username', $personal);
             $this->db->order_by('item_id', 'DESC');
