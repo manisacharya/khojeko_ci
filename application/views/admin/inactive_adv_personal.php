@@ -1,5 +1,5 @@
 <?php
-$item_num = ($per_page*($page_number-1)+$unverified_personal->num_rows());
+$item_num = ($per_page*($page_number-1)+count($unverified_personal));
 if ($item_num>$total)
     $item_num = 0;
 ?>
@@ -24,7 +24,7 @@ if ($item_num>$total)
                 <a>select all   <input type="checkbox" onClick="toggle1(this)"></a>
             </div>
             <ol>
-                <?php foreach ($unverified_personal->result() as $row): ?>
+                <?php foreach ($unverified_personal as $row): ?>
                     <li>
                         <span><img src="<?php echo base_url('public'); ?>/images/item_images/<?php echo $row->image;?>" class="img-rounded"><br>
                             ad id:<?php $item_id = $row->item_id; echo $item_id;?>
