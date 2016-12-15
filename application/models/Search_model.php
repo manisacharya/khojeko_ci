@@ -26,6 +26,7 @@ class Search_model extends CI_Model {
             $this->db->join('category AS two', 'one.parent_id = two.c_id', 'LEFT');
             $this->db->join('category AS three', 'two.parent_id = three.c_id', 'LEFT');
             $this->db->join('category AS four', 'three.parent_id = four.c_id', 'LEFT');
+            $this->db->order_by('views',  'DESC');
 
             $query = $this->db->get('items', 8);
             return $this->items_xss_clean($query->result());
