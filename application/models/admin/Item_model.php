@@ -59,6 +59,7 @@ class Item_model extends CI_Model
             else
                 $this->bought_from = $this->input->post('bought_from');
 
+            $this->quantity = 1;
             $this->price = $this->input->post('offer');
             $this->used_for = $this->input->post('used_for');
             $this->mkt_price = $this->input->post('market_price');
@@ -79,26 +80,33 @@ class Item_model extends CI_Model
             $this->delivery_charge = $this->input->post('delivery_charge');
             $this->warranty_period = $this->input->post('warranty');
 
-            $this->sales_status = 0;
+            $this->sales_status = 1;
             //$this->xss_invoke('ad_duration', 'ad_running_time');
             $this->ad_duration = $this->input->post('ad_running_time');
 
             $this->views = 0;
-            $this->visibility = 1;
+
+            //what to set visibility?
+            $this->visibility = 0;
 
             // $this->xss_invoke('video_url1', 'video_url1');
             // $this->xss_invoke('video_url2', 'video_url2');
             $this->video_url1 = $this->input->post("video1_url");
             $this->video_url2 = $this->input->post("video2_url");
 
-            $this->deleted_date = NULL;
+            $this->deleted_date = 0;
 
             //$this->xss_invoke('c_id', 'parent_id');
             $this->c_id = $this->input->post('parent_id');
-            
+
+            $this->c_id = $this->categories_model->get_cid_c_slug($this->input->post('postc_slug'));;
+
             $this->user_id = $this->user_model->get_user_id();
+
             $this->is_premium = 0;
-                    
+            $this->comment_count = 0;
+            $this->spam_count = 0;
+
            // if($this->title!=NULL)
                 $this->db->insert('items', $this);
 

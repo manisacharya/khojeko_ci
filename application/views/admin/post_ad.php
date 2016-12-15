@@ -224,8 +224,8 @@ echo $message;
 
                         <div class="category">
                             <?php
-                            require_once('templates/category.php');
-                            print_list(0, 0, $categories);
+                                require_once ('templates/category.php');
+                                print_list(0, 0, $categories);
                             ?>
                         </div>
 
@@ -237,8 +237,16 @@ echo $message;
                                         Suggested Category:
                                     </td>
                                     <td>
-                                        <textarea name="display_cat" id="display_parent" readonly></textarea>
-                                        <textarea name="parent_id" id="parent" hidden="hidden" required></textarea>
+                                        <div id="display_cname"></div></br>
+                                        <textarea name="c_id" id="c_id" hidden="hidden"></textarea>
+
+<!--                                        <div id="post_cname"></div>-->
+<!--<!--                                        <textarea name="display_cat" id="post_cname" readonly></textarea>-->
+<!--<!--                                        <div class="search_section">-->
+<!--<!--                                            <label>Suggested Category: &nbsp<div id="post_cname"></div></label>-->
+<!--                                            <textarea name="postc_slug" id="post_c_slug" hidden="hidden" readonly></textarea>-->
+<!--<!--                                        </div><!--search_section ends-->
+<!--<!--                                        <textarea name="parent_id" id="parent"  required></textarea>-->
                                     </td>
                                 </tr>
                             </table>

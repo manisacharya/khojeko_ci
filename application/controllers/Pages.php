@@ -25,7 +25,7 @@ class Pages extends CI_Controller {
         $data['section_position'] = $this->categories_model->get_position();
 
         //for the For Sales: Latest Ad --> images
-        $data['dat'] = $this->index_database_model->joinTableOrder('item_img', 'items', 'item_id', 'published_date');
+        $data['dat'] = $this->index_database_model->joinTableOrder('item_img', 'items', 'item_id', 'item_id');
 
         //for the For Sales: Latest Ad --> details
         $data['oth'] = $this->index_database_model->joinTable('items', 'item_spec', 'item_id');
