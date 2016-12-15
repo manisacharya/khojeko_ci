@@ -4,7 +4,7 @@
 .dealer_details{}
 .dealer_logo img{height:100px;width:100px;}
 .dealer_snap{}
-.pull-left img{height:100px;width:100px}
+.pull-left img{height:100px;width:100px; float: left; padding:3px;}
 .dealer_all_info name{font-size:18px;color:#360;text-decoration:underline;font-weight:800}
 .dealer_all_info p{color:#C00;font-size:16px;font-weight:500}
 #select{text-decoration: none;
