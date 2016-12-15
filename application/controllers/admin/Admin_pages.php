@@ -6,11 +6,10 @@ class Admin_pages extends CI_Controller {
     function __Construct() {
         parent::__Construct();
         $this->load->model('admin/latest_verified_unverified_ad_model');
-        $this->load->model('admin/search_model');
         $this->load->model('database_models/categories_model');
         $this->load->model('database_models/user_model');
         $this->load->model('admin/zones_model');
-        //$this->output->enable_profiler(TRUE);
+        $this->output->enable_profiler(TRUE);
         if (! $this->session->has_userdata('admin_logged_in'))
             redirect('admin/login');
     }
@@ -32,12 +31,12 @@ class Admin_pages extends CI_Controller {
             $config1['per_page'] = $per_page;
             $search_query = $this->input->get('search');
             if($search_query){
-                $active_personal = $this->search_model->total_items('personal', 0, '=0', $search_query);
-                $data['unverified_personal'] = $this->search_model->search_active_inactive(0, 'personal', '=0', $search_query, $per_page, ($page_number - 1) * $per_page);
+                $active_personal = $this->latest_verified_unverified_ad_model->total_items_search('personal', 0, '=0', $search_query);
+                $data['unverified_personal'] = $this->latest_verified_unverified_ad_model->search_active_inactive(0, 'personal', '=0', $search_query, $per_page, ($page_number - 1) * $per_page);
             }else {
                 //get total rows of items
-                $active_personal = $this->latest_verified_unverified_ad_model->total_items('personal', 0);
-                $data['unverified_personal'] = $this->latest_verified_unverified_ad_model->get_details_item_personal(0, $per_page, ($page_number - 1) * $per_page);
+                $active_personal = $this->latest_verified_unverified_ad_model->total_items('personal', 0, '=0');
+                $data['unverified_personal'] = $this->latest_verified_unverified_ad_model->get_details_item(0, 'personal', '=0', $per_page, ($page_number - 1) * $per_page);
             }
             $config1['total_rows'] = $active_personal;
             $this->pagination->initialize($config1);
@@ -50,11 +49,11 @@ class Admin_pages extends CI_Controller {
             $config3['per_page'] = $per_page;
             $search_query = $this->input->get('search');
             if($search_query){
-                $active_dealer = $this->search_model->total_items('dealer', 0, '=0', $search_query);
-                $data['unverified_dealer'] = $this->search_model->search_active_inactive(0, 'dealer', '=0', $search_query, $per_page, ($page_number - 1) * $per_page);
+                $active_dealer = $this->latest_verified_unverified_ad_model->total_items_search('dealer', 0, '=0', $search_query);
+                $data['unverified_dealer'] = $this->latest_verified_unverified_ad_model->search_active_inactive(0, 'dealer', '=0', $search_query, $per_page, ($page_number - 1) * $per_page);
             }else {
-                $active_dealer = $this->latest_verified_unverified_ad_model->total_items('dealer', 0);
-                $data['unverified_dealer'] = $this->latest_verified_unverified_ad_model->get_details_item_dealer(0, $per_page, ($page_number - 1) * $per_page);
+                $active_dealer = $this->latest_verified_unverified_ad_model->total_items('dealer', 0, '=0');
+                $data['unverified_dealer'] = $this->latest_verified_unverified_ad_model->get_details_item(0, 'dealer', '=0', $per_page, ($page_number - 1) * $per_page);
             }
             $config3['total_rows'] = $active_dealer;
             $this->pagination->initialize($config3);
@@ -67,11 +66,11 @@ class Admin_pages extends CI_Controller {
             $config2['per_page'] = $per_page;
             $search_query = $this->input->get('search');
             if($search_query){
-                $inactive_personal = $this->search_model->total_items('personal', 1, '=0', $search_query);
-                $data['verified_personal'] = $this->search_model->search_active_inactive(1, 'personal', '=0', $search_query, $per_page, ($page_number - 1) * $per_page);
+                $inactive_personal = $this->latest_verified_unverified_ad_model->total_items_search('personal', 1, '=0', $search_query);
+                $data['verified_personal'] = $this->latest_verified_unverified_ad_model->search_active_inactive(1, 'personal', '=0', $search_query, $per_page, ($page_number - 1) * $per_page);
             }else {
-                $inactive_personal = $this->latest_verified_unverified_ad_model->total_items('personal', 1);
-                $data['verified_personal'] = $this->latest_verified_unverified_ad_model->get_details_item_personal(1, $per_page, ($page_number - 1) * $per_page);
+                $inactive_personal = $this->latest_verified_unverified_ad_model->total_items('personal', 1, '=0');
+                $data['verified_personal'] = $this->latest_verified_unverified_ad_model->get_details_item(1, 'personal', '=0', $per_page, ($page_number - 1) * $per_page);
             }
             $config2['total_rows'] = $inactive_personal;
             $this->pagination->initialize($config2);
@@ -84,11 +83,11 @@ class Admin_pages extends CI_Controller {
             $config4['per_page'] = $per_page;
             $search_query = $this->input->get('search');
             if($search_query){
-                $inactive_dealer = $this->search_model->total_items('dealer', 1, '=0', $search_query);
-                $data['verified_dealer'] = $this->search_model->search_active_inactive(1, 'dealer', '=0', $search_query, $per_page, ($page_number - 1) * $per_page);
+                $inactive_dealer = $this->latest_verified_unverified_ad_model->total_items_search('dealer', 1, '=0', $search_query);
+                $data['verified_dealer'] = $this->latest_verified_unverified_ad_model->search_active_inactive(1, 'dealer', '=0', $search_query, $per_page, ($page_number - 1) * $per_page);
             }else {
-                $inactive_dealer = $this->latest_verified_unverified_ad_model->total_items('dealer', 1);
-                $data['verified_dealer'] = $this->latest_verified_unverified_ad_model->get_details_item_dealer(1, $per_page, ($page_number - 1) * $per_page);
+                $inactive_dealer = $this->latest_verified_unverified_ad_model->total_items('dealer', 1, '=0');
+                $data['verified_dealer'] = $this->latest_verified_unverified_ad_model->get_details_item(1, 'dealer', '=0', $per_page, ($page_number - 1) * $per_page);
             }
             $config4['total_rows'] = $inactive_dealer;
             $this->pagination->initialize($config4);
@@ -101,11 +100,11 @@ class Admin_pages extends CI_Controller {
             $config3['per_page'] = $per_page;
             $search_query = $this->input->get('search');
             if($search_query){
-                $deleted_personal = $this->search_model->total_items('personal', 0, '!=0', $search_query);
-                $data['deleted_personal'] = $this->search_model->search_active_inactive(0, 'personal', '!=0', $search_query, $per_page, ($page_number - 1) * $per_page);
+                $deleted_personal = $this->latest_verified_unverified_ad_model->total_items_search('personal', 0, '!=0', $search_query);
+                $data['deleted_personal'] = $this->latest_verified_unverified_ad_model->search_active_inactive(0, 'personal', '!=0', $search_query, $per_page, ($page_number - 1) * $per_page);
             }else {
-                $deleted_personal = $this->latest_verified_unverified_ad_model->total_deleted_items('personal');
-                $data['deleted_personal'] = $this->latest_verified_unverified_ad_model->get_details_item_deleted('personal', $per_page, ($page_number - 1) * $per_page);
+                $deleted_personal = $this->latest_verified_unverified_ad_model->total_items('personal', 0, '!=0');
+                $data['deleted_personal'] = $this->latest_verified_unverified_ad_model->get_details_item(0, 'personal', '!=0', $per_page, ($page_number - 1) * $per_page);
             }
             $config3['total_rows'] = $deleted_personal;
             $this->pagination->initialize($config3);
@@ -118,11 +117,11 @@ class Admin_pages extends CI_Controller {
             $config3['per_page'] = $per_page;
             $search_query = $this->input->get('search');
             if($search_query){
-                $deleted_dealer = $this->search_model->total_items('dealer', 0, '!=0', $search_query);
-                $data['deleted_dealer'] = $this->search_model->search_active_inactive(0, 'dealer', '!=0', $search_query, $per_page, ($page_number - 1) * $per_page);
+                $deleted_dealer = $this->latest_verified_unverified_ad_model->total_items_search('dealer', 0, '!=0', $search_query);
+                $data['deleted_dealer'] = $this->latest_verified_unverified_ad_model->search_active_inactive(0, 'dealer', '!=0', $search_query, $per_page, ($page_number - 1) * $per_page);
             }else {
-                $deleted_dealer = $this->latest_verified_unverified_ad_model->total_deleted_items('dealer');
-                $data['deleted_dealer'] = $this->latest_verified_unverified_ad_model->get_details_item_deleted('dealer', $per_page, ($page_number - 1) * $per_page);
+                $deleted_dealer = $this->latest_verified_unverified_ad_model->total_items('dealer', 0, '!=0');
+                $data['deleted_dealer'] = $this->latest_verified_unverified_ad_model->get_details_item(0, 'dealer', '!=0', $per_page, ($page_number - 1) * $per_page);
             }
             $config3['total_rows'] = $deleted_dealer;
             $this->pagination->initialize($config3);

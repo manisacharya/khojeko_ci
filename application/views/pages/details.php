@@ -1,18 +1,18 @@
 <script>
-function changeDisplayImage(image) {
-target = document.getElementById('displayImage');
-target.src = image.src;
-}
+    function changeDisplayImage(image) {
+        target = document.getElementById('displayImage');
+        target.src = image.src;
+    }
 </script>
 <div class="clearfix"></div>
 
 <div class="item_category">
     <a class="main_cat">MAIN CATEGORY:</a>
     <?php
-        echo ($details->gg_parent) ? $details->gg_parent.' >> ' : '';
-        echo ($details->g_parent) ? $details->g_parent.' >> ' : '';
-        echo ($details->parent) ? $details->parent.' >> ' : '';
-        echo $details->category;
+    echo ($details->gg_parent) ? $details->gg_parent.' >> ' : '';
+    echo ($details->g_parent) ? $details->g_parent.' >> ' : '';
+    echo ($details->parent) ? $details->parent.' >> ' : '';
+    echo $details->category;
     ?>
 </div><!--item_category ends-->
 
@@ -28,56 +28,55 @@ target.src = image.src;
 </div>
 
 <div class="item_info">
-    <div class="col-sm-4">
-        <div class="col-sm-1">
+    <div class="col-sm-3">
+        <div class="col-sm-2">
             <span class="glyphicon glyphicon-time symbol" id="clock"></span>
         </div>
 
-        <div class="col-sm-11" id="date">
+        <div class="col-sm-10 text-center" id="date">
             <a>
                 <?php
                 //default_timezone_set in config.php
                 $days = $date;
-                echo mdate('%d %M %Y', $details->published_date)."(".$days->format("%a days").")";
+                echo mdate('%d %M %Y', $details->published_date)." (".$days->format("%a days").")";
                 ?>
             </a>
         </div>
     </div>
 
     <div class="col-sm-2" style="padding-left:4px">
-        <div class="col-sm-1">
+        <div class="col-sm-2  text-center">
             <span class="glyphicon glyphicon-eye-open symbol"></span>
         </div>
-        <div class="col-sm-11" id="view">
+        <div class="col-sm-10 text-center" id="view">
             <a><?php echo $details->views;?> views</a>
         </div>
     </div>
 
-    <div class="col-sm-2">
-        <div class="col-sm-1">
+    <div class="col-sm-3">
+        <div class="col-sm-2 text-center">
             <span class="glyphicon glyphicon-calendar symbol"></span>
         </div>
 
-        <div class="col-sm-11 expiry_date">
-            <a>
-                <?php
-                $edays = $details->ad_duration - $days->format("%a");
-                if(intval($edays)<0)
-                    echo "Expired";
-                else {
-                    echo "Expiry after:";
-                    echo $edays . " days";
-                }
-                ?>
-            </a>
+        <div class="col-sm-10 expiry_date text-center">
+
+            <?php
+            $edays = $details->ad_duration - $days->format("%a");
+            if(intval($edays)<0)
+                echo '<label class="red">Expired</label>';
+            else {
+                echo "Expire After: ";
+                echo $edays . " days";
+            }
+            ?>
         </div>
     </div>
 
     <div class="col-sm-2">
-        <div class="col-sm-1">
+        <div class="col-sm-2">
             <span class="glyphicon glyphicon-heart symbol"></span>
         </div>
-        <div class="col-sm-11" id="favourite">
+        <div class="col-sm-10 text-center" id="favourite">
             <a href="<?php echo base_url("Details/add_to_fav/".$id)?>">Favourite</a>
         </div>
     </div>
@@ -96,7 +95,7 @@ target.src = image.src;
                     <a href="<?php echo base_url("Details/add_to_spam/".$id."/".$details->spam_count)?>" data-toggle="modal" data-target="#myModal">Report Us</a>
                 <?php } else { ?>
                     <a href="#" id="spam_repeat" onclick="return same_spam();">Report</a>
-            <?php }
+                <?php }
             } else { ?>
                 <a href="<?php echo base_url("Details/add_to_spam/".$id."/".$details->spam_count)?>">Report Us</a>
             <?php } ?>
@@ -116,8 +115,8 @@ target.src = image.src;
             </div>
             <div class="modal-body">
                 <?php
-                    $fake_url = base_url("Details/add_to_spam/".$id."/".$details->spam_count);
-                    echo form_open($fake_url);
+                $fake_url = base_url("Details/add_to_spam/".$id."/".$details->spam_count);
+                echo form_open($fake_url);
                 ?>
                 <strong>
                     Fake Report Comment:
@@ -294,7 +293,7 @@ target.src = image.src;
     <div class="question_title">
         <a class="ask">ASK ME Box</a>
         <?php if($this->session->has_userdata('logged_in')) $is_session = 1;
-            else $is_session = 0;
+        else $is_session = 0;
         ?>
         <a class="post" href="#!" onclick="showBox(<?php echo $is_session; ?>,'<?php echo base_url('login');?>')">Click to question</a>
         <!--a class="post" href="<?php //echo base_url("Details/ask_me_validation/".$id)?>">Click to question(USE JavaScript)</a-->
@@ -323,7 +322,7 @@ target.src = image.src;
 
         <?php foreach ($question->result() as $row): ?>
             <question><?php echo $row->question ?></question><by>-asked by: <em><?php echo $row->khojeko_username; ?></em> on
-            <?php echo mdate('%d %M %Y', $row->posted_date);?></by><br>
+                <?php echo mdate('%d %M %Y', $row->posted_date);?></by><br>
             <?php
             $ans = $row->answer;
             if($ans!=NULL){

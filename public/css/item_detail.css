@@ -35,12 +35,12 @@
 
 #clock{color:blue}
 
-#view{padding-left:15px;}
+#view{padding-left:0px;}
 
-.expiry_date{padding-left:15px}
+.expiry_date{padding-left:0px}
 
-#date{padding-left:15px}
-#favourite{padding-left:15px}
+#date{padding-left:0px}
+#favourite{padding-left:0px}
 
 #sold{float:right;position:absolute;max-width:100px;max-height:100px;}
 
