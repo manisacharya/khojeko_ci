@@ -28,56 +28,55 @@ target.src = image.src;
 </div>
 
 <div class="item_info">
-    <div class="col-sm-4">
-        <div class="col-sm-1">
+    <div class="col-sm-3">
+        <div class="col-sm-2">
             <span class="glyphicon glyphicon-time symbol" id="clock"></span>
         </div>
 
-        <div class="col-sm-11" id="date">
+        <div class="col-sm-10 text-center" id="date">
             <a>
                 <?php
                 //default_timezone_set in config.php
                 $days = $date;
-                echo mdate('%d %M %Y', $details->published_date)."(".$days->format("%a days").")";
+                echo mdate('%d %M %Y', $details->published_date)." (".$days->format("%a days").")";
                 ?>
             </a>
         </div>
     </div>
 
     <div class="col-sm-2" style="padding-left:4px">
-        <div class="col-sm-1">
+        <div class="col-sm-2  text-center">
             <span class="glyphicon glyphicon-eye-open symbol"></span>
         </div>
-        <div class="col-sm-11" id="view">
+        <div class="col-sm-10 text-center" id="view">
             <a><?php echo $details->views;?> views</a>
         </div>
     </div>
 
-    <div class="col-sm-2">
-        <div class="col-sm-1">
+    <div class="col-sm-3">
+        <div class="col-sm-2 text-center">
             <span class="glyphicon glyphicon-calendar symbol"></span>
         </div>
 
-        <div class="col-sm-11 expiry_date">
-            <a>
+        <div class="col-sm-10 expiry_date text-center">
+
                 <?php
                 $edays = $details->ad_duration - $days->format("%a");
                 if(intval($edays)<0)
-                    echo "Expired";
+                    echo '<label class="red">Expired</label>';
                 else {
-                    echo "Expiry after:";
+                    echo "Expire After: ";
                     echo $edays . " days";
                 }
                 ?>
-            </a>
         </div>
     </div>
 
     <div class="col-sm-2">
-        <div class="col-sm-1">
+        <div class="col-sm-2">
             <span class="glyphicon glyphicon-heart symbol"></span>
         </div>
-        <div class="col-sm-11" id="favourite">
+        <div class="col-sm-10 text-center" id="favourite">
             <a href="<?php echo base_url("Details/add_to_fav/".$id)?>">Favourite</a>
         </div>
     </div>
@@ -87,7 +86,7 @@ target.src = image.src;
             <span class="glyphicon glyphicon-warning-sign symbol"></span>
         </div>
 
-        <div class="col-sm-10" id="fake_report">
+        <div class="col-sm-10 text-center" id="fake_report">
             <?php if($this->session->has_userdata('logged_in')){
                 if($this->session->flashdata('spam_check')){ ?>
                     <a href="<?php echo base_url("Details/add_to_spam/".$id."/".$details->spam_count)?>" data-toggle="modal" data-target="#myModal">Report Us</a>

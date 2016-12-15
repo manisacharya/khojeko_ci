@@ -152,10 +152,13 @@
                 <li><a href="#!">Contact Us</a></li>
             </div>
 
+            <?php
+                // set default timezone
+                $info = getdate();
+                $year = $info['year'];
+            ?>
             <div class="copy_right">
-                <a href="#!">Copyright Khojeko.com &copy; 2012-2014</a>&nbsp;&nbsp;
-                <a href="#!">Rojeko dot com Pvt. Ltd. Nepal.</a>&nbsp;&nbsp;
-                <a> All Rights Reserved</a>
+                <a href="#!">Copyright Khojeko.com &copy; 2015 - <?php echo $year; ?></a>|<a> All Rights Reserved</a>
             </div>
 
         </div>
@@ -175,7 +178,6 @@
 <script type="text/javascript" src="<?php echo base_url('public/js/app/custom.js'); ?>"></script>
 <script type="text/javascript" src="<?php echo base_url('public/js/plugins/nicescroll/jquery.nicescroll.min.js'); ?>"></script>
 <script type="text/javascript" src="<?php echo base_url('public/js/popup.js'); ?>"></script>
-
 
 <script type="text/javascript" src="<?php echo base_url('public/js/back.js'); ?>"></script>
 <script type="text/javascript" src="<?php echo base_url('public/js/dropdown.js'); ?>"></script>
