@@ -247,12 +247,5 @@
     });
 </script>
 
-<!--to check spam click from same user on same item.-->
-<script type="text/javascript">
-    function same_spam () {
-        alert ("Your report already registered for this item.");
-    }
-</script>
-
 </body>
 </html>

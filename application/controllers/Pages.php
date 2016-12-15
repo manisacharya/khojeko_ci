@@ -16,11 +16,11 @@ class Pages extends CI_Controller {
         $this->load->model('khojeko_db_model');
         $this->load->model('database_models/dealer_model');
         $this->load->model('database_models/items_model');
-        $this->load->model('database_models/user_model');
+       // $this->load->model('database_models/user_model');
+        //$this->output->enable_profiler(TRUE);
     }
 
     public function index() {
-        //$data['details'] = $this->detail_db_model->get_details_item($id);
 
         $data['section_position'] = $this->categories_model->get_position();
 
@@ -121,6 +121,8 @@ class Pages extends CI_Controller {
     public function post_form() {
         $this->load->model('item_model');
         $this->load->model('image_model');
+        $this->load->model('user_model');
+
         //$data['title'] = 'Post ad';
         if (!$this->session->has_userdata('logged_in')) {
             $this->session->set_flashdata('previous_url', "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]");
@@ -136,14 +138,17 @@ class Pages extends CI_Controller {
 
         $detail = $this->user_model->get_user_info($session_data['type'], $session_data['username']);
 
+//        echo $detail->type;
+//        echo $detail->khojeko_username;
+//        die();
+
         $this->form_validation->set_rules('ad_title', 'Ad Title', 'required');
-        // $this->form_validation->set_rules('shrt_description', 'Short Description', 'required');
         $this->form_validation->set_rules('ad_details', 'Ad Details', 'required');
 
         $this->load->view('pages/templates/header', $data);
 
         if ($this->form_validation->run() == FALSE) {
-            $data['message'] = "first";
+            $data['message'] = "";
 
             $data['user_type'] = $detail->type;
 
@@ -213,21 +218,11 @@ class Pages extends CI_Controller {
                             'primary' => 0
                         );
                     }
-
-                    // if($count == 1)
-                    //     $filename_arr['primary'] = 1;
-                    // else
-                    //     $filename_arr['primary'] = 0;
-
                 } else {
                     $error = array('error' => $this->upload->display_errors());;
                     $this->load->view('admin/post_ad', $error);
-                    // some errors
                 }
             }
-            // }
-
-            $count++;
         }
         $this->image_model->add_img($filename_arr);
     }

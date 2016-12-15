@@ -143,4 +143,13 @@ class Categories_model extends CI_Model {
 			return $query->row();
 
 		}
+
+    public function get_cid_c_slug($c_slug){
+        //if ($this->db->table_exists('category')) {
+        $this->db->select('c_id');
+        $this->db->where('c_slug', $c_slug)->from('category');
+        $query = $this->db->get();
+
+        return $query->row()->c_id;
+    }
 }

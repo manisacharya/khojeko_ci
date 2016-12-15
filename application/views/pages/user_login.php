@@ -15,7 +15,7 @@
                     <tr>
                         <td>Username</td>
                         <td>
-                            <input type="text"  class="naya" name="user_name" value="" placeholder="Email or Mobile number">
+                            <input type="text"  class="naya" name="user_name" value="" placeholder="Email or Mobile number" required>
                         </td>
                     </tr>
                     <tr>
@@ -27,7 +27,7 @@
                     <tr>
                         <td>Password</td>
                         <td>
-                            <input type="Password"  class="naya" name="password">
+                            <input type="Password"  class="naya" name="password" required>
                         </td>
                     </tr>
                     <tr>

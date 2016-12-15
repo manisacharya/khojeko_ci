@@ -87,6 +87,14 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="row" id="quantity">
+                        <div class="col-sm-3 input-title"><label>Quantity:</label></div>
+                        <div class="col-sm-7 input-text">
+                            <input type="text" name="quantity" class="sstep form-control" id="quantity_dealer" placeholder="Enter Quantity of item"/>
+                            <?php echo form_error('quantity'); ?>
+                        </div>
+                    </div>
                 <?php endif; ?>
                 <div class="row" id="bought_from">
                     <div class="col-sm-3 input-title"><label>Bought From:</label></div>
