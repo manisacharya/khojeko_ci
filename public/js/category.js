@@ -1,24 +1,24 @@
 $(document).ready(function(){
-	$(".category1").hide();
-	$(".category2").hide();
-	$(".category3").hide();
-	$(".glyphicon-minus-sign").hide();
+    $(".category1").hide();
+    $(".category2").hide();
+    $(".category3").hide();
+    $(".glyphicon-minus-sign").hide();
     $(".category3 li a").find('span').hide('glyphicon-plus-sign glyphicon-minus-sign');
     $(".category0 li a").click(function(){
         $(this).next(".category1").slideToggle();
-		$(this).find('span').toggleClass('glyphicon-plus-sign glyphicon-minus-sign');
-		return false;
+        $(this).find('span').toggleClass('glyphicon-plus-sign glyphicon-minus-sign');
+        return false;
     })
      $(".category1 li a").click(function(){
         $(this).next(".category2").slideToggle();
-		return false;
+        return false;
     })
-	$(".category2 li a").click(function(){
-		$(this).next(".category3").slideToggle();
-		/*$("#content").load("page2.php");
-		 $("#guts").hide();*/
-		return false;
-	})
+    $(".category2 li a").click(function(){
+        $(this).next(".category3").slideToggle();
+        /*$("#content").load("page2.php");
+         $("#guts").hide();*/
+        return false;
+    })
 })
 
 $("button.parent_click").on("click", function () {

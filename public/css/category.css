@@ -1,6 +1,12 @@
 .hidden_div{display:none}
 .category_block{border:1px solid #808080;border-radius:5px;}
 .category{background:#808080;color:white;height:50px;font-size:16px;padding:10px 10px;}
+.hierarchy ul {padding-left: 30px;}
+.hierarchy ul li {padding-bottom: 5px;}
+
+.category0,.category1,.category2,.category3{list-style-type:none; cursor: default; font-size: 12pt;}
+.category0 li a,.category1 li a,.category2 li a{text-decoration:none; color:#000; font-size:16px; cursor: pointer; }
+.category0 li:hover, .category1 li:hover, .category2 li:hover { color: #857168; }
 
 .menu_cat {
 padding-left:10px;
