@@ -132,7 +132,7 @@ overflow: hidden;
 
 #grid1 li{min-height:200px;}
 
-.copy_right{display:block;margin-top:10px;text-align:center;}
+.copy_right{display:block;margin-bottom:20px;text-align:center;}
 .copy_right a{color:#666;font-size:16px;margin-right:10px;}
 .copy_right li{list-style-type:none;}
 
