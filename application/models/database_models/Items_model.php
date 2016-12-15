@@ -211,15 +211,15 @@ class Items_model extends CI_Model {
         $session_id = $session_data['id'];
 
         $this->load->model('database_models/spam_model');
+        $this->load->model('database_models/favourites_model');
+
         $data = array(
-            'spam_reports' => $this->spam_model->count_spam_of_user($session_id),
-            'total_items' => $this->count_items($session_id),
-            'deleted_items' => $this->count_deleted_items($session_id),
-            'sold_items' => $this->count_sales_items($session_id, 0),
-            'active_items' => $this->count_visibility_items($session_id)
-            /*'expired_items' => $this->count_expired_items($session_id)
-            'alert_message'
-            'admin_message'*/
+            'spam_reports'      => $this->spam_model->count_spam_of_user($session_id),
+            'total_items'       => $this->count_items($session_id),
+            'deleted_items'     => $this->count_deleted_items($session_id),
+            'sold_items'        => $this->count_sales_items($session_id, 0),
+            'active_items'      => $this->count_visibility_items($session_id),
+            'favourited_items'  => $this->favourites_model->count_favourites($session_id)
         );
 
         return (object)$data;

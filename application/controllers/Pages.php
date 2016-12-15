@@ -89,8 +89,6 @@ class Pages extends CI_Controller {
 
         $data['all_personal_items'] = $this->items_model->get_personal_items($username);
         $data['personal_info'] = $this->user_model->get_user_info('personal', $username);
-        $this->load->model('database_models/favourites_model');
-        $data['total_favourited_items'] = $this->favourites_model->count_favourites($data['personal_info']->user_id);
 
         $this->load->view('pages/templates/header', $data);
         $this->load->view('pages/user_panel', $data);
