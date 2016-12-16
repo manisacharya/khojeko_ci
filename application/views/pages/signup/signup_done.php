@@ -22,12 +22,12 @@
 	<div>
 		<div class="form-group">
 			<h3> Step 3</h3>
+			<?php echo $done_msg; ?>
 
-
-			<div class="message">
+			<!--<div class="message">
 				<a id="success-message">Congratulation your account is successfully created.</a>
 				<a id="unsuccess-message">Please check your email and verify your account soon.</a>
-			</div>
+			</div>-->
 
 			<!--input class="btn btn-success btn-lg pull-right" type="submit" value="Done!"></input-->
 		</div>
