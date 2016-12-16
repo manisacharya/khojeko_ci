@@ -11,8 +11,8 @@
 				<label style="color: red;">(Unverified Account)</label>
 			<?php endif; ?>
 			<br>
-			<address1>New Baneshwor, BICC west gate</address1><br>
-			<address2>Prime Bank Building,Ground Floor</address2><br>
+			<address1><?php echo $dealer_info->full_address; ?></address1><br>
+            <address2><?php echo $dealer_info->district.', '. $dealer_info->zone; ?></address2><br>
 			Tel:<number><?php echo $dealer_info->tel_no; ?></number><br>
 			Mob:<mob><?php echo $dealer_info->primary_mob; ?></mob><br>
 			URL:<email>www.khojeko.com/<?php echo $dealer_info->khojeko_username; ?></email><br>

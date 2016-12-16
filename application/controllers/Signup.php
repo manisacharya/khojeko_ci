@@ -10,6 +10,7 @@ class Signup extends CI_Controller {
         $this->load->library('upload');
         $this->load->model('Signup_model');
         $this->load->model('khojeko_db_model');
+        $this->load->model('retailer_partners_model');
         $this->load->model('database_models/categories_model');
         $this->load->model('database_models/dealer_model');
         $this->load->model('database_models/items_model');
@@ -195,6 +196,8 @@ class Signup extends CI_Controller {
             redirect('logged_in');
 
         $this->get_common_contents($data);
+
+        $data["done_msg"] = $this->session->flashdata('done_msg');
         //load the view page
         $this->load->view('pages/templates/header', $data);
         $this->load->view('pages/signup/signup_done');
@@ -225,10 +228,11 @@ class Signup extends CI_Controller {
         $this->email->message($message);
 
         if($this->email->send()){
-            redirect('signup_done');
+            $this->session->set_flashdata('done_msg','<div class="alert alert-success">Congratulation your account is successfully created. Please check your email and verify your account soon.</div>');
         } else {
-            echo "could not send email";
+            $this->session->set_flashdata('done_msg','<div class="alert alert-danger">Email could not be sent. Please try again.</div>');
         }
+        redirect('signup_done');
     }
 
     //to send the data from temp tables to the original tables
@@ -273,6 +277,7 @@ class Signup extends CI_Controller {
         $data['dealer_items'] = $this->items_model->count_user_items('dealer');
         $data['user_items'] = $this->items_model->count_user_items('personal');
 
+        $data['retailer_partners'] = $this->retailer_partners_model->get_retailer_partners();
         $data['popular_district'] = $this->khojeko_db_model->popular_district();
         $data['popular_dealer'] = $this->khojeko_db_model->popular_dealer();
 

@@ -20,46 +20,14 @@
             <!-- Loading Screen -->
 
             <div data-u="slides" class="partners_slider">
-
                 <div style="display: none;">
-                    <img data-u="image" src="<?php echo base_url('public/images/logos/amazon.jpg');?>" />
+                    <img data-u="image" src="<?php echo base_url('public/images/logos/'.$retailer_partners->row()->image);?>" />
                 </div>
-                <div style="display: none;">
-                    <img data-u="image" src="<?php echo base_url('public/images/logos/android.jpg');?>" />
-                </div>
-                <div style="display: none;">
-                    <img data-u="image" src="<?php echo base_url('public/images/logos/bitly.jpg');?>" />
-                </div>
-                <div style="display: none;">
-                    <img data-u="image" src="<?php echo base_url('public/images/logos/blogger.jpg');?>" />
-                </div>
-                <div style="display: none;">
-                    <img data-u="image" src="<?php echo base_url('public/images/logos/dnn.jpg');?>" />
-                </div>
-                <div style="display: none;">
-                    <img data-u="image" src="<?php echo base_url('public/images/logos/drupal.jpg');?>" />
-                </div>
-                <div style="display: none;">
-                    <img data-u="image" src="<?php echo base_url('public/images/logos/ebay.jpg');?>" />
-                </div>
-                <div style="display: none;">
-                    <img data-u="image" src="<?php echo base_url('public/images/logos/dnn.jpg');?>" />
-                </div>
-                <div style="display: none;">
-                    <img data-u="image" src="<?php echo base_url('public/images/logos/drupal.jpg');?>" />
-                </div>
-                <div style="display: none;">
-                    <img data-u="image" src="<?php echo base_url('public/images/logos/ebay.jpg');?>" />
-                </div>
-                <div style="display: none;">
-                    <img data-u="image" src="<?php echo base_url('public/images/logos/dnn.jpg');?>" />
-                </div>
-                <div style="display: none;">
-                    <img data-u="image" src="<?php echo base_url('public/images/logos/drupal.jpg');?>" />
-                </div>
-                <div style="display: none;">
-                    <img data-u="image" src="<?php echo base_url('public/images/logos/ebay.jpg');?>" />
-                </div>
+                <?php foreach ($retailer_partners->result() as $row) { ?>
+                    <div style="display: none;">
+                        <img data-u="image" src="<?php echo base_url('public/images/logos/'.$row->image);?>" />
+                    </div>
+                <?php } ?>
             </div>
         </div><!--jssor_1 ends-->
     </div><!--logos1 ends-->

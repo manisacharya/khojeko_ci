@@ -11,17 +11,16 @@ class Pages extends CI_Controller {
 
     function __Construct() {
         parent::__Construct ();
+        $this->load->model('retailer_partners_model');
         $this->load->model('database_models/categories_model');
         $this->load->model('index_database_model'); // load model
-        $this->load->model('detail_db_model');
         $this->load->model('khojeko_db_model');
         $this->load->model('database_models/dealer_model');
         $this->load->model('database_models/items_model');
-
-        $this->session->set_flashdata('previous_url', "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]");
-        $this->load->model('database_models/item_img_model');
         $this->load->model('database_models/user_model');
-        $this->output->enable_profiler(TRUE);
+        $this->load->model('database_models/item_img_model');
+        $this->session->set_flashdata('previous_url', "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]");
+        //$this->output->enable_profiler(TRUE);
     }
 
     public function index() {
@@ -114,8 +113,6 @@ class Pages extends CI_Controller {
 
     public function post_form() {
 
-       //$this->load->model('user_model');
-
         //$data['title'] = 'Post ad';
         if (!$this->session->has_userdata('logged_in')) {
             $this->session->set_flashdata('previous_url', "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]");
@@ -125,7 +122,6 @@ class Pages extends CI_Controller {
         $session_data = $this->session->userdata('logged_in');
 
         $this->get_common_contents($data);
-
 
         $this->load->library('form_validation');
         $this->form_validation->set_error_delimiters('<div class="alert alert-danger">', '</div>');
@@ -233,6 +229,7 @@ class Pages extends CI_Controller {
         $data['dealer_items'] = $this->items_model->count_user_items('dealer');
         $data['user_items'] = $this->items_model->count_user_items('personal');
 
+        $data['retailer_partners'] = $this->retailer_partners_model->get_retailer_partners();
         $data['popular_district'] = $this->khojeko_db_model->popular_district();
         $data['popular_dealer'] = $this->khojeko_db_model->popular_dealer();
 
