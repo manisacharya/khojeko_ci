@@ -195,6 +195,8 @@ class Signup extends CI_Controller {
             redirect('logged_in');
 
         $this->get_common_contents($data);
+
+        $data["done_msg"] = $this->session->flashdata('done_msg');
         //load the view page
         $this->load->view('pages/templates/header', $data);
         $this->load->view('pages/signup/signup_done');
@@ -225,10 +227,11 @@ class Signup extends CI_Controller {
         $this->email->message($message);
 
         if($this->email->send()){
-            redirect('signup_done');
+            $this->session->set_flashdata('done_msg','<div class="alert alert-success">Congratulation your account is successfully created. Please check your email and verify your account soon.</div>');
         } else {
-            echo "could not send email";
+            $this->session->set_flashdata('done_msg','<div class="alert alert-danger">Email could not be sent. Please try again.</div>');
         }
+        redirect('signup_done');
     }
 
     //to send the data from temp tables to the original tables
