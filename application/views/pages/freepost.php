@@ -51,7 +51,8 @@
                         <?php echo form_error('ad_title'); ?>
                     </div>
                 </div>
-                <?php if($user_type == "personal") : ?>
+
+                <?php if($user_type == "personal") { ?>
                     <div class="row" id="ad_type">
                         <div class="col-sm-3 input-title"><label>Ad Type:</label></div>
                         <div class="col-sm-7 input-text">
@@ -65,7 +66,7 @@
                             </div>
                         </div>
                     </div>
-                <?php else: ?>
+                <?php } else {?>
                     <div class="row" id="ad_type">
                         <div class="col-sm-3 input-title"><label>Ad Type:</label></div>
                         <div class="col-sm-7 input-text">
@@ -74,7 +75,7 @@
                                 <label for="used">Used</label>
                             </div>
                             <div class="col-sm-3 text-center">
-                                <input type="radio" name="ad_type_dealer" id="new" value="Brand_New" onclick="serviceCheck(this)">
+                                <input type="radio" name="ad_type_dealer" id="new" value="Brand New" onclick="serviceCheck(this)">
                                 <label for="new">Brand New</label>
                             </div>
                             <div class="col-sm-3 text-center">
@@ -91,11 +92,11 @@
                     <div class="row" id="quantity">
                         <div class="col-sm-3 input-title"><label>Quantity:</label></div>
                         <div class="col-sm-7 input-text">
-                            <input type="text" name="quantity" class="sstep form-control" id="quantity_dealer" placeholder="Enter Quantity of item"/>
+                            <input type="text" name="quantity_dealer" class="sstep form-control" id="quantity_dealer" placeholder="Enter Quantity of item"/>
                             <?php echo form_error('quantity'); ?>
                         </div>
                     </div>
-                <?php endif; ?>
+                <?php } ?>
                 <div class="row" id="bought_from">
                     <div class="col-sm-3 input-title"><label>Bought From:</label></div>
                     <div class="col-sm-7 input-text">
@@ -120,7 +121,16 @@
                 <div class="row" id="used_for">
                     <div class="col-sm-3 input-title"><label for="used_input">Used for:</label></div>
                     <div class="col-sm-7 input-text">
-                        <input type="date" name="used_for" class="sstep form-control" id="used_input" />
+                        <div class="col-sm-6 input-text">
+                            <input type="text" name="used_for_text" class="sstep form-control" id="used_input">
+                        </div>
+                        <div class="col-sm-6 input-text">
+                            <select name="used_for_time" class="form-control">
+                                <option>Day</option>
+                                <option>Month</option>
+                                <option>Year</option>
+                            </select>
+                        </div>
                         <?php echo form_error('used_for'); ?>
                     </div>
                 </div>
@@ -162,11 +172,11 @@
                     <div class="col-sm-3 input-title"><label for="ad_duration">Advertisement Durations:</label></div>
                     <div class="col-sm-7 input-text">
                         <select name="ad_running_time" id="ad_duration" class="form-control">
-                            <option>7 days</option>
-                            <option>14 days</option>
-                            <option>30 days</option>
-                            <option>60 days</option>
-                            <option>90 days</option>
+                            <option value="7 days">7 days</option>
+                            <option value="14 days">14 days</option>
+                            <option value="30 days" selected>30 days</option>
+                            <option value="60 days">60 days</option>
+                            <option value="90 days">90 days</option>
                         </select>
                     </div>
                 </div>
@@ -177,20 +187,20 @@
                         <?php echo form_error('site_url'); ?>
                     </div>
                 </div>
-                <div class="row" id="home_delivery">
+                <div class="row" id="home_delivery" style="block">
                     <div class="col-sm-3 input-title"><label>Home delivery:</label></div>
                     <div class="col-sm-7 input-text">
                         <div class="col-sm-6 text-center">
-                            <input type="radio" name="home_delivery" id="yes" value="yes" checked="checked" onclick="deliveryCheck(this)" />
+                            <input type="radio" name="home_delivery" class="home_delivery" id="yes" value="1" checked="checked" onclick="deliveryCheck(this)" />
                             <label for="yes">Yes</label>
                         </div>
                         <div class="col-sm-6 text-center">
-                            <input type="radio" name="home_delivery" id="no" value="no" onclick="deliveryCheck(this)" />
+                            <input type="radio" name="home_delivery" class="home_delivery" id="no" value="0" onclick="deliveryCheck(this)" />
                             <label for="no">No</label>
                         </div>
                     </div>
                 </div>
-                <div class="row" id="delivery_charge">
+                <div class="row" id="delivery_charge" style="block">
                     <div class="col-sm-3 input-title"><label for="input_delivery">Delivery Charges:</label></div>
                     <div class="col-sm-7 input-text">
                         <input type="text" name="delivery_charge" id="input_delivery" class="sstep form-control"/>
@@ -283,3 +293,4 @@
 </div><!--guts-->
 </div><!-- col-sm-9 -->
 </div>
+

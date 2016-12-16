@@ -6,6 +6,7 @@
  * Time: 11:44 PM
  */
 class User_model extends CI_Model {
+    public $user_id;
     public $khojeko_username;
     public $password;
     public $email;

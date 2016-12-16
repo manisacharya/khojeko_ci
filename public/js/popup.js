@@ -108,12 +108,14 @@ $('#none').click(function() {
 $(document).ready(function(){
 $('#service').click(function() {
 		$('#bought_from').hide();
+		$('#quantity').hide();
 	    $('#offer').hide();
 	    $('#used_for').hide();
 	    $('#market_price').hide();
 	    $('#document_no').hide();
 	    $('#home_delivery').hide();
 	    $('#delivery').hide();
+		$('#delivery_charge').hide();
 	    $('#warranty').hide();
 });
 });
@@ -121,12 +123,14 @@ $('#service').click(function() {
 $(document).ready(function(){
 $('#event').click(function() {
 		$('#bought_from').hide();
+		$('#quantity').hide();
 	    $('#offer').hide();
 	    $('#used_for').hide();
 	    $('#market_price').hide();
 	    $('#document_no').hide();
 	    $('#home_delivery').hide();
 	    $('#delivery').hide();
+		$('#delivery_charge').hide();
 	    $('#warranty').hide();
 });
 });
@@ -134,6 +138,21 @@ $('#event').click(function() {
 $(document).ready(function(){
 $('#new').click(function() {
 		$('#bought_from').show();
+		$('#quantity').show();
+	    $('#offer').show();
+	    $('#used_for').hide();
+	    $('#market_price').show();
+	    $('#document_no').show();
+	    $('#home_delivery').show();
+	    $('#delivery_charge').show();
+	    $('#warranty').show();
+});
+});
+
+$(document).ready(function(){
+$('#used').click(function() {
+		$('#bought_from').show();
+		$('#quantity').show();
 	    $('#offer').show();
 	    $('#used_for').show();
 	    $('#market_price').show();
@@ -145,14 +164,11 @@ $('#new').click(function() {
 });
 
 $(document).ready(function(){
-$('#used').click(function() {
-		$('#bought_from').show();
-	    $('#offer').show();
-	    $('#used_for').show();
-	    $('#market_price').show();
-	    $('#document_no').show();
-	    $('#home_delivery').show();
-	    $('#delivery').show();
-	    $('#warranty').show();
-});
+	$("#yes").click(function(){
+		$('#delivery_charge').show();
+	});
+
+	$("#no").click(function(){
+		$('#delivery_charge').hide();
+	});
 });

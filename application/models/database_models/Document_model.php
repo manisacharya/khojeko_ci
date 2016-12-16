@@ -16,7 +16,7 @@ class Document_model extends CI_Model {
     public function __construct() {
         // Call the CI_Model constructor
         parent::__construct();
-        $this->load->model('item_model'); // load model
+        $this->load->model('database_model/items_model'); // load model
     }
 
     public function add_doc(){
@@ -25,11 +25,11 @@ class Document_model extends CI_Model {
             if($this->input->post("owner_proof")=="Not"){
                 $this->doc_name = NULL;
                 $this->no_doc_reason = $this->input->post('reason');
-                $this->item_id = $this->item_model->get_item_id();
+                $this->item_id = $this->items_model->get_item_id();
             }else{
                 $this->doc_name = $this->input->post('owner_proof');
                 $this->no_doc_reason = NULL;
-                $this->item_id = $this->item_model->get_item_id();
+                $this->item_id = $this->items_model->get_item_id();
             }
 
             $this->db->insert('document', $this);

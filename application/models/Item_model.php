@@ -48,14 +48,14 @@ class Item_model extends CI_Model
 
             $this->title = $this->input->post('ad_title');
 
-            if ($detail->type == 'personal'){
-                $this->item_type = $this->input->post('ad_type_personal');
-                $this->quantity = 1;
-            }
-            else if($detail->type == 'dealer') {
+//            if ($detail->type == 'personal'){
+//                $this->item_type = $this->input->post('ad_type_personal');
+//                $this->quantity = 1;
+//            }
+//            else if($detail->type == 'dealer') {
                 $this->item_type = $this->input->post('ad_type_dealer');
                 $this->quantity = $this->input->post('quantity');
-            }
+            //}
 
             if($this->input->post('bought_from') == "Abroad")
                 $this->bought_from = $this->input->post('abroad_country');
@@ -63,24 +63,29 @@ class Item_model extends CI_Model
                 $this->bought_from = $this->input->post('bought_from');
 
             $this->price = $this->input->post('offer');
-            $this->used_for = $this->input->post('used_for');
+
+           // $used_for = $this->input->post('used_for_text') . " " . $this->input->post('used_for_time');
+            $this->used_for = $this->input->post('used_for_text');
+
             $this->mkt_price = $this->input->post('market_price');
             $this->verification_number = $this->input->post('document_no');
 
-            $this->is_verified = 0;
-            $this->avaibility_address = NULL;
+            //
+            $this->is_verified = 1;
+            $this->avaibility_address = $detail->full_address;
 
             $this->published_date = NOW();
             
             $this->ad_duration = $this->input->post('ad_running_time');
 
             $this->delivery = $this->input->post('home_delivery');
-            
-            if($this->delivery == "Yes")
+
+            if($this->delivery == "Yes") {
                 $this->delivery_charge = $this->input->post('delivery_charge');
-            else
+            } else {
                 $this->delivery_charge = 0;
-            
+            }
+
             $this->warranty_period = $this->input->post('warranty');
 
             $this->sales_status = 1;
@@ -88,19 +93,21 @@ class Item_model extends CI_Model
             $this->views = 0;
 
             // check if user is verified and is user blocked
-            if($detail->u_verified == 1 && $detail->user_status == 1)
+            if($detail->u_verified == 1 && $detail->user_status == 1) {
                 $this->visibility = 1;
-            else
+            } else {
                 $this->visibility = 0;
+            }
 
-            $this->video_url1 = $this->input->post("video1_url");
-            $this->video_url2 = $this->input->post("video2_url");
+            $this->video_url1 = $this->video_explode($this->input->post("video1_url"));
+
+            $this->video_url2 = $this->video_explode($this->input->post("video2_url"));
 
             $this->deleted_date = 0;
 
             $this->c_id = $this->categories_model->get_cid_c_slug($this->input->post('postc_slug'));;
             
-            $this->user_id = $detail->user_id;
+            $this->user_id = $this->user_model->get_user_id();
 
             $this->is_premium = 0;
             $this->comment_count = 0;
@@ -139,4 +146,11 @@ class Item_model extends CI_Model
         return $this->title;
     }
 
+    public function video_explode($video_url){
+        $action = explode('=', $video_url);
+        foreach ($action as $value) {
+            $data = $value;
+        }
+        return $data;
+    }
 }

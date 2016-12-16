@@ -13,28 +13,23 @@ class Pages extends CI_Controller {
         parent::__Construct ();
         $this->load->model('database_models/categories_model');
         $this->load->model('index_database_model'); // load model
+        $this->load->model('detail_db_model');
         $this->load->model('khojeko_db_model');
         $this->load->model('database_models/dealer_model');
         $this->load->model('database_models/items_model');
-       // $this->load->model('database_models/user_model');
-        //$this->output->enable_profiler(TRUE);
+        $this->session->set_flashdata('previous_url', "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]");
+        $this->load->model('database_models/item_img_model');
+        $this->load->model('database_models/user_model');
+        $this->output->enable_profiler(TRUE);
     }
 
     public function index() {
 
         $data['section_position'] = $this->categories_model->get_position();
 
-        //for the For Sales: Latest Ad --> images
-        $data['dat'] = $this->index_database_model->joinTableOrder('item_img', 'items', 'item_id', 'item_id');
+        $data['items'] = $this->index_database_model->join_tables();
 
-        //for the For Sales: Latest Ad --> details
-        $data['oth'] = $this->index_database_model->joinTable('items', 'item_spec', 'item_id');
-
-        //for the For Sales: Latest Ad --> Ad By name
-        $data['othUs'] = $this->index_database_model->joinTable('items', 'user', 'user_id');
-
-        //for populating ad by greatest view
-        $data['grtView'] = $this->index_database_model->joinTableOrder('item_img', 'items', 'item_id', 'views');
+        $data['filtered_items'] = $this->index_database_model->join_filtered_tables();
 
         $this->get_common_contents($data);
 
@@ -119,9 +114,8 @@ class Pages extends CI_Controller {
     }
 
     public function post_form() {
-        $this->load->model('item_model');
-        $this->load->model('image_model');
-        $this->load->model('user_model');
+
+       //$this->load->model('user_model');
 
         //$data['title'] = 'Post ad';
         if (!$this->session->has_userdata('logged_in')) {
@@ -133,13 +127,15 @@ class Pages extends CI_Controller {
 
         $this->get_common_contents($data);
 
+
         $this->load->library('form_validation');
         $this->form_validation->set_error_delimiters('<div class="alert alert-danger">', '</div>');
 
         $detail = $this->user_model->get_user_info($session_data['type'], $session_data['username']);
 
-//        echo $detail->type;
-//        echo $detail->khojeko_username;
+//        echo "<pre>";
+//        print_r($detail);
+//        echo "</pre>";
 //        die();
 
         $this->form_validation->set_rules('ad_title', 'Ad Title', 'required');
@@ -163,7 +159,7 @@ class Pages extends CI_Controller {
             // $this->form_validation->set_rules('shrt_description', 'Short Description', 'required');
             // $this->form_validation->set_rules('ad_details', 'Ad Details', 'required');
 
-            $this->item_model->add_item($detail);
+            $this->items_model->add_item($detail);
 
             $this->personal_upload($detail);
 
@@ -193,8 +189,8 @@ class Pages extends CI_Controller {
         $a = 1;
 
         $name = $detail->khojeko_username;
-        $ad = $this->item_model->get_ad_name();
-        $id = $this->item_model->get_item_id();
+        $ad = $this->items_model->get_ad_name();
+        $id = $this->items_model->get_item_id();
 
         foreach ($_FILES as $key => $value) {
             //if($count>2) {
@@ -223,8 +219,9 @@ class Pages extends CI_Controller {
                     $this->load->view('admin/post_ad', $error);
                 }
             }
+            $count++;
         }
-        $this->image_model->add_img($filename_arr);
+        $this->item_img_model->add_img($filename_arr);
     }
 
     public function get_common_contents(&$data) {

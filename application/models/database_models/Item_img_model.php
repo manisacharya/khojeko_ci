@@ -23,4 +23,9 @@ class Item_img_model extends CI_Model {
         }
         return FALSE;
     }
+
+    public function add_img($img_data){
+
+        $this->db->insert_batch('item_img', $img_data);
+    }
 }

@@ -14,7 +14,7 @@ class Item_spec_model extends CI_Model {
 
     public function __construct() {
         parent::__construct();
-        $this->load->model('item_model');
+        $this->load->model('database_models/items_model');
         $this->load->model('database_models/document_model');
     }
 
@@ -22,7 +22,7 @@ class Item_spec_model extends CI_Model {
         if ($this->db->table_exists('item_spec')) {
 
             $this->specs = $this->input->post('ad_details');
-            $this->item_id = $this->item_model->get_item_id();
+            $this->item_id = $this->items_model->get_item_id();
             $this->db->insert('item_spec', $this);
 
             $this->document_model->add_doc();
