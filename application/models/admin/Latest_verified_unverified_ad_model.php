@@ -118,7 +118,8 @@ class Latest_verified_unverified_ad_model extends CI_Model {
         $this->db->or_like('email', $search_query)->group_end();
 
         $query = $this->db->get('items',$limit, $offset);
-        return $query;
+        $cleaned = $this->items_xss_clean($query->result(), $type);
+        return $cleaned;
     }
 
     public function total_items_search($type, $id, $deleted_id, $search_query){

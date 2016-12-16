@@ -11,7 +11,8 @@ class Signup_model extends CI_Model {
             'type' => $this->input->post('acc_type'),
             'ac_created' => NOW(),
             'u_verified' => 0,
-            'verification_key' => $key
+            'verification_key' => $key,
+            'user_status' => 1
         );
 
         $this->db->insert('user', $data);
