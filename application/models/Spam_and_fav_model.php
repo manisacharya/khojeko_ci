@@ -3,7 +3,7 @@
 class Spam_and_fav_model extends CI_Model {
 
     public function add_fav($id, $user_id){
-        $info = $this->db->get_where('favourites', array('item_id' => $id, 'p_id' => $p_id));
+        $info = $this->db->get_where('favourites', array('item_id' => $id, 'user_id' => $user_id));
 
         if(! $info->num_rows()) {
             $data = array(
