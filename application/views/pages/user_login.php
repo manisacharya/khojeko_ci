@@ -13,7 +13,7 @@
                     <tr>
 
                     <tr>
-                        <td>Username</td>
+                        <td>Email or Mobile number</td>
                         <td>
                             <input type="text"  class="naya" name="user_name" value="" placeholder="Email or Mobile number" required>
                         </td>
@@ -27,7 +27,8 @@
                     <tr>
                         <td>Password</td>
                         <td>
-                            <input type="Password"  class="naya" name="password" required>
+                            <input type="password" class="naya" name="password" id="password" required>
+                            <a onclick="toggle_password('password');" id="showhide">Show</a>
                         </td>
                     </tr>
                     <tr>

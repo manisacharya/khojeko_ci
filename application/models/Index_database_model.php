@@ -7,7 +7,7 @@ class Index_database_model extends CI_Model {
     public function __construct() {
         // Call the CI_Model constructor
         parent::__construct();
-        $this->load->model('categories_model');
+        $this->load->model('database_model/categories_model');
     }
     //fetch all data from $table
     function getAll($table, $orderby, $order) {
@@ -48,6 +48,40 @@ class Index_database_model extends CI_Model {
         return $query->result();
     }
 
+    public function join_tables(){
+
+        $this->join_and_filter();
+
+        $this->db->order_by('items.item_id', 'desc');
+
+        $query = $this->db->get('items', 4); // limit 4
+
+        return $query->result();
+    }
+
+    public function join_filtered_tables(){
+
+        $this->join_and_filter();
+
+        $this->db->order_by('items.item_id', 'desc');
+
+        $query = $this->db->get('items', 4); // limit 4
+
+        return $query->result();
+    }
+
+    public function join_and_filter(){
+        $this->db->join('user', 'items.user_id= user.user_id');
+        $this->db->join('item_img', 'items.item_id = item_img.item_id');
+        $this->db->join('category', 'items.c_id = category.c_id');
+        $this->db->join('item_spec', 'items.item_id = item_spec.item_id');
+
+        $this->db->where('quantity != ', 0);
+        $this->db->where('visibility', 1);
+        $this->db->where('deleted_date', 0);
+        $this->db->where('primary', 1);
+    }
+
     //function joinTable with descending order
     public function joinTableOrder($tableFrom, $tableJoin, $id, $orderAtr){
 
@@ -64,46 +98,6 @@ class Index_database_model extends CI_Model {
         $this->db->where('deleted_date', 0);
         $query = $this->db->get();
         return $query->result();
-    }
-
-    function selHouLand(){
-
-        $this->db->select('*');
-        $this->db->from('items');
-        $this->db->join('category', 'category.c_id= items.c_id');
-        $this->db->join('item_img', 'item_img.item_id = items.item_id');
-        $this->db->where('item_img.primary', 1);
-        $this->db->where('visibility', 1);
-        $this->db->group_start();
-        $this->db->where('category.c_name','House');
-        $this->db->or_where('category.c_name', 'Land');
-        $this->db->group_end();
-        //$this->db->order_by('items.published_date', 'desc')
-        $query =  $this->db->get();
-        return $query->result();
-    }
-
-    function selectWhat($selAttribute){
-        $this->db->select('*');
-        $this->db->from('items');
-        $this->db->join('category', 'category.c_id= items.c_id');
-        $this->db->join('item_img', 'item_img.item_id= items.item_id');
-        $this->db->where('item_img.primary', 1);
-        $this->db->group_start();
-        $this->db->where('category.c_name',$selAttribute);
-        $this->db->group_end();
-
-        $query =  $this->db->get();
-        return $query->result();
-    }
-
-    function details($id){
-
-        $this->db->select('*')->from('item_img');
-        $this->db->join('items', 'item_img.item_id= items.item_id');
-        $this->db->where('item_img.image_id', $id);
-        $query =  $this->db->get();
-        return html_escape($this->security->xss_clean($query->row()));
     }
 
     //to be made continue

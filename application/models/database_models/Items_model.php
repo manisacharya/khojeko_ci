@@ -32,7 +32,6 @@ class Items_model extends CI_Model {
     public $deleted_date;
     public $c_id;
     public $user_id;
-    public $ad_id;
     public $is_premium;
     public $comment_count;
     public $spam_count;
@@ -40,6 +39,7 @@ class Items_model extends CI_Model {
     function __Construct() {
         parent::__Construct ();
         $this->load->model('database_models/categories_model');
+        $this->load->model('database_models/item_spec_model');
     }
     public function get_dealer_items($dealer, $visibility = FALSE) {
         if ($this->db->table_exists('items')) {
@@ -156,7 +156,6 @@ class Items_model extends CI_Model {
             $this->deleted_date = $this->input->post('');
             $this->c_id = $this->input->post('');
             $this->user_id = $this->input->post('');
-            $this->ad_id = $this->input->post('');
             $this->is_premium = $this->input->post('');
             $this->comment_count = $this->input->post('');
             $this->spam_count = $this->input->post('');
@@ -340,4 +339,107 @@ class Items_model extends CI_Model {
         unset($type);
         return $array;
     }
+
+    public function add_item($detail){
+        if ($this->db->table_exists('items')) {
+
+            $this->title = $this->input->post('ad_title');
+
+            if ($detail->type == "personal"){
+                $this->item_type = $this->input->post('ad_type_personal');
+                $this->quantity = 1;
+            }
+            else if($detail->type == "dealer") {
+                $this->item_type = $this->input->post('ad_type_dealer');
+                $this->quantity = $this->input->post('quantity_dealer');
+            }
+
+            if($this->input->post('bought_from') == "Abroad")
+                $this->bought_from = $this->input->post('abroad_country');
+            else
+                $this->bought_from = $this->input->post('bought_from');
+
+            $this->price = $this->input->post('offer');
+
+            $used_for = $this->input->post('used_for_text') . " " . $this->input->post('used_for_time');
+            $this->used_for = $used_for;
+
+            $this->mkt_price = $this->input->post('market_price');
+            $this->verification_number = $this->input->post('document_no');
+
+            $this->is_verified = 0;
+
+            $this->avaibility_address = $detail->full_address;
+
+            $this->published_date = NOW();
+
+            $this->ad_duration = $this->input->post('ad_running_time');
+
+            $this->delivery = $this->input->post('home_delivery');
+
+            if($this->delivery == 1) {
+                $this->delivery_charge = $this->input->post('delivery_charge');
+            } else {
+                $this->delivery_charge = 0;
+            }
+
+            $this->warranty_period = $this->input->post('warranty');
+
+            $this->sales_status = 1;
+
+            $this->views = 0;
+
+            // check if user is verified and is user blocked
+//            if($detail->u_verified == 1 && $detail->user_status == 1) {
+                $this->visibility = 1;
+//            } else {
+//                $this->visibility = 0;
+//            }
+
+            $this->video_url1 = $this->input->post("video1_url");
+            $this->video_url2 = $this->input->post("video2_url");
+
+            $this->deleted_date = 0;
+
+            $this->c_id = $this->categories_model->get_cid_c_slug($this->input->post('postc_slug'));;
+
+            $this->user_id = $detail->user_id;
+
+            $this->is_premium = 0;
+            $this->comment_count = 0;
+            $this->spam_count = 0;
+
+            if($this->title!=NULL)
+                $this->db->insert('items', $this);
+
+            //$this->db->select('item_id');
+            //$this->db->from('items');
+            $q = $this->db->get_where('items', array('published_date' => $this->published_date));
+            //$this->db->where('published_date', $this->published_date);
+
+            //$query =  $this->db->get();
+            foreach ($q->result() as $row)
+            {
+                $this->item_id = $row->item_id;
+            }
+
+            //$this->add_img($filename_arr);
+            $this->item_spec_model->add_spec();
+            // echo $this->item_id;
+
+        } else {
+            echo show_error('We have encountered some problem. Visit site later.', 500, 'Opps! Something went wrong');
+        }
+    }
+
+    public function get_item_id(){
+
+        return $this->item_id;
+    }
+
+    public function get_ad_name(){
+
+        return $this->title;
+    }
+
 }
