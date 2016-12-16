@@ -151,7 +151,7 @@
                             <option value="lalitpur">Lalitpur</option>
                             <option value="bhaktapur">Bhaktapur</option>
                         </select>
-                        <input type="text" name="search" class="search" placeholder="What are you looking for?">
+                        <input type="text" name="search" class="search" placeholder="What are you looking for?"  value="<?php echo $this->input->get('search');?>" />
                         <button type="submit" id="search_btn"><i class="fa fa-search"> </i> Search</button>
                         <?php echo form_close(); ?>
 

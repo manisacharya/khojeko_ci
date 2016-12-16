@@ -19,6 +19,7 @@ class Search_model extends CI_Model {
             $this->db->like('title', $this->search_query);
             $this->db->where('deleted_date', 0);
             $this->db->where('primary', 1);
+            $this->db->where('visibility', 1);
             $this->db->join('item_img', 'item_img.item_id = items.item_id');
             $this->db->join('item_spec', 'item_spec.item_id = items.item_id');
 
@@ -26,6 +27,7 @@ class Search_model extends CI_Model {
             $this->db->join('category AS two', 'one.parent_id = two.c_id', 'LEFT');
             $this->db->join('category AS three', 'two.parent_id = three.c_id', 'LEFT');
             $this->db->join('category AS four', 'three.parent_id = four.c_id', 'LEFT');
+            $this->db->order_by('views',  'DESC');
 
             $query = $this->db->get('items', 8);
             return $this->items_xss_clean($query->result());

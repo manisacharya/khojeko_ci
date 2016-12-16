@@ -14,7 +14,6 @@ class Items extends CI_Controller {
     function __Construct() {
         parent::__Construct();
         $this->load->model('database_models/items_model');
-        $this->output->enable_profiler(TRUE);
         $this->panel_url = $this->session->flashdata('panel_url');
 
         if (! $this->session->has_userdata('logged_in'))

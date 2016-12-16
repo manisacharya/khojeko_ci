@@ -25,13 +25,11 @@
 	</div>
 
 	<div class="col-sm-3 dealer_snap">
-		<div class="media">
-			<div class="pull-left">
-				<?php foreach ($store_images as $key => $image): ?>
-					<img src="<?php echo base_url('public/images/store_images/'. $image->si_name); ?>" class="img-rounded">
-				<?php endforeach; ?>
-			</div>
-		</div>
+        <div class="pull-left">
+            <?php foreach ($store_images as $key => $image): ?>
+                <img src="<?php echo base_url('public/images/store_images/'. $image->si_name); ?>" class="img-rounded">
+            <?php endforeach; ?>
+        </div>
 	</div>
 
 </div><!--dealerinfo ends-->

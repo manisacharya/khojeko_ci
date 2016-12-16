@@ -30,11 +30,9 @@
 	<button style="background:#FF9"><a>Total<br> Ad</a><br><a class="number"><?php echo $user_item_counts->total_items; ?></a></button>
 	<button style="background:#0CC"><a>Active<br> Ad</a><br><a class="number"><?php echo $user_item_counts->active_items; ?></a></button>
 	<button style="background:#0C0"><a>Sold<br> Ad</a><br><a class="number"><?php echo $user_item_counts->sold_items; ?></a></button>
-	<button style="background:#069"><a>Expired<br> Ad</a><br><a class="number"><?php echo $user_item_counts->total_items; ?></a></button>
 	<button style="background:#093"><a>Deleted<br> Ad</a><br><a class="number"><?php echo $user_item_counts->deleted_items; ?></a></button>
 	<button style="background:#396"><a>Spam<br> Report</a><br><a class="number"><?php echo $user_item_counts->spam_reports; ?></a></button>
-	<button style="background:#90F"><a>Alert<br> Message</a><br><a class="number"><?php echo $user_item_counts->total_items; ?></a></button>
-	<button style="background:#0C9"><a>Favourite<br> Items</a><br><a class="number"><?php echo $total_favourited_items;?></a></button>
+	<button style="background:#0C9"><a>Favourite<br> Items</a><br><a class="number"><?php echo $user_item_counts->favourited_items;?></a></button>
 </div>
 <div class="owner_ad_display">
 	<div class="all_ads_section">

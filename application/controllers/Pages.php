@@ -17,6 +17,7 @@ class Pages extends CI_Controller {
         $this->load->model('khojeko_db_model');
         $this->load->model('database_models/dealer_model');
         $this->load->model('database_models/items_model');
+
         $this->session->set_flashdata('previous_url', "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]");
         $this->load->model('database_models/item_img_model');
         $this->load->model('database_models/user_model');
@@ -45,7 +46,7 @@ class Pages extends CI_Controller {
         $this->get_common_contents($data);
 
         $data['personal_info'] = $this->user_model->get_user_info('personal', $username);
-        $data['personal_items'] = $this->items_model->get_personal_items($username);
+        $data['personal_items'] = $this->items_model->get_personal_items($username, TRUE); // visibility check
 
         $this->load->view('pages/templates/header', $data);
         $this->load->view('pages/user_page', $data);
@@ -59,7 +60,7 @@ class Pages extends CI_Controller {
         $this->get_common_contents($data);
 
         $data['dealer_info'] = $this->user_model->get_user_info('dealer', $username);
-        $data['all_dealer_items'] = $this->items_model->get_dealer_items($username);
+        $data['all_dealer_items'] = $this->items_model->get_dealer_items($username, TRUE); // visibility check
         $this->load->model('database_models/store_images_model');
         $data['store_images'] = $this->store_images_model->get_store_images($data['dealer_info']->d_id);
 
@@ -84,8 +85,6 @@ class Pages extends CI_Controller {
 
         $data['all_personal_items'] = $this->items_model->get_personal_items($username);
         $data['personal_info'] = $this->user_model->get_user_info('personal', $username);
-        $this->load->model('database_models/favourites_model');
-        $data['total_favourited_items'] = $this->favourites_model->count_favourites($data['personal_info']->user_id);
 
         $this->load->view('pages/templates/header', $data);
         $this->load->view('pages/user_panel', $data);

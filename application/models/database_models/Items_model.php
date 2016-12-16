@@ -41,14 +41,17 @@ class Items_model extends CI_Model {
         $this->load->model('database_models/categories_model');
         $this->load->model('database_models/item_spec_model');
     }
-    public function get_dealer_items($dealer) {
+    public function get_dealer_items($dealer, $visibility = FALSE) {
         if ($this->db->table_exists('items')) {
             $this->db->select('items.*, user.*, dealer.*, item_spec.specs, item_img.image, four.c_name AS gg_parent, three.c_name AS g_parent, two.c_name AS parent, one.c_name AS category');
             $this->db = $this->item_joins();
             $this->db->join('dealer', 'user.user_key = dealer.d_id');
 
+            if($visibility)
+                $this->db->where('visibility', 1);
             $this->db->where('type', 'dealer');
             $this->db->where('khojeko_username', $dealer);
+            $this->db->order_by('item_id', 'DESC');
             $query = $this->db->get('items');
             $cleaned = $this->items_xss_clean($query->result(), 'dealer');
             return $cleaned;
@@ -56,14 +59,17 @@ class Items_model extends CI_Model {
         return FALSE;
     }
 
-    public function get_personal_items($personal) {
+    public function get_personal_items($personal, $visibility = FALSE) {
         if ($this->db->table_exists('items')) {
             $this->db->select('items.*, user.*, personal.*, item_spec.specs, item_img.image, four.c_name AS gg_parent, three.c_name AS g_parent, two.c_name AS parent, one.c_name AS category');
             $this->db = $this->item_joins();
             $this->db->join('personal', 'user.user_key = personal.p_id');
 
+            if($visibility)
+                $this->db->where('visibility', 1);
             $this->db->where('type', 'personal');
             $this->db->where('khojeko_username', $personal);
+            $this->db->order_by('item_id', 'DESC');
             $query = $this->db->get('items');
             $cleaned = $this->items_xss_clean($query->result(), 'personal');
             return $cleaned;
@@ -204,15 +210,15 @@ class Items_model extends CI_Model {
         $session_id = $session_data['id'];
 
         $this->load->model('database_models/spam_model');
+        $this->load->model('database_models/favourites_model');
+
         $data = array(
-            'spam_reports' => $this->spam_model->count_spam_of_user($session_id),
-            'total_items' => $this->count_items($session_id),
-            'deleted_items' => $this->count_deleted_items($session_id),
-            'sold_items' => $this->count_sales_items($session_id, 0),
-            'active_items' => $this->count_visibility_items($session_id)
-            /*'expired_items' => $this->count_expired_items($session_id)
-            'alert_message'
-            'admin_message'*/
+            'spam_reports'      => $this->spam_model->count_spam_of_user($session_id),
+            'total_items'       => $this->count_items($session_id),
+            'deleted_items'     => $this->count_deleted_items($session_id),
+            'sold_items'        => $this->count_sales_items($session_id, 0),
+            'active_items'      => $this->count_visibility_items($session_id),
+            'favourited_items'  => $this->favourites_model->count_favourites($session_id)
         );
 
         return (object)$data;
