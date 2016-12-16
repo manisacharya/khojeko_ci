@@ -9,7 +9,6 @@ class Admin_pages extends CI_Controller {
         $this->load->model('database_models/categories_model');
         $this->load->model('database_models/user_model');
         $this->load->model('admin/zones_model');
-        $this->output->enable_profiler(TRUE);
         if (! $this->session->has_userdata('admin_logged_in'))
             redirect('admin/login');
     }
