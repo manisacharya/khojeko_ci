@@ -164,21 +164,22 @@ hr.clas2 { width:75%; height:1px; color: #73AD21;float:  right;margin-right: 5px
 white-space: nowrap;}
 
 .subcategory_display .childs { float:left; margin:10px; border: 2px #000;}
-.subcategory_display .childs .heading { text-align: center; color: red}
-.subcategory_display ul{display:inline-block;-moz-column-count: 3;
+.subcategory_display .childs .heading { text-align: center; color: #ca0000;}
+.subcategory_display ul{color:red;display:inline-block;-moz-column-count: 3;
 -moz-column-gap: 10px;
--webkit-column-count: 3;
--webkit-column-gap: 10px;
-column-count: 3;
+/*-webkit-column-count: 3;
+-webkit-column-gap: 10px;*/
+column-count: 4;
 column-span: all;
-column-gap: 10px;
+column-gap: 20px;
 list-style-type: none;
 text-decoration: none;
 margin-bottom:0px;
 padding:10px;
 }
 
-.subcategory_display ul li{}
+.subcategory_display span{padding:10px;font-size:16px;font-weight:600}
+.subcategory_display ul li{color: #f20000;text-decoration:underline;font-size:16px;font-weight:600}
 .heading{color:red;text-decoration:underline;font-size:18px;font-weight:600}
 .filter_dropdown{color:white}
 

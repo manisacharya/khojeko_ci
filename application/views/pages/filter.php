@@ -1,65 +1,28 @@
 <div class="category_display">
     <h4>Sub Category >></h4>
-    <div class="subcategory_display">
+    <div class="subcategory_display" id="category1_display">
         <div class="childs">
-            <div class="heading">Mobile Phones</div>
-            <div>
-                <ul>
-                    <li><a>Nokia (123)</a></li>
-                    <li><a>Samsung (23)</a></li>
-                    <li><a>Colors (123)</a></li>
-                    <li><a>LG (23)</a></li>
-                    <li><a>Huawei</a></li>
-                    <li><a>Philips</a></li>
-                    <li><a>Micromax</a></li>
-                    <li><a>Sony</a></li>
-                    <li><a>Apple</a></li>
-                    <li><a>Carbon</a></li>
-                    <li><a>Xolo</a></li>
-                    <li><a>BlackBerry</a></li>
-                </ul>
-            </div>
+            <div class="heading" onclick="sub_category('house');">House</div>
         </div>
         <div class="childs">
-            <div class="heading">Mobile Phones</div>
-            <div>
-                <ul>
-                    <li><a>Nokia (123)</a></li>
-                    <li><a>Samsung (23)</a></li>
-                    <li><a>Colors (123)</a></li>
-                    <li><a>LG (23)</a></li>
-                    <li><a>Apple</a></li>
-                    <li><a>Carbon</a></li>
-                    <li><a>Xolo</a></li>
-                    <li><a>BlackBerry</a></li>
-                    <li><a>BlackBerry</a></li>
-                </ul>
-            </div>
+            <div class="heading" onclick="sub_category('land');">Land</div>
+        </div>
+        <div class="childs">
+            <div class="heading" onclick="sub_category('accessories');">Accessories</div>
+        </div>
+        <div class="childs">
+            <div class="heading" onclick="sub_category('something');">Something</div>
         </div>
     </div>
 </div>
 
-
-<div class="category_display">
-    <h4>Mobile Phones >></h4>
-    <div class="subcategory_display">
-        <ul>
-            <li><a>Nokia (123)</a></li>
-            <li><a>Samsung (23)</a></li>
-            <li><a>Colors (123)</a></li>
-            <li><a>LG (23)</a></li>
-            <li><a>Huawei</a></li>
-            <li><a>Philips</a></li>
-            <li><a>Micromax</a></li>
-            <li><a>Sony</a></li>
-            <li><a>Apple</a></li>
-            <li><a>Carbon</a></li>
-            <li><a>Xolo</a></li>
-            <li><a>BlackBerry</a></li>
-        </ul>
-
-    </div>
+<div id="category2_display">
 </div>
+
+<div id="category3_display">
+</div>
+
+<!--<div class="category_display" id="category_2"></div>-->
 
 <div class="listCon">
     <div id="viewcontrols" data-enhance="false">
@@ -216,3 +179,39 @@
 </div><!--guts-->
 </div> <!--col-sm-9-->
 </div>
+
+<script type="text/javascript" src="<?php echo base_url('public'); ?>/js/jquery-1.8.0.min.js"></script>
+<script>
+    function sub_category(c_slug) {
+        $('#category_2').remove();
+        $('#category_3').remove();
+        $('#category2_display').append('<div class="category_display" id="category_2"></div>');
+        var dataPass = 'action=availability&sub_cat=' + c_slug;
+        $.ajax({
+            type: 'POST',
+            data: dataPass,
+            url: 'get_sub_category',
+            success: function(html){
+                $("#category_2").html("");
+                $("#category_2").html(html);
+            }
+        });
+    }
+</script>
+
+<script>
+    function sub_sub_category(c_slug) {
+        $('#category_3').remove();
+        $('#category3_display').append('<div class="category_display" id="category_3"></div>');
+        var dataPass = 'action=availability&sub_sub_cat=' + c_slug;
+        $.ajax({
+            type: 'POST',
+            data: dataPass,
+            url: 'get_sub_sub_category',
+            success: function(html){
+                $("#category_3").html("");
+                $("#category_3").html(html);
+            }
+        });
+    }
+</script>

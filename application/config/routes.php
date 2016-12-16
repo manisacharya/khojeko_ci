@@ -61,6 +61,8 @@ $route['results'] = "search/results";
 
 // FILTER CONTROLLER
 $route['filter'] = "filter";
+$route['get_sub_category'] = "filter/get_sub_category";
+$route['get_sub_sub_category'] = "filter/get_sub_sub_category";
 
 // UPLOAD CONTROLLER
 $route['upload_view'] = "upload/upload_view";
