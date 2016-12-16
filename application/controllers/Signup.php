@@ -225,11 +225,7 @@ class Signup extends CI_Controller {
         $this->email->message($message);
 
         if($this->email->send()){
-            //echo "The email has been sent";
-
-            ///call the done page
             redirect('signup_done');
-            //$this->signup_done($this->input->post('key'));
         } else {
             echo "could not send email";
         }
