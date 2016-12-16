@@ -12,6 +12,7 @@
             <?php endif; ?>
             <br />
             <address1><?php echo $personal_info->full_address; ?></address1><br>
+            <address2><?php echo $personal_info->district.', '. $personal_info->zone; ?></address2><br>
             URL:<email>www.khojeko.com/<?php echo $personal_info->khojeko_username; ?></email><br>
             <p>Contact seller via email: <?php echo $personal_info->email; ?></p>
         </div>
