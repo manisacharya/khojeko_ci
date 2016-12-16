@@ -18,10 +18,8 @@ class Pages extends CI_Controller {
         $this->load->model('khojeko_db_model');
         $this->load->model('database_models/dealer_model');
         $this->load->model('database_models/items_model');
-        $this->session->set_flashdata('previous_url', "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]");
         $this->load->model('database_models/item_img_model');
         $this->load->model('database_models/user_model');
-        $this->output->enable_profiler(TRUE);
     }
     public function index() {
 
