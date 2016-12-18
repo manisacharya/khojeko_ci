@@ -294,3 +294,16 @@
 </div><!-- col-sm-9 -->
 </div>
 
+<script language="javascript" type="text/javascript">
+    $(document).ready(function() {
+        var text_maximum = 300;
+        $('#textarea_feedback').html(text_maximun + ' characters remaining');
+
+        $('#ad_details').keyup(function() {
+            var text_length = $('#ad_details').val().length;
+            var text_remaining = text_maximum - text_length;
+
+            $('#textarea_feedback').html(text_remaining + ' characters remaining');
+        });
+    });
+</script>

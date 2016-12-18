@@ -59,15 +59,26 @@ class Index_database_model extends CI_Model {
         return $query->result();
     }
 
-    public function join_filtered_tables(){
+    public function join_filtered_tables($cid){
 
-        $this->join_and_filter();
+        $items = array();
 
-        $this->db->order_by('items.item_id', 'desc');
+        $i = 0;
+        foreach($cid as $key):
+            $this->join_and_filter();
+            $this->db->where('items.c_id', $key->c_id);
+            $query = $this->db->get('items');
 
-        $query = $this->db->get('items', 4); // limit 4
+            if ($query->num_rows() > 0) {
+                $items[$key->c_name] = $query->result();
+            }
+        endforeach;
+//        $this->db->order_by('items.item_id', 'desc');
+//
+//        $query = $this->db->get('items', 4); // limit 4
 
-        return $query->result();
+        //return $query->result();
+        return $items;
     }
 
     public function join_and_filter(){
