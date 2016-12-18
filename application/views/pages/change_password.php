@@ -19,21 +19,11 @@
                 <input type="password" class="naya" name="o_password" required>
             </td>
         </tr>
-        <tr>
-            <td colspan="2" style="text-align: center; color: #d43f3a">
-                <?php echo form_error('o_password');?>
-            </td>
-        </tr>
 
         <tr>
             <td>New Password</td>
             <td>
                 <input type="password" class="naya" id="txtNewPassword" name="n_password" required>
-            </td>
-        </tr>
-        <tr>
-            <td colspan="2" style="text-align: center; color: #d43f3a">
-                <?php echo form_error('n_password');?>
             </td>
         </tr>
 
@@ -45,6 +35,8 @@
         </tr>
         <tr>
             <td colspan="2" style="text-align: center; color: #d43f3a">
+                <?php echo form_error('o_password');?>
+                <?php echo form_error('n_password');?>
                 <?php echo form_error('c_password');?>
             </td>
         </tr>
