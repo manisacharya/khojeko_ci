@@ -63,11 +63,10 @@ class Index_database_model extends CI_Model {
 
         $items = array();
 
-        $i = 0;
         foreach($cid as $key):
-            $this->join_and_filter();
-            $this->db->where('items.c_id', $key->c_id);
-            $query = $this->db->get('items');
+            //$this->join_and_filter();
+            //$this->db->where('items.c_id', $key->c_id);
+            $query = $this->show_child_item($key->c_slug);
 
             if ($query->num_rows() > 0) {
                 $items[$key->c_name] = $query->result();
@@ -136,6 +135,33 @@ class Index_database_model extends CI_Model {
             }
         }
         return $this->db->get()->result();
+    }
+
+    public function show_child_item($category_slug){
+        $this->db->select('*');
+
+        $this->join_and_filter();
+//        $this->db->join('item_spec', 'items.item_id = item_spec.item_id');
+//        $this->db->join('item_img', 'items.item_id = item_img.item_id');
+
+        $this->db->join('category AS one', 'one.c_id = items.c_id');
+        $this->db->join('category AS two', 'one.parent_id = two.c_id', 'LEFT');
+        $this->db->join('category AS three', 'two.parent_id = three.c_id', 'LEFT');
+        $this->db->join('category AS four', 'three.parent_id = four.c_id', 'LEFT');
+
+        $this->db->group_start();
+        $this->db->or_where('one.c_slug', $category_slug);
+        $this->db->or_where('two.c_slug', $category_slug);
+        $this->db->or_where('three.c_slug', $category_slug);
+        $this->db->or_where('four.c_slug', $category_slug);
+        $this->db->group_end();
+
+        $this->db->where('primary', 1);
+        $this->db->where('deleted_date', 0);
+        $this->db->where('visibility', 1);
+
+        $query = $this->db->get('items');
+        return $query;
     }
 
 };
