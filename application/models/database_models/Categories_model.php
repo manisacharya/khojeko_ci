@@ -152,4 +152,16 @@ class Categories_model extends CI_Model {
 
         return $query->row()->c_id;
     }
+
+    public function get_position_cid(){
+        if ($this->db->table_exists('category')) {
+            $this->db->select('c_id');
+            $this->db->where('c_position !=', 0);
+            $query = $this->db->get('category');
+
+            return $query->result();
+        } else {
+            echo show_error('We have encountered a problem !');
+        }
+    }
 }

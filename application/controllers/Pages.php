@@ -27,9 +27,19 @@ class Pages extends CI_Controller {
 
         $data['section_position'] = $this->categories_model->get_position();
 
+//        echo "<pre>";
+//        print_r($data['section_position']);
+//        echo "</pre>";
+//        die();
+
         $data['items'] = $this->index_database_model->join_tables();
 
-        $data['filtered_items'] = $this->index_database_model->join_filtered_tables();
+        $data['filtered_items'] = $this->index_database_model->join_filtered_tables($data['section_position']);
+
+//        echo "<pre>";
+//        print_r($data['filtered_items']);
+//        echo "</pre>";
+//        die();
 
         $this->get_common_contents($data);
 
