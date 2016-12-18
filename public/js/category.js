@@ -51,7 +51,8 @@ $(".post-ad-category li a").on("click", function () {
     $("#post_cname").css('color','black');
 })
 
-$(".parent .category3 li div").on("click", function () {
+$(".parent .category3 li a").on("click", function () {
     document.getElementById("display_parent").innerHTML = 'You cannot choose Parent Category';
+    document.getElementById("parent").innerHTML = '';
     $("#display_parent").css('color','red');
 })
