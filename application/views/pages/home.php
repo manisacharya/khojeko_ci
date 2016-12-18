@@ -126,14 +126,15 @@
                 <a class="info" >
                     <?php echo $index; ?> Latest Ads >> (
                     <?php
-//                    $a = 0;
-//                    foreach($items as $i){
-//                        $a++;
-//                    }
-//                    echo $a;
+                    $a = 0;
+                    foreach($key as $i){
+                        $a++;
+                    }
+                    echo $a;
                     ?>
 <!--                    --><?php //echo $row->c_id; ?>
-                    ) </a>
+                    )
+                </a>
                 <a class="gridview" href="#!"><span class="glyphicon glyphicon-th"></span></a>
                 <a class="listview" href="#!"><span class="glyphicon glyphicon-th-list"></span></a>
                 <button value="View More" id="view_btn">View More</button>
@@ -141,10 +142,12 @@
             <?php foreach($key as $row): ?>
 
                 <ul class="list">
-                    <a href="<?php echo base_url('details/'.$row->item_id);?>">
+
                         <li>
                             <div class="col-sm-2" id="image_content">
-                                <img src="<?php echo base_url('public/images/item_images/'.$row->image); ?>" class="img-responsive"/>
+                                <a href="<?php echo base_url('details/'.$row->item_id);?>">
+                                    <img src="<?php echo base_url('public/images/item_images/'.$row->image); ?>" class="img-responsive"/>
+                                </a>
                             </div>
 
                             <div class="col-sm-10" id="info_content">
@@ -191,7 +194,7 @@
                                 </section>
                             </div>
                         </li>
-                    </a>
+                    
                 </ul>
             <?php endforeach ?>
         <?php endforeach ?>
