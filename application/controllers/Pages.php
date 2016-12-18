@@ -256,8 +256,19 @@ class Pages extends CI_Controller {
             show_error('Sorry, page broken.');
 
         $this->load->library('form_validation');
-        $this->form_validation->set_rules('o_password', 'Old Password', 'required|trim');
-        $this->form_validation->set_rules('n_password', 'New Password', 'required|min_length[6]|differs[o_password]|trim');
+        $this->form_validation->set_rules(
+            'o_password', 'Old Password',
+            array(
+                array(
+                    'message_password_validate',
+                    array($this->user_model, 'account_password_validate')
+                )
+            ),
+            array(
+                'message_password_validate'=> '{field} not matched.'
+            )
+        );
+        $this->form_validation->set_rules('n_password', 'New Password', 'required|min_length[6]|differs[o_password]');
         $this->form_validation->set_rules('c_password', 'Confirm Password', 'required|trim|matches[n_password]');
 
         if($this->form_validation->run()){
