@@ -155,8 +155,9 @@ class Categories_model extends CI_Model {
 
     public function get_sub_categories($parent_slug) {
         if ($this->db->table_exists('category')) {
-            $parent_id = $this->get_category_id($parent_slug);
+            $parent_id = $this->categories_model->get_category_id($parent_slug);
             $this->db->where('parent_id', $parent_id->c_id);
+            $this->db->where('c_deleted', 0);
             $query = $this->db->get('category');
             return $query->result();
         }
@@ -169,7 +170,38 @@ class Categories_model extends CI_Model {
         $this->db->select('c_id');
         $this->db->where('c_slug', $slug);
         $query = $this->db->get('category');
-
         return $query->row();
+    }
+
+    public function get_categories_items($category_slug) {
+        if ($this->db->table_exists('category')) {
+            $this->db->select('items.title, category.c_name, item_spec.specs, item_img.image,four.c_name AS gg_parent, three.c_name AS g_parent, two.c_name AS parent, one.c_name AS category');
+
+            $this->db->join('items', 'items.c_id = category.c_id');
+            $this->db->join('item_spec', 'items.item_id = item_spec.item_id');
+            $this->db->join('item_img', 'items.item_id = item_img.item_id');
+
+            $this->db->join('category AS one', 'one.c_id = items.c_id');
+            $this->db->join('category AS two', 'one.parent_id = two.c_id', 'LEFT');
+            $this->db->join('category AS three', 'two.parent_id = three.c_id', 'LEFT');
+            $this->db->join('category AS four', 'three.parent_id = four.c_id', 'LEFT');
+
+            $this->db->group_start();
+            $this->db->or_where('one.c_slug', $category_slug);
+            $this->db->or_where('two.c_slug', $category_slug);
+            $this->db->or_where('three.c_slug', $category_slug);
+            $this->db->or_where('four.c_slug', $category_slug);
+            $this->db->group_end();
+
+            $this->db->where('primary', 1);
+            $this->db->where('deleted_date', 0);
+            $this->db->where('visibility', 1);
+
+            $query = $this->db->get('category');
+            return $query->result();
+        }
+        else {
+            echo show_error('We have encountered a problem !');
+        }
     }
 }
