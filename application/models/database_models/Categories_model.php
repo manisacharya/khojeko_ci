@@ -175,9 +175,8 @@ class Categories_model extends CI_Model {
 
     public function get_categories_items($category_slug) {
         if ($this->db->table_exists('category')) {
-            $this->db->select('items.title, category.c_name, item_spec.specs, item_img.image,four.c_name AS gg_parent, three.c_name AS g_parent, two.c_name AS parent, one.c_name AS category');
+            $this->db->select('items.title, item_spec.specs, item_img.image,four.c_name AS gg_parent, three.c_name AS g_parent, two.c_name AS parent, one.c_name AS category');
 
-            $this->db->join('items', 'items.c_id = category.c_id');
             $this->db->join('item_spec', 'items.item_id = item_spec.item_id');
             $this->db->join('item_img', 'items.item_id = item_img.item_id');
 
@@ -197,7 +196,7 @@ class Categories_model extends CI_Model {
             $this->db->where('deleted_date', 0);
             $this->db->where('visibility', 1);
 
-            $query = $this->db->get('category');
+            $query = $this->db->get('items');
             return $query->result();
         }
         else {

@@ -62,7 +62,7 @@ $route['results'] = "search/results";
 // FILTER CONTROLLER
 $route['filter'] = "filter";
 $route['get_sub_category'] = "filter/get_sub_category";
-$route['get_sub_categories_and_items/(:any)'] = "category/get_sub_categories_and_items/$1";
+$route['get_sub_categories_and_items'] = "category/get_sub_categories_and_items";
 $route['get_sub_sub_category'] = "filter/get_sub_sub_category";
 
 // UPLOAD CONTROLLER
