@@ -48,10 +48,12 @@ function checkRequired() {
     $('#alert2').remove();
     $('#alert3').remove();
     $('#alert4').remove();
+    $('#alert5').remove();
     var inputObj1 = document.getElementById("useremail");
     var inputObj2 = document.getElementById("txtNewPassword");
     var inputObj3 = document.getElementById("txtConfirmPassword");
     var inputObj4 = document.getElementById("termsandcondition");
+    var inputObj5 = document.getElementById("username");
 
     if (inputObj1.checkValidity() == false) { createDiv(inputObj1, 'result2', 'alert1'); }
     if (inputObj2.checkValidity() == false) {
@@ -63,6 +65,7 @@ function checkRequired() {
         $('#error2').show();
         createDiv(inputObj4, 'error2', 'alert4');
     }
+    if (inputObj5.checkValidity() == false) { createDiv(inputObj5, 'result1', 'alert5'); }
 }
 
 //create div for error in input required attribute with next button click in step 1

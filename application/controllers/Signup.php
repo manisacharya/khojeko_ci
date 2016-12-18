@@ -41,11 +41,10 @@ class Signup extends CI_Controller {
             $this->form_validation->set_rules('city', 'City', 'required|trim');
             $this->form_validation->set_rules('address', 'Full Address', 'required|trim');
             $this->form_validation->set_rules('mobile', 'Mobile No.', 'required|trim|is_unique[dealer.primary_mob]');
-            $this->form_validation->set_rules('telephone', 'Telephone No.', 'required|trim');
             $this->form_validation->set_rules('profile', 'Company Profile', 'required|trim');
-            $this->form_validation->set_rules('website', 'Company Website', 'required|trim');
 
             $name = $this->input->post('user_name');
+            $district_selected = $this->input->post('district');
             //add the input data to temporary table
             if($this->form_validation->run()){
                 $username = $this->input->post('user_name');
@@ -70,8 +69,8 @@ class Signup extends CI_Controller {
             $this->form_validation->set_rules('city_p', 'City', 'required|trim');
             $this->form_validation->set_rules('address_p', 'Full Address', 'required|trim');
             $this->form_validation->set_rules('mobile_p', 'Mobile No.', 'required|trim|is_unique[personal.primary_mob]');
-            $this->form_validation->set_rules('sec_mobile', 'Another Mobile No.', 'required|trim');
-            $this->form_validation->set_rules('telephone_p', 'Telephone No.', 'required|trim');
+
+            $district_selected = $this->input->post('district_p');
             //add the input data to temporary table
             if ($this->form_validation->run()) {
                 $this->Signup_model->add_temp_user($key, $username);
@@ -81,6 +80,7 @@ class Signup extends CI_Controller {
                 $this->email_user($email, $key);
             }
         }
+        $data["district_selected"] = $district_selected;
         $this->load->view('pages/templates/header', $data);
         $this->load->view('pages/signup', $data);
         $this->load->view('pages/templates/footer', $data);
@@ -173,7 +173,7 @@ class Signup extends CI_Controller {
 
     public function signup_step1(){
         $this->form_validation->set_rules('user_email', 'User email', 'required|trim|valid_email|is_unique[user.email]');
-        $this->form_validation->set_rules('password', 'New Password', 'required|trim');
+        $this->form_validation->set_rules('password', 'New Password', 'required|min_length[6]|trim');
         $this->form_validation->set_rules('re-password', 'Retype Password', 'required|trim|matches[password]');
         $this->form_validation->set_rules('acc_type', 'Account Type', 'required');
         //$this->form_validation->set_rules('captcha', 'Captcha', 'required|trim|matches[word]');
@@ -195,13 +195,17 @@ class Signup extends CI_Controller {
         if ($this->session->has_userdata('logged_in'))
             redirect('logged_in');
 
-        $this->get_common_contents($data);
 
         $data["done_msg"] = $this->session->flashdata('done_msg');
-        //load the view page
-        $this->load->view('pages/templates/header', $data);
-        $this->load->view('pages/signup/signup_done');
-        $this->load->view('pages/templates/footer', $data);
+        if ($data["done_msg"]) {
+            $this->get_common_contents($data);
+            //load the view page
+            $this->load->view('pages/templates/header', $data);
+            $this->load->view('pages/signup/signup_done');
+            $this->load->view('pages/templates/footer', $data);
+        } else {
+            redirect('logged_in');
+        }
     }
     //send email for confirmation after sign up
     public function email_user($email, $key){
