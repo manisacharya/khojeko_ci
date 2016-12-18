@@ -118,8 +118,8 @@ class Details extends CI_Controller {
         if($this->session->has_userdata('logged_in')) {
             $type = $this->session->userdata['logged_in']['type'];
             if(strtoupper($type) == 'PERSONAL') {
-                $p_id = $this->session->userdata['logged_in']['id'];
-                $this->spam_and_fav_model->add_fav($id, $p_id);
+                $user_id = $this->session->userdata['logged_in']['id'];
+                $this->spam_and_fav_model->add_fav($id, $user_id);
             } else {
                 $this->session->set_flashdata('fav_message','<div class="alert alert-danger">Only personal user can add to favourites.</div>');
             }

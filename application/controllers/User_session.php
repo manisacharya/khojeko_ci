@@ -41,19 +41,7 @@ class User_session extends CI_Controller {
             $this->session->set_userdata('logged_in', $user_session);
             redirect('logged_in');
         } else {
-            $data["category"] = $this->categories_model->get_categories();
-            $data['dealer_list'] = $this->dealer_model->get_all_dealers();
-
-            // counts : total, used/new, dealer/user ads
-            $data["total_items"] = $this->items_model->count_items();
-            $data["used_items"] = $this->items_model->count_status_items('used');
-            $data["new_items"] = $this->items_model->count_status_items('new');
-            $data['dealer_items'] = $this->items_model->count_user_items('dealer');
-            $data['user_items'] = $this->items_model->count_user_items('personal');
-
-            $data['retailer_partners'] = $this->retailer_partners_model->get_retailer_partners();
-            $data['popular_district'] = $this->khojeko_db_model->popular_district();
-            $data['popular_dealer'] = $this->khojeko_db_model->popular_dealer();
+            $this->get_common_contents($data);
 
             $data["login_msg"] = $this->session->flashdata('login_msg');
 
@@ -120,15 +108,8 @@ class User_session extends CI_Controller {
             $this->email_user($this->input->post('useremail'));
             redirect('lost_password');
         } else {
-            $data["category"] = $this->categories_model->get_categories();
-            $data['dealer_list'] = $this->dealer_model->get_all_dealers();
+            $this->get_common_contents($data);
 
-            // counts : total, used/new, dealer/user ads
-            $data["total_items"] = $this->items_model->count_items();
-            $data["used_items"] = $this->items_model->count_status_items('used');
-            $data["new_items"] = $this->items_model->count_status_items('new');
-            $data['dealer_items'] = $this->items_model->count_user_items('dealer');
-            $data['user_items'] = $this->items_model->count_user_items('personal');
             $data['email'] = $this->session->flashdata('email_sent');
 
             $this->load->view("pages/templates/header", $data);
@@ -208,20 +189,27 @@ class User_session extends CI_Controller {
     }
 
     public function show_page($email){
-        $data["category"] = $this->categories_model->get_categories();
-        $data['dealer_list'] = $this->dealer_model->get_all_dealers();
-
-        // counts : total, used/new, dealer/user ads
-        $data["total_items"] = $this->items_model->count_items();
-        $data["used_items"] = $this->items_model->count_status_items('used');
-        $data["new_items"] = $this->items_model->count_status_items('new');
-        $data['dealer_items'] = $this->items_model->count_user_items('dealer');
-        $data['user_items'] = $this->items_model->count_user_items('personal');
+        $this->get_common_contents($data);
         $data['email'] = $email;
 
         $this->load->view("pages/templates/header", $data);
         $this->load->view("pages/login/new_password", $data);
         $this->load->view("pages/templates/footer", $data);
+    }
+
+    public function get_common_contents(&$data) {
+        $data["category"] = $this->categories_model->get_categories();
+        $data['dealer_list'] = $this->dealer_model->get_all_dealers();
+
+        $data["total_items"] = $this->items_model->count_items();
+        $data["used_items"] = $this->items_model->count_status_items('used');
+        $data["new_items"] = $this->items_model->count_status_items('new');
+        $data['dealer_items'] = $this->items_model->count_user_items('dealer');
+        $data['user_items'] = $this->items_model->count_user_items('personal');
+
+        $data['retailer_partners'] = $this->retailer_partners_model->get_retailer_partners();
+        $data['popular_district'] = $this->khojeko_db_model->popular_district();
+        $data['popular_dealer'] = $this->khojeko_db_model->popular_dealer();
     }
 }
 ?>
