@@ -102,8 +102,16 @@
                     </div>
 
                     <div class="hierarchy">
-                        <div class="cname">
+                        <div class="category_filter">
                             <?php
+                            function filter_by_parent($parent_id, $array) {
+                                $retval = array();
+                                foreach($array as $key => $value){
+                                    if($value->parent_id == $parent_id)
+                                        $retval[] = $value;
+                                }
+                                return $retval;
+                            }
                             require_once('require/category.php');
                             print_list(0, 0, $category);
                             ?>
@@ -158,3 +166,4 @@
                         <a href="<?php echo base_url('adpost'); ?>"><button type="button" id="ad_btn">POST FREE ADS</button></a>
 
                     </div>
+                    <div id="categories_container"></div>

@@ -28,8 +28,8 @@
             <div class="form-group post-ad-category">
                 <h3>Step 1 : Select Category</h3>
                 <?php
-                    require_once('templates/require/category.php');
-                    print_list(0, 0, $category);
+                    require_once('templates/require/category_select.php');
+                    print_category(0, 0, $category);
                 ?>
 
                 <div class="search_section">
