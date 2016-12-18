@@ -6,7 +6,7 @@ class Signup_model extends CI_Model {
     public function add_temp_user($key, $username){
         $data = array(
             'email' => $this->input->post('user_email'),
-            'khojeko_username' => $username,
+            'khojeko_username' => str_replace(' ', '-', $username),
             'password' =>  password_hash($this->input->post('password'), PASSWORD_DEFAULT),
             'type' => $this->input->post('acc_type'),
             'ac_created' => NOW(),
@@ -44,7 +44,7 @@ class Signup_model extends CI_Model {
         $query = $this->db->get_where('user', ['khojeko_username' => $username]);
         if($query->num_rows() == 0 )
             return $username;
-         else
+        else
             $this->personal_username($full_name);
     }
 
@@ -118,6 +118,7 @@ class Signup_model extends CI_Model {
     }
 
     public function get_districts(){
+        $district_selected = $this->input->post('district_selected');
         $this->db->select('district_name')->from('districts');
         $this->db->join('zones', "districts.zone_id = zones.id");
         $where = "zone_name ='".$this->input->post('zone')."'";
@@ -125,10 +126,13 @@ class Signup_model extends CI_Model {
         $query = $this->db->get();
         $HTML = "";
         foreach($query->result() as $row) {
-            $HTML.="<option value='".$row->district_name."'>".$row->district_name."</option>";
+            $district_name = $row->district_name;
+            if($district_name == $district_selected)
+                $HTML.="<option value='".$district_name."' selected>".$district_name."</option>";
+            else
+                $HTML.="<option value='".$district_name."'>".$district_name."</option>";
         }
         echo $HTML;
-        //echo $query->result();
     }
 
     public function available_username(){
