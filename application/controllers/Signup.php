@@ -41,7 +41,7 @@ class Signup extends CI_Controller {
             $this->form_validation->set_rules('city', 'City', 'required|trim');
             $this->form_validation->set_rules('address', 'Full Address', 'required|trim');
             $this->form_validation->set_rules('mobile', 'Mobile No.', 'required|trim|is_unique[dealer.primary_mob]');
-            $this->form_validation->set_rules('profile', 'Company Profile', 'required|trim');
+            $this->form_validation->set_rules('profile', 'Company Profile', 'required|min_length[20]|trim');
 
             $name = $this->input->post('user_name');
             $district_selected = $this->input->post('district');

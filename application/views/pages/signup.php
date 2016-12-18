@@ -88,7 +88,7 @@
             <div class="row">
                 <div class="col-sm-3 input-title"><label>* Password:</label></div>
                 <div class="col-sm-7 input-text">
-                    <?php echo form_password('password', '', 'class="naya form-control" id="txtNewPassword" required'); ?>
+                    <?php echo form_password('password', '', 'minlength=6 class="naya form-control" id="txtNewPassword" required'); ?>
                     <?php echo form_error('password', '<div class="alert alert-danger">', '</div>'); ?>
                     <div class="result" id="error1"></div>
                 </div>
@@ -96,7 +96,7 @@
             <div class="row">
                 <div class="col-sm-3 input-title"><label>*Re-type Password:</label></div>
                 <div class="col-sm-7 input-text">
-                    <?php echo form_password('re-password', '', 'class="naya form-control" id="txtConfirmPassword" onChange="checkPasswordMatch();" required'); ?>
+                    <?php echo form_password('re-password', '', 'minlength=6 class="naya form-control" id="txtConfirmPassword" onChange="checkPasswordMatch();" required'); ?>
                     <?php echo form_error('re-password', '<div class="alert alert-danger">', '</div>'); ?>
                     <div class="registrationFormAlert" id="divCheckPasswordMatch"></div>
                 </div>
@@ -173,8 +173,9 @@
                     <div class="col-sm-3 input-title"><label>Full Name:</label></div>
 
                     <div class="col-sm-7">
-                        <?php echo form_input('full_name', set_value('full_name'), 'class="naya" required'); ?>
+                        <?php echo form_input('full_name', set_value('full_name'), 'id="full_name" class="naya" required'); ?>
                         <?php echo form_error('full_name', '<div class="alert alert-danger">', '</div>'); ?>
+                        <div class="result" id="perror1"></div>
                     </div>
                 </div>
 
@@ -191,6 +192,7 @@
                                 <option value="<?php echo $zone_name; ?>" <?php echo set_select('zone_p', $zone_name); ?> ><?php echo $zone_name; ?></option>
                             <?php } ?>
                         </select>
+                        <div class="result" id="perror2"></div>
                     </div>
                 </div>
 
@@ -200,6 +202,7 @@
                         <select name = 'district_p' id = 'district_p' class="form-control" required>
                             <option value="<?php echo $district_selected; ?>" selected>-- Select District --</option>
                         </select>
+                        <div class="result" id="perror3"></div>
                     </div>
                 </div>
 
@@ -207,8 +210,9 @@
                     <div class="col-sm-3 input-title"><label>Type City/Area Name:</label></div>
 
                     <div class="col-sm-7">
-                        <?php echo form_input('city_p', set_value('city_p'), 'class="naya" required'); ?>
+                        <?php echo form_input('city_p', set_value('city_p'), 'id="city_p" class="naya" required'); ?>
                         <?php echo form_error('city_p', '<div class="alert alert-danger">', '</div>'); ?>
+                        <div class="result" id="perror4"></div>
                     </div>
                 </div>
 
@@ -216,8 +220,9 @@
                     <div class="col-sm-3 input-title"><label>Full Address:</label></div>
 
                     <div class="col-sm-7">
-                        <?php echo form_input('address_p', set_value('address_p'), 'class="naya" required'); ?>
+                        <?php echo form_input('address_p', set_value('address_p'), 'id="address_p" class="naya" required'); ?>
                         <?php echo form_error('address_p', '<div class="alert alert-danger">', '</div>'); ?>
+                        <div class="result" id="perror5"></div>
                     </div>
                 </div>
 
@@ -254,8 +259,9 @@
                 <div class="row">
                     <div class="col-sm-3 input-title""><label>Dealer's Name:</label></div>
                 <div class="col-sm-7">
-                    <?php echo form_input('dealer_name', set_value('dealer_name'), 'class="naya" required'); ?>
+                    <?php echo form_input('dealer_name', set_value('dealer_name'), 'id="dealer_name" class="naya" required'); ?>
                     <?php echo form_error('dealer_name', '<div class="alert alert-danger">', '</div>'); ?>
+                    <div class="result" id="derror1"></div>
                 </div>
             </div>
 
@@ -271,31 +277,35 @@
                             <option value="<?php echo $zone_name; ?>" <?php echo set_select('zone', $zone_name); ?> ><?php echo $zone_name; ?></option>
                         <?php } ?>
                     </select>
+                    <div class="result" id="derror2"></div>
                 </div>
             </div>
 
             <div class="row">
-                <div class="col-sm-3 input-title"><label for="district" required>Select District:</label></div>
+                <div class="col-sm-3 input-title"><label for="district">Select District:</label></div>
                 <div class="col-sm-7">
-                    <select name='district' id='district' class="form-control">
+                    <select name='district' id='district' class="form-control" required>
                         <option value="<?php echo $district_selected; ?>" selected>-- Select District --</option>
                     </select>
+                    <div class="result" id="derror3"></div>
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-sm-3 input-title"><label>Type City Name:</label></div>
                 <div class="col-sm-7">
-                    <?php echo form_input('city', set_value('city'), 'class="naya" required'); ?>
+                    <?php echo form_input('city', set_value('city'), 'id="city" class="naya" required'); ?>
                     <?php echo form_error('city', '<div class="alert alert-danger">', '</div>'); ?>
+                    <div class="result" id="derror4"></div>
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-sm-3 input-title"><label>Full Address:</label></div>
                 <div class="col-sm-7">
-                    <?php echo form_input('address', set_value('address'), 'class="naya" required'); ?>
+                    <?php echo form_input('address', set_value('address'), 'id="address" class="naya" required'); ?>
                     <?php echo form_error('address', '<div class="alert alert-danger">', '</div>'); ?>
+                    <div class="result" id="derror5"></div>
                 </div>
             </div>
 
@@ -326,6 +336,7 @@
                         'value' => set_value('profile'),
                         'rows' => 6,
                         'cols' => 25,
+                        'minlength' => 20,
                         'maxlength' => 300,
                         'id' => 'profile',
                         'class'=>'form-control',
@@ -335,6 +346,7 @@
                     echo form_error('profile', '<div class="alert alert-danger">', '</div>');
                     ?>
                     <div id="textareaa_feedback"></div>
+                    <div class="result" id="derror6"></div>
                 </div>
             </div>
 
@@ -350,7 +362,7 @@
                 <div class="col-sm-7" id="row1">
                     <input id="dealerlogo" type="file" name="dealerlogo" accept="image/*"  onchange="showMyImage(this,'dealerlogo','1');" required />
                     <img id="thumbnail1" />
-                    <?php echo form_error('dealerlogo', '<div class="alert alert-danger">', '</div>'); ?>
+                    <div class="result" id="derror7"></div>
                 </div>
             </div>
             <div class="row">
@@ -358,12 +370,14 @@
                 <div class="col-sm-7" id="row2">
                     <input id="dealervat" type="file" name="dealervat" accept="image/*"  onchange="showMyImage(this,'dealervat','2')" required />
                     <img id="thumbnail2" />
+                    <div class="result" id="derror8"></div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-sm-3 input-title"><label>Store Front Photos(if any):</label></div>
                 <div class="col-sm-7">
                     <input id="dealerstore" type="file" name="dealerstore" accept="image/*"  onchange="showMyImage(this,'dealerstore','3')" required />
+                    <div class="result" id="derror9"></div>
                     <input id="dealerstore1" type="file" name="dealerstore1" accept="image/*"  onchange="showMyImage(this,'dealerstore1','4')" />
                     <input id="dealerstore2" type="file" name="dealerstore2" accept="image/*"  onchange="showMyImage(this,'dealerstore2','5')" />
                     <input id="dealerstore3" type="file" name="dealerstore3" accept="image/*"  onchange="showMyImage(this,'dealerstore3','6')" />
@@ -389,7 +403,7 @@
         </div>
         <button class="btn btn-primary prevBtn btn-lg pull-left" type="button" >Prev</button>
         <!--                        <button class="btn btn-primary nextBtn btn-lg pull-right" type="button" >Next</button>-->
-        <?php echo form_submit('signup_next', 'Next', 'class="btn btn-success btn-lg pull-right"');
+        <?php echo form_submit('signup_next', 'Next', 'class="btn btn-success btn-lg pull-right" onclick="checkSubmit()"');
         echo form_close();
         ?>
     </div>
