@@ -1,11 +1,20 @@
 $(document).ready(function(){
-    $('#txtNewPassword').keyup(function(){
-        $('#error1').hide();
-    });
-
-    $('#termsandcondition').click(function(){
-        $('#error2').hide();
-    });
+    $('#txtNewPassword').keyup(function(){ $('#error1').hide(); });
+    $('#termsandcondition').click(function(){ $('#error2').hide(); });
+    $('#full_name').click(function(){ $('#perror1').hide(); });
+    $('#zone_p').click(function(){ $('#perror2').hide(); });
+    $('#district_p').click(function(){ $('#perror3').hide(); });
+    $('#city_p').click(function(){ $('#perror4').hide(); });
+    $('#address_p').click(function(){ $('#perror5').hide(); });
+    $('#dealer_name').click(function(){ $('#derror1').hide(); });
+    $('#zone').click(function(){ $('#derror2').hide(); });
+    $('#district').click(function(){ $('#derror3').hide(); });
+    $('#city').click(function(){ $('#derror4').hide(); });
+    $('#address').click(function(){ $('#derror5').hide(); });
+    $('#profile').click(function(){ $('#derror6').hide(); });
+    $('#dealerlogo').click(function(){ $('#derror7').hide(); });
+    $('#dealervat').click(function(){ $('#derror8').hide(); });
+    $('#dealerstore').click(function(){ $('#derror9').hide(); });
 
     $('#username').keyup(function(){
         var username = $(this).val(); // Get username textbox using $(this)

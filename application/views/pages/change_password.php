@@ -35,9 +35,7 @@
         </tr>
         <tr>
             <td colspan="2" style="text-align: center; color: #d43f3a">
-                <?php echo form_error('o_password');?>
-                <?php echo form_error('n_password');?>
-                <?php echo form_error('c_password');?>
+                <?php echo validation_errors();?>
             </td>
         </tr>
         <tr>
