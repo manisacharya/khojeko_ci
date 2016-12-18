@@ -3,18 +3,27 @@
 
 a {color: #000;  }
 a:hover{text-decoration:none}
-/*header*/
-.navbar-toggle{background:black}
+
+.navbar-inverse {background-color: #1077bc; border-color: #1077bc; }
+.navbar-inverse .navbar-toggle { border-color: #c0cbc0; }
+.navbar-inverse .navbar-toggle:hover {background-color: #1077bc; opacity: 0.8; }
+
 nav{background:#1077b2;color:white}
-.menu{border-radius:8px; float:right;}
-#myNavbar{background:#1077b2;color:white; }
+#myNavbar{background:#1077b2;color:white;}
 #myNavbar ul li a{color:white;font-size:14px;margin:0px;}
 #myNavbar ul li a:hover{opacity: 0.9; background-color: #1077b2; }
-.nav > li > a {
-    position: relative;
-    display: block;
-    padding: 10px 9px;
+.nav > li > a {position: relative; display: block; padding: 10px 9px; }
+.float-left {
+    float: left;
 }
+.float-right {
+    float: right;
+}
+.khojeko-logo { height: 104px; }
+.top-banner { float:left; margin:1px; }
+.website-details { padding:10px; text-align: right; font-size: 12pt;}
+.website-details a {margin:8px;}
+
 #menuid{background:#1077b2;color:white}
 /*.ads_number{margin-top:10px}*/
 .ads_number {margin:3px 0; font-size: 12pt;}
@@ -35,16 +44,14 @@ nav{background:#1077b2;color:white}
 li.dropdown:hover > ul.submenu{
 	display:block;
 	}
-.banner{margin-top:10px;margin-bottom:10px}
-.banner img{max-width:100%;max-height:100%;margin:auto;display:block}
+.banner{margin:0px;}
+.banner img{width:100%;height:100%;margin:5px auto;display:block}
 .video video{width:100%}
-.left_block > div{width:98%}
 
-.search_bar{background:#1077b2;display:inline-block;width:100%;border-radius:5px;padding-left:5px;}
-#drop2{margin-left:10px;width:20%;margin-right:10px;font-size:18px;margin:5px}
-.search{width:30%;margin:5px;font-size:16px;}
-#search_btn{margin-left:10px;margin-right:10px;font-size:18px;margin:5px;border-radius:7px}
-#ad_btn{float:right;background:#FC0;font-size:19px;width:32%;margin:5px;border-radius:8px}
+.search-bar{background:#1077b2;border-radius:5px;margin:0; padding:5px}
+#drop2{font-size:18px;}
+#search_btn{font-size:18px;border-radius:7px;}
+.post-ad-btn{background:#FC0;border-radius:5px; float: right; }
 #up{height:121px}
 #down{height:121px;margin-top:10px}
 #down img{height:100%;width:100%;border:1px solid #1077b2; }
@@ -139,13 +146,13 @@ overflow: hidden;
 .info:hover{color:white}
 
 #range{display:list-item;list-style-type:none}
-
-#filter{margin: 5px 0; height:auto; clear: both; padding:10px;}
-.tt{
+.text-right { text-align: right; }
+#filter{margin: 5px; height:auto; clear: both; padding:10px;}
+.filter_title{
     color: #73AD21;
     font-size: 20px;
+    margin:10px 0;
 }
-.tt:hover{color:#73ad21;text-decoration:none}
 .st{
     color: grey;
     font-size: 18px;
