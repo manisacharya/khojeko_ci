@@ -157,8 +157,7 @@
 <script type="text/javascript" src="<?php echo base_url('public/js/count.js'); ?>"></script>
 <script type="text/javascript" src="<?php echo base_url('public/js/multiple_upload.js'); ?>"></script>
 <script type="text/javascript" src="<?php echo base_url('public/js/slider/price_slider.js'); ?>"></script>
-
-
+<script type="text/javascript" src="<?php echo base_url('public/js/category_data.js'); ?>"></script>
 <script type="text/javascript">
     $("#ques").hide();
     function showBox(data,url) {
