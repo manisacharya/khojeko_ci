@@ -173,7 +173,7 @@ class Signup extends CI_Controller {
 
     public function signup_step1(){
         $this->form_validation->set_rules('user_email', 'User email', 'required|trim|valid_email|is_unique[user.email]');
-        $this->form_validation->set_rules('password', 'New Password', 'required|trim');
+        $this->form_validation->set_rules('password', 'New Password', 'required|min_length[6]|trim');
         $this->form_validation->set_rules('re-password', 'Retype Password', 'required|trim|matches[password]');
         $this->form_validation->set_rules('acc_type', 'Account Type', 'required');
         //$this->form_validation->set_rules('captcha', 'Captcha', 'required|trim|matches[word]');
