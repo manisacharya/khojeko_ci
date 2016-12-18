@@ -48,7 +48,7 @@ class Items_model extends CI_Model {
             $this->db->join('dealer', 'user.user_key = dealer.d_id');
 
             if($visibility)
-                $this->db->where('visibility', 1);
+                $this->db->where('visibility', 1); // user can set hide/unhide advertisement. | user panel and user page difference
             $this->db->where('type', 'dealer');
             $this->db->where('khojeko_username', $dealer);
             $this->db->order_by('item_id', 'DESC');
