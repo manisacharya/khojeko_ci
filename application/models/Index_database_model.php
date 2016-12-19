@@ -54,7 +54,7 @@ class Index_database_model extends CI_Model {
 
         $this->db->order_by('items.item_id', 'desc');
 
-        $query = $this->db->get('items', 4); // limit 4
+        $query = $this->db->get('items'); // limit 4
 
         return $query->result();
     }

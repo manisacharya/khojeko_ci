@@ -58,6 +58,7 @@
             </div>
 
             <ul class="list">
+                <?php $i=1; ?>
                 <?php foreach ($items as $key): ?>
                     <a href="<?php echo base_url('details/'.$key->item_id);?>">
                         <li>
@@ -115,11 +116,16 @@
                             </div>
                         </li>
                     </a>
+                    <?php
+                        $i++;
+                        if($i > 4) break;
+                    ?>
                 <?php endforeach ?>
             </ul>
         </div><!--listcon ends-->
 
         <?php foreach($filtered_items as $index => $key): ?>
+
             <div class="clearfix"></div>
 
             <div id="viewcontrols" data-enhance="false">
@@ -140,9 +146,7 @@
                 <button value="View More" id="view_btn">View More</button>
             </div>
             <?php foreach($key as $row): ?>
-
                 <ul class="list">
-
                         <li>
                             <div class="col-sm-2" id="image_content">
                                 <a href="<?php echo base_url('details/'.$row->item_id);?>">
@@ -158,7 +162,9 @@
                                         </a><br>
 
                                         <label style="float: right;">
-                                            <a href="#" data-toggle="tooltip" data-placement="top" title="<?php echo $row->views; ?>"><span class="glyphicon glyphicon-eye-open"></span></a>
+                                            <a href="#" data-toggle="tooltip" data-placement="top" title="<?php echo $row->views; ?>">
+                                                <span class="glyphicon glyphicon-eye-open"></span>
+                                            </a>
                                             <span class="glyphicon glyphicon-time"></span>
                                             <span class="glyphicon glyphicon-heart"></span>
                                             <span class="glyphicon glyphicon-comment"></span>
@@ -194,7 +200,6 @@
                                 </section>
                             </div>
                         </li>
-                    
                 </ul>
             <?php endforeach ?>
         <?php endforeach ?>

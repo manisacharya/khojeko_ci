@@ -1,12 +1,12 @@
 <?php
-function filter_by_parent($parent_id, $array) {
-    $retval = array();
-    foreach($array as $key => $value){
-        if($value->parent_id == $parent_id)
-            $retval[] = $value;
-    }
-    return $retval;
-}
+//function filter_by_parent($parent_id, $array) {
+//    $retval = array();
+//    foreach($array as $key => $value){
+//        if($value->parent_id == $parent_id)
+//            $retval[] = $value;
+//    }
+//    return $retval;
+//}
 
 function print_list($parent, $level, $array) {
 
