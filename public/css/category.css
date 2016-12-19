@@ -1,7 +1,8 @@
 .hidden_div{display:none}
-.category_block{border:1px solid #808080;border-radius:5px;}
-.category{background:#808080;color:white;height:50px;font-size:16px;padding:10px 10px;}
-.hierarchy ul {padding-left: 30px;}
+.category_block{border:1px solid #1077b2;border-radius:5px;}
+.category-label {margin: 6px; font-size: 12pt;}
+.category{background:#1077b2;color:white;margin:0; padding:5px;}
+.hierarchy ul {padding-left: 20px;}
 .hierarchy ul li {padding-bottom: 5px;}
 
 .category0,.category1,.category2,.category3{list-style-type:none; cursor: default; font-size: 12pt;}
@@ -64,5 +65,7 @@ padding-left:10px;
 }
 
 .hierarchy {
-  margin-top: 10px;
+  margin: 10px;
 }
+
+.control-value { margin: 15px 0;}

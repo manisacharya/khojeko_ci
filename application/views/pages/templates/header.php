@@ -8,7 +8,6 @@
     <link href="<?php echo base_url('public/css/slider/nouislider.min.css'); ?>"  rel="stylesheet">
     <link href="<?php echo base_url('public/css/bootstrap/bootstrap.css');?>" rel="stylesheet" />
     <link href="<?php echo base_url('public/css/main.css');?>" rel="stylesheet" />
-    <link href="<?php echo base_url('public/css/responsive.css');?>" rel="stylesheet" />
     <link href="<?php echo base_url('public/css/category.css');?>" rel="stylesheet" />
     <link href="<?php echo base_url('public/css/dealer_page.css');?>" rel="stylesheet" />
     <link href="<?php echo base_url('public/css/item_detail.css');?>" rel="stylesheet" />
@@ -16,89 +15,88 @@
     <link href="<?php echo base_url('public/css/list_grid.css');?>" rel="stylesheet" />
     <link href="<?php echo base_url('public/css/login.css');?>" rel="stylesheet" />
     <link href="<?php echo base_url('public/css/signup.css'); ?>"  rel="stylesheet">
-    <link href="<?php echo base_url('public/css/fontawesome/font-awesome.css'); ?>"  rel="stylesheet">
 
-     <link href="<?php echo base_url('public/images/icons/icon.ico')?>" rel="shortcut icon" />
-
+    <link href="<?php echo base_url('public/images/icons/icon.ico')?>" rel="shortcut icon" />
 </head>
 <body id="page-wrap">
     <div id="fb-root"></div>
+    <nav class="navbar navbar-inverse">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><?php echo anchor('','<span class="glyphicon glyphicon-home"></span> Home');?></li>
+                    <li><a href="#" class="nav"><span class="glyphicon glyphicon-list-alt"></span> About Us</a></li>
+                    <li><a href="#" class="nav"><span class="glyphicon glyphicon-question-sign"></span> FAQ</a></li>
+                    <li><a href="#" class="nav"><span class="glyphicon glyphicon-envelope"></span> Contact Us</a></li>
+
+                    <?php
+                    $set_data = $this->session->all_userdata();
+                    if (isset($set_data['logged_in'])):?>
+                        <?php if($set_data['logged_in']['type'] =='dealer'):?>
+                            <li><?php echo anchor('dpanel/'.$set_data['logged_in']['username'], '<span class="glyphicon glyphicon-user"></span> My Profile'); ?></li>
+                        <?php else:?>
+                            <li><?php echo anchor('upanel/'.$set_data['logged_in']['username'], '<span class="glyphicon glyphicon-user"></span> My Profile'); ?></li>
+                        <?php endif ?>
+                        <li><a href="<?php echo base_url('logout')?>" class="nav"><span class="glyphicon glyphicon-lock"></span> Logout</a></a></li>
+                    <?php else: ?>
+                        <li><a href="<?php echo base_url('login')?>" class="nav"><span class="glyphicon glyphicon-lock"></span> Login</a></a></li>
+                        <li><a href="<?php echo base_url('signup');?>" class="nav"><span class="glyphicon glyphicon-user"></span> Free Registration</a></li>
+                    <?php endif; ?>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
     <header id="header">
         <div class="container">
-            <div class="col-md-3">
-                <?php echo anchor(base_url(), '<img src="'.base_url('public/images/khojeko.png').'" class="img-responsive">')?>
+            <div class="col-md-2">
+                <?php echo anchor(base_url(), '<img src="'.base_url('public/images/khojeko.png').'" class="img-responsive khojeko-logo">')?>
             </div>
 
-            <div class="col-md-9">
-                <nav class="navbar menu">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar" id="nav-buttton">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-
-                    <div class="collapse navbar-collapse" id="myNavbar">
-                        <ul class="nav navbar-nav">
-                            <li><?php echo anchor('','Home');?></li>
-                            <li class="divider"><a>|</a></li>
-                            <li><a href="#" class="nav">About Us</a></li>
-                            <li class="divider"><a>|</a></li>
-                            <li><a href="#" class="nav">Features</a></li>
-                            <li class="divider"><a>|</a></li>
-                            <li><a href="#" class="nav">FAQ</a></li>
-                            <li class="divider"><a>|</a></li>
-                            <li><a href="#" class="nav">Contact Us</a></li>
-                            <li class="divider"><a>|</a></li>
-
-                            <?php
-                            $set_data = $this->session->all_userdata();
-                            if (isset($set_data['logged_in'])):?>
-                                <?php if($set_data['logged_in']['type'] =='dealer'):?>
-                                    <li><?php echo anchor('dpanel/'.$set_data['logged_in']['username'], 'My Account'); ?></li>
-                                <?php else:?>
-                                    <li><?php echo anchor('upanel/'.$set_data['logged_in']['username'], 'My Account'); ?></li>
-                                <?php endif ?>
-                                <li class="divider"><a>|</a></li>
-                                <li><a href="<?php echo base_url('logout')?>" class="nav"><i class="fa fa-lock"></i>&nbsp;Logout</a></a></li>
-                                <li class="divider"><a>|</a></li>
-                            <?php else: ?>
-                                <li><a href="<?php echo base_url('login')?>" class="nav"><i class="fa fa-lock"></i>&nbsp;Login</a></a></li>
-                                <li class="divider"><a>|</a></li>
-                                <li><a href="<?php echo base_url('signup');?>" class="nav"><i class="fa fa-file-text"></i>&nbsp;Free Registration</a></li>
-                                <li class="divider"><a>|</a></li>
-                            <?php endif; ?>
-
-                        </ul>
-                    </div>
-                </nav>
-            </div><!--col-md-9 	end-->
-        </div><!--top container-->
-    </header><!--/#header-->
-
-    <section>
-        <div class="container" >
-            <div class="col-sm-12 ads_number">
-                <li>
+            <div class="col-md-10">
+                <div class="col-sm-12">
+                    <img src="<?php echo base_url('public/images/banners/banner1.jpg');?>" class="img-responsive top-banner">
+                    <img src="<?php echo base_url('public/images/banners/banner2.jpg');?>" class="img-responsive top-banner">
+                </div>
+                <div class="col-sm-12 website-details">
                     <a href="#!">All Ads (<?php echo $total_items;?>)</a>
                     <a href="#!">Dealer Ads (<?php echo $dealer_items;?>)</a>
                     <a href="#!">Individual Ads (<?php echo $user_items;?>)</a>
                     <a href="#!">New Ads (<?php echo $new_items;?>)</a>
                     <a href="#!">Used Ads (<?php echo $used_items;?>)</a>
-                </li>
-            </div>
+                </div>
+            </div><!--col-md-9 	end-->
 
-            <div class="col-sm-3 col-xs-12 left_block">
+        </div><!--top container-->
+    </header><!--/#header-->
+
+    <section>
+        <div class="container" >
+            <div class="col-sm-3 left_block">
                 <?php echo form_open('filter', array('method' => 'GET')); ?>
                 <div class="category_block">
-                    <div class="category">
-                        <label for="drop1">Categories</label>
-                        <select name="type" id="drop1">
-                            <option>All Ads</option>
-                            <option>Dealer Ads</option>
-                            <option>Individual Ads</option>
-                            <option>New Ads</option>
-                            <option>Used Ads</option>
-                        </select>
+                    <div class="category row">
+                        <div class="col-sm-5">
+                            <label for="category_drop" class="category-label">Categories</label>
+                        </div>
+                        <div class="col-sm-7">
+                            <select name="type" id="category_drop" class="form-control">
+                                <option>All Ads</option>
+                                <option>Dealer Ads</option>
+                                <option>Individual Ads</option>
+                                <option>New Ads</option>
+                                <option>Used Ads</option>
+                            </select>
+                        </div>
                     </div>
 
                     <div class="hierarchy">
@@ -122,26 +120,25 @@
                 <div id="filter">
                     <span id="min_price">500</span>
                     <span id="max_price">1000</span>
-                    <div class="price_slider">
-                        <label class="tt">Condition Filter</label><br />
-                        <label>Select Category: &nbsp<div id="display_cname">All</div></label>
 
-                        <textarea name="c_id" id="c_id" hidden="hidden" readonly></textarea></br>
-
-                        <div id="slider-snap"></div>
-                            <div class="col-sm-2">
-                                <input type="text" name="min" readonly id="slider-snap-value-lower"/>
-                            </div>
-                            <div class="col-sm-8"></div>
-                            <div class="col-sm-2">
-                                <input type="text" name="max" readonly id="slider-snap-value-upper"/>
-                            </div>
-                            <button class="btn btn-default" type="submit">Apply Filter</button>
-                        <?php echo form_close();?>
+                    <label class="filter_title">Price Filter</label><br />
+                    <div id="slider-snap"></div>
+                    <div class="row control-value">
+                        <div class="col-sm-6">
+                            <input type="text" name="min" readonly id="slider-snap-value-lower" class="form-control"/>
+                        </div>
+                        <div class="col-sm-6">
+                            <input type="text" name="max" readonly id="slider-snap-value-upper" class="form-control text-right"/>
+                        </div>
                     </div>
+                    <div class="row text-center">
+                        <button class="btn btn-default" type="submit">Apply Filter</button>
+                    </div>
+                    <?php echo form_close();?>
                 </div>
 
                 <div class="banner">
+                    <img src="<?php echo base_url('public/images/shipping.jpg');?>" class="img-responsive">
                     <img src="<?php echo base_url('public/images/shipping.jpg');?>" class="img-responsive">
                 </div>
 
@@ -149,21 +146,29 @@
 
             </div> <!--end of col-sm-3-->
 
-            <div class="col-sm-9"  id="main-content">
-                <div id="guts">
-                    <?php echo form_open('results', array('method' => 'GET', 'style' => 'padding:0px;')); ?>
-                    <div class="search_bar">
-                        <select name="city" id="drop2">
+            <div class="col-sm-9">
+                <?php echo form_open('results', array('method' => 'GET', 'style' => 'padding:0px;')); ?>
+                <div class="row search-bar">
+                    <div class="col-sm-2">
+                        <select name="city" class="form-control">
                             <option value="all-district">All district</option>
                             <option value="kathmandu">Kathmandu</option>
                             <option value="lalitpur">Lalitpur</option>
                             <option value="bhaktapur">Bhaktapur</option>
                         </select>
-                        <input type="text" name="search" class="search" placeholder="What are you looking for?"  value="<?php echo $this->input->get('search');?>" />
-                        <button type="submit" id="search_btn"><i class="fa fa-search"> </i> Search</button>
-                        <?php echo form_close(); ?>
-
-                        <a href="<?php echo base_url('adpost'); ?>"><button type="button" id="ad_btn">POST FREE ADS</button></a>
-
                     </div>
-                    <div id="categories_container"></div>
+                    <div class="col-sm-6">
+                        <div class="col-sm-9">
+                            <input type="text" name="search" class="form-control" placeholder="What are you looking for?"  value="<?php echo $this->input->get('search');?>" />
+                        </div>
+                        <div class="col-sm-3">
+                            <button type="submit" class="btn form-control"><span class="glyphicon glyphicon-search"></span> Search</button>
+                        </div>
+                    </div>
+                    <?php echo form_close(); ?>
+                    <div class="col-sm-4">
+                        <a href="<?php echo base_url('adpost'); ?>"><button type="button" class="btn post-ad-btn">POST FREE ADVERTISEMENT</button></a>
+                    </div>
+                </div>
+                <div id="error_content"></div>
+                <div id="content">

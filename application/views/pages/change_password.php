@@ -1,63 +1,26 @@
-
-<script src="<?php echo base_url('public'); ?>/js/jquery-1.12.3.min.js"></script>
-
-<div>
+<div style="margin: 15px 0;">
     <?php echo $change_pwd; ?>
 </div>
-<div class="login">
+<div class="control-form row">
+    <h3>Change Password</h3>
     <?php echo form_open('change_password'); ?>
-    <table class="login_table2">
-        <tr class="login_tr">
-            <td colspan="5">
-                <h3>Change Password</h3>
-            </td>
-        <tr>
-
-        <tr>
-            <td>Old Password</td>
-            <td>
-                <input type="password" class="naya" name="o_password" required>
-            </td>
-        </tr>
-
-        <tr>
-            <td>New Password</td>
-            <td>
-                <input type="password" class="naya" id="txtNewPassword" name="n_password" required>
-            </td>
-        </tr>
-
-        <tr>
-            <td>Confirm Password</td>
-            <td>
-                <input type="password" class="naya" id="txtConfirmPassword" name="c_password" required>
-            </td>
-        </tr>
-        <tr>
-            <td colspan="2" style="text-align: center; color: #d43f3a">
-                <?php echo validation_errors();?>
-            </td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>
-                <div class="registrationFormAlert" id="divCheckPasswordMatch"></div>
-            </td>
-        </tr>
-
-        <tr>
-            <td></td>
-            <td>
-                <button class="btn btn-primary" type="submit">Change Password</button>
-            </td>
-        </tr>
-    </table>
+    <div class="text-center col-sm-12">
+        <input type="password" class="form-control" name="o_password" required placeholder="Current Password">
+        <?php echo form_error('o_password');?>
+        <input type="password" class="form-control" id="txtNewPassword" name="n_password" required placeholder="New Password">
+        <?php echo form_error('n_password');?>
+        <input type="password" class="form-control" id="txtConfirmPassword" name="c_password" required placeholder="Confirm Password">
+        <?php echo form_error('c_password');?>
+        <div class="registrationFormAlert" id="divCheckPasswordMatch"></div>
+        <button class="btn btn-primary" type="submit">Change Password</button>
+    </div>
     <?php echo form_close(); ?>
 </div>
 </div><!--end of col-sm-9-->
 </div><!--end of row-->
 </div><!--end of container-->
 
+<script src="<?php echo base_url('public/js/jquery-1.12.3.min.js'); ?>"></script>
 <script>
     function checkPasswordMatch() {
         var password = $("#txtNewPassword").val();

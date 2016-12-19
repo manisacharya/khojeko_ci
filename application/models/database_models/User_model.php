@@ -258,4 +258,18 @@ class User_model extends CI_Model {
         } else
             $this->session->set_flashdata('change_password','<div class="alert alert-danger">Your password could not be changed.</div>');
     }
+
+    public function account_password_validate() {
+        $password = $this->input->post('o_password');
+
+        $this->db->where('user.user_id', $this->session->userdata['logged_in']['id']);
+        $result = $this->db->get('user', 1)->row();
+
+        if (password_verify($password, $result->password)) {
+            return TRUE;
+        }
+        else {
+            return FALSE;
+        }
+    }
 }
