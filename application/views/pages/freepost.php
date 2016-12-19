@@ -253,7 +253,7 @@
                     <div class="col-md-3 input-title"><label for="image_upload">Upload Images:</label></div>
                     <div class="col-md-7 input-text">
                         <div class="col-md-7 text-center" id="dynamic_field">
-                            <input type="file" name="upload_images" accept="image/*" onchange="showMyImage(this)" />
+                            <input type="file" name="upload_images" accept="image/*" required onchange="showMyImage(this)" />
                         </div>
                         <div class="col-md-5 text-center">
                             <button type="button" name="add" id="add" class="btn btn-primary btn-xs">Add Photos (Max 4)</button>

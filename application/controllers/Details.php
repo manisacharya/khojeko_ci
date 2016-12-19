@@ -50,7 +50,9 @@ class Details extends CI_Controller {
         $data['user_items'] = $this->items_model->count_user_items('personal');
 
         $data['retailer_partners'] = $this->retailer_partners_model->get_retailer_partners();
+
         $data['popular_district'] = $this->khojeko_db_model->popular_district();
+        $data['popular_category'] = $this->khojeko_db_model->popular_category();
         $data['popular_dealer'] = $this->khojeko_db_model->popular_dealer();
 
         $data["fav_msg"] = $this->session->flashdata('fav_message');

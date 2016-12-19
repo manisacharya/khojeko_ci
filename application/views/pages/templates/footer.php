@@ -38,7 +38,7 @@
             <div class="child">
                 <ol>
                     <?php foreach ($popular_district as $one):?>
-                        <li><?php echo $one->district."(".$one->views.")";?></li>
+                        <li><?php echo $one->district;?></li>
                     <?php endforeach;?>
                 </ol>
             </div>
@@ -47,20 +47,9 @@
             <div class="popular_title"><strong>Popular Categories</strong></div>
             <div class="child">
                 <ol>
-                    <li>Mobile & Tablet Pcs</li>
-                    <li>Apple </li>
-                    <li>Mobile & Tablet Pcs</li>
-                    <li>Apple </li>
-                    <li>Mobile & Tablet Pcs</li>
-                    <li>Apple </li>
-                    <li>Mobile & Tablet Pcs</li>
-                    <li>Apple </li>
-                    <li>Apple </li>
-                    <li>Mobile & Tablet Pcs</li>
-                    <li>Mobile  Pcs</li>
-                    <li>Mobile & Tablet Pcs</li>
-                    <li>Mobile & Tablet Pcs</li>
-                    <li>Mobile & Tablet Pcs</li>
+                    <?php foreach ($popular_category as $one):?>
+                        <li><?php echo $one->c_name;?></li>
+                    <?php endforeach;?>
                 </ol>
             </div>
         </div>
@@ -69,7 +58,7 @@
             <div class="child">
                 <ol>
                     <?php foreach ($popular_dealer as $one):?>
-                        <li><?php echo $one->name."(".$one->views.")";?></li>
+                        <li><?php echo $one->name;?></li>
                     <?php endforeach;?>
                 </ol>
             </div>

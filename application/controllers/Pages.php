@@ -13,8 +13,9 @@ class Pages extends CI_Controller {
         parent::__Construct ();
         $this->load->model('retailer_partners_model');
         $this->load->model('database_models/categories_model');
-        $this->load->model('index_database_model'); // load model
+       // $this->load->model('index_database_model'); // load model
         $this->load->model('khojeko_db_model');
+        $this->load->model('detail_db_model');
         $this->load->model('database_models/dealer_model');
         $this->load->model('database_models/items_model');
         $this->load->model('database_models/user_model');
@@ -27,17 +28,13 @@ class Pages extends CI_Controller {
 
         $data['section_position'] = $this->categories_model->get_position();
 
+        $data['items'] = $this->khojeko_db_model->join_tables();
+
+        $data['filtered_items'] = $this->khojeko_db_model->join_filtered_tables($data['section_position']);
+
+        //$data['details'] = $this->detail_db_model->get_details_item($data['filtered_items']['Accessories']['0']->item_id);
 //        echo "<pre>";
-//        print_r($data['section_position']);
-//        echo "</pre>";
-//        die();
-
-        $data['items'] = $this->index_database_model->join_tables();
-
-        $data['filtered_items'] = $this->index_database_model->join_filtered_tables($data['section_position']);
-
-//        echo "<pre>";
-//        print_r($data['filtered_items']);
+//        print_r($data['filtered_items']['Accessories'][]->item_id);
 //        echo "</pre>";
 //        die();
 
@@ -240,8 +237,11 @@ class Pages extends CI_Controller {
         $data['user_items'] = $this->items_model->count_user_items('personal');
 
         $data['retailer_partners'] = $this->retailer_partners_model->get_retailer_partners();
+
         $data['popular_district'] = $this->khojeko_db_model->popular_district();
+        $data['popular_category'] = $this->khojeko_db_model->popular_category();
         $data['popular_dealer'] = $this->khojeko_db_model->popular_dealer();
+
 
         if ($this->session->has_userdata('logged_in')) {
             $this->load->model('database_models/recent_view_model');
