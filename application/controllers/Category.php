@@ -20,6 +20,7 @@ class Category extends CI_Controller {
         $slug = $this->input->post('slug');
 
         $this->data['json_objects'] = array (
+            'category'                  => ($slug != NULL) ? $this->categories_model->get_category_name($slug): NULL,
             'sub_categories_list'       => ($slug != NULL) ? $this->categories_model->get_sub_categories($slug) : NULL,
             'sub_categories_items'      => ($slug != NULL) ? $this->categories_model->get_categories_items($slug) : NULL
         );

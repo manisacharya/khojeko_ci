@@ -170,4 +170,5 @@
                         <a href="<?php echo base_url('adpost'); ?>"><button type="button" class="btn post-ad-btn">POST FREE ADVERTISEMENT</button></a>
                     </div>
                 </div>
+                <div id="error_content"></div>
                 <div id="content">

@@ -170,6 +170,10 @@ hr.clas2 { width:75%; height:1px; color: #73AD21;float:  right;margin-right: 5px
 .subcategory_display{width:98%;height:90%;margin:auto;display:block;background:white;border-radius:8px;overflow-x:scroll;
 white-space: nowrap;}
 
+#error_content .alert {
+    margin-top:10px;
+}
+
 .subcategory_display .childs { float:left; margin:10px; border: 2px #000;}
 .subcategory_display .childs .heading { text-align: center; color: #ca0000;}
 .subcategory_display ul{color:red;display:inline-block;-moz-column-count: 3;
