@@ -21,14 +21,14 @@ function sub_category_items(c_slug) {
                                 '</div>';
                 if(len > 0){
                     for(var i=0; i<len; i++) {
-                        category_content += '<li><a href="#">'+data['sub_categories_list'][i].c_name+'</a></li>';
+                        category_content += '<li><a href="#" onclick="sub_category_items(\''+data['sub_categories_list'][i].c_slug+'\')">'+data['sub_categories_list'][i].c_name+'</a></li>';
                     }
                     if(category_content != ""){
                         $('#content').replaceWith(content_header+category_content+items_content+content_footer);
                     }
                 }
                 else {
-                    category_content +=  '<div class="red">No Sub Categories</div>';
+                    category_content +=  '<div class="no-child">No Sub Categories</div>';
                     $('#content').replaceWith(content_header+category_content+items_content+content_footer);
                 }
             }
