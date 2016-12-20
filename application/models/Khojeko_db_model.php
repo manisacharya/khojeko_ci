@@ -72,7 +72,7 @@
         }
 
         public function show_child_item($category_slug){
-            $this->db->select('*');
+            $this->db->select('items.*, user.*, item_spec.specs, item_img.image, four.c_name AS gg_parent, three.c_name AS g_parent, two.c_name AS parent, one.c_name AS category');
 
             $this->join_and_filter();
 
