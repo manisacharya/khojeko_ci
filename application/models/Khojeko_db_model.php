@@ -120,30 +120,34 @@
         }
 
         public function popular_district(){
-            $this->db->distinct()->select('district');
+            $this->db->select("district, SUM(views) as total_district");
+            $this->db->group_by('district');
+            //$this->db->distinct()->select('district, views');
             $this->db->join('personal', 'user.user_key = personal.p_id');
             $this->db->join('items', 'user.user_id= items.user_id');
-            $this->db->order_by('items.views', 'desc');
+            $this->db->order_by('total_district', 'desc');
 
             $query = $this->db->get('user', 14);
             return $query->result();
         }
 
         public function popular_category(){
-            $this->db->distinct()->select('c_name');
+            $this->db->select("c_name, SUM(views) as total_category");
+            $this->db->group_by('c_name');
             $this->db->join('category', 'items.c_id = category.c_id');
             $this->db->join('user', 'items.user_id = user.user_id');
-            $this->db->order_by('items.views', 'desc');
+            $this->db->order_by('total_category', 'desc');
 
             $query = $this->db->get('items', 14);
             return $query->result();
         }
 
         public function popular_dealer(){
-            $this->db->distinct()->select('name');
+            $this->db->select("name, SUM(views) as total_dealer");
+            $this->db->group_by('name');
             $this->db->join('dealer', 'user.user_key = dealer.d_id');
             $this->db->join('items', 'user.user_id= items.user_id');
-            $this->db->order_by('items.views', 'desc');
+            $this->db->order_by('total_dealer', 'desc');
 
             $query = $this->db->get('user', 14);
             return $query->result();
