@@ -2,7 +2,6 @@
     <div class="dealer_listing">
         <div class="dealer_list_topic">
             <label>Dealer Listing</label>
-            <a href="!#" id="test">Show List in alphabetic order</a>
         </div>
         <ul id="list">
             <?php foreach ($dealer_list as $one):?>
