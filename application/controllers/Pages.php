@@ -32,12 +32,6 @@ class Pages extends CI_Controller {
 
         $data['filtered_items'] = $this->khojeko_db_model->join_filtered_tables($data['section_position']);
 
-        //$data['details'] = $this->detail_db_model->get_details_item($data['filtered_items']['Accessories']['0']->item_id);
-//        echo "<pre>";
-//        print_r($data['filtered_items']['Accessories'][]->item_id);
-//        echo "</pre>";
-//        die();
-
         $this->get_common_contents($data);
 
         $this->load->view('pages/templates/header', $data);
@@ -118,7 +112,9 @@ class Pages extends CI_Controller {
         $this->load->view('pages/templates/footer');
     }
 
-    public function post_form() {
+    public function post_form()
+    {
+        $this->load->library('form_validation');
 
         //$data['title'] = 'Post ad';
         if (!$this->session->has_userdata('logged_in')) {
@@ -130,7 +126,6 @@ class Pages extends CI_Controller {
 
         $this->get_common_contents($data);
 
-        $this->load->library('form_validation');
         $this->form_validation->set_error_delimiters('<div class="alert alert-danger">', '</div>');
 
         $detail = $this->user_model->get_user_info($session_data['type'], $session_data['username']);
@@ -140,8 +135,9 @@ class Pages extends CI_Controller {
 //        echo "</pre>";
 //        die();
 
-        $this->form_validation->set_rules('ad_title', 'Ad Title', 'required');
-        $this->form_validation->set_rules('ad_details', 'Ad Details', 'required');
+        $this->form_validation->set_rules('postc_slug', 'Category', 'required|trim');
+//      $this->form_validation->set_rules('ad_title', 'Ad Title', 'required|trim');
+//      $this->form_validation->set_rules('ad_details', 'Ad Details', 'required|trim');
 
         $this->load->view('pages/templates/header', $data);
 
@@ -157,22 +153,71 @@ class Pages extends CI_Controller {
             $this->load->view('pages/templates/footer', $data);
 
         } else {
-            // $this->form_validation->set_rules('ad_title', 'Ad Title', 'required');
-            // $this->form_validation->set_rules('shrt_description', 'Short Description', 'required');
-            // $this->form_validation->set_rules('ad_details', 'Ad Details', 'required');
+            if (strtoupper($detail->type) == "PERSONAL") {
 
-            $this->items_model->add_item($detail);
+                $this->form_valid_check();
+                $this->form_validation->set_rules('ad_type_personal', 'Ad type', 'required');
 
-            $this->personal_upload($detail);
+                if ($this->form_validation->run()) {
+                    $this->items_model->add_item($detail);
 
-            $data['user_type'] = $detail->type;
+                    $this->personal_upload($detail);
 
-            $data['message'] = "Successfully Added !";
+                    $data['message'] = "Successfully Added !";
+                } else {
+                    $data['message'] = "Error occur while posting item!";
+                }
 
-            $this->load->view('pages/freepost', $data);
-            $this->load->view('pages/templates/footer', $data);
+                $data['user_type'] = $detail->type;
+                $this->load->view('pages/freepost', $data);
+                $this->load->view('pages/templates/footer', $data);
 
+            }else{
+                $this->form_valid_check();
+
+                $this->form_validation->set_rules('ad_type_dealer', 'Ad type', 'required');
+                $this->form_validation->set_rules('quantity_dealer', 'Quantity', 'required|trim');
+
+                if ($this->form_validation->run()) {
+                    $this->items_model->add_item($detail);
+
+                    $this->personal_upload($detail);
+
+
+                    $data['message'] = "Successfully Added !";
+                } else {
+                    $data['message'] = "Error occur while posting item!";
+                }
+                $data['user_type'] = $detail->type;
+                $this->load->view('pages/freepost', $data);
+                $this->load->view('pages/templates/footer', $data);
+            }
         }
+    }
+
+    public function form_valid_check(){
+        $this->form_validation->set_rules('ad_title', 'Ad Title', 'required|trim|max_length[100]');
+
+        if($this->input->post('bought_from') == "Abroad")
+            $this->form_validation->set_rules('abroad_country', 'Abroad Country', 'required|trim|max_length[30]');
+
+        $this->form_validation->set_rules('offer', 'Offer Price', 'required|trim|numeric');
+        $this->form_validation->set_rules('used_for_text', 'Used For Text', 'required|trim|numeric');
+        $this->form_validation->set_rules('market_price', 'Market Price', 'trim|numeric');
+        $this->form_validation->set_rules('document_no', 'Documnet No', 'trim|alpha_dash');
+        $this->form_validation->set_rules('ad_details', 'Ad Details', 'required|trim|max_length[300]');
+        $this->form_validation->set_rules('site_url', 'Site URL', 'trim|valid_url');
+
+        if($this->input->post('home_delivery') == 1)
+            $this->form_validation->set_rules('delivery_charge', 'Delivery Charge', 'required|trim|numeric');
+
+        $this->form_validation->set_rules('warranty', 'Warranty', 'trim|alpha_numeric_spaces');
+
+        if($this->input->post('owner_proof[]') == "Not")
+            $this->form_validation->set_rules('reason', 'No owner proof reason', 'required|trim|alpha_numeric_spaces');
+
+        $this->form_validation->set_rules('video1_url', 'Video 1 URL', 'trim|valid_url');
+        $this->form_validation->set_rules('video2_url', 'Video 2 URL', 'trim|valid_url');
     }
 
     public function personal_upload($detail) {
