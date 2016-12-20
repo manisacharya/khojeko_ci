@@ -156,7 +156,7 @@ class Categories_model extends CI_Model {
     public function get_sub_categories($parent_slug) {
         if ($this->db->table_exists('category')) {
             $parent_id = $this->categories_model->get_category_id($parent_slug);
-            $this->db->where('parent_id', $parent_id->c_id);
+            $this->db->where('parent_id', $parent_id);
             $this->db->where('c_deleted', 0);
             $query = $this->db->get('category');
             return $query->result();
@@ -170,7 +170,14 @@ class Categories_model extends CI_Model {
         $this->db->select('c_id');
         $this->db->where('c_slug', $slug);
         $query = $this->db->get('category');
-        return $query->row();
+        return $query->row()->c_id;
+    }
+
+    public function get_category_name($slug) {
+        $this->db->select('c_name');
+        $this->db->where('c_slug', $slug);
+        $query = $this->db->get('category');
+        return $query->row()->c_name;
     }
 
     public function get_categories_items($category_slug) {
