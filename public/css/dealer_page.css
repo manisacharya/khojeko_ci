@@ -1,11 +1,12 @@
 @charset "utf-8";
 /* CSS Document */
-.dealer_info{background:#C90;height:auto;overflow:auto;margin-top:10px;border-radius:8px;padding:10px 10px 10px;}
+.dealer_info{background:#C90;height:auto;overflow:auto;margin-top:5px;border-radius:8px;padding:10px 10px 10px;}
 .dealer_details{}
 .dealer_logo img{height:100px;width:100px;}
 .dealer_snap{}
 .pull-left img{height:100px;width:100px; float: left; padding:3px;}
-.dealer_all_info name{font-size:18px;color:#360;text-decoration:underline;font-weight:800}
+.dealer_all_info {padding:0 10px;}
+.dealer_all_info name {font-size:18px;color:#360;text-decoration:underline;font-weight:800}
 .dealer_all_info p{color:#C00;font-size:16px;font-weight:500}
 #select{text-decoration: none;
 width: 230px;
