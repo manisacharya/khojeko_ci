@@ -5,11 +5,12 @@
 		</div>
 		<div class="col-sm-10 dealer_all_info">
 			<name><?php echo $dealer_info->name; ?></name>
-			<?php if($dealer_info->u_verified): ?>
-				<label style="color: green;">(Verified Account)</label>
-			<?php else:?>
-				<label style="color: red;">(Unverified Account)</label>
-			<?php endif; ?>
+
+            <?php if ($dealer_info->u_verified): ?>
+                <a data-toggle="tooltip" data-placement="top" title="Verified Account"><span class="glyphicon glyphicon-ok-sign" id="tick"></span></a>
+            <?php else:?>
+                <a data-toggle="tooltip" data-placement="top" title="Not Verified Account"><span class='glyphicon glyphicon-info-sign' id='danger'></span></a>
+            <?php endif ?>
 			<br>
 			<address1><?php echo $dealer_info->full_address; ?></address1><br>
             <address2><?php echo $dealer_info->district.', '. $dealer_info->zone; ?></address2><br>
@@ -39,8 +40,6 @@
 	<div id="viewcontrols" data-enhance="false">
         <a class="gridview" href="#!"><span class="glyphicon glyphicon-th"></span></a>
         <a class="listview" href="#!"><span class="glyphicon glyphicon-th-list"></span></a>
-		<a class="info" onMouseOver="this.style.color='#ffffff'" onMouseOut="this.style.color='#ffffff'">Ad by This User</a>
-
 		<a class="filter_dropdown">Filter By:</a>
 		<select class="select">
 			<option value="1">Mobile Phones</option>
