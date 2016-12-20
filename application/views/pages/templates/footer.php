@@ -12,7 +12,7 @@
 
     <div class="logosl">
         <div class="dealer_list_topic">
-            <label>Dealers/Retailer Partners</label>
+            <label>Partners</label>
         </div>
 
         <div id="jssor_1" class="partners">
@@ -73,17 +73,19 @@
         </div>
 
         <div class="history_section">
-            <?php foreach ($recent_views as $rv):?>
-                <a href="<?php echo base_url('details/'.$rv->item_id);?>">
-                <li style="height:140px; width:160px;">
-                    <img src="<?php echo base_url('public/images/item_images/'.$rv->image);?>" style="height:100px; width:100px; padding:5px"><br>
-                    <span class="title">
-                    <b>Rs. <?php echo $rv->price; ?></b><br>
-                    <a class="sub" href="!#"><?php echo (strlen($rv->title) > 15) ? substr($rv->title, 0, 15).'...' : $rv->title; ?></a><br>
-                </span>
-                </li>
-                </a>
-            <?php endforeach;?>
+            <ul class="nav nav-pills nav-justified">
+                <?php foreach ($recent_views as $rv):?>
+                    <li class="history_item">
+                        <a href="<?php echo base_url('details/'.$rv->item_id);?>">
+                            <img src="<?php echo base_url('public/images/item_images/'.$rv->image);?>" style="height:100px; width:100px; padding:5px"><br>
+                            <span class="title">
+                                <strong>Rs. <?php echo $rv->price; ?></strong><br>
+                                <?php echo (strlen($rv->title) > 15) ? substr($rv->title, 0, 15).'...' : $rv->title; ?><br>
+                            </span>
+                        </a>
+                    </li>
+                <?php endforeach;?>
+            </ul>
         </div>
     </div> <!--history ends-->
     <?php endif; ?>
@@ -97,15 +99,13 @@
     <div class="container">
         <div class="col-sm-12">
             <div class="down_menu">
-                <li><a href="#!">Home</a></li>
-                <li>|</li>
-                <li><a href="#!">About Us</a></li>
-                <li>|</li>
-                <li><a href="#!">Features</a></li>
-                <li>|</li>
-                <li><a href="#!">FAQ</a></li>
-                <li>|</li>
-                <li><a href="#!">Contact Us</a></li>
+                <ul>
+                    <li><?php echo anchor('', 'Home');?></li>
+                    <li><a href="#!">About Us</a></li>
+                    <li><a href="#!">Features</a></li>
+                    <li><a href="#!">FAQ</a></li>
+                    <li><a href="#!">Contact Us</a></li>
+                </ul>
             </div>
 
             <?php
@@ -114,7 +114,7 @@
                 $year = $info['year'];
             ?>
             <div class="copy_right">
-                <a href="#!">Copyright Khojeko.com &copy; 2015 - <?php echo $year; ?></a>|<a> All Rights Reserved</a>
+                <label>Copyright Khojeko.com &copy; 2015 - <?php echo $year; ?> | Developed by: <a href="https://technorio.com">Techonorio Inc.</a></label>
             </div>
 
         </div>
@@ -131,13 +131,8 @@
 <script type="text/javascript" src="<?php echo base_url('public/js/list_grid.js');?>"></script>
 <script type="text/javascript" src="<?php echo base_url('public/js/jssor.slider.min.js');?>"></script>
 <!-- Custom JQuery -->
-<script type="text/javascript" src="<?php echo base_url('public/js/app/custom.js'); ?>"></script>
-<script type="text/javascript" src="<?php echo base_url('public/js/plugins/nicescroll/jquery.nicescroll.min.js'); ?>"></script>
 <script type="text/javascript" src="<?php echo base_url('public/js/popup.js'); ?>"></script>
 
-<script type="text/javascript" src="<?php echo base_url('public/js/back.js'); ?>"></script>
-<script type="text/javascript" src="<?php echo base_url('public/js/dropdown.js'); ?>"></script>
-<script type="text/javascript" src="<?php echo base_url('public/js/searchable_dropdown.js'); ?>"></script>
 <script type="text/javascript" src="<?php echo base_url('public/js/live_preview.js'); ?>"></script>
 <script type="text/javascript" src="<?php echo base_url('public/js/next-prev-btn.js'); ?>"></script>
 
@@ -194,30 +189,6 @@
         js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6";
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
-</script>
-
-<!--to check spam click from same user on same item.-->
-<script type="text/javascript">
-    function same_spam () {
-        alert ("Your report already registered for this item.");
-    }
-</script>
-
-<!-- for toggling show/hide option on password -->
-<script type="text/javascript">
-    function toggle_password(target){
-        var d = document;
-        var tag = d.getElementById(target);
-        var tag2 = d.getElementById("showhide");
-
-        if (tag2.innerHTML == 'Show'){
-            tag.setAttribute('type', 'text');
-            tag2.innerHTML = 'Hide';
-        } else {
-            tag.setAttribute('type', 'password');
-            tag2.innerHTML = 'Show';
-        }
-    }
 </script>
 
 </body>
