@@ -78,7 +78,7 @@ ul.list li a.sub:hover{
 		ul.list li .list-right .price{	float:right;
 	display: block;
 	text-align: right;
-        color:green;
+        color:black;
         position:relative;
 	}
         ul.list li .price i{
