@@ -13,26 +13,22 @@ function sub_category_items(c_slug) {
                                 '<div id="content">' +
                                     '<div class="category_display">' +
                                         '<h4>'+data['category_title']+'</h4>' +
-                                        '<div class="subcategory_display" id="category1_display">';
+                                        '<div class="subcategory_display"><ul class="nav nav-pills nav-justified">';
                 var category_content = '';
-                var items_content =     '</div>' +
+                var items_content =     '</ul></div>' +
                                     '</div>';
                 var content_footer =
                                 '</div>';
                 if(len > 0){
-                    for(var i=0; i<len; i++){
-                        category_content += '<div class="childs">' +
-                                        '<div class="heading">'+data['sub_categories_list'][i].c_name+'</div>' +
-                                    '</div>';
+                    for(var i=0; i<len; i++) {
+                        category_content += '<li><a href="#">'+data['sub_categories_list'][i].c_name+'</a></li>';
                     }
-                    if(content != ""){
+                    if(category_content != ""){
                         $('#content').replaceWith(content_header+category_content+items_content+content_footer);
                     }
                 }
                 else {
-                    content +=  '<div class="childs">' +
-                                    '<div class="heading">No Sub Categories</div>' +
-                                '</div>'
+                    category_content +=  '<div class="red">No Sub Categories</div>';
                     $('#content').replaceWith(content_header+category_content+items_content+content_footer);
                 }
             }
