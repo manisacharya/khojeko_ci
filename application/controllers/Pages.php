@@ -167,6 +167,7 @@ class Pages extends CI_Controller {
                 } else {
                     $data['message'] = "Error occur while posting item!";
                 }
+                
 
                 $data['user_type'] = $detail->type;
                 $this->load->view('pages/freepost', $data);
@@ -182,7 +183,6 @@ class Pages extends CI_Controller {
                     $this->items_model->add_item($detail);
 
                     $this->personal_upload($detail);
-
 
                     $data['message'] = "Successfully Added !";
                 } else {
