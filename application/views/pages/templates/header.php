@@ -18,8 +18,7 @@
 
     <link href="<?php echo base_url('public/images/icons/icon.ico')?>" rel="shortcut icon" />
 </head>
-<body id="page-wrap">
-    <div id="fb-root"></div>
+<body>
     <nav class="navbar navbar-inverse">
         <div class="container">
             <div class="navbar-header">
@@ -52,32 +51,35 @@
                         <li><a href="<?php echo base_url('signup');?>" class="nav"><span class="glyphicon glyphicon-user"></span> Free Registration</a></li>
                     <?php endif; ?>
                 </ul>
-            </div>
-        </div>
+            </div><!--collapse-navbar-->
+        </div><!--container-->
     </nav>
 
-    <header id="header">
-        <div class="container">
-            <div class="col-md-2">
-                <?php echo anchor(base_url(), '<img src="'.base_url('public/images/khojeko.png').'" class="img-responsive khojeko-logo">')?>
+    <header class="container">
+        <div class="row">
+            <div class="col-sm-3">
+                <?php echo anchor(base_url(), '<img src="'.base_url('public/images/khojeko.png').'" class="img-responsive">')?>
             </div>
 
-            <div class="col-md-10">
-                <div class="col-sm-12">
-                    <img src="<?php echo base_url('public/images/banners/banner1.jpg');?>" class="img-responsive top-banner">
-                    <img src="<?php echo base_url('public/images/banners/banner2.jpg');?>" class="img-responsive top-banner">
+            <div class="col-sm-9">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <img src="<?php echo base_url('public/images/banners/banner1.jpg');?>" class="img-responsive">
+                    </div>
+                    <div class="col-sm-6">
+                        <img src="<?php echo base_url('public/images/banners/banner2.jpg');?>" class="img-responsive">
+                    </div>
                 </div>
-                <div class="col-sm-12 website-details">
-                    <a href="#!">All Ads (<?php echo $total_items;?>)</a>
-                    <a href="#!">Dealer Ads (<?php echo $dealer_items;?>)</a>
-                    <a href="#!">Individual Ads (<?php echo $user_items;?>)</a>
-                    <a href="#!">New Ads (<?php echo $new_items;?>)</a>
-                    <a href="#!">Used Ads (<?php echo $used_items;?>)</a>
+                <div class="website-details">
+                    <a href="#">All Ads (<?php echo $total_items;?>)</a>
+                    <a href="#">Dealer Ads (<?php echo $dealer_items;?>)</a>
+                    <a href="#">Individual Ads (<?php echo $user_items;?>)</a>
+                    <a href="#">New Ads (<?php echo $new_items;?>)</a>
+                    <a href="#">Used Ads (<?php echo $used_items;?>)</a>
                 </div>
-            </div><!--col-md-9 	end-->
-
-        </div><!--top container-->
-    </header><!--/#header-->
+            </div><!--col-sm-9-->
+        </div><!--row-->
+    </header>
 
     <section>
         <div class="container" >
@@ -96,8 +98,8 @@
                                 <option>New Ads</option>
                                 <option>Used Ads</option>
                             </select>
-                        </div>
-                    </div>
+                        </div><!--col-sm-7-->
+                    </div><!--col-sm-5-->
 
                     <div class="hierarchy">
                         <div class="category_filter">
@@ -113,14 +115,11 @@
                             require_once('require/category.php');
                             print_list(0, 0, $category);
                             ?>
-                        </div>
-                    </div>
-                </div><!--category_block End-->
+                        </div><!--category_filter-->
+                    </div><!--hierarchy-->
+                </div><!--category_block-->
 
                 <div id="filter">
-                    <span id="min_price">500</span>
-                    <span id="max_price">1000</span>
-
                     <label class="filter_title">Price Filter</label><br />
                     <div id="slider-snap"></div>
                     <div class="row control-value">
@@ -143,7 +142,6 @@
                 </div>
 
                 <div class="fb-page" data-href="https://www.facebook.com/technorio" data-height="70" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/facebook"><a href="https://www.facebook.com/facebook">Facebook</a></blockquote></div></div>
-
             </div> <!--end of col-sm-3-->
 
             <div class="col-sm-9">
@@ -166,8 +164,9 @@
                         </div>
                     </div>
                     <?php echo form_close(); ?>
-                    <div class="col-sm-4">
-                        <a href="<?php echo base_url('adpost'); ?>"><button type="button" class="btn post-ad-btn">POST FREE ADVERTISEMENT</button></a>
+                    <div class="col-sm-1"></div>
+                    <div class="col-sm-3">
+                        <a href="<?php echo base_url('adpost'); ?>"><button type="button" class="btn form-control post-ad-btn">POST FREE ADVERTISEMENT</button></a>
                     </div>
                 </div>
                 <div id="error_content"></div>
