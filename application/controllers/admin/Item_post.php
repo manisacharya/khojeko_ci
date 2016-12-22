@@ -169,4 +169,3 @@ class Item_post extends CI_Controller{
         $this->personal_model->available_mobile();
     }
 }
-?>

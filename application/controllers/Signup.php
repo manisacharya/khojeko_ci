@@ -287,10 +287,6 @@ class Signup extends CI_Controller {
         $data['popular_category'] = $this->khojeko_db_model->popular_category();
         $data['popular_dealer'] = $this->khojeko_db_model->popular_dealer();
 
-        /*$data['popular_district'] =
-        $data['popular_dealer'] =
-        $data['popular_categories'] = */
-
         if ($this->session->has_userdata('logged_in')) {
             $this->load->model('database_models/recent_view_model');
             $user_session = $this->session->all_userdata();

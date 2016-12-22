@@ -31,4 +31,3 @@ class Districts_model extends CI_Model
         echo $HTML;
     }
 }
-?>
