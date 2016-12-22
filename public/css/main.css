@@ -6,9 +6,16 @@ a:hover{text-decoration:none}
 .row {
     margin:0px;
 }
+body { padding-top: 40px; }
+.navbar {min-height: 40px;}
 .navbar-inverse {background-color: #1077bc; border-color: #1077bc; }
 .navbar-inverse .navbar-toggle { border-color: #c0cbc0; }
-.navbar-inverse .navbar-toggle:hover {background-color: #1077bc; opacity: 0.8; }
+.navbar-inverse .navbar-toggle:hover, .navbar-inverse .navbar-toggle:focus {background-color: #1077bc; opacity: 0.8}
+
+.navbar-nav > li > a {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
 
 nav {background:#1077b2;color:white}
 .navbar-inverse .navbar-nav > li > a { color:white; }
