@@ -55,7 +55,7 @@ $route['details'] = "details/details";
 $route['details/(:any)'] = "details/details/$1";
 $route['add_to_fav/(:num)'] = "details/add_to_fav/$1";
 $route['add_to_spam/(:num)/(:num)'] = "details/add_to_spam/$1/$2";
-
+$route['ask_me_validation/(:num)'] = 'details/ask_me_validation/$1';
 // SEARCH CONTROLLER
 $route['results'] = "search/results";
 
