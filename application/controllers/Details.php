@@ -64,6 +64,7 @@ class Details extends CI_Controller {
             $data['recent_views'] = $this->recent_view_model->get_recent_view($user_session['logged_in']['id']);
         }
 
+        $this->session->set_userdata('add_slider', 'true');
         $this->load->view('pages/templates/header', $data);
         $this->load->view('pages/details', $data);
         $this->load->view('pages/templates/footer', $data);

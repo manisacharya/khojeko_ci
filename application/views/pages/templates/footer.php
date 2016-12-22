@@ -136,7 +136,10 @@
 <script type="text/javascript" src="<?php echo base_url('public/js/live_preview.js'); ?>"></script>
 <script type="text/javascript" src="<?php echo base_url('public/js/next-prev-btn.js'); ?>"></script>
 
-<script type="text/javascript" src="<?php echo base_url('public/js/ad_detail_slider.js'); ?>"></script>
+<?php if($this->session->userdata('add_slider')):?>
+    <script type="text/javascript" src="<?php echo base_url('public/js/ad_detail_slider.js'); ?>"></script>
+    <?php $this->session->unset_userdata('add_slider');?>
+<?php endif; ?>
 <script type="text/javascript" src="<?php echo base_url('public/js/count.js'); ?>"></script>
 <script type="text/javascript" src="<?php echo base_url('public/js/multiple_upload.js'); ?>"></script>
 <script type="text/javascript" src="<?php echo base_url('public/js/slider/price_slider.js'); ?>"></script>
