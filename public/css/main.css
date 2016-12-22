@@ -10,14 +10,16 @@ body { padding-top: 40px; }
 .navbar {min-height: 40px;}
 .navbar-inverse {background-color: #1077bc; border-color: #1077bc; }
 .navbar-inverse .navbar-toggle { border-color: #c0cbc0; }
+.navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {  border-color: #1077bc; background-color: #1077bc;}
 .navbar-inverse .navbar-toggle:hover, .navbar-inverse .navbar-toggle:focus {background-color: #1077bc; opacity: 0.8}
+
+.navbar-toggle { margin-top: 4px; margin-bottom: 4px; }
 
 .navbar-nav > li > a {
     padding-top: 10px;
     padding-bottom: 10px;
 }
 
-nav {background:#1077b2;color:white}
 .navbar-inverse .navbar-nav > li > a { color:white; }
 
 .float-left {
@@ -116,12 +118,12 @@ nav {background:#1077b2;color:white}
 .history{margin-top:20px;}
 .history h4 {color:#360;}
 .a_history{float:right}
-.history_section{border:1px solid;color:#390; margin: 0 auto;}
-.history_section li{list-style-type:none;display:inline-block;text-align:center}
-.history_section .title{color:#036;text-align:center}
+.history_section{border:1px solid #1077b2; margin: 0 auto;}
+.history_section li{list-style-type:none;display:inline-block;text-align:center;}
+.history_section .title{color:#000;text-align:center}
 .history_section .title .sub{color:#333}
 .history_title{display:inline;font-size:14px; padding:10px;}
-.history_title a {color:#360}
+.history_title a {color:#fff}
 .history_section .history_item {height:160px; width:162px;}
 .down_menu{text-align:center;margin-top:10px;}
 .down_menu ul {margin: 0}
