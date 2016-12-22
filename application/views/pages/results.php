@@ -35,7 +35,12 @@
                     </section>
                     <section class="list-left">
                     <span class="title">
-                        <b>Rs. <?php echo $item->price; ?><label style="color:#f00;">&nbsp;(<?php echo $item->item_type; ?>)</label></b><br>
+                        <b>Rs. <?php echo $item->price; ?><label style="color:#f00;">&nbsp;(<?php echo $item->item_type; ?>)</label></b>
+                        <?php if ($item->is_verified == 1): ?>
+                            <a data-toggle="tooltip" data-placement="top" title="Verified Advertisement"><span class="glyphicon glyphicon-ok-sign" id="tick"></span></a>
+                        <?php else:?>
+                            <a data-toggle="tooltip" data-placement="top" title="Not Verified Advertisement"><span class='glyphicon glyphicon-info-sign' id='danger'></span></a>
+                        <?php endif ?><br />
                         <a class="sub" href="!#"><?php echo $item->title; ?></a><br>
                         <span class="address">
                             <span><?php echo $item->avaibility_address; ?></span>
@@ -69,8 +74,13 @@
             <div class="col-sm-10" id="info_content">
                 <section class="list-left">
                     <span class="title1">
-                        <b><?php echo $personal->name?></b><br>
-                        <a class="sub1"><?php echo $personal->city?></a><br>
+                        <b><?php echo $personal->name?></b>
+                        <?php if ($personal->u_verified == 1): ?>
+                            <a data-toggle="tooltip" data-placement="top" title="Verified Advertisement"><span class="glyphicon glyphicon-ok-sign" id="tick"></span></a>
+                        <?php else:?>
+                            <a data-toggle="tooltip" data-placement="top" title="Not Verified Advertisement"><span class='glyphicon glyphicon-info-sign' id='danger'></span></a>
+                        <?php endif ?><br />
+                        <a class="sub1"><?php echo $personal->city?></a><br />
                         <span class="name1">
                             Personal Account
                         </span>
@@ -98,7 +108,12 @@
 
                         <section class="list-left">
                             <span class="title1">
-                                <b><?php echo $dealer->name?></b><br>
+                                <b><?php echo $dealer->name?></b>
+                                <?php if ($dealer->u_verified == 1): ?>
+                                    <a data-toggle="tooltip" data-placement="top" title="Verified Advertisement"><span class="glyphicon glyphicon-ok-sign" id="tick"></span></a>
+                                <?php else:?>
+                                    <a data-toggle="tooltip" data-placement="top" title="Not Verified Advertisement"><span class='glyphicon glyphicon-info-sign' id='danger'></span></a>
+                                <?php endif ?><br>
                                 <a class="sub1"><?php echo $dealer->city?></a><br>
                                 <span class="name1">
                                     Dealer Account
