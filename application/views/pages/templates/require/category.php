@@ -9,7 +9,7 @@ function print_list($parent, $level, $array) {
         <?php foreach ($children as $child): ?>
             <?php if ( ! $child->c_deleted): ?>
                 <li>
-                    <a href="#" id="<?php echo $child->c_slug; ?>" onclick="sub_category_items('<?php echo $child->c_slug; ?>')">
+                    <a id="<?php echo $child->c_slug; ?>" onclick="sub_category_items('<?php echo $child->c_slug; ?>')">
                         <span class="glyphicon glyphicon-plus-sign"></span>
                         <span class="glyphicon glyphicon-minus-sign"></span>
                         <?php echo $child->c_name; ?>
