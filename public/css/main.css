@@ -224,3 +224,6 @@ a#scrollUp i{
     font-weight: 100;
     float: right;
 }
+.alert {
+    margin-bottom: 5px;
+}
