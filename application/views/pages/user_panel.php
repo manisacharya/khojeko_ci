@@ -3,11 +3,11 @@
 <div class="welcome_div">
 	<a style="float:left">Welcome, <?php echo $personal_info->name; ?></a>
 	Your listing url:&nbsp;&nbsp;www.khojeko.com/<?php echo $personal_info->khojeko_username;?>
-	<?php if($personal_info->u_verified): ?>
-		<label style="color: green;">(Verified Account)</label>
-	<?php else:?>
-		<label style="color: red;">(Unverified Account)</label>
-	<?php endif; ?>
+    <?php if ($personal_info->u_verified): ?>
+        <a data-toggle="tooltip" data-placement="top" title="Verified Account"><span class="glyphicon glyphicon-ok-sign" id="tick"></span></a>
+    <?php else:?>
+        <a data-toggle="tooltip" data-placement="top" title="Not Verified Account"><span class='glyphicon glyphicon-exclamation-sign' id='danger'></span></a>
+    <?php endif ?>
 </div>
 <div class="clearfix"></div>
 

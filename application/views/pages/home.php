@@ -85,15 +85,14 @@
                     <section class="list-left">
                         <span class="title">
                             <b>Rs. <?php echo $key->price; ?><label style="color:#f00;">&nbsp;(<?php echo $key->item_type; ?>)</label></b><br>
-                            <a class="sub"><?php echo (strlen($key->title) > 21) ? substr($key->title, 0, 21).'...' : $key->title; ?></a><br>
+                            <a class="sub"><?php echo (strlen($key->title) > 21) ? substr($key->title, 0, 21).'...' : $key->title; ?></a>
+                            <?php if ($key->is_verified == 1): ?>
+                                <a data-toggle="tooltip" data-placement="top" title="Verified Advertisement"><span class="glyphicon glyphicon-ok-sign" id="tick"></span></a>
+                            <?php else:?>
+                                <a data-toggle="tooltip" data-placement="top" title="Not Verified Advertisement"><span class='glyphicon glyphicon-exclamation-sign' id='danger'></span></a>
+                            <?php endif ?><br>
 
                             <span class="name">
-                                <?php if ($key->is_verified == 1): ?>
-                                    <a data-toggle="tooltip" data-placement="top" title="Verified Advertisement"><span class="glyphicon glyphicon-ok-sign" id="tick"></span></a>
-                                <?php else:?>
-                                    <a data-toggle="tooltip" data-placement="top" title="Not Verified Advertisement"><span class='glyphicon glyphicon-info-sign' id='danger'></span></a>
-                                <?php endif ?>
-
                                 <?php if($key->type == "personal") {?>
                                     <b>Ad By: <?php echo $key->khojeko_username;?></b>
                                 <?php } else  if($key->type == "dealer") { ?>
@@ -122,8 +121,6 @@
         <a class="info" >
             <?php echo $index.' Ads ('.count($key).')' ;?>
         </a>
-        <a class="gridview" href="#"><span class="glyphicon glyphicon-th"></span></a>
-        <a class="listview" href="#"><span class="glyphicon glyphicon-th-list"></span></a>
         <button value="View More" id="view_btn">View More</button>
     </div>
 
@@ -162,15 +159,14 @@
                     <section class="list-left">
                             <span class="title">
                                 <b>Rs. <?php echo $row->price; ?><label style="color:#f00;">&nbsp;(<?php echo $row->item_type; ?>)</label></b><br>
-                                <a class="sub"><?php echo (strlen($row->title) > 21) ? substr($row->title, 0, 21).'...' : $row->title; ?></a><br>
+                                <a class="sub"><?php echo (strlen($row->title) > 21) ? substr($row->title, 0, 21).'...' : $row->title; ?></a>
+                                <?php if ($row->is_verified == 1): ?>
+                                    <a data-toggle="tooltip" data-placement="top" title="Verified Advertisement"><span class="glyphicon glyphicon-ok-sign" id="tick"></span></a>
+                                <?php else:?>
+                                    <a data-toggle="tooltip" data-placement="top" title="Not Verified Advertisement"><span class='glyphicon glyphicon-exclamation-sign' id='danger'></span></a>
+                                <?php endif ?><br>
 
                                 <span class="name">
-                                    <?php if ($row->is_verified == 1): ?>
-                                        <a data-toggle="tooltip" data-placement="top" title="Verified Advertisement"><span class="glyphicon glyphicon-ok-sign" id="tick"></span></a>
-                                    <?php else:?>
-                                        <a data-toggle="tooltip" data-placement="top" title="Not Verified Advertisement"><span class='glyphicon glyphicon-info-sign' id='danger'></span></a>
-                                    <?php endif ?>
-
                                     <?php if($row->type == "personal") {?>
                                         <b>Ad By: <?php echo $row->khojeko_username;?></b>
                                     <?php } else  if($row->type == "dealer") { ?>
