@@ -1,9 +1,6 @@
 @charset "utf-8";
 /* CSS Document */
-.symbol {
-	font-size: 12pt;
-}
-.item_category{background:#69F;margin-top:10px;padding:5px 5px 5px;color:white}
+.item_category{background:#1077b2;margin-top:5px;padding:5px 5px 5px;color:white; border-radius: 4px;}
 
 .main_cat{color:#036;font-weight:600}
 
@@ -11,66 +8,68 @@
 
 .cat_description:hover{color:black}
 
-.warning_tips{border:1px solid;border-radius:5px;margin-top:10px;margin-bottom:10px; padding: 10px;}
+.warning_tips{border:1px solid #1077b2; border-radius:4px; margin:5px 0; padding: 10px;}
 
 .warning_tips p{color: rgba(181, 49, 37, 0.98)
 }
 
-.item_info i{font-size:28px;}
 .item_info > div{display:inline}
 
 .double{
-  white-space: pre;
- }
+	white-space: pre;
+}
 
-.item_info{ height:40px; padding:10px; margin-top:10px; border:1px solid;}
-
-#fake_report a{color:red}
-
-#fake_report{padding-left:15px}
+.item_info{ height:40px; padding:10px; border:1px solid #1077b2; border-radius:4px;}
 
 #status{padding-left:15px}
 
-#online{color:green}
+.online {color:green}
 
-#clock{color:blue}
+.clock label {color:blue}
 
-#view{padding-left:0px;}
+.views label {color: #1b6d85;}
 
-.expiry_date{padding-left:0px}
+.expiry-date .green {color:green;}
+.expiry-date .red {color:red;}
 
 #date{padding-left:0px}
-#favourite{padding-left:0px}
+.favourite a {color: #ff544a }
+
+.report-us a {color: red;}
 
 #sold{float:right;position:absolute;max-width:100px;max-height:100px;}
 
 #item_img{max-height:400px;width:100%;margin:auto;display:block}
 
-.item_image{margin-top:10px;border:1px solid; padding:10px;}
+.item_image{margin-top:5px;border:1px solid #1077b2; padding:10px;}
 
-#item_spec{background:#099;margin-top:10px;font-size:24px;padding-left:10px;color:black}
+.item_image img {margin:0 auto; width: 100%;}
 
-.item_spec_sub{border:1px solid;height:auto; padding: 10px;}
+.specification { border-radius: 4px;border:1px solid #1077b2;margin-top:5px;}
+
+#item_spec{background:#1077b2;font-size:12pt;padding:5px;color:white;}
+
+.item_spec_sub{height:auto; padding: 5px;}
 
 .item_detail_price{font-size:24px;color:#309;font-weight:700}
 
-.item_detail_title{font-size:20px;color:#090}
+.item_detail_title{font-size:16pt;color:#090; margin: 0; padding: 0;}
 
-.item_written_spec{padding-left:10px;}
+.item_written_spec{padding:5px;}
 
-.status{color:red;margin-left:20px;}
+.status{color:red;}
 
 .bought_from{color:#339;}
 
-.written_from{border:1px solid;padding-left:20px}
+.written_from{border:1px solid #1077b2; padding:5px}
 
-.item_owner_details{background:#CCC;padding:10px 20px 10px;margin:10px;}
+.item_owner_details{background:#eee;padding:5px;margin:5px;}
 
 .item_owner_details {color:#333}
 
-.item_id{font-size:12px}
+.member{font-size:12pt}
 
-.item_owner_name{font-weight:800}
+.item_owner_name{}
 
 .verified{color:#0C0}
 
@@ -90,20 +89,20 @@
 
 .email_send textarea{width:100%;border-radius:8px;border:1px solid}
 
-.email_send{border-collapse:separate; 
+.email_send{border-collapse:separate;
 
-border-spacing:5px;}
+	border-spacing:5px;}
 
 .email_send button{background:#1077bc;color:white;border-radius:8px;}
 
-.img-big{width:470px; height:400px}
+.img-big{height:400px}
 
 .video_ad{margin:10px;border:1px; padding:0.7px;}
 
 .video_ad video{margin:5px;width:167px; height:180px;border-radius:10px}
 
-question {text-decoration: underline;}
-.question_section{border:1px solid;margin:10px 0;}
+question {text-decoration: none; font-weight: bold; }
+.question_section{border:1px solid #1077b2;margin:10px 0; border-radius: 4px;}
 
 .question_section form {padding: 0px;}
 .question_section form input {padding: 5px;}
@@ -114,29 +113,31 @@ question {text-decoration: underline;}
 
 .question_title a{color:white}
 
-.post{float:right;text-decoration:underline}
+.post{float:right;}
 
-.ask{font-weight:600}
+.ask{font-weight:600; color: white;}
 
 .question_section question:before{content:'Q. '}
 
 .question_section by{color:grey	;padding-left:10px;font-size: small;}
 
-.question_section answer{color:green;padding-left:10px;}
+.question_section answer{color:green;padding-left:20px;}
 
 .question_section answer:before{content:'A. '}
 
 .map_section{border:1px solid;height:200px;margin:10px}
 
 #slider1_container{
-	
+
 	height:120px;
 	overflow: hidden;
 	position:relative;
-	width:100%;
+	width:486px;
+	margin: 10px auto;
+	padding: 0;
 
-	}
-	
-.item_image_section img{height:120px;width:115px;}
+}
 
-.item_img_slider{border:1px solid;margin-top:10px; padding:2px;}
+.item_image_section img{height:120px;width:116px; margin: 2px;}
+
+.item_img_slider{margin-top:5px; padding:2px;}
