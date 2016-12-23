@@ -136,8 +136,6 @@ class Pages extends CI_Controller {
 //        die();
 
         $this->form_validation->set_rules('postc_slug', 'Category', 'required|trim');
-//      $this->form_validation->set_rules('ad_title', 'Ad Title', 'required|trim');
-//      $this->form_validation->set_rules('ad_details', 'Ad Details', 'required|trim');
 
         $this->load->view('pages/templates/header', $data);
 

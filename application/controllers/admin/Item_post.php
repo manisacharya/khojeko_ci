@@ -23,6 +23,7 @@ class Item_post extends CI_Controller{
         $this->load->helper(array('form', 'url'));
         $this->load->helper('security');
         $this->load->library('upload');
+        $this->load->library('form_validation');
 
         $this->output->enable_profiler(TRUE);
 
@@ -32,31 +33,26 @@ class Item_post extends CI_Controller{
 
     public function post_form(){
         $data['title'] = 'Post ad';
+
         $data['user_info'] = $this->user_model->get_user_info('admin', $this->session->userdata['admin_logged_in']['id']);
         $data['categories'] = $this->categories_model->get_categories();
         $data['zones'] = $this->zones_model->getAllZones();
 
-        $this->load->library('form_validation');
         $this->form_validation->set_error_delimiters('<div class="alert alert-danger">', '</div>');
-
-        $this->load->view('admin/templates/header', $data);
 
         $this->form_validation->set_rules('owner_name', 'AdOwnerName', 'required');
         $this->form_validation->set_rules('email', 'Email', 'required');
         $this->form_validation->set_rules('username', 'UserName', 'required');
-        // $this->form_validation->set_rules('password', 'Password', 'required');
-        // $this->form_validation->set_rules('re_password', 'Retype Password', 'required');
-        // $this->form_validation->set_rules('zone', 'Zone', 'required');
-        // $this->form_validation->set_rules('district', 'District', 'required');
-        // $this->form_validation->set_rules('address', 'Address', 'required');
+
+        $this->load->view('admin/templates/header', $data);
 
         if ($this->form_validation->run() == FALSE) {
+
             $data['message'] = "";
             $this->load->view('admin/post_ad', $data);
             $this->load->view('admin/templates/footer', $data);
         }else {
             // check for existing user through email and username
-
             if($this->user_model->check_user()){
                 $u_id = $this->user_model->get_user_id();
             }else{
@@ -79,8 +75,8 @@ class Item_post extends CI_Controller{
                 $this->personal_upload();
             }
 
-            $data['message'] = "";
-            $this->load->view('admin/post_ad', $data);
+            $data['message'] = "Your item is posted.";
+            $this->load->view('admin/adv_index', $data);
             $this->load->view('admin/templates/footer', $data);
 
             // $this->session->set_flashdata('message','<div class="alert alert-success">Successfully Added!</div>');
@@ -92,6 +88,31 @@ class Item_post extends CI_Controller{
             // $this->load->view('admin/post_ad', $data);
 
         }//end of upload
+    }
+
+    public function form_valid_check(){
+        $this->form_validation->set_rules('ad_title', 'Ad Title', 'required|trim|max_length[100]');
+
+        if($this->input->post('bought_from') == "Abroad")
+            $this->form_validation->set_rules('abroad_country', 'Abroad Country', 'required|trim|max_length[30]');
+
+        $this->form_validation->set_rules('offer', 'Offer Price', 'required|trim|numeric');
+        $this->form_validation->set_rules('used_for_text', 'Used For Text', 'required|trim|numeric');
+        $this->form_validation->set_rules('market_price', 'Market Price', 'trim|numeric');
+        $this->form_validation->set_rules('document_no', 'Documnet No', 'trim|alpha_dash');
+        $this->form_validation->set_rules('ad_details', 'Ad Details', 'required|trim|max_length[300]');
+        $this->form_validation->set_rules('site_url', 'Site URL', 'trim|valid_url');
+
+        if($this->input->post('home_delivery') == 1)
+            $this->form_validation->set_rules('delivery_charge', 'Delivery Charge', 'required|trim|numeric');
+
+        $this->form_validation->set_rules('warranty', 'Warranty', 'trim|alpha_numeric_spaces');
+
+        if($this->input->post('owner_proof[]') == "Not")
+            $this->form_validation->set_rules('reason', 'No owner proof reason', 'required|trim|alpha_numeric_spaces');
+
+        $this->form_validation->set_rules('video1_url', 'Video 1 URL', 'trim|valid_url');
+        $this->form_validation->set_rules('video2_url', 'Video 2 URL', 'trim|valid_url');
     }
 
     public function personal_upload(){
@@ -157,15 +178,15 @@ class Item_post extends CI_Controller{
         $this->districts_model->get_districts();
     }
 
-    public function available_username_admin(){
-        $this->user_model->available_username();
-    }
-
-    public function available_email_admin(){
-        $this->user_model->available_email();
-    }
-
-    public function available_mobile_admin(){
-        $this->personal_model->available_mobile();
-    }
+//    public function available_username_admin(){
+//        $this->user_model->available_username();
+//    }
+//
+//    public function available_email_admin(){
+//        $this->user_model->available_email();
+//    }
+//
+//    public function available_mobile_admin(){
+//        $this->personal_model->available_mobile();
+//    }
 }

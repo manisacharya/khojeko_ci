@@ -10,7 +10,6 @@ class Item_model extends CI_Model
 {
     public $item_id;
     public $title;
-    //public $description;
     public $item_type;
     public $bought_from;
     public $price;
@@ -19,11 +18,8 @@ class Item_model extends CI_Model
     public $mkt_price;
     public $verification_number;
     public $is_verified;
-   
     public $avaibility_address;
-   
     public $published_date;
-    //public $spec_url;
     public $delivery;
     public $delivery_charge;
     public $warranty_period;
@@ -53,50 +49,53 @@ class Item_model extends CI_Model
             
             $this->title = $this->input->post('ad_title');
             $this->item_type = $this->input->post('ad_type');
+            $this->quantity = 1;
 
             if($this->input->post('bought_from') == "Abroad")
                 $this->bought_from = $this->input->post('abroad_country');
             else
                 $this->bought_from = $this->input->post('bought_from');
 
-            $this->quantity = 1;
             $this->price = $this->input->post('offer');
-            $this->used_for = $this->input->post('used_for');
+
+            $used_for = $this->input->post('used_for_text') . " " . $this->input->post('used_for_time');
+            $this->used_for = $used_for;
+
             $this->mkt_price = $this->input->post('market_price');
             $this->verification_number = $this->input->post('document_no');
 
             $this->is_verified = 0;     //what to do 
-            $this->avaibility_address = NULL;  //what to do 
+            $this->avaibility_address = $this->input->post('address');  //what to do
 
             $this->published_date = NOW();
-            
-            //$this->xss_invoke('spec_url', 'site_url');
-           
-           // $this->spec_url = $this->input->post('site_url');
 
-            //$this->xss_invoke('delivery', 'home_delivery');
+            $this->ad_duration = $this->input->post('ad_running_time');
+
             $this->delivery = $this->input->post('home_delivery');
 
-            $this->delivery_charge = $this->input->post('delivery_charge');
+            if($this->delivery == "yes") {
+                $this->delivery_charge = $this->input->post('delivery_charge');
+            } else {
+                $this->delivery_charge = 0;
+            }
+
             $this->warranty_period = $this->input->post('warranty');
 
             $this->sales_status = 1;
             //$this->xss_invoke('ad_duration', 'ad_running_time');
-            $this->ad_duration = $this->input->post('ad_running_time');
+
+            $this->sales_status = 1;
 
             $this->views = 0;
 
             //what to set visibility?
-            $this->visibility = 0;
+            $this->visibility = 1;
 
-            // $this->xss_invoke('video_url1', 'video_url1');
-            // $this->xss_invoke('video_url2', 'video_url2');
-            $this->video_url1 = $this->input->post("video1_url");
-            $this->video_url2 = $this->input->post("video2_url");
+            $this->video_url1 = $this->video_explode($this->input->post("video1_url"));
+            $this->video_url2 = $this->video_explode($this->input->post("video2_url"));
 
             $this->deleted_date = 0;
 
-            //$this->xss_invoke('c_id', 'parent_id');
             $this->c_id = $this->input->post('parent_id');
 
             $this->c_id = $this->categories_model->get_cid_c_slug($this->input->post('postc_slug'));;
@@ -141,5 +140,13 @@ class Item_model extends CI_Model
     public function get_item_id(){
 
         return $this->item_id;
+    }
+
+    public function video_explode($video_url){
+        $action = explode('=', $video_url);
+        foreach ($action as $value) {
+            $data = $value;
+        }
+        return $data;
     }
 }

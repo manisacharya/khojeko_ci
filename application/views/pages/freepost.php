@@ -189,13 +189,13 @@
                     </div>
                 </div>
 
-                <div class="row">
-                    <div class="col-sm-3 input-title"><label for="url_link">URL Link:</label></div>
-                    <div class="col-sm-7 input-text">
-                        <input type="text" name="site_url" class="sstep form-control" id="url_link"/>
-                        <?php echo form_error('site_url'); ?>
-                    </div>
-                </div>
+<!--                <div class="row">-->
+<!--                    <div class="col-sm-3 input-title"><label for="url_link">URL Link:</label></div>-->
+<!--                    <div class="col-sm-7 input-text">-->
+<!--                        <input type="text" name="site_url" class="sstep form-control" id="url_link"/>-->
+<!--                        --><?php //echo form_error('site_url'); ?>
+<!--                    </div>-->
+<!--                </div>-->
 
                 <div class="row" id="home_delivery" style="block">
                     <div class="col-sm-3 input-title"><label>Home delivery:</label></div>
@@ -251,7 +251,7 @@
                             <label for="packing_box">Pack</label>
                         </div>
                         <div class="col-sm-3 text-center">
-                            <input type="checkbox" name="owner_proof[]" id="none" noneoption="true" value="Not" id="nothing" />
+                            <input type="checkbox" name="owner_proof" id="none" noneoption="true" value="Not" id="nothing" />
                             <label for="nothing">Not Any</label>
                         </div>
                     </div>

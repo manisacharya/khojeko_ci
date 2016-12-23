@@ -1,5 +1,6 @@
 
 <script type="text/javascript" src="<?php echo base_url('public/js/jquery.js');?>"></script>
+
 <script src="<?php echo base_url('public'); ?>/js/jquery.MultiFile.js"></script>
 <script src="<?php echo base_url('public'); ?>/js/plugins/nicescroll/jquery.nicescroll.min.js"></script>
 
@@ -7,7 +8,7 @@
 <!-- Custom JQuery -->
 <script src="<?php echo base_url('public'); ?>/js/app/custom.js" type="text/javascript"></script>
 <script src="<?php echo base_url('public'); ?>/js/preview.js"></script>
-<script src="<?php echo base_url('public'); ?>/js/hawa.js"></script>
+<script src="<?php echo base_url('public'); ?>/js/next-prev-btn.js"></script>
 <script src="<?php echo base_url('public'); ?>/js/category.js"></script>
 <script src="<?php echo base_url('public'); ?>/js/popup.js"></script>
     
