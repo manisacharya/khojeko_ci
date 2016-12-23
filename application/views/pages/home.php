@@ -74,7 +74,7 @@
                                 ?>
                             </a><br>
                             <label style="float: right;">
-                                <a data-toggle="tooltip" data-placement="top" title="<?php echo $key->views; ?>"><span class="glyphicon glyphicon-eye-open"></span></a>
+                                <a data-toggle="tooltip" data-placement="bottom" title="<?php echo $key->views; ?>"><span class="glyphicon glyphicon-eye-open"></span></a>
                                 <span class="glyphicon glyphicon-time"></span>
                                 <span class="glyphicon glyphicon-heart"></span>
                                 <span class="glyphicon glyphicon-comment"></span>
@@ -146,7 +146,7 @@
                             </a><br>
 
                             <label style="float: right;">
-                                <a data-toggle="tooltip" data-placement="top" title="<?php echo $row->views; ?>">
+                                <a data-toggle="tooltip" data-placement="bottom" title="<?php echo $row->views; ?>">
                                     <span class="glyphicon glyphicon-eye-open"></span>
                                 </a>
                                 <span class="glyphicon glyphicon-time"></span>
