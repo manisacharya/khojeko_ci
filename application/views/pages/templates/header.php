@@ -19,7 +19,7 @@
     <link href="<?php echo base_url('public/images/icons/icon.ico')?>" rel="shortcut icon" />
 </head>
 <body>
-    <nav class="navbar navbar-inverse">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -30,6 +30,12 @@
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav">
+                    <?php
+                        $set_data = $this->session->all_userdata();
+                        if(isset($set_data['logged_in'])):
+                    ?>
+                            <li><a href="#" class="nav">Hello, <?php echo $set_data['logged_in']['username'];?></a></li>
+                    <?php endif;?>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li><?php echo anchor('','<span class="glyphicon glyphicon-home"></span> Home');?></li>
@@ -37,9 +43,7 @@
                     <li><a href="#" class="nav"><span class="glyphicon glyphicon-question-sign"></span> FAQ</a></li>
                     <li><a href="#" class="nav"><span class="glyphicon glyphicon-envelope"></span> Contact Us</a></li>
 
-                    <?php
-                    $set_data = $this->session->all_userdata();
-                    if (isset($set_data['logged_in'])):?>
+                    <?php if (isset($set_data['logged_in'])):?>
                         <?php if($set_data['logged_in']['type'] =='dealer'):?>
                             <li><?php echo anchor('dpanel/'.$set_data['logged_in']['username'], '<span class="glyphicon glyphicon-user"></span> My Profile'); ?></li>
                         <?php else:?>
