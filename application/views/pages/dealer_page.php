@@ -77,7 +77,7 @@
                             <a href="#" data-toggle="tooltip" data-placement="bottom" title="<?php echo $item->views; ?>"><span class="glyphicon glyphicon-eye-open"></span></a>
                             <span class="glyphicon glyphicon-time"></span>
                             <span class="glyphicon glyphicon-heart"></span>
-                            <span class="glyphicon glyphicon-comment"></span>
+                            <a href="#" data-toggle="tooltip" data-placement="bottom" title="<?php echo $item->comment_count; ?>"><span class="glyphicon glyphicon-comment"></span></a>
                         </label>
                     </span>
 					</section>

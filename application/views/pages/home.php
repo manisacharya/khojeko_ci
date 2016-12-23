@@ -77,7 +77,9 @@
                                 <a data-toggle="tooltip" data-placement="bottom" title="<?php echo $key->views; ?>"><span class="glyphicon glyphicon-eye-open"></span></a>
                                 <span class="glyphicon glyphicon-time"></span>
                                 <span class="glyphicon glyphicon-heart"></span>
-                                <span class="glyphicon glyphicon-comment"></span>
+                                <a data-toggle="tooltip" data-placement="bottom" title="<?php echo $key->comment_count; ?>">
+                                    <span class="glyphicon glyphicon-comment"></span>
+                                </a>
                             </label>
                         </span>
                     </section>
@@ -151,7 +153,9 @@
                                 </a>
                                 <span class="glyphicon glyphicon-time"></span>
                                 <span class="glyphicon glyphicon-heart"></span>
-                                <span class="glyphicon glyphicon-comment"></span>
+                                <a data-toggle="tooltip" data-placement="bottom" title="<?php echo $row->comment_count; ?>">
+                                    <span class="glyphicon glyphicon-comment"></span>
+                                </a>
                             </label>
                         </span>
                     </section>
