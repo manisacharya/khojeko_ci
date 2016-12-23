@@ -41,6 +41,7 @@ class Items_model extends CI_Model {
         $this->load->model('database_models/categories_model');
         $this->load->model('database_models/item_spec_model');
     }
+
     public function get_dealer_items($dealer, $visibility = FALSE) {
         if ($this->db->table_exists('items')) {
             $this->db->select('items.*, user.*, dealer.*, item_spec.specs, item_img.image, four.c_name AS gg_parent, three.c_name AS g_parent, two.c_name AS parent, one.c_name AS category');
@@ -91,30 +92,6 @@ class Items_model extends CI_Model {
         $query = $this->db->get('items');
         return $query->result();
     }
-//    public function get_filtered_items(){
-//        if ($this->db->table_exists('items')) {
-//            $this->db->where('deleted_date', 0);
-//            $this->db->where('primary', 1);
-//            $this->db->join('items', 'items.c_id = category.c_id');
-//            $this->db->join('item_img', 'item_img.item_id = items.item_id');
-//            $this->db->join('item_spec', 'item_spec.item_id = items.item_id');
-//           // $this->db->join('category', 'category.c_id = items.c_id');
-//            $this->db->join('user', 'user.user_id = items.user_id');
-//
-//            $categories = $this->categories_model->get_position();
-//            $item_category = array();
-//            $i=0;
-//            foreach($categories as $c):
-//                $this->db->where('c_id', $c->c_id);
-//                $query = $this->db->get('items');
-//
-//                $item_category[$i++] = $this->items_xss_clean($query->result(), 'items');
-//            endforeach;
-//
-//            return $item_category;
-//        }
-//        return FALSE;
-//    }
 
     public function item_joins() {
         $this->db->where('deleted_date', 0);
@@ -396,8 +373,8 @@ class Items_model extends CI_Model {
 //                $this->visibility = 0;
 //            }
 
-            $this->video_url1 = $this->input->post("video1_url");
-            $this->video_url2 = $this->input->post("video2_url");
+            $this->video_url1 = $this->video_explode($this->input->post("video1_url"));
+            $this->video_url2 = $this->video_explode($this->input->post("video2_url"));
 
             $this->deleted_date = 0;
 
@@ -412,12 +389,8 @@ class Items_model extends CI_Model {
             if($this->title!=NULL)
                 $this->db->insert('items', $this);
 
-            //$this->db->select('item_id');
-            //$this->db->from('items');
             $q = $this->db->get_where('items', array('published_date' => $this->published_date));
-            //$this->db->where('published_date', $this->published_date);
 
-            //$query =  $this->db->get();
             foreach ($q->result() as $row)
             {
                 $this->item_id = $row->item_id;
@@ -442,4 +415,11 @@ class Items_model extends CI_Model {
         return $this->title;
     }
 
+    public function video_explode($video_url){
+        $action = explode('=', $video_url);
+        foreach ($action as $value) {
+            $data = $value;
+        }
+        return $data;
+    }
 }

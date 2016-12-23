@@ -22,6 +22,7 @@
             </div>
         </div>
     </div>
+    <?php echo validation_errors(); ?>
 
     <?php echo form_open_multipart("adpost"); ?>
         <div class="setup-content col-sm-12" id="step-1">
@@ -53,19 +54,19 @@
                 </div>
 
                 <?php if($user_type == "personal") { ?>
-                    <div class="row" id="ad_type">
-                        <div class="col-sm-3 input-title"><label>Ad Type:</label></div>
-                        <div class="col-sm-7 input-text">
-                            <div class="col-sm-5 text-center">
-                                <input type="radio" name="ad_type_personal" id="used" value="Used" checked="checked">
-                                <label for="used">Used</label>
-                            </div>
-                            <div class="col-sm-7 text-center">
-                                <input type="radio" name="ad_type_personal" id="like_new" value="Likely New">
-                                <label for="like_new">Likely New</label>
+                        <div class="row" id="ad_type">
+                            <div class="col-sm-3 input-title"><label>Ad Type:</label></div>
+                            <div class="col-sm-7 input-text">
+                                <div class="col-sm-5 text-center">
+                                    <input type="radio" name="ad_type_personal" id="used" value="Used" checked="checked">
+                                    <label for="used">Used</label>
+                                </div>
+                                <div class="col-sm-7 text-center">
+                                    <input type="radio" name="ad_type_personal" id="like_new" value="Likely New">
+                                    <label for="like_new">Likely New</label>
+                                </div>
                             </div>
                         </div>
-                    </div>
                 <?php } else {?>
                     <div class="row" id="ad_type">
                         <div class="col-sm-3 input-title"><label>Ad Type:</label></div>
@@ -92,11 +93,12 @@
                     <div class="row" id="quantity">
                         <div class="col-sm-3 input-title"><label>Quantity:</label></div>
                         <div class="col-sm-7 input-text">
-                            <input type="text" name="quantity_dealer" class="sstep form-control" id="quantity_dealer" placeholder="Enter Quantity of item"/>
+                            <input type="text" name="quantity_dealer" class="sstep form-control" id="quantity_dealer" placeholder="Enter Quantity of item" required/>
                             <?php echo form_error('quantity'); ?>
                         </div>
                     </div>
                 <?php } ?>
+
                 <div class="row" id="bought_from">
                     <div class="col-sm-3 input-title"><label>Bought From:</label></div>
                     <div class="col-sm-7 input-text">
@@ -107,22 +109,24 @@
                         <div class="col-sm-7 text-center">
                             <input type="radio" name="bought_from" id="abroad" value="Abroad">
                             <label for="abroad">Abroad</label>
-                            <input type="text" placeholder="Type Country Name" name="abroad_country" id="country_name" class="form-control">
+                            <input type="text" placeholder="Type Country Name" name="abroad_country" maxlength=30 id="country_name" class="form-control">
                         </div>
                     </div>
                 </div>
+
                 <div class="row" id="offer">
                     <div class="col-sm-3 input-title"><label for="offer_input">Offer Price:</label></div>
                     <div class="col-sm-7 input-text">
-                        <input name="offer" type="text" class="sstep form-control" id="offer_input"/>
+                        <input name="offer" type="text" class="sstep form-control" id="offer_input" required/>
                         <?php echo form_error('offer'); ?>
                     </div>
                 </div>
+
                 <div class="row" id="used_for">
                     <div class="col-sm-3 input-title"><label for="used_input">Used for:</label></div>
                     <div class="col-sm-7 input-text">
                         <div class="col-sm-6 input-text">
-                            <input type="text" name="used_for_text" class="sstep form-control" id="used_input">
+                            <input type="text" name="used_for_text" class="sstep form-control" id="used_input" required>
                         </div>
                         <div class="col-sm-6 input-text">
                             <select name="used_for_time" class="form-control">
@@ -134,6 +138,7 @@
                         <?php echo form_error('used_for'); ?>
                     </div>
                 </div>
+
                 <div class="row" id="market_price">
                     <div class="col-sm-3 input-title"><label for="market_price_input">Market Price:</label></div>
                     <div class="col-sm-7 input-text">
@@ -149,6 +154,7 @@
                         <?php echo form_error('document_no'); ?>
                     </div>
                 </div>
+
                 <div class="row">
                     <div class="col-sm-3 input-title"><label for="ad_details">Advertisement Details:</label></div>
                     <div class="col-sm-7 input-text">
@@ -160,7 +166,8 @@
                             'maxlength' => 300,
                             'id' => 'ad_details',
                             'placeholder' => 'Full specification and Product details',
-                            'class'=>'form-control'
+                            'class'=>'form-control',
+                            'required'=>'required'
                         );
                         echo form_textarea($data);
                         echo form_error('ad_details');
@@ -168,6 +175,7 @@
                         <div id="textarea_feedback"></div>
                     </div>
                 </div>
+
                 <div class="row">
                     <div class="col-sm-3 input-title"><label for="ad_duration">Advertisement Durations:</label></div>
                     <div class="col-sm-7 input-text">
@@ -180,13 +188,15 @@
                         </select>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-sm-3 input-title"><label for="url_link">URL Link:</label></div>
-                    <div class="col-sm-7 input-text">
-                        <input type="text" name="site_url" class="sstep form-control" id="url_link"/>
-                        <?php echo form_error('site_url'); ?>
-                    </div>
-                </div>
+
+<!--                <div class="row">-->
+<!--                    <div class="col-sm-3 input-title"><label for="url_link">URL Link:</label></div>-->
+<!--                    <div class="col-sm-7 input-text">-->
+<!--                        <input type="text" name="site_url" class="sstep form-control" id="url_link"/>-->
+<!--                        --><?php //echo form_error('site_url'); ?>
+<!--                    </div>-->
+<!--                </div>-->
+
                 <div class="row" id="home_delivery" style="block">
                     <div class="col-sm-3 input-title"><label>Home delivery:</label></div>
                     <div class="col-sm-7 input-text">
@@ -200,6 +210,7 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="row" id="delivery_charge" style="block">
                     <div class="col-sm-3 input-title"><label for="input_delivery">Delivery Charges:</label></div>
                     <div class="col-sm-7 input-text">
@@ -207,19 +218,23 @@
                         <?php echo form_error('delivery_charge'); ?>
                     </div>
                 </div>
+
                 <div class="row" id="warranty">
                     <div class="col-sm-3 input-title"><label for="input_warranty">Warranty Period:</label></div>
                     <div class="col-sm-7 input-text">
                         <input type="text" name="warranty" id="input_warranty" class="sstep form-control"/>
                     </div>
                 </div>
+
                 <button class="btn btn-primary prevBtn btn-lg pull-left" type="button" >Prev</button>
                 <button class="btn btn-primary nextBtn btn-lg pull-right" type="button" >Next</button>
             </div>
         </div>
+
         <div class="setup-content step-3 col-sm-12" id="step-3">
             <div class="form-group">
                 <h3>Step 3 : Documents:</h3>
+
                 <div class="row">
                     <div class="col-sm-3 input-title"><label>Proof Document:</label></div>
                     <div class="col-sm-7 input-text">
@@ -236,11 +251,12 @@
                             <label for="packing_box">Pack</label>
                         </div>
                         <div class="col-sm-3 text-center">
-                            <input type="checkbox" name="owner_proof[]" id="none" noneoption="true" value="Not" id="nothing" />
+                            <input type="checkbox" name="owner_proof" id="none" noneoption="true" value="Not" id="nothing" />
                             <label for="nothing">Not Any</label>
                         </div>
                     </div>
                 </div>
+
                 <div class="row" id="reason">
                     <div class="col-sm-3 input-title"><label for="reason">Specify Reason:</label></div>
                     <div class="col-sm-7 input-text">
