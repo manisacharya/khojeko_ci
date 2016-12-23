@@ -38,5 +38,3 @@ class Document_model extends CI_Model
         }
     }
 }
-
-?>

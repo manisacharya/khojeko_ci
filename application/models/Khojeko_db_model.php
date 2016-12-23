@@ -159,4 +159,4 @@ class Khojeko_db_model extends CI_Model {
         }
         return $count;
     }
-};
+}

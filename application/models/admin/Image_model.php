@@ -24,5 +24,3 @@ class Image_model extends CI_Model
         $this->db->insert_batch('item_img', $img_data);        
     }
 }
-
-?>

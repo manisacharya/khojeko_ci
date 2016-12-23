@@ -64,6 +64,7 @@ class Details extends CI_Controller {
             $data['recent_views'] = $this->recent_view_model->get_recent_view($user_session['logged_in']['id']);
         }
 
+        $this->session->set_userdata('add_slider', 'true');
         $this->load->view('pages/templates/header', $data);
         $this->load->view('pages/details', $data);
         $this->load->view('pages/templates/footer', $data);
@@ -146,12 +147,11 @@ class Details extends CI_Controller {
 
     //ask_me validation to add questions in table
     public function ask_me_validation($comment_count){
+        $user_id = $this->session->userdata['logged_in']['id'];
+        $item_id = $this->input->post('item_id');
         if($this->session->has_userdata('logged_in')) {
             $this->load->library('form_validation');
             $this->form_validation->set_rules('question', 'Question', 'required|trim');
-
-            $user_id = $this->session->userdata['logged_in']['id'];
-            $item_id = $this->input->post('item_id');
 
             //add the question in table
             if($this->form_validation->run()){
@@ -162,6 +162,7 @@ class Details extends CI_Controller {
                 $this->load->view('pages/details/'.$item_id);
             }
         } else {
+            $this->session->set_flashdata('previous_url', base_url('details/'.$item_id));
             redirect('login');
         }
     }

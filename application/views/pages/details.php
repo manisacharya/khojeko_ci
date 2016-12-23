@@ -27,72 +27,48 @@
     <?php echo $spam_msg; ?>
 </div>
 
-<div class="item_info">
-    <div class="col-sm-3">
-        <div class="col-sm-2">
-            <span class="glyphicon glyphicon-time symbol" id="clock"></span>
-        </div>
-
-        <div class="col-sm-10 text-center" id="date">
-            <a>
-                <?php
-                //default_timezone_set in config.php
+<div class="item_info row">
+    <div class="col-sm-3 text-center clock">
+        <label>
+            <span class="glyphicon glyphicon-time" id="clock"></span>
+            <?php
                 $days = $date;
                 echo mdate('%d %M %Y', $details->published_date)." (".$days->format("%a days").")";
-                ?>
-            </a>
-        </div>
-    </div>
-
-    <div class="col-sm-2" style="padding-left:4px">
-        <div class="col-sm-2  text-center">
-            <span class="glyphicon glyphicon-eye-open symbol"></span>
-        </div>
-        <div class="col-sm-10 text-center" id="view">
-            <a><?php echo $details->views;?> views</a>
-        </div>
-    </div>
-
-    <div class="col-sm-3">
-        <div class="col-sm-2 text-center">
-            <span class="glyphicon glyphicon-calendar symbol"></span>
-        </div>
-
-        <div class="col-sm-10 expiry_date text-center">
-
-            <?php
-            $edays = $details->ad_duration - $days->format("%a");
-            if(intval($edays)<0)
-                echo '<label class="red">Expired</label>';
-            else {
-                echo "Expire After: ";
-                echo $edays . " days";
-            }
             ?>
-        </div>
+        </label>
     </div>
 
-    <div class="col-sm-2">
-        <div class="col-sm-2">
-            <span class="glyphicon glyphicon-heart symbol"></span>
-        </div>
-        <div class="col-sm-10 text-center" id="favourite">
-            <a href="<?php echo base_url("add_to_fav/".$id)?>">Favourite</a>
-        </div>
+    <div class="col-sm-2 text-center views">
+        <label>
+            <span class="glyphicon glyphicon-eye-open"></span>
+            <?php echo $details->views;?>&nbspViews
+        </label>
     </div>
 
-    <div class="col-sm-2">
-        <div class="col-sm-2">
-            <span class="glyphicon glyphicon-warning-sign symbol"></span>
-        </div>
-
-        <div class="col-sm-10 text-center" id="fake_report">
-            <?php if($this->session->has_userdata('logged_in')) : ?>
-                <a href="#" data-toggle="modal" data-target="#myModal">Report Us</a>
-            <?php else : ?>
-                <a href="<?php echo base_url("add_to_spam/".$id.'/'.$details->spam_count)?>">Report Us</a>
+    <div class="col-sm-3 text-center expire-date">
+        <?php
+            $edays = $details->ad_duration - $days->format("%a");
+            if(intval($edays)<0):?>
+                <label class="red"><span class="glyphicon glyphicon-calendar"></span>&nbsp;Expired</label>
+            <?php else: ?>
+                <label class='green'><span class='glyphicon glyphicon-calendar'></span>&nbsp;Expire After: <?php echo $edays;?> Days</label>
             <?php endif; ?>
-        </div>
+    </div>
+
+    <div class="col-sm-2 text-center favourite">
+        <label>
+            <a href="<?php echo base_url("add_to_fav/".$id)?>"><span class="glyphicon glyphicon-heart"></span>&nbsp;Favourite</a>
+        </label>
+    </div>
+
+    <div class="col-sm-2 text-center report-us">
+        <label>
+            <?php if($this->session->has_userdata('logged_in')) : ?>
+                <a href="#" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-warning-sign"></span>&nbsp;Report Us</a>
+            <?php else : ?>
+                <a href="<?php echo base_url("add_to_spam/".$id.'/'.$details->spam_count)?>"><span class="glyphicon glyphicon-warning-sign symbol"></span>&nbsp;Report Us</a>
+            <?php endif; ?>
+        </label>
     </div>
 </div><!--item_info ends-->
 
@@ -123,59 +99,39 @@
     </div>
 </div>
 
-<div class="col-sm-7" style="clear:both">
+<div class="col-sm-7">
     <div class="item_image">
-        <?php if($details->sales_status == 0){ ?>
+        <?php if ($details->sales_status == 0): ?>
             <img src="<?php echo base_url('public/images/sold.png'); ?>" alt="sold" id="sold" class="img-responsive">
-        <?php } ?>
+        <?php endif ?>
         <img id="displayImage" src="<?php echo base_url();?>public/images/item_images/<?php echo $image->row()->image;?>" id="item_img" class="img-big">
     </div><!--item_images ends -->
 
     <div class="clearfix"></div>
 
     <div class="item_img_slider">
-        <div  id="slider1_container" >
-            <div u="slides" style="cursor: move; width: 100%; height: 120px;margin-left:10px;">
+        <div id="slider1_container">
+            <div u="slides" style="cursor: move; width: 100%; height: 120px;">
                 <?php foreach ($image->result() as $row): ?>
                     <div class="item_image_section">
                         <img onclick="changeDisplayImage(this)" src="<?php echo base_url();?>public/images/item_images/<?php echo $row->image; ?>" alt="mobile">
                     </div>
                 <?php endforeach ?>
-
-                <style>
-                    .jssora11l, .jssora11r {
-                        display: block;
-                        position: absolute;
-                        width: 37px;
-                        height: 37px;
-                        cursor: pointer;
-                        background: url(/public/images/a11.png) no-repeat;
-
-                    }
-                    .jssora11l { background-position: -3px -42px; }
-                    .jssora11r { background-position: -71px -41px; }
-                    .jssora11l:hover { background-position: -131px -41px; }
-                    .jssora11r:hover { background-position: -191px -41px; }
-                    .jssora11l.jssora11ldn { background-position: -251px -41px; }
-                    .jssora11r.jssora11rdn { background-position: -311px -41px; }
-                </style>
             </div><!--div u slides ends here-->
-            <span u="arrowleft" class="jssora11l" style="top: 123px; left: -10px;"></span>
-            <span u="arrowright" class="jssora11r" style="top: 123px; right: -8px;"></span>
         </div><!--slider1_container-->
     </div><!--item_img_slider-->
-
-
 </div><!--col-sm-7 ends-->
 
 <div class="col-sm-5">
     <div class="item_written_spec">
-        <?php
-        echo "<a class='item_detail_price'>";
-        echo "Offer Rs.".$details->price."</a>"."<a class='status'>".$details->item_type."</a><br>";
-        echo "<a class='item_detail_title'> $details->title</a>";
-        echo "<p>".$specification->specs."</p>";
-        ?>
+        <label class="item_detail_title"><?php echo $details->title;?><label class='status'>&nbsp;(<?php echo $details->item_type;?>)</label>
+            <?php if ($details->is_verified == 1): ?>
+                <a data-toggle="tooltip" data-placement="top" title="Verified Advertisement"><span class="glyphicon glyphicon-ok-sign" id="tick"></span></a>
+            <?php else:?>
+                <a data-toggle="tooltip" data-placement="top" title="Not Verified Advertisement"><span class='glyphicon glyphicon-exclamation-sign' id='danger'></span></a>
+            <?php endif ?>
+        </label><br />
+        <label class="item_detail_price">Rs.&nbsp;<?php echo $details->price;?></label>
 
         <div class="written_from">
             <a class="bought_from">Bought From:
@@ -187,25 +143,34 @@
                     echo "Abroad(".$country.")";
                 ?>
             </a><br>
-            <a>Market Indicative Price: <?php echo "Rs. ".$details->mkt_price; ?></a>
+            <a>Market Price: Rs.&nbsp;<?php echo $details->mkt_price; ?></a>
         </div>
     </div><!--item_writtten_spec-->
 
     <div class="item_owner_details">
-        <a class="item_id"><?php echo 'ad id: '.$details->item_id; ?>,&nbsp;&nbsp;Member since:<?php echo mdate('%d %M %Y', $user->ac_created); ?></a><br>
-        <a>Ad by:<a class="item_owner_name"> <?php echo $user_type->name; ?></a></a><br>
-        <a>Address: <?php echo $user_type->city. " " . $user_type->full_address; ?></a><br>
-        <a>District: <?php echo $user_type->district; ?></a><br>
-        <a>Telephone no.: <?php echo $user_type->tel_no; ?></a><br>
-        <a>Mobile: <?php echo $user_type->primary_mob; ?></a>
-        <?php
-        if($user->m_verified == 0)
-            echo "<a class='unverified'>(Unverified)</a>";
-        else
-            echo "<a class='verified'>(Verified)</a>";
-        ?>
-        <br>
-        <a class="a_visit_owner" href="<?php echo base_url();?>application/views/main_index.php">Visit ad owner page(Active ad - )</a>
+        <label class="member">By:&nbsp;<a class="item_owner_name"><?php echo $user_type->name; ?></a>
+            <?php if ($user->u_verified == 1): ?>
+                <a data-toggle="tooltip" data-placement="top" title="Verified User"><span class="glyphicon glyphicon-ok-sign" id="tick"></span></a>
+            <?php else:?>
+                <a data-toggle="tooltip" data-placement="top" title="User Not Verified"><span class='glyphicon glyphicon-exclamation-sign' id='danger'></span></a>
+            <?php endif ?>
+        </label><br />
+        <a>Member Since:&nbsp;<?php echo mdate('%Y %M %d', $user->ac_created); ?></a><br />
+        <a>Address:&nbsp;<?php echo $user_type->city. " " . $user_type->full_address; ?></a><br />
+        <a>District:&nbsp;<?php echo $user_type->district; ?></a><br />
+        <a>Telephone no.:&nbsp;<?php echo $user_type->tel_no; ?></a><br />
+        <a>Mobile:&nbsp;<?php echo $user_type->primary_mob; ?>
+            <?php if ($user->m_verified == 1): ?>
+                <a data-toggle="tooltip" data-placement="top" title="Verified Mobile"><span class="glyphicon glyphicon-ok-sign" id="tick"></span></a>
+            <?php else:?>
+                <a data-toggle="tooltip" data-placement="top" title="Mobile Not Verified"><span class='glyphicon glyphicon-exclamation-sign' id='danger'></span></a>
+            <?php endif ?>
+        </a><br />
+        <?php if($user->type == 'dealer'):?>
+            <a class="a_visit_owner" href="<?php echo base_url('dealer/'.$user->khojeko_username); ?>">Visit Owner Page</a>
+        <?php else: ?>
+            <a class="a_visit_owner" href="<?php echo base_url('user/'.$user->khojeko_username); ?>">Visit Owner Page</a>
+        <?php endif; ?>
     </div>
 
     <!--<div class="send_email">
@@ -249,15 +214,13 @@
         <?php
         $url1 = $details->video_url1;
         $url2 = $details->video_url2;
-        if ($url1 != NULL){ ?>
+        if ($url1 != NULL): ?>
             <iframe width="161" height="172" src="https://www.youtube.com/embed/<?php echo $url1; ?>" frameborder="0" allowfullscreen></iframe>
-        <?php } ?>
-        <?php if ($url2 != NULL){ ?>
+        <?php endif; ?>
+        <?php if ($url2 != NULL): ?>
             <iframe width="161" height="172" src="https://www.youtube.com/embed/<?php echo $url2; ?>" frameborder="0" allowfullscreen></iframe>
-        <?php } ?>
+        <?php endif; ?>
     </div><!--video_ad ends-->
-
-
 
     <!--div class="map_section">
         MAP
@@ -266,28 +229,27 @@
 </div><!--guts-->
 
 <div class="clearfix"></div>
+<div class="specification">
+    <div id="item_spec">
+        <label>Ad details/Specification</label>
+    </div><!--item_spec--->
 
-<div id="item_spec">
-    Ad details/Specification
-</div><!--item_spec--->
-
-<div class="item_spec_sub">
-    <?php echo $details->specs;?>
-</div><!--item_spec_sub-->
-
+    <div class="item_spec_sub">
+        <?php echo $details->specs;?>
+    </div><!--item_spec_sub-->
+</div>
 <div class="question_section">
     <div class="question_title">
-        <a class="ask">ASK ME Box</a>
+        <label class="ask">ASK ME BOX</label>
         <?php if($this->session->has_userdata('logged_in')) $is_session = 1;
         else $is_session = 0;
         ?>
-        <a class="post" href="#!" onclick="showBox(<?php echo $is_session; ?>,'<?php echo base_url('login');?>')">Click to question</a>
-        <!--a class="post" href="<?php //echo base_url("Details/ask_me_validation/".$id)?>">Click to question(USE JavaScript)</a-->
+        <button type="button" id="view_btn" onclick="showBox(<?php echo $is_session; ?>,'<?php echo base_url('login');?>')">Click To Question</button>
     </div>
     <div class="clearfix"></div>
     <div>
         <?php
-        echo form_open('Details/ask_me_validation/'.$details->comment_count);
+        echo form_open('ask_me_validation/'.$details->comment_count);
         echo validation_errors();
 
         echo form_hidden('item_id', $id);
@@ -305,9 +267,8 @@
     </div>
 
     <div class="question_answer_section">
-
         <?php foreach ($question->result() as $row): ?>
-            <question><?php echo $row->question ?></question><by>-asked by: <em><?php echo $row->khojeko_username; ?></em> on
+            <question><?php echo $row->question ?></question><by>-Asked by: <strong><em><?php echo $row->khojeko_username; ?></em></strong> on
                 <?php echo mdate('%d %M %Y', $row->posted_date);?></by><br>
             <?php
             $ans = $row->answer;
@@ -316,14 +277,7 @@
                 <answer><?php echo $ans; ?></answer><br> <?php } ?>
             <br>
         <?php endforeach ?>
-
-        <!--question>What about its camera pixel and internal memory?</question><br>
-        <br>
-        <question>What about its camera pixel and internal memory?</question><br>
-        <answer>Its front camera is 10 mpx, back camera of 32 mpx and have 32 gb internal mamory.</answer><br>
-        <br-->
     </div><!--question_answer_section-->
 </div><!--quetion_section ends-->
-
 </div> <!--col-sm-9-->
 </div>  <!--row ends-->

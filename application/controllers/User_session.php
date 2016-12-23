@@ -214,4 +214,3 @@ class User_session extends CI_Controller {
         $data['popular_dealer'] = $this->khojeko_db_model->popular_dealer();
     }
 }
-?>

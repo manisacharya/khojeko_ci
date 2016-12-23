@@ -9,7 +9,7 @@
             <?php if ($dealer_info->u_verified): ?>
                 <a data-toggle="tooltip" data-placement="top" title="Verified Account"><span class="glyphicon glyphicon-ok-sign" id="tick"></span></a>
             <?php else:?>
-                <a data-toggle="tooltip" data-placement="top" title="Not Verified Account"><span class='glyphicon glyphicon-info-sign' id='danger'></span></a>
+                <a data-toggle="tooltip" data-placement="top" title="Not Verified Account"><span class='glyphicon glyphicon-exclamation-sign' id='danger'></span></a>
             <?php endif ?>
 			<br>
 			<address1><?php echo $dealer_info->full_address; ?></address1><br>
@@ -83,12 +83,13 @@
 					</section>
 					<section class="list-left">
 						<span class="title">
-							<b>Rs <?php echo $item->price; ?><label style="color:red;">&nbsp;(<?php echo $item->item_type; ?>)</label></b>
-                            <?php if ($item->is_verified): ?>
-                                <i class="fa fa-check-circle" id="tick"></i>
-                            <?php endif; ?>
-                            <br>
-							<a class="sub" href="#"><?php echo $item->title; ?></a><br>
+                            <b>Rs <?php echo $item->price; ?><label style="color:red;">&nbsp;(<?php echo $item->item_type; ?>)</label></b></span><br />
+							<a class="sub" href="#"><?php echo $item->title; ?></a>
+                            <?php if ($item->is_verified == 1): ?>
+                                <a data-toggle="tooltip" data-placement="top" title="Verified Advertisement"><span class="glyphicon glyphicon-ok-sign" id="tick"></span></a>
+                            <?php else:?>
+                                <a data-toggle="tooltip" data-placement="top" title="Not Verified Advertisement"><span class='glyphicon glyphicon-exclamation-sign' id='danger'></span></a>
+                            <?php endif ?><br /><br>
 							<span class="address">
 								<span><?php echo $item->full_address; ?></span>
 								<span><?php echo date('Y-m-d', $item->published_date); ?></span>

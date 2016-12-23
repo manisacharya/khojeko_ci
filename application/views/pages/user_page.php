@@ -5,11 +5,11 @@
         </div>
         <div class="col-sm-10 dealer_all_info">
             <name><?php echo $personal_info->name; ?></name>
-            <?php if($personal_info->u_verified): ?>
-                <label style="color: green;">(Verified Account)</label>
+            <?php if ($personal_info->u_verified): ?>
+                <a data-toggle="tooltip" data-placement="top" title="Verified Account"><span class="glyphicon glyphicon-ok-sign" id="tick"></span></a>
             <?php else:?>
-                <label style="color: red;">(Unverified Account)</label>
-            <?php endif; ?>
+                <a data-toggle="tooltip" data-placement="top" title="Not Verified Account"><span class='glyphicon glyphicon-exclamation-sign' id='danger'></span></a>
+            <?php endif ?>
             <br />
             <address1><?php echo $personal_info->full_address; ?></address1><br>
             <address2><?php echo $personal_info->district.', '. $personal_info->zone; ?></address2><br>
@@ -64,8 +64,13 @@
                 </section>
                 <section class="list-left">
                     <span class="title">
-                        <b>Rs. <?php echo $item->price; ?><label style="color:#f00;">&nbsp;(<?php echo $item->item_type; ?>)</label></b><br>
-                        <a class="sub" href="!#"><?php echo $item->title; ?></a><br>
+                        <b>Rs. <?php echo $item->price; ?><label style="color:#f00;">&nbsp;(<?php echo $item->item_type; ?>)</label></b><br />
+                        <a class="sub" href="!#"><?php echo $item->title; ?></a>
+                        <?php if ($item->is_verified == 1): ?>
+                            <a data-toggle="tooltip" data-placement="top" title="Verified Advertisement"><span class="glyphicon glyphicon-ok-sign" id="tick"></span></a>
+                        <?php else:?>
+                            <a data-toggle="tooltip" data-placement="top" title="Not Verified Advertisement"><span class='glyphicon glyphicon-exclamation-sign' id='danger'></span></a>
+                        <?php endif ?><br />
                         <span class="address">
                             <span><?php echo $item->avaibility_address; ?></span>
                             <span><?php echo date('Y-m-d', $item->published_date);?></span>

@@ -36,5 +36,3 @@ class Specification_model extends CI_Model
     }
 
 }
-
-?>
