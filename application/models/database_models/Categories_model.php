@@ -103,6 +103,7 @@ class Categories_model extends CI_Model {
         if ($this->db->table_exists('category')) {
             $this->get_categories();
             $this->db->where('c_position !=', 0);
+            $this->db->order_by('c_position', 'ASC');
             $query = $this->db->get('category');
 
             return $query->result();
