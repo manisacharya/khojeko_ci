@@ -6,14 +6,14 @@
         <div class="cname category">
             <?php
                 require_once ('templates/category.php');
-                print_list(0, 0, $categories);
+                print_category(0, 0, $categories);
             ?>
         </div>
 
         <label>Selected Category:</label>
         <div id="display_cname"></div></br>
-        <textarea name="c_id" id="c_id" hidden="hidden"></textarea>
-        <?php echo form_error('c_id')?>
+        <textarea name="c_slug" id="c_id" hidden="hidden"></textarea>
+        <?php echo form_error('c_slug')?>
 
         <label for="new_category_name">New Category name: </label>
         <input type="text" name="c_name" id="new_category_name" value="<?php echo set_value('c_name');?>"><br><br>
@@ -23,7 +23,7 @@
         <div class="parent category">
             <?php
                 require_once ('templates/category.php');
-                print_list(0, 0, $categories);
+                print_category(0, 0, $categories);
             ?>
         </div>
 
@@ -31,8 +31,8 @@
 
         <label>Selected Parent:</label>
         <div id="display_parent"></div><br />
-        <textarea name="parent_id" id="parent" hidden="hidden"></textarea>
-        <?php echo form_error('parent_id')?>
+        <textarea name="parent_slug" id="parent" hidden="hidden"></textarea>
+        <?php echo form_error('parent_slug')?>
 
         <button class="btn-primary">Edit</button>
         </form>

@@ -10,14 +10,14 @@
         <div class="parent category">
             <?php
             require_once ('templates/category.php');
-            print_list(0, 0, $categories);
+            print_category(0, 0, $categories);
             ?>
         </div>
         <button type="button" class="btn btn-default parent_click">Set Parent</button><br />
         <label for="display_parent">Choosed Parent Category:</label>
         <div id="display_parent"></div>
-        <textarea name="parent_id" id="parent" hidden="hidden"></textarea></br>
-        <?php echo form_error('parent_id'); ?>
+        <textarea name="parent_slug" id="parent" hidden="hidden"></textarea></br>
+        <?php echo form_error('parent_slug'); ?>
         <button type="submit" class="btn-primary">Add</button>
     <?php echo form_close(); ?>
 
