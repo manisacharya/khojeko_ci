@@ -40,9 +40,7 @@ class Item_post extends CI_Controller{
 
         $this->form_validation->set_error_delimiters('<div class="alert alert-danger">', '</div>');
 
-        $this->form_validation->set_rules('owner_name', 'AdOwnerName', 'required');
-        $this->form_validation->set_rules('email', 'Email', 'required');
-        $this->form_validation->set_rules('username', 'UserName', 'required');
+
 
         $this->load->view('admin/templates/header', $data);
 
@@ -91,7 +89,22 @@ class Item_post extends CI_Controller{
     }
 
     public function form_valid_check(){
+        //form validation for step 1
+        $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email|is_unique[user.email]');
+        $this->form_validation->set_rules('owner_name', 'Ad Owner Name', 'required|trim|max_length[100]|alpha');
+        $this->form_validation->set_rules('username', 'UserName', 'required|trim|is_unique[user.khojeko_username]|alpha_dash|max_length[100]');
+        $this->form_validation->set_rules('password', 'New Password', 'required|min_length[6]|trim');
+        $this->form_validation->set_rules('re-password', 'Retype Password', 'required|trim|matches[password]');
+        $this->form_validation->set_rules('zone', 'Zone', 'required|trim');
+        $this->form_validation->set_rules('district', 'District', 'required|trim');
+        $this->form_validation->set_rules('city', 'City', 'required|trim|max_length[100]');
+        $this->form_validation->set_rules('address', 'Full Address', 'required|trim|max_length[100]');
+        $this->form_validation->set_rules('mobile1', 'Primary Mobile No.', 'required|trim|is_unique[personal.primary_mob]|max_length[10]');
+        $this->form_validation->set_rules('acc_type', 'Account Type', 'required');
+
+
         $this->form_validation->set_rules('ad_title', 'Ad Title', 'required|trim|max_length[100]');
+        $this->form_validation->set_rules('ad_type', 'Ad type', 'required');
 
         if($this->input->post('bought_from') == "Abroad")
             $this->form_validation->set_rules('abroad_country', 'Abroad Country', 'required|trim|max_length[30]');
