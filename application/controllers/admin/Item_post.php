@@ -25,8 +25,6 @@ class Item_post extends CI_Controller{
         $this->load->library('upload');
         $this->load->library('form_validation');
 
-        $this->output->enable_profiler(TRUE);
-
         if (! $this->session->has_userdata('admin_logged_in'))
             redirect('admin/login');
     }
