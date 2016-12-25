@@ -196,7 +196,7 @@
                                 <?php echo "<label class='control-label'>Landline_no</label>"; ?>
                             </div>
                             <div class="col-sm-7 input-text">
-                                <input maxlength=10 name="landline_no" id="text" type="number" class="form-control" maxlength = 9 placeholder="Enter Landline No."/>
+                                <input maxlength=10 name="landline_no" id="number" type="text" class="form-control" maxlength = 9 placeholder="Enter Landline No."/>
                                 <?php echo form_error('landline_no', '<div class="alert alert-danger">', '</div>'); ?>
                                 <div class="result" id="tel_p_result"></div>
 
