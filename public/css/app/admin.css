@@ -119,3 +119,23 @@ input.readonly{width:520px;}
 #display_cname, #display_parent {border:1px solid;height:25px;padding-left:10px;width:60%}
 form{padding-left:25px;  padding:25px;}
 form.search{padding:0px;}
+
+.setup-content h3 {
+    text-align: center;
+}
+
+.setup-content .row {
+    margin-bottom: 20px;
+}
+
+.input-title {
+    height: 24px;
+    padding-right: 20px;
+    margin: 5px 0;
+    text-align: right;
+}
+
+.post-ad-category {
+    margin: 0 auto;
+    text-align: center;
+}
