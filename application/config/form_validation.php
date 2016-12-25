@@ -59,6 +59,21 @@ $config = array(
             'errors'    => array(
                 'is_unique' => 'Email already taken.'
             )
+        ),
+        array(
+            'field'     => 'admin_name',
+            'label'     => 'Full Name',
+            'rules'     => 'trim|required',
+        ),
+        array(
+            'field'     => 'mob',
+            'label'     => 'Mobile',
+            'rules'     => 'trim|required',
+        ),
+        array(
+            'field'     => 'address',
+            'label'     => 'Address',
+            'rules'     => 'trim|required',
         )
     )
 );
