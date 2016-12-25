@@ -174,7 +174,7 @@
                                 <?php echo "<label class='control-label'>*Primary Mobile</label>"; ?>
                             </div>
                             <div class="col-sm-7 input-text">
-                                <input maxlength=10 name="mobile1" type="number" required class="form-control" id="mobile1" placeholder="Enter Primary Mobile" maxlength = 10/>
+                                <input maxlength=10 name="mobile1" type="text" required class="form-control" id="mobile1" placeholder="Enter Primary Mobile" maxlength = 10/>
                                 <?php echo form_error('mobile1', '<div class="alert alert-danger">', '</div>'); ?>
                                 <div class="result" id="result3"></div>
                             </div>
@@ -185,7 +185,7 @@
                                 <?php echo "<label class='control-label'>Secondary Mobile</label>"; ?>
                             </div>
                             <div class="col-sm-7 input-text">
-                                <input maxlength=10 name="mobile2" id="mobile2" type="number" class="form-control" placeholder="Enter Secondary Mobile" maxlength = 10/>
+                                <input maxlength=10 name="mobile2" id="mobile2" type="text" class="form-control" placeholder="Enter Secondary Mobile" maxlength = 10/>
                                 <?php echo form_error('mobile2', '<div class="alert alert-danger">', '</div>'); ?>
                                 <div class="result" id="sec_result"></div>
                             </div>
@@ -196,7 +196,7 @@
                                 <?php echo "<label class='control-label'>Landline_no</label>"; ?>
                             </div>
                             <div class="col-sm-7 input-text">
-                                <input maxlength=10 name="landline_no" id="landline_no" type="number" class="form-control" maxlength = 9 placeholder="Enter Landline No."/>
+                                <input maxlength=10 name="landline_no" id="text" type="number" class="form-control" maxlength = 9 placeholder="Enter Landline No."/>
                                 <?php echo form_error('landline_no', '<div class="alert alert-danger">', '</div>'); ?>
                                 <div class="result" id="tel_p_result"></div>
 
