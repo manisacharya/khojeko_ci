@@ -86,14 +86,13 @@
                                                   'class'       => 'form-control',
                                                   'placeholder' => 'Password',
                                                   'required'    => 'required',
-                                                  'maxlength'   => '100'
                                                 );
 
                                     echo form_input($data);
-                                    echo form_error('password', '<div class="alert alert-danger">', '</div>'); 
-                                    // echo form_input('password', $this->input->post('password'), 'maxlength="100" class="form-control" id="password" placeholder="Password" type="password" required'); ?>
-                                    <a onclick="toggle_password('password');" id="showhide">Show</a>
-                                    <span id="strength"></span>
+                                    echo form_error('password', '<div class="alert alert-danger">', '</div>');
+                                ?>
+<!--                                    <a onclick="toggle_password('password');" id="showhide">Show</a>-->
+<!--                                    <span id="strength"></span>-->
                                 </td>
                             </tr>
                         
@@ -110,7 +109,6 @@
                                                   'class'       => 'form-control',
                                                   'placeholder' => 'Retype Password',
                                                   'required'    => 'required',
-                                                  'maxlength'   => '100',
                                                   'onChange'    => 'checkPasswordMatch();'
                                                 );
 
