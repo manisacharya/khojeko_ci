@@ -40,8 +40,6 @@ class Item_post extends CI_Controller{
 
         $this->form_validation->set_error_delimiters('<div class="alert alert-danger">', '</div>');
 
-
-
         $this->load->view('admin/templates/header', $data);
 
         if ($this->form_validation->run() == FALSE) {
@@ -100,11 +98,15 @@ class Item_post extends CI_Controller{
         $this->form_validation->set_rules('city', 'City', 'required|trim|max_length[100]');
         $this->form_validation->set_rules('address', 'Full Address', 'required|trim|max_length[100]');
         $this->form_validation->set_rules('mobile1', 'Primary Mobile No.', 'required|trim|is_unique[personal.primary_mob]|max_length[10]');
-        $this->form_validation->set_rules('acc_type', 'Account Type', 'required');
+        $this->form_validation->set_rules('mobile2', 'Secondary Mobile No.', 'trim|is_unique[personal.secondary_mob]|max_length[10]');
+        $this->form_validation->set_rules('landline_no', 'Secondary Mobile No.', 'trim|is_unique[personal.tel_no]|max_length[9]');
 
+        //form validation for step 2
+        $this->form_validation->set_rules('postc_slug', 'required|trim');
 
+        //form validation for step 3
         $this->form_validation->set_rules('ad_title', 'Ad Title', 'required|trim|max_length[100]');
-        $this->form_validation->set_rules('ad_type', 'Ad type', 'required');
+        $this->form_validation->set_rules('ad_type', 'Ad type', 'required|trim');
 
         if($this->input->post('bought_from') == "Abroad")
             $this->form_validation->set_rules('abroad_country', 'Abroad Country', 'required|trim|max_length[30]');

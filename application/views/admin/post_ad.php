@@ -228,7 +228,7 @@
 
                         <div class="search_section">
                             <label>Suggested Category: &nbsp<div id="post_cname"></div></label>
-                            <textarea name="postc_slug" id="post_c_slug" hidden="hidden" readonly></textarea>
+                            <textarea name="postc_slug" id="post_c_slug" hidden="hidden" required readonly></textarea>
                         </div><!--search_section ends-->
 
                         <button class="btn btn-default prevBtn btn-lg pull-left" type="button" >Prev</button>
