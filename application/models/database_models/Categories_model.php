@@ -10,11 +10,11 @@ class Categories_model extends CI_Model {
         // Call the CI_Model constructor
         parent::__construct();
         $config = array(
-            'table' => 'category',
-            'id' => 'c_id',
-            'field' => 'c_slug',
-            'title' => 'title',
-            'replacement' => 'dash' // Either dash or underscore
+            'table'         => 'category',
+            'id'            => 'c_id',
+            'field'         => 'c_slug',
+            'title'         => 'title',
+            'replacement'   => 'dash' // Either dash or underscore
         );
         $this->load->library('slug', $config);
     }
@@ -36,7 +36,8 @@ class Categories_model extends CI_Model {
         if ($this->db->table_exists('category')) {
             $this->c_name       = $this->input->post('c_name');
             $this->c_slug       = $this->slug->create_uri($this->c_name);
-            $this->parent_id    = $this->input->post('parent_id');
+            $parent_slug        = $this->input->post('parent_slug');
+            $this->parent_id    = ($parent_slug == 0) ?  $parent_slug : $this->get_category_id($parent_slug);
             $this->c_deleted    = 0;
             $this->c_position   = 0;
 
@@ -51,10 +52,11 @@ class Categories_model extends CI_Model {
         if ($this->db->table_exists('category')) {
             $this->c_name       = $this->input->post('c_name');
             $this->c_slug       = $this->slug->create_uri($this->c_name);
-            $this->parent_id    = $this->input->post('parent_id');
+            $parent_slug        = $this->input->post('parent_slug');
+            $this->parent_id    = ($parent_slug == 0) ?  $parent_slug : $this->get_category_id($parent_slug);
             $this->c_deleted    = 0;
 
-            $this->c_id         = $this->input->post('c_id');
+            $this->c_id         = $this->get_category_id($this->input->post('c_slug'));
             $this->db->update('category', $this, array('c_id' => $this->c_id));
             return TRUE;
         } else {
@@ -64,7 +66,7 @@ class Categories_model extends CI_Model {
 
     public function delete_category() {
         if ($this->db->table_exists('category')) {
-            $this->c_id         = $this->input->post('c_id');
+            $this->c_id         = $this->get_category_id($this->input->post('c_slug'));
 
             $this->db->where('parent_id', $this->c_id);
             $query = $this->db->get('category', 1);
@@ -156,7 +158,7 @@ class Categories_model extends CI_Model {
 
     public function get_sub_categories($parent_slug) {
         if ($this->db->table_exists('category')) {
-            $parent_id = $this->categories_model->get_category_id($parent_slug);
+            $parent_id = $this->get_category_id($parent_slug);
             $this->db->where('parent_id', $parent_id);
             $this->db->where('c_deleted', 0);
             $query = $this->db->get('category');
