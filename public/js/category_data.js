@@ -14,7 +14,7 @@ function sub_category_items(c_slug) {
                 var items_array = data['sub_categories_items'];
                 var total_sub_categories_items = items_array.length;
 
-                var main_content = '';
+                var main_content;
                 var content_header =
                                 '<div id="content">' +
                                     '<div class="category_display">' +
