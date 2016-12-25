@@ -118,26 +118,16 @@ class User_model extends CI_Model {
 
     public function check_user(){
         if ($this->db->table_exists('user')) {
-            //SELECT * FROM `user`JOIN `personal` WHERE `user`.type = 'personal' AND `user`.user_key = `personal`.p_id
+
             $this->email = $this->input->post('email');
-            $this->khojeko_username = $this->input->post('username');
-            // $this->primary_mob = $this->input->post('mobile1');
 
-            // $this->khojeko_username = $this->input->post('username');
-            // $this->email = $this->input->post('email');
-            //$this->primary_mob = $this->input->post('mobile1');
-            //  $query = "SELECT * FROM 'user' JOIN 'personal' WHERE 'user'.type = 'personal' AND 'user'.user_key = 'personal'.p_id AND 'personal'.primary_mob=".$this->primary_mob." AND email=".$this->email." AND khojeko_username=".$this->khojeko_username;
-            // // $query = "select * from ".$this::DB_TABLE." name where $column=? and $column2 = ?";
-
-            //$q = $this->db->query($query);
-
-            $q = $this->db->get_where('user', array('email' => $this->email, 'khojeko_username' => $this->khojeko_username));
+            $q = $this->db->get_where('user', array('email' => $this->email));
 
             if($q->result()){
-                foreach ($q->result() as $row)
-                {
-                    $this->user_id = $row->user_id;
-                }
+//                foreach ($q->result() as $row)
+//                {
+//                    $this->user_id = $row->user_id;
+//                }
                 return true;
             }
             else{
@@ -198,13 +188,18 @@ class User_model extends CI_Model {
         return $this->khojeko_username;
     }
 
-    public function available_username(){
+    public function available_username_admin(){
         $query = $this->db->get_where('user', ['khojeko_username' => $this->input->post('username')]);
         echo $query->num_rows();
     }
 
-    public function available_email(){
+    public function available_email_admin(){
         $query = $this->db->get_where('user', ['email' => $this->input->post('email')]);
+        echo $query->num_rows();
+    }
+
+    public function available_mobile_admin(){
+        $query = $this->db->get_where('personal', ['primary_mob' => $this->input->post('mobile1')]);
         echo $query->num_rows();
     }
 

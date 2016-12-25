@@ -44,162 +44,167 @@
                                 <?php echo "<label class='control-label' name='email_check'>*Email</label>"; ?>
                             </div>
                             <div class="col-sm-7 input-text">
-                                <?php echo form_input('email', $this->input->post('email'), 'maxlength=100 class="form-control" id="email" placeholder="Enter Email" autofocus required'); ?>
+                                <input type="email" name="email" class="form-control" id="email" value="<?php echo set_value('email');?>" maxlength=100 required placeholder="Enter Email" autofocus>
+
+<!--                                --><?php //echo form_input('email', $this->input->post('email'), 'maxlength=100 class="form-control" id="email" placeholder="Enter Email" autofocus required'); ?>
                                 <?php echo form_error('email', '<div class="alert alert-danger">', '</div>'); ?>
                                 <div class="result" id="result2"></div>
                             </div>
                         </div>
 
-                        <div class="row">
-                            <div class="col-sm-3 input-title">
-                                <?php echo "<label class='control-label'>*Ad Owner Name</label>"; ?>
+                        <div id="matched_email_check">
+                            <div class="row">
+                                <div class="col-sm-3 input-title">
+                                    <?php echo "<label class='control-label'>*Ad Owner Name</label>"; ?>
+                                </div>
+                                <div class="col-sm-7 input-text">
+                                    <?php echo form_input('owner_name', $this->input->post('owner_name'), 'maxlength=100 class="form-control" placeholder="Enter Owner Name" required'); ?>
+                                    <?php echo form_error('owner_name', '<div class="alert alert-danger">', '</div>'); ?>
+                                </div>
                             </div>
-                            <div class="col-sm-7 input-text">
-                                <?php echo form_input('owner_name', $this->input->post('owner_name'), 'maxlength=100 class="form-control" placeholder="Enter Owner Name" required'); ?>
-                                <?php echo form_error('owner_name', '<div class="alert alert-danger">', '</div>'); ?>
+
+                            <div class="row">
+                                <div class="col-sm-3 input-title">
+                                    <?php echo "<label class='control-label'>*User Name</label>"; ?>
+                                </div>
+                                <div class="col-sm-7 input-text">
+                                    <input type="text" name="username" class="form-control" id="username" value="<?php echo set_value('username');?>" required placeholder="Enter User Name" autofocus>
+
+                                    <?php echo form_error('username', '<div class="alert alert-danger">', '</div>'); ?>
+                                    <div class="result" id="result1" ></div>
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="row">
-                            <div class="col-sm-3 input-title">
-                                <?php echo "<label class='control-label'>*User Name</label>"; ?>
-                            </div>
-                            <div class="col-sm-7 input-text">
-                                <?php echo form_input('username', $this->input->post('username'), 'maxlength=100 class="form-control" id="username" placeholder="Enter User Name" required'); ?>
-                                <?php echo form_error('username', '<div class="alert alert-danger">', '</div>'); ?>
-                                <div class="result" id="result1" ></div>
-                            </div>
-                        </div>
+                            <div class="row">
+                                <div class="col-sm-3 input-title">
+                                    <?php echo "<label class='control-label'>*Password</label>"; ?>
+                                </div>
+                                <div class="col-sm-7 input-text">
+                                    <?php
+                                    $data = array(
+                                                  'name'        => 'password',
+                                                  'type'        => 'password',
+                                                  'id'          => 'password',
+                                                  'class'       => 'form-control',
+                                                  'placeholder' => 'Password',
+                                                  'required'    => 'required',
+                                                );
 
-                        <div class="row">
-                            <div class="col-sm-3 input-title">
-                                <?php echo "<label class='control-label'>*Password</label>"; ?>
-                            </div>
-                            <div class="col-sm-7 input-text">
-                                <?php
-                                $data = array(
-                                              'name'        => 'password',
-                                              'type'        => 'password',
-                                              'id'          => 'password',
-                                              'class'       => 'form-control',
-                                              'placeholder' => 'Password',
-                                              'required'    => 'required',
-                                            );
-
-                                echo form_input($data);
-                                echo form_error('password', '<div class="alert alert-danger">', '</div>');
-                            ?>
-                            </div>
-                        </div>
-
-                        <div class="row" id="to_hide">
-                            <div class="col-sm-3 input-title">
-                                <?php echo "<label class='control-label'>*Retype Password</label>"; ?>
-                            </div>
-                            <div class="col-sm-7 input-text">
-                                <?php
-                                $data1 = array(
-                                              'name'        => 're_password',
-                                              'type'        => 'password',
-                                              'id'          => 're_password',
-                                              'class'       => 'form-control',
-                                              'placeholder' => 'Retype Password',
-                                              'required'    => 'required',
-                                              'onChange'    => 'checkPasswordMatch();'
-                                            );
-
-                                echo form_input($data1);
-
-                                //echo form_input('re_password', $this->input->post('re_password'), 'maxlength="100" class="form-control" id="re_password" placeholder="Retype Password" type="password" required');
-                                echo form_error('re_password', '<div class="alert alert-danger">', '</div>'); ?>
-                                <div class="registrationFormAlert" id="divCheckPasswordMatch"></div>
-
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-sm-3 input-title">
-                                <?php echo "<label class='control-label'>*Zone</label>"; ?>
-                            </div>
-                            <div class="col-sm-7 input-text">
-                                <?php
-                                    $options = array();
-                                    $options[] = "-- Select Zone --";
-
-                                    foreach($zones as $row) {
-                                        $options[$row->zone_name] = $row->zone_name;
-                                    }
-                                    echo form_dropdown('zone', $options, $this->input->post('zone'), ' id="zone" class="form-control"');
+                                    echo form_input($data);
+                                    echo form_error('password', '<div class="alert alert-danger">', '</div>');
                                 ?>
+                                </div>
+                            </div>
 
-                                <?php echo form_error('zone', '<div class="alert alert-danger">', '</div>'); ?>
-                            </div>
-                        </div>
+                            <div class="row" id="to_hide">
+                                <div class="col-sm-3 input-title">
+                                    <?php echo "<label class='control-label'>*Retype Password</label>"; ?>
+                                </div>
+                                <div class="col-sm-7 input-text">
+                                    <?php
+                                    $data1 = array(
+                                                  'name'        => 're_password',
+                                                  'type'        => 'password',
+                                                  'id'          => 're_password',
+                                                  'class'       => 'form-control',
+                                                  'placeholder' => 'Retype Password',
+                                                  'required'    => 'required',
+                                                  'onChange'    => 'checkPasswordMatch();'
+                                                );
 
-                        <div class="row">
-                            <div class="col-sm-3 input-title">
-                                <?php echo "<label class='control-label'>*District</label>"; ?>
-                            </div>
-                            <div class="col-sm-7 input-text">
-                                <select name='district' id='district' class="form-control">
-                                    <option value="">-- Select District --</option>
-                                </select>
+                                    echo form_input($data1);
 
-                                <?php echo form_error('district', '<div class="alert alert-danger">', '</div>'); ?>
-                            </div>
-                        </div>
+                                    //echo form_input('re_password', $this->input->post('re_password'), 'maxlength="100" class="form-control" id="re_password" placeholder="Retype Password" type="password" required');
+                                    echo form_error('re_password', '<div class="alert alert-danger">', '</div>'); ?>
+                                    <div class="registrationFormAlert" id="divCheckPasswordMatch"></div>
 
-                        <div class="row">
-                            <div class="col-sm-3 input-title">
-                                <?php echo "<label class='control-label'>*City</label>"; ?>
+                                </div>
                             </div>
-                            <div class="col-sm-7 input-text">
-                                <?php echo form_input('city', $this->input->post('city'), 'maxlength=100 class="form-control" placeholder="Enter City" required'); ?>
-                                <?php echo form_error('city', '<div class="alert alert-danger">', '</div>'); ?>
-                            </div>
-                        </div>
 
-                        <div class="row">
-                            <div class="col-sm-3 input-title">
-                                <?php echo "<label class='control-label'>*Address</label>"; ?>
-                            </div>
-                            <div class="col-sm-7 input-text">
-                                <?php echo form_input('address', $this->input->post('address'), 'maxlength=100 class="form-control" placeholder="Enter Address" required'); ?>
-                                <?php echo form_error('address', '<div class="alert alert-danger">', '</div>'); ?>
-                            </div>
-                        </div>
+                            <div class="row">
+                                <div class="col-sm-3 input-title">
+                                    <?php echo "<label class='control-label'>*Zone</label>"; ?>
+                                </div>
+                                <div class="col-sm-7 input-text">
+                                    <?php
+                                        $options = array();
+                                        $options[] = "-- Select Zone --";
 
-                        <div class="row">
-                            <div class="col-sm-3 input-title">
-                                <?php echo "<label class='control-label'>*Primary Mobile</label>"; ?>
-                            </div>
-                            <div class="col-sm-7 input-text">
-                                <input maxlength=10 name="mobile1" type="text" required class="form-control" id="mobile1" placeholder="Enter Primary Mobile" maxlength = 10/>
-                                <?php echo form_error('mobile1', '<div class="alert alert-danger">', '</div>'); ?>
-                                <div class="result" id="result3"></div>
-                            </div>
-                        </div>
+                                        foreach($zones as $row) {
+                                            $options[$row->zone_name] = $row->zone_name;
+                                        }
+                                        echo form_dropdown('zone', $options, $this->input->post('zone'), ' id="zone" class="form-control"');
+                                    ?>
 
-                        <div class="row">
-                            <div class="col-sm-3 input-title">
-                                <?php echo "<label class='control-label'>Secondary Mobile</label>"; ?>
+                                    <?php echo form_error('zone', '<div class="alert alert-danger">', '</div>'); ?>
+                                </div>
                             </div>
-                            <div class="col-sm-7 input-text">
-                                <input maxlength=10 name="mobile2" id="mobile2" type="text" class="form-control" placeholder="Enter Secondary Mobile" maxlength = 10/>
-                                <?php echo form_error('mobile2', '<div class="alert alert-danger">', '</div>'); ?>
-                                <div class="result" id="sec_result"></div>
-                            </div>
-                        </div>
 
-                        <div class="row">
-                            <div class="col-sm-3 input-title">
-                                <?php echo "<label class='control-label'>Landline_no</label>"; ?>
-                            </div>
-                            <div class="col-sm-7 input-text">
-                                <input maxlength=10 name="landline_no" id="text" type="number" class="form-control" maxlength = 9 placeholder="Enter Landline No."/>
-                                <?php echo form_error('landline_no', '<div class="alert alert-danger">', '</div>'); ?>
-                                <div class="result" id="tel_p_result"></div>
+                            <div class="row">
+                                <div class="col-sm-3 input-title">
+                                    <?php echo "<label class='control-label'>*District</label>"; ?>
+                                </div>
+                                <div class="col-sm-7 input-text">
+                                    <select name='district' id='district' class="form-control">
+                                        <option value="">-- Select District --</option>
+                                    </select>
 
+                                    <?php echo form_error('district', '<div class="alert alert-danger">', '</div>'); ?>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-3 input-title">
+                                    <?php echo "<label class='control-label'>*City</label>"; ?>
+                                </div>
+                                <div class="col-sm-7 input-text">
+                                    <?php echo form_input('city', $this->input->post('city'), 'maxlength=100 class="form-control" placeholder="Enter City" required'); ?>
+                                    <?php echo form_error('city', '<div class="alert alert-danger">', '</div>'); ?>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-3 input-title">
+                                    <?php echo "<label class='control-label'>*Address</label>"; ?>
+                                </div>
+                                <div class="col-sm-7 input-text">
+                                    <?php echo form_input('address', $this->input->post('address'), 'maxlength=100 class="form-control" placeholder="Enter Address" required'); ?>
+                                    <?php echo form_error('address', '<div class="alert alert-danger">', '</div>'); ?>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-3 input-title">
+                                    <?php echo "<label class='control-label'>*Primary Mobile</label>"; ?>
+                                </div>
+                                <div class="col-sm-7 input-text">
+                                    <input maxlength=10 name="mobile1" type="text" required class="form-control" value="<?php echo set_value('mobile1');?>" id="mobile1" placeholder="Enter Primary Mobile" maxlength = 10/>
+                                    <?php echo form_error('mobile1', '<div class="alert alert-danger">', '</div>'); ?>
+                                    <div class="result" id="result3"></div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-3 input-title">
+                                    <?php echo "<label class='control-label'>Secondary Mobile</label>"; ?>
+                                </div>
+                                <div class="col-sm-7 input-text">
+                                    <input maxlength=10 name="mobile2" id="mobile2" type="text" class="form-control" value="<?php echo set_value('mobile2');?>" placeholder="Enter Secondary Mobile" maxlength = 10/>
+                                    <?php echo form_error('mobile2', '<div class="alert alert-danger">', '</div>'); ?>
+                                    <div class="result" id="sec_result"></div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-3 input-title">
+                                    <?php echo "<label class='control-label'>Landline_no</label>"; ?>
+                                </div>
+                                <div class="col-sm-7 input-text">
+                                    <input maxlength=10 name="landline_no" id="text" type="number" class="form-control" value="<?php echo set_value('landline_no');?>" maxlength = 9 placeholder="Enter Landline No."/>
+                                    <?php echo form_error('landline_no', '<div class="alert alert-danger">', '</div>'); ?>
+                                    <div class="result" id="tel_p_result"></div>
+
+                                </div>
                             </div>
                         </div>
 
@@ -497,40 +502,6 @@
         $("#no").click(function(){
             $('#delivery_charge').hide();
         });
-
-//        $('#email').keyup(function(){
-//            var useremail = $(this).val(); // Get username textbox using $(this)
-//            var Result = $('#result2'); // Get ID of the result DIV where we display the results
-//            var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
-//            if(reg.test($(this).val())) { // check email format
-//                //Result.html('Loading...'); // you can use loading animation here
-//                var dataPass = 'action=availability&email='+useremail;
-//                $.ajax({
-//                    type : 'POST',
-//                    data : dataPass,
-//                    url  : 'available_email_admin',
-//                    success: function(responseText){ // Get the result
-//                        if(responseText == 0){
-//                            Result.html('<span class="success">User email available</span>').css('color','green');
-//                            $('#password').hide();
-//                        }
-//                        else if(responseText > 0){
-//                            Result.html('<span class="error">User email already taken.<br>Please choose another user email.</span>').css('color','red');
-//                            $('#repassword').hide();
-//                        }
-//                        else{
-//                            Result.html('<span class="error">Problem with sql query</span>').css('color','red');
-//                            //alert('Problem with sql query');
-//                        }
-//                    }
-//                });
-//            }else{
-//                Result.html('Enter valid email address').css('color','red')
-//            }
-//            if(useremail.length == 0) {
-//                Result.html('');
-//            }
-//        });
     });
 </script>
 

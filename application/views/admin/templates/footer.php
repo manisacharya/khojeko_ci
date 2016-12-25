@@ -14,6 +14,42 @@
     
 <script type="text/javascript">
     $(document).ready(function(){
+        $('#email').keyup(function(){
+            var email = $(this).val(); // Get username textbox using $(this)
+            var Result = $('#result2'); // Get ID of the result DIV where we display the results
+            var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+            if(reg.test($(this).val())) { // check email format
+                //Result.html('Loading...'); // you can use loading animation here
+                var dataPass = 'action=availability&email='+email;
+                $.ajax({
+                    type : 'POST',
+                    data : dataPass,
+                    url  : 'available_email_admin',
+                    success: function(responseText){ // Get the result
+                        if(responseText == 0){
+                            Result.html('<span class="success">User email available</span>').css('color','green');
+                            $('#matched_email_check').show();
+                        }
+                        else if(responseText > 0){
+                            Result.html('<span class="success">User email already taken.<br>Post ad from this existing user.</span>').css('color','green');
+                            $('#matched_email_check').hide();
+                        }
+                        else{
+                            Result.html('<span class="error">Problem with sql query</span>').css('color','red');
+                            $('#matched_email_check').show()
+                            //alert('Problem with sql query');
+                        }
+                    }
+                });
+            }else{
+                Result.html('Enter valid email address').css('color','red');
+                $('#matched_email_check').show()
+            }
+            if(useremail.length == 0) {
+                Result.html('');
+            }
+        });
+
         $('#username').keyup(function(){
             var username = $(this).val(); // Get username textbox using $(this)
             var Result = $('#result1'); // Get ID of the result DIV where we display the results
@@ -45,37 +81,6 @@
             }
         });
 
-        $('#email').keyup(function(){
-            var useremail = $(this).val(); // Get username textbox using $(this)
-            var Result = $('#result2'); // Get ID of the result DIV where we display the results
-            var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
-            if(reg.test($(this).val())) { // check email format
-                Result.html('Loading...'); // you can use loading animation here
-                var dataPass = 'action=availability&email='+useremail;
-                $.ajax({
-                    type : 'POST',
-                    data : dataPass,
-                    url  : 'available_email_admin',
-                    success: function(responseText){ // Get the result
-                        if(responseText == 0){
-                            Result.html('<span class="success">User email available</span>').css('color','green');
-                        }
-                        else if(responseText > 0){
-                            Result.html('<span class="error">User email already taken.<br>Please choose another user email.</span>').css('color','red');
-                        }
-                        else{
-                            alert('Problem with sql query');
-                        }
-                    }
-                });
-            }else{
-                Result.html('Enter valid email address').css('color','red')
-            }
-            if(useremail.length == 0) {
-                Result.html('');
-            }
-        });
-
         $('#zone').change(function(){
             var zone = $(this).val();
             var dataPass = 'action=availability&zone=' + zone;
@@ -93,29 +98,32 @@
         $('#mobile1').keyup(function(){
             var mobile1 = $(this).val(); // Get primary mobile number of personal textbox using $(this)
             var Result = $('#result3'); // Get ID of the result DIV where we display the results
-            if(mobile1.length > 9) { // if greater than 2 (minimum 3)
-                Result.html('Loading...'); // you can use loading animation here
-                var dataPass = 'action=availability&mobile1='+mobile1;
-                $.ajax({ // Send the username val to available.php
-                    type : 'POST',
-                    data : dataPass,
-                    url  : 'available_mobile_admin',
-                    success: function(responseText){ // Get the result
-                        if(responseText == 0){
-                            Result.html('<span class="success">This mobile number can be used</span>').css('color','green');
+            var reg = /^([0-9])+$/;
+            if((reg.test($(this).val()))) { // check number format
+                if(mobile_p.length > 9) { // if greater than 9 (minimum 10)
+                    Result.html('Loading...'); // you can use loading animation here
+                    var dataPass = 'action=availability&mobile_p=' + mobile1;
+                    $.ajax({
+                        type: 'POST',
+                        data: dataPass,
+                        url: 'available_mobile_admin',
+                        success: function (responseText) { // Get the result
+                            if (responseText == 0) {
+                                Result.html('<span class="success">This mobile number can be used</span>').css('color', 'green');
+                            } else if (responseText > 0) {
+                                Result.html('<span class="error">Mobile number already used.<br>Please enter another mobile number.</span>').css('color', 'red');
+                            } else {
+                                alert('Problem with sql query');
+                            }
                         }
-                        else if(responseText > 0){
-                            Result.html('<span class="error">Mobile number already used.<br>Please enter another mobile number.</span>').css('color','red');
-                        }
-                        else{
-                            alert('Problem with sql query');
-                        }
-                    }
-                });
+                    });
+                } else {
+                    Result.html('Mobile number must have 10 digits').css('color','#ff5500');
+                }
             }else{
-                Result.html('Enter atleast 10 digits');
+                Result.html('Please enter only numbers').css('color','red');
             }
-            if(mobile1.length == 0) {
+            if(mobile_p.length == 0) {
                 Result.html('');
             }
         });

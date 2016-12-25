@@ -52,7 +52,7 @@ class Item_post extends CI_Controller{
             // check for existing user through email and username
             if($this->user_model->check_user()){
 
-                $u_id = $this->user_model->get_user_id();
+                $this->user_model->get_user_id();
             }else{
                 $this->form_validation->set_rules('password', 'New Password', 'required|min_length[6]|trim');
                 $this->form_validation->set_rules('re-password', 'Retype Password', 'required|trim|matches[password]');
@@ -65,7 +65,7 @@ class Item_post extends CI_Controller{
                 $this->form_validation->set_rules('landline_no', 'Secondary Mobile No.', 'trim|is_unique[personal.tel_no]|max_length[9]');
 
                 $this->personal_model->add_personal();
-                $u_id = $this->user_model->get_user_id();
+//                $this->user_model->get_user_id();
             }
 
             $this->form_valid_check();
@@ -183,15 +183,15 @@ class Item_post extends CI_Controller{
         $this->districts_model->get_districts();
     }
 
-//    public function available_username_admin(){
-//        $this->user_model->available_username();
-//    }
-//
-//    public function available_email_admin(){
-//        $this->user_model->available_email();
-//    }
-//
-//    public function available_mobile_admin(){
-//        $this->personal_model->available_mobile();
-//    }
+    public function available_username_admin(){
+        $this->user_model->available_username_admin();
+    }
+
+    public function available_email_admin(){
+        $this->user_model->available_email_admin();
+    }
+
+    public function available_mobile_admin(){
+        $this->personal_model->available_mobile_admin();
+    }
 }
