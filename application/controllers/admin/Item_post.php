@@ -37,9 +37,11 @@ class Item_post extends CI_Controller{
 
         $this->form_validation->set_error_delimiters('<div class="alert alert-danger">', '</div>');
 
-
-
         $this->load->view('admin/templates/header', $data);
+
+        $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email|is_unique[user.email]');
+        $this->form_validation->set_rules('owner_name', 'Ad Owner Name', 'required|trim|max_length[100]|alpha');
+        $this->form_validation->set_rules('username', 'UserName', 'required|trim|is_unique[user.khojeko_username]|alpha_dash|max_length[100]');
 
         if ($this->form_validation->run() == FALSE) {
 
@@ -49,26 +51,28 @@ class Item_post extends CI_Controller{
         }else {
             // check for existing user through email and username
             if($this->user_model->check_user()){
+
                 $u_id = $this->user_model->get_user_id();
             }else{
+                $this->form_validation->set_rules('password', 'New Password', 'required|min_length[6]|trim');
+                $this->form_validation->set_rules('re-password', 'Retype Password', 'required|trim|matches[password]');
+                $this->form_validation->set_rules('zone', 'Zone', 'required|trim');
+                $this->form_validation->set_rules('district', 'District', 'required|trim');
+                $this->form_validation->set_rules('city', 'City', 'required|trim|max_length[100]');
+                $this->form_validation->set_rules('address', 'Full Address', 'required|trim|max_length[100]');
+                $this->form_validation->set_rules('mobile1', 'Primary Mobile No.', 'required|trim|is_unique[personal.primary_mob]|max_length[10]');
+                $this->form_validation->set_rules('mobile2', 'Secondary Mobile No.', 'trim|is_unique[personal.secondary_mob]|max_length[10]');
+                $this->form_validation->set_rules('landline_no', 'Secondary Mobile No.', 'trim|is_unique[personal.tel_no]|max_length[9]');
+
                 $this->personal_model->add_personal();
                 $u_id = $this->user_model->get_user_id();
             }
-            //$this->form_validation->set_rules('ad_title', 'Ad Title', 'required');
 
-            if($u_id==NULL){
-                // $this->session->set_flashdata('message','<div class="alert alert-danger">Not Added !</div>');
+            $this->form_valid_check();
 
-                // redirect('admin/post_ad');
-                $data['message'] = "";
-                $this->load->view('admin/post_ad', $data);
-                $this->load->view('admin/templates/footer', $data);
+            $this->item_model->add_item();
 
-            }else{
-                $this->item_model->add_item();
-
-                $this->personal_upload();
-            }
+            $this->personal_upload();
 
             $data['message'] = "Your item is posted.";
             $this->load->view('admin/adv_index', $data);
@@ -86,22 +90,13 @@ class Item_post extends CI_Controller{
     }
 
     public function form_valid_check(){
-        //form validation for step 1
-        $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email|is_unique[user.email]');
-        $this->form_validation->set_rules('owner_name', 'Ad Owner Name', 'required|trim|max_length[100]|alpha');
-        $this->form_validation->set_rules('username', 'UserName', 'required|trim|is_unique[user.khojeko_username]|alpha_dash|max_length[100]');
-        $this->form_validation->set_rules('password', 'New Password', 'required|min_length[6]|trim');
-        $this->form_validation->set_rules('re-password', 'Retype Password', 'required|trim|matches[password]');
-        $this->form_validation->set_rules('zone', 'Zone', 'required|trim');
-        $this->form_validation->set_rules('district', 'District', 'required|trim');
-        $this->form_validation->set_rules('city', 'City', 'required|trim|max_length[100]');
-        $this->form_validation->set_rules('address', 'Full Address', 'required|trim|max_length[100]');
-        $this->form_validation->set_rules('mobile1', 'Primary Mobile No.', 'required|trim|is_unique[personal.primary_mob]|max_length[10]');
-        $this->form_validation->set_rules('acc_type', 'Account Type', 'required');
 
+        //form validation for step 2
+        $this->form_validation->set_rules('postc_slug', 'required|trim');
 
+        //form validation for step 3
         $this->form_validation->set_rules('ad_title', 'Ad Title', 'required|trim|max_length[100]');
-        $this->form_validation->set_rules('ad_type', 'Ad type', 'required');
+        $this->form_validation->set_rules('ad_type', 'Ad type', 'required|trim');
 
         if($this->input->post('bought_from') == "Abroad")
             $this->form_validation->set_rules('abroad_country', 'Abroad Country', 'required|trim|max_length[30]');
