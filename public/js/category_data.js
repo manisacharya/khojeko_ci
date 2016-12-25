@@ -14,6 +14,8 @@ function sub_category_items(c_slug) {
                 var items_array = data['sub_categories_items'];
                 var total_sub_categories_items = items_array.length;
 
+                var published_date = '';
+
                 var main_content;
                 var content_header =
                                 '<div id="content">' +
@@ -51,9 +53,12 @@ function sub_category_items(c_slug) {
 
                 if (total_sub_categories_items > 0) {
                     for(var j=0; j<total_sub_categories_items; j++) {
+                        published_date = new Date(items_array[j].published_date*1000);
                         items_content +=    '<li>' +
                                                 '<div class="col-sm-2" id="image_content">' +
-                                                    '<img src="public/images/item_images/'+items_array[j].image+'" class="img-responsive"/>' +
+                                                    '<a href="details/'+items_array[j].item_id+'">' +
+                                                        '<img src="public/images/item_images/'+items_array[j].image+'" class="img-responsive"/>' +
+                                                    '</a>' +
                                                 '</div>' +
                                                 '<div class="col-sm-10" id="info_content">' +
                                                     '<section class="list-right">' +
@@ -70,7 +75,7 @@ function sub_category_items(c_slug) {
                                                         '<b>Rs '+items_array[j].price+'<font color="red">&nbsp;('+items_array[j].item_type+')</font></b><br>' +
                                                         '<a class="sub" href="">'+items_array[j].title+'</a><br>' +
                                                         '<span class="address">' +
-                                                            '<span>'+items_array[j].avaibility_address+'</span>&nbsp;<span>2072/12/25</span>' +
+                                                            '<span>'+items_array[j].avaibility_address+'</span>&nbsp;<span>'+published_date.toLocaleString()+'</span>' +
                                                         '</span>' +
                                                         '<p>'+items_array[j].specs+'</p>' +
                                                     '</section>' +

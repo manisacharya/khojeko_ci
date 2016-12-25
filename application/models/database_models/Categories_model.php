@@ -182,7 +182,7 @@ class Categories_model extends CI_Model {
 
     public function get_categories_items($category_slug) {
         if ($this->db->table_exists('category')) {
-            $this->db->select('items.item_id, items.title, items.price, items.views, items.comment_count, items.item_type, items.avaibility_address,  item_spec.specs, item_img.image,four.c_name AS gg_parent, three.c_name AS g_parent, two.c_name AS parent, one.c_name AS category');
+            $this->db->select('items.item_id, items.title, items.price, items.views, items.comment_count, items.item_type, items.avaibility_address, items.published_date,  item_spec.specs, item_img.image,four.c_name AS gg_parent, three.c_name AS g_parent, two.c_name AS parent, one.c_name AS category');
 
             $this->db->join('item_spec', 'items.item_id = item_spec.item_id');
             $this->db->join('item_img', 'items.item_id = item_img.item_id');
