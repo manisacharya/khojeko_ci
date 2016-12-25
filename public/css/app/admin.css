@@ -103,10 +103,9 @@ table{border-collapse:separate;
 border-spacing:1em;
 }
 
-.category0,.category1,.category2, .category3 {list-style-type:none;}
-
-.category0 li a,.category1 li a,.category2 li a,.category3 li a{text-decoration:none;color:#000;font-size:16px;font-weight:500}
-
+.category0,.category1,.category2,.category3{list-style-type:none; cursor: default; font-size: 12pt;}
+.category0 li a,.category1 li a,.category2 li a{text-decoration:none; color:#000; font-size:16px; cursor: pointer; }
+.category0 li:hover, .category1 li:hover, .category2 li:hover { color: #857168; }
 
 input.readonly{width:520px;}
 
