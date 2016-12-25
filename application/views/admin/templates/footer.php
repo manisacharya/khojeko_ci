@@ -50,6 +50,7 @@
             }
         });
 
+
         $('#username').keyup(function(){
             var username = $(this).val(); // Get username textbox using $(this)
             var Result = $('#result1'); // Get ID of the result DIV where we display the results
