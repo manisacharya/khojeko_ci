@@ -196,7 +196,7 @@ class Admin_pages extends CI_Controller {
 
         $this->load->view('admin/templates/header', $data);
         $this->form_validation->set_rules('c_name', 'Category Name', 'required');
-        $this->form_validation->set_rules('parent_id', 'Parent', 'required');
+        $this->form_validation->set_rules('parent_slug', 'Parent', 'required');
         $data['message'] = $this->session->flashdata('message');
 
         if ($this->form_validation->run() == FALSE) {
@@ -227,7 +227,7 @@ class Admin_pages extends CI_Controller {
         $data['categories'] = $this->categories_model->get_categories();
 
         $this->load->view('admin/templates/header', $data);
-        $this->form_validation->set_rules('c_id', 'Category', 'required', array('required' => 'You must choose {field}.'));
+        $this->form_validation->set_rules('c_slug', 'Category', 'required', array('required' => 'You must choose {field}.'));
         $data['message'] = $this->session->flashdata('message');
 
         if ($this->form_validation->run() === FALSE) {
@@ -240,7 +240,7 @@ class Admin_pages extends CI_Controller {
             else {
                 $message = "<div class='alert alert-danger'>Not deleled! Hint: Cannot delete the parent.</div>";
             }
-            if($this->input->post('c_id')) {
+            if($this->input->post('c_slug')) {
                 $this->session->set_flashdata('message', $message);
                 redirect('admin/category_delete');
             }
@@ -261,9 +261,9 @@ class Admin_pages extends CI_Controller {
         $data['categories'] = $this->categories_model->get_categories();
 
         $this->load->view('admin/templates/header', $data);
-        $this->form_validation->set_rules('c_id', 'Category', 'required', array('required' => 'You must choose a {field} to edit.'));
+        $this->form_validation->set_rules('c_slug', 'Category', 'required', array('required' => 'You must choose a {field} to edit.'));
         $this->form_validation->set_rules('c_name', 'Category Name', 'required');
-        $this->form_validation->set_rules('parent_id', 'Parent', 'required');
+        $this->form_validation->set_rules('parent_slug', 'Parent', 'required');
         $data['message'] = $this->session->flashdata('message');
 
         if ($this->form_validation->run() === FALSE) {
