@@ -5,7 +5,6 @@
 ?>
   
     <div class="col-sm-12">
-    	<h3>Post Ad By Admin</h3>
         <div class="post_admin">
             <div class="stepwizard">
                 <div class="stepwizard-row setup-panel">
@@ -35,191 +34,187 @@
             ?>
 
                 <div class="setup-content" id="step-1">
-                    <div class="form-group">
-                        <table>
-                            <tr>
-                                <h3> Step 1&nbsp;&nbsp;(Fill Details)</h3>
-                            </tr>
+                    <div class="form-group col-sm-12">
+                        <div class="row">
+                            <h3> Step 1&nbsp;&nbsp;(User Details)</h3>
+                        </div>
 
-                            <tr>
-                                <td>
-                                    <?php echo "<label class='control-label' name='email_check'>*Email</label>"; ?>    
-                                </td>
-                                <td>
-                                    <?php echo form_input('email', $this->input->post('email'), 'maxlength=100 class="form-control" id="email" placeholder="Enter Email" autofocus required'); ?>
-                                    <?php echo form_error('email', '<div class="alert alert-danger">', '</div>'); ?>
-                                    <div class="result" id="result2"></div>
-                                </td>
-                            </tr>
+                        <div class="row">
+                            <div class="col-sm-3 input-title">
+                                <?php echo "<label class='control-label' name='email_check'>*Email</label>"; ?>
+                            </div>
+                            <div class="col-sm-7 input-text">
+                                <?php echo form_input('email', $this->input->post('email'), 'maxlength=100 class="form-control" id="email" placeholder="Enter Email" autofocus required'); ?>
+                                <?php echo form_error('email', '<div class="alert alert-danger">', '</div>'); ?>
+                                <div class="result" id="result2"></div>
+                            </div>
+                        </div>
 
-                             <tr class="tr_hide">
-                                <td>
-                                    <?php echo "<label class='control-label'>*Ad Owner Name</label>"; ?>    
-                                </td>
-                                <td>
-                                    <?php echo form_input('owner_name', $this->input->post('owner_name'), 'maxlength=100 class="form-control" placeholder="Enter Owner Name" required'); ?>
-                                    <?php echo form_error('owner_name', '<div class="alert alert-danger">', '</div>'); ?>
-                                </td>
-                            </tr>
+                        <div class="row">
+                            <div class="col-sm-3 input-title">
+                                <?php echo "<label class='control-label'>*Ad Owner Name</label>"; ?>
+                            </div>
+                            <div class="col-sm-7 input-text">
+                                <?php echo form_input('owner_name', $this->input->post('owner_name'), 'maxlength=100 class="form-control" placeholder="Enter Owner Name" required'); ?>
+                                <?php echo form_error('owner_name', '<div class="alert alert-danger">', '</div>'); ?>
+                            </div>
+                        </div>
 
-                            <tr class="tr_hide">
-                                <td>
-                                    <?php echo "<label class='control-label'>*User Name</label>"; ?>    
-                                </td>
-                                <td>
-                                    <?php echo form_input('username', $this->input->post('username'), 'maxlength=100 class="form-control" id="username" placeholder="Enter User Name" required'); ?>
-                                    <?php echo form_error('username', '<div class="alert alert-danger">', '</div>'); ?>
-                                    <div class="result" id="result1" ></div>
-                                </td>
-                            </tr>
+                        <div class="row">
+                            <div class="col-sm-3 input-title">
+                                <?php echo "<label class='control-label'>*User Name</label>"; ?>
+                            </div>
+                            <div class="col-sm-7 input-text">
+                                <?php echo form_input('username', $this->input->post('username'), 'maxlength=100 class="form-control" id="username" placeholder="Enter User Name" required'); ?>
+                                <?php echo form_error('username', '<div class="alert alert-danger">', '</div>'); ?>
+                                <div class="result" id="result1" ></div>
+                            </div>
+                        </div>
 
-                            <tr class="tr_hide">
-                                <td>
-                                    <?php echo "<label class='control-label'>*Password</label>"; ?>    
-                                </td>
-                                <td>
-                                    <?php 
-                                    $data = array(
-                                                  'name'        => 'password',
-                                                  'type'        => 'password',
-                                                  'id'          => 'password',
-                                                  'class'       => 'form-control',
-                                                  'placeholder' => 'Password',
-                                                  'required'    => 'required',
-                                                );
+                        <div class="row">
+                            <div class="col-sm-3 input-title">
+                                <?php echo "<label class='control-label'>*Password</label>"; ?>
+                            </div>
+                            <div class="col-sm-7 input-text">
+                                <?php
+                                $data = array(
+                                              'name'        => 'password',
+                                              'type'        => 'password',
+                                              'id'          => 'password',
+                                              'class'       => 'form-control',
+                                              'placeholder' => 'Password',
+                                              'required'    => 'required',
+                                            );
 
-                                    echo form_input($data);
-                                    echo form_error('password', '<div class="alert alert-danger">', '</div>');
+                                echo form_input($data);
+                                echo form_error('password', '<div class="alert alert-danger">', '</div>');
+                            ?>
+                            </div>
+                        </div>
+
+                        <div class="row" id="to_hide">
+                            <div class="col-sm-3 input-title">
+                                <?php echo "<label class='control-label'>*Retype Password</label>"; ?>
+                            </div>
+                            <div class="col-sm-7 input-text">
+                                <?php
+                                $data1 = array(
+                                              'name'        => 're_password',
+                                              'type'        => 'password',
+                                              'id'          => 're_password',
+                                              'class'       => 'form-control',
+                                              'placeholder' => 'Retype Password',
+                                              'required'    => 'required',
+                                              'onChange'    => 'checkPasswordMatch();'
+                                            );
+
+                                echo form_input($data1);
+
+                                //echo form_input('re_password', $this->input->post('re_password'), 'maxlength="100" class="form-control" id="re_password" placeholder="Retype Password" type="password" required');
+                                echo form_error('re_password', '<div class="alert alert-danger">', '</div>'); ?>
+                                <div class="registrationFormAlert" id="divCheckPasswordMatch"></div>
+
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-3 input-title">
+                                <?php echo "<label class='control-label'>*Zone</label>"; ?>
+                            </div>
+                            <div class="col-sm-7 input-text">
+                                <?php
+                                    $options = array();
+                                    $options[] = "-- Select Zone --";
+
+                                    foreach($zones as $row) {
+                                        $options[$row->zone_name] = $row->zone_name;
+                                    }
+                                    echo form_dropdown('zone', $options, $this->input->post('zone'), ' id="zone" class="form-control"');
                                 ?>
-<!--                                    <a onclick="toggle_password('password');" id="showhide">Show</a>-->
-<!--                                    <span id="strength"></span>-->
-                                </td>
-                            </tr>
-                        
-                            <tr class="tr_hide" id="to_hide">
-                                <td>
-                                    <?php echo "<label class='control-label'>*Retype Password</label>"; ?>    
-                                </td>
-                                <td>
-                                    <?php
-                                    $data1 = array(
-                                                  'name'        => 're_password',
-                                                  'type'        => 'password',
-                                                  'id'          => 're_password',
-                                                  'class'       => 'form-control',
-                                                  'placeholder' => 'Retype Password',
-                                                  'required'    => 'required',
-                                                  'onChange'    => 'checkPasswordMatch();'
-                                                );
 
-                                    echo form_input($data1);
+                                <?php echo form_error('zone', '<div class="alert alert-danger">', '</div>'); ?>
+                            </div>
+                        </div>
 
-                                    //echo form_input('re_password', $this->input->post('re_password'), 'maxlength="100" class="form-control" id="re_password" placeholder="Retype Password" type="password" required'); 
-                                    echo form_error('re_password', '<div class="alert alert-danger">', '</div>'); ?>
-                                    <div class="registrationFormAlert" id="divCheckPasswordMatch"></div>
+                        <div class="row">
+                            <div class="col-sm-3 input-title">
+                                <?php echo "<label class='control-label'>*District</label>"; ?>
+                            </div>
+                            <div class="col-sm-7 input-text">
+                                <select name='district' id='district' class="form-control">
+                                    <option value="">-- Select District --</option>
+                                </select>
 
-                                </td>
-                            </tr>
+                                <?php echo form_error('district', '<div class="alert alert-danger">', '</div>'); ?>
+                            </div>
+                        </div>
 
-                            <tr class="tr_hide">
-                                <td>
-                                    <?php echo "<label class='control-label'>*Zone</label>"; ?>    
-                                </td>
-                                <td>
-                                    <?php
-                                        $options = array();
-                                        $options[] = "--Select Zone--";
+                        <div class="row">
+                            <div class="col-sm-3 input-title">
+                                <?php echo "<label class='control-label'>*City</label>"; ?>
+                            </div>
+                            <div class="col-sm-7 input-text">
+                                <?php echo form_input('city', $this->input->post('city'), 'maxlength=100 class="form-control" placeholder="Enter City" required'); ?>
+                                <?php echo form_error('city', '<div class="alert alert-danger">', '</div>'); ?>
+                            </div>
+                        </div>
 
-                                        foreach($zones as $row) {
-                                            $options[$row->zone_name] = $row->zone_name;
-                                        }
-                                        echo form_dropdown('zone', $options, $this->input->post('zone'), ' id="zone"');
-                                    ?>
+                        <div class="row">
+                            <div class="col-sm-3 input-title">
+                                <?php echo "<label class='control-label'>*Address</label>"; ?>
+                            </div>
+                            <div class="col-sm-7 input-text">
+                                <?php echo form_input('address', $this->input->post('address'), 'maxlength=100 class="form-control" placeholder="Enter Address" required'); ?>
+                                <?php echo form_error('address', '<div class="alert alert-danger">', '</div>'); ?>
+                            </div>
+                        </div>
 
-                                    <?php echo form_error('zone', '<div class="alert alert-danger">', '</div>'); ?>                
-                                </td>
-                            </tr>
+                        <div class="row">
+                            <div class="col-sm-3 input-title">
+                                <?php echo "<label class='control-label'>*Primary Mobile</label>"; ?>
+                            </div>
+                            <div class="col-sm-7 input-text">
+                                <input maxlength=10 name="mobile1" type="number" required class="form-control" id="mobile1" placeholder="Enter Primary Mobile" maxlength = 10/>
+                                <?php echo form_error('mobile1', '<div class="alert alert-danger">', '</div>'); ?>
+                                <div class="result" id="result3"></div>
+                            </div>
+                        </div>
 
-                            <tr class="tr_hide">
-                                <td>
-                                    <?php echo "<label class='control-label'>*District</label>"; ?>    
-                                </td>
-                                <td>
-                                    <select name='district' id='district'>
-                                        <option value="">-- Select District --</option>
-                                    </select>
-                
-                                    <?php echo form_error('district', '<div class="alert alert-danger">', '</div>'); ?>     
-                                </td>
-                            </tr>
+                        <div class="row">
+                            <div class="col-sm-3 input-title">
+                                <?php echo "<label class='control-label'>Secondary Mobile</label>"; ?>
+                            </div>
+                            <div class="col-sm-7 input-text">
+                                <input maxlength=10 name="mobile2" id="mobile2" type="number" class="form-control" placeholder="Enter Secondary Mobile" maxlength = 10/>
+                                <?php echo form_error('mobile2', '<div class="alert alert-danger">', '</div>'); ?>
+                                <div class="result" id="sec_result"></div>
+                            </div>
+                        </div>
 
-                            <tr class="tr_hide">
-                                <td>
-                                    <?php echo "<label class='control-label'>*City</label>"; ?>    
-                                </td>
-                                <td>
-                                    <?php echo form_input('city', $this->input->post('city'), 'maxlength=100 class="form-control" placeholder="Enter City" required'); ?>
-                                    <?php echo form_error('city', '<div class="alert alert-danger">', '</div>'); ?>
-                                </td>
-                            </tr>
+                        <div class="row">
+                            <div class="col-sm-3 input-title">
+                                <?php echo "<label class='control-label'>Landline_no</label>"; ?>
+                            </div>
+                            <div class="col-sm-7 input-text">
+                                <input maxlength=10 name="landline_no" id="landline_no" type="number" class="form-control" maxlength = 9 placeholder="Enter Landline No."/>
+                                <?php echo form_error('landline_no', '<div class="alert alert-danger">', '</div>'); ?>
+                                <div class="result" id="tel_p_result"></div>
 
-                            <tr class="tr_hide">
-                                <td>
-                                    <?php echo "<label class='control-label'>*Address</label>"; ?>    
-                                </td>
-                                <td>
-                                    <?php echo form_input('address', $this->input->post('address'), 'maxlength=100 class="form-control" placeholder="Enter Address" required'); ?>
-                                    <?php echo form_error('address', '<div class="alert alert-danger">', '</div>'); ?>
-                                </td>
-                            </tr>
+                            </div>
+                        </div>
 
-                            <tr class="tr_hide">
-                                <td>
-                                    <?php echo "<label class='control-label'>*Primary Mobile</label>"; ?>    
-                                </td>
-                                <td>
-                                    <input maxlength=10 name="mobile1" type="number" required class="form-control" id="mobile1" placeholder="Enter Primary Mobile" maxlength = 10/>
-                                    <?php echo form_error('mobile1', '<div class="alert alert-danger">', '</div>'); ?>
-                                    <div class="result" id="result3"></div>
-                                </td>
-                            </tr>
-
-                            <tr class="tr_hide">
-                                <td>
-                                    <?php echo "<label class='control-label'>Secondary Mobile</label>"; ?>    
-                                </td>
-                                <td>
-                                    <input maxlength=10 name="mobile2" id="mobile2" type="number" class="form-control" placeholder="Enter Secondary Mobile" maxlength = 10/>
-                                    <?php echo form_error('mobile2', '<div class="alert alert-danger">', '</div>'); ?>       
-                                    <div class="result" id="sec_result"></div>
-                                </td>
-                            </tr>
-
-                            <tr class="tr_hide">
-                                <td>
-                                    <?php echo "<label class='control-label'>Landline_no</label>"; ?>    
-                                </td>
-                                <td>
-                                    <input maxlength=10 name="landline_no" id="landline_no" type="number" class="form-control" maxlength = 9 placeholder="Enter Landline No."/>
-                                    <?php echo form_error('landline_no', '<div class="alert alert-danger">', '</div>'); ?>  
-                                    <div class="result" id="tel_p_result"></div>
-   
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>
-                                    <button class="btn btn-primary nextBtn btn-lg pull-right" id="checkUser" type="button" >Next</button>
-                                </td>
-                            </tr>
-                        </table>
+                        <div class="row">
+                            <div>
+                                <button class="btn btn-primary nextBtn btn-lg pull-right" id="checkUser" type="button" >Next</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <div class="setup-content col-sm-12" id="step-2">
-                    <div class="form-group post-ad-category">
+                <div class="setup-content" id="step-2">
+                    <div class="form-group col-sm-12">
                         <h3>Step 2 :&nbsp;&nbsp;(Select category for ad posting)</h3>
-                        <div class="category">
+                        <div class="category post-ad-category">
                             <?php
                                 require_once ('templates/category.php');
                                 print_category(0, 0, $categories);
@@ -236,10 +231,9 @@
                     </div>
                 </div>
 
-                <div class="setup-content step-3" id="step-3">
-                        <div class="form-group">
+                <div class="setup-content" id="step-3">
+                        <div class="form-group col-sm-12">
                             <h3> Step 3 : Advertisement Information</h3>
-
                             <div class="row">
                                 <div class="col-sm-3 input-title"><label>*Ad Title:</label></div>
                                 <div class="col-sm-7 input-text">
@@ -247,8 +241,6 @@
                                     <?php echo form_error('ad_title'); ?>
                                 </div>
                             </div>
-
-                            <br>
 
                             <div class="row">
                                 <div class="col-sm-3 input-title"><label>Ad Type:</label></div>
@@ -263,8 +255,6 @@
                                     </div>
                                 </div>
                             </div>
-
-                            <br>
 
                             <div class="row" id="bought_from">
                                 <div class="col-sm-3 input-title"><label>Bought From:</label></div>
@@ -281,8 +271,6 @@
                                 </div>
                             </div>
 
-                            <br>
-
                             <div class="row" id="offer">
                                 <div class="col-sm-3 input-title"><label for="offer_input">Offer Price:</label></div>
                                 <div class="col-sm-7 input-text">
@@ -290,8 +278,6 @@
                                     <?php echo form_error('offer'); ?>
                                 </div>
                             </div>
-
-                            <br>
 
                             <div class="row" id="used_for">
                                 <div class="col-sm-3 input-title"><label for="used_input">Used for:</label></div>
@@ -310,8 +296,6 @@
                                 </div>
                             </div>
 
-                            <br>
-
                             <div class="row" id="market_price">
                                 <div class="col-sm-3 input-title"><label for="market_price_input">Market Price:</label></div>
                                 <div class="col-sm-7 input-text">
@@ -320,8 +304,6 @@
                                 </div>
                             </div>
 
-                            <br>
-
                             <div class="row">
                                 <div class="col-sm-3 input-title"><label for="document_input">(ID No / Chasis No / Document no/IMEI no):</label></div>
                                 <div class="col-sm-7 input-text">
@@ -329,8 +311,6 @@
                                     <?php echo form_error('document_no'); ?>
                                 </div>
                             </div>
-
-                            <br>
 
                             <div class="row">
                                 <div class="col-sm-3 input-title"><label for="ad_details">Advertisement Details:</label></div>
@@ -353,8 +333,6 @@
                                 </div>
                             </div>
 
-                            <br>
-
                             <div class="row">
                                 <div class="col-sm-3 input-title"><label for="ad_duration">Advertisement Durations:</label></div>
                                 <div class="col-sm-7 input-text">
@@ -367,8 +345,6 @@
                                     </select>
                                 </div>
                             </div>
-
-                            <br>
 
     <!--                        <div class="row">-->
     <!--                            <div class="col-sm-3 input-title"><label for="url_link">URL Link:</label></div>-->
@@ -392,8 +368,6 @@
                                 </div>
                             </div>
 
-                            <br>
-
                             <div class="row" id="delivery_charge" style="block">
                                 <div class="col-sm-3 input-title"><label for="input_delivery">Delivery Charges:</label></div>
                                 <div class="col-sm-7 input-text">
@@ -401,8 +375,6 @@
                                     <?php echo form_error('delivery_charge'); ?>
                                 </div>
                             </div>
-
-                            <br>
 
                             <div class="row" id="warranty">
                                 <div class="col-sm-3 input-title"><label for="input_warranty">Warranty Period:</label></div>
@@ -417,10 +389,8 @@
                     </div>
 
                 <div class="setup-content" id="step-4">
-                        <div class="form-group">
-
-                            <h3> Step 4</h3>
-
+                        <div class="form-group col-sm-12">
+                            <h3>Step 4: Documents</h3>
                             <div class="row">
                                 <div class="col-sm-3 input-title"><label>Proof Document:</label></div>
                                 <div class="col-sm-7 input-text">
