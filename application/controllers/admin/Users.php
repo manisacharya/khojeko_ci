@@ -17,9 +17,11 @@ class Users extends CI_Controller {
         if (! $this->session->has_userdata('admin_logged_in'))
             redirect('admin/login');
 
-        $data['title'] = 'New Member';
         $data['user_info'] = $this->user_model->get_user_info('admin', $this->session->userdata['admin_logged_in']['id']);
-
+        if ($data['user_info']->is_primary != 1) {
+            show_404();
+        }
+        $data['title'] = 'New Admin';
         $this->load->library('form_validation');
 
         $this->form_validation->set_error_delimiters('<div class="alert alert-danger">', '</div>');
@@ -37,8 +39,7 @@ class Users extends CI_Controller {
                 $message = "<div class='alert alert-danger'>Not Registered !</div>";
             }
             $this->session->set_flashdata('message', $message);
-            //redirect('admin/sign_up');
-            $this->load->view('admin/sign_up', $data);
+            redirect('admin/sign_up');
         }
         $this->load->view('admin/templates/footer', $data);
     }

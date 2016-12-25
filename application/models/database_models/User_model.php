@@ -13,7 +13,6 @@ class User_model extends CI_Model {
     public $type;
     public $user_key;
     public $ac_created;
-    public $status;
     public $u_verified;
     public $verification_key;
     public $m_verified;
@@ -46,19 +45,23 @@ class User_model extends CI_Model {
     }
 
     public function register_user() {
-        $username = $this->input->post('username');
-        $password = $this->input->post('password');
+        $this->khojeko_username     = $this->input->post('username');
+        $password                   = $this->input->post('password');
+        $this->email                = $this->input->post('email');
+        $this->ac_created           = NOW();
+        $this->type                 = 'admin';
+        $this->u_verified           = 1;
+        $this->m_verified           = 1;
+        $this->verification_key     = uniqid();
+        $this->user_status          = 1;
 
         if ($this->db->table_exists('user')) {
-            $this->khojeko_username = $username;
-            $this->ac_created = time('Asia/Kathmandu');
-
             $hash = password_hash($password, PASSWORD_DEFAULT);
             $this->password = $hash;
+            $this->load->model('database_models/admin_model');
 
-            $this->email    = $this->input->post('email');
-
-            return $this->db->insert('user', $this);
+            $this->user_key = $this->admin_model->register_admin();
+            return $this->db->insert('user', $this);;
         }
         else {
             echo show_error('We have encountered some problem. Visit site later.', 500, 'Opps! Something went wrong');
@@ -86,9 +89,9 @@ class User_model extends CI_Model {
             if($username == $row->khojeko_username) {
                 if (password_verify($password, $row->password)) {
                     $user_session = array(
-                        'username'  => $row->khojeko_username,
-                        'id'        => $row->user_id,
-                        'logged_in' => TRUE
+                        'username'      => $row->khojeko_username,
+                        'id'            => $row->user_id,
+                        'logged_in'     => TRUE
                     );
                     $this->session->set_userdata('admin_logged_in', $user_session);
                     return TRUE;

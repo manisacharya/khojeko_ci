@@ -5,10 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Khojeko - Admin Panel</title>
-    <link rel="stylesheet" href="<?php echo base_url('public'); ?>/css/bootstrap/bootstrap.css" />
-    <link rel="stylesheet" href="<?php echo base_url('public'); ?>/css/plugins/calendar/calendar.css" />
-    <link rel="stylesheet" href="<?php echo base_url('public'); ?>/css/app/app.v1.css" />
-    <link rel="stylesheet" href="<?php echo base_url('public'); ?>/css/app/admin.css" />
+    <link rel="stylesheet" href="<?php echo base_url('public/css/bootstrap/bootstrap.css'); ?>" />
+    <link rel="stylesheet" href="<?php echo base_url('public/css/plugins/calendar/calendar.css'); ?>" />
+    <link rel="stylesheet" href="<?php echo base_url('public/css/app/app.v1.css'); ?>" />
+    <link rel="stylesheet" href="<?php echo base_url('public/css/app/admin.css'); ?>" />
     <link href="<?php echo base_url('public/images/icons/icon.ico')?>" rel="shortcut icon" />
 </head>
 <body data-ng-app>
