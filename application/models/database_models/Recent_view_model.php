@@ -10,6 +10,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Recent_view_model extends CI_Model {
     public $item_id;
     public $user_id;
+    public $viewed_date;
 
     public function get_recent_view($user_id) {
         if ($this->db->table_exists('recent_view')) {
@@ -31,8 +32,9 @@ class Recent_view_model extends CI_Model {
 
     public function insert_recent_view($item_id, $user_id) {
         if ($this->db->table_exists('recent_view')) {
-            $this->item_id = $item_id;
-            $this->user_id = $user_id;
+            $this->item_id      = $item_id;
+            $this->user_id      = $user_id;
+            $this->viewed_date  = NOW();
 
             $this->db->insert('recent_view', $this);
             return TRUE;
