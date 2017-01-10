@@ -18,7 +18,7 @@ class Personal_model extends CI_Model {
     public $secondary_mob;
     public $tel_no;
 
-    public function insert_dealer() {
+    public function insert_personal() {
         if ($this->db->table_exists('dealer')) {
             $this->p_id = $this->input->post('d_id');
             $this->name = $this->input->post('name');

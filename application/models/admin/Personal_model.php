@@ -22,8 +22,7 @@ class Personal_model extends CI_Model
     public function __construct() {
         // Call the CI_Model constructor
         parent::__construct();
-        $this->load->model('admin/item_model'); // load model
-        $this->load->model('admin/user_model');
+        $this->load->model('database_models/user_model');
     }
 
     public function add_personal(){
@@ -59,24 +58,24 @@ class Personal_model extends CI_Model
 
     }
 
-    public function check_mobile($mob){
-        $this->db->select('*')->from('personal');
-        $this->db->where('primary_mob', $mob);
-        $query = $this->db->get();
-
-        if($query->num_rows() == 1)
-            return true; //found mobile
-        else
-            return false;
-    }
-
-    public function get_p_id(){
-        
-        return $this->p_id;
-    }
-
-    public function available_mobile(){
+    public function available_mobile_admin(){
         $query = $this->db->get_where('personal', ['primary_mob' => $this->input->post('mobile1')]);
         echo $query->num_rows();
     }
+
+    //    public function check_mobile($mob){
+//        $this->db->select('*')->from('personal');
+//        $this->db->where('primary_mob', $mob);
+//        $query = $this->db->get();
+//
+//        if($query->num_rows() == 1)
+//            return true; //found mobile
+//        else
+//            return false;
+//    }
+//
+//    public function get_p_id(){
+//
+//        return $this->p_id;
+//    }
 }

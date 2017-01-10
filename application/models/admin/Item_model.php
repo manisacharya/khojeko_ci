@@ -40,8 +40,9 @@ class Item_model extends CI_Model
         // Call the CI_Model constructor
         parent::__construct();
         $this->load->model('admin/specification_model'); 
-        $this->load->model('admin/user_model');
+        $this->load->model('database_models/user_model');
         $this->load->model('admin/document_model');
+        $this->load->model('database_models/categories_model');
     }
 
     public function add_item(){
@@ -132,7 +133,7 @@ class Item_model extends CI_Model
         }
     }
 
-    public function get_ad_name(){
+    public function get_item_name(){
 
         return $this->title;
     }

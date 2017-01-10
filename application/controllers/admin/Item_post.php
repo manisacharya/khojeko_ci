@@ -33,7 +33,7 @@ class Item_post extends CI_Controller{
 
         $data['user_info'] = $this->user_model->get_user_info('admin', $this->session->userdata['admin_logged_in']['id']);
         $data['categories'] = $this->categories_model->get_categories();
-        $data['zones'] = $this->zones_model->getAllZones();
+        $data['zones'] = $this->zones_model->get_all_zones();
 
         $this->form_validation->set_error_delimiters('<div class="alert alert-danger">', '</div>');
 
@@ -135,7 +135,7 @@ class Item_post extends CI_Controller{
         $a = 1;
 
         $name = $this->user_model->get_user_name();
-        $ad = $this->item_model->get_ad_name();
+        $ad = $this->item_model->get_item_name();
         $id = $this->item_model->get_item_id();
 
         foreach ($_FILES as $key => $value) {

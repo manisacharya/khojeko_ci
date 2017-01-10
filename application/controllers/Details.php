@@ -6,17 +6,17 @@ class Details extends CI_Controller {
     function __Construct() {
         parent::__Construct ();
         $this->load->database(); // load database
-        $this->load->model('retailer_partners_model');
+        $this->load->model('database_models/retailer_partners_model');
         $this->load->model('detail_db_model');
-        $this->load->model('user_model');
+//        $this->load->model('user_model');
         $this->load->model('khojeko_db_model'); // load model
         $this->load->model('database_models/categories_model');
-        $this->load->model('spam_and_fav_model');
-        $this->load->model('ask_me_model');
+        $this->load->model('database_models/ask_me_model');
         $this->load->model('database_models/dealer_model');
         $this->load->model('database_models/items_model');
-        $this->load->model('database_models/user_model');
+//        $this->load->model('database_models/user_model');
         $this->load->model('database_models/spam_model');
+        $this->load->model('database_models/favourites_model');
     }
 
     //For Details Page
@@ -122,7 +122,7 @@ class Details extends CI_Controller {
             $type = $this->session->userdata['logged_in']['type'];
             if(strtoupper($type) == 'PERSONAL') {
                 $user_id = $this->session->userdata['logged_in']['id'];
-                $this->spam_and_fav_model->add_fav($id, $user_id);
+                $this->favourites_model->add_fav($id, $user_id);
             } else {
                 $this->session->set_flashdata('fav_message','<div class="alert alert-danger">Only personal user can add to favourites.</div>');
             }
@@ -137,7 +137,7 @@ class Details extends CI_Controller {
     public function add_to_spam($id, $spam_count){
         if($this->session->has_userdata('logged_in')) {
             $user_id = $this->session->userdata['logged_in']['id'];
-            $this->spam_and_fav_model->add_spam($id, $user_id, $spam_count);
+            $this->spam_model->add_spam($id, $user_id, $spam_count);
             redirect(base_url('details/'.$id));
         } else {
             $this->session->set_flashdata('previous_url', base_url('details/'.$id));
@@ -207,7 +207,6 @@ class Details extends CI_Controller {
         // 	echo "ERROR";
         // }
     }
-
 
     public function add_recent_view($item_id) {
         $this->load->model('database_models/recent_view_model');

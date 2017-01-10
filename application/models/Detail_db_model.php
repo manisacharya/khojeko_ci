@@ -1,10 +1,8 @@
 <?php
-
 class Detail_db_model extends CI_Model{
 
     function getAll($table, $orderby, $order) {
         $this->db->select('*')->from($table)->order_by($orderby, $order);
-        //$this->db
         $query = $this->db->get();
         return $query->result();
     }

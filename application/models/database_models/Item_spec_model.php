@@ -30,13 +30,4 @@ class Item_spec_model extends CI_Model {
             echo show_error('We have encountered some problem. Visit site later.', 500, 'Opps! Something went wrong');
         }
     }
-    public function insert_dealer() {
-        if ($this->db->table_exists('dealer')) {
-            $this->s_id = $this->input->post('s_id');
-            $this->specs = $this->input->post('specs');
-            $this->item_id = $this->input->post('item_id');
-            return TRUE;
-        }
-        return FALSE;
-    }
 }

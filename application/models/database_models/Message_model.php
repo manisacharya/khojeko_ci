@@ -14,7 +14,7 @@ class Message_model extends CI_Model {
     public $user_id;
     public $sent_date;
 
-    public function insert_dealer() {
+    public function insert_message() {
         if ($this->db->table_exists('dealer')) {
             $this->m_id = $this->input->post('m_id');
             $this->m_content = $this->input->post('m_content');

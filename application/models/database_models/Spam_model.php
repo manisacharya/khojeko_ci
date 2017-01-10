@@ -18,4 +18,36 @@ class Spam_model extends CI_Model {
         $this->db->join('items', 'items.item_id = spam.item_id');
         return $this->db->count_all_results('spam');
     }
+
+    public function add_spam($id, $user_id, $spam_count){
+        $info = $this->db->get_where('spam', array('item_id' => $id, 'user_id' => $user_id));
+
+        if(! $info->num_rows()) {
+            $data = array(
+                'item_id' => $id,
+                'user_id' => $user_id,
+                'spam_message' => $this->input->post('fake_comment')
+            );
+
+            $this->db->insert('spam', $data);
+
+            $spam_count = $spam_count + 1;
+            $this->db->update('items',array('spam_count' => $spam_count), "item_id=".$id);
+            $this->session->set_flashdata('spam_message','<div class="alert alert-success">Your report has been registered for this item.</div>');
+            return true;
+        } else {
+            $this->session->set_flashdata('spam_message','<div class="alert alert-danger">Your report already registered for this item.</div>');
+            return false;
+        }
+    }
+
+    public function spam_check($id, $user_id){
+        $info = $this->db->get_where('spam', array('item_id' => $id, 'user_id' => $user_id));
+
+        if(!$info->num_rows()){
+            return true;
+        }else{
+            return false;
+        }
+    }
 }
