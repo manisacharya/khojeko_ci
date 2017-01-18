@@ -41,7 +41,7 @@ class Item_model extends CI_Model
         parent::__construct();
         $this->load->model('database_models/item_spec_model');
         $this->load->model('database_models/user_model');
-        $this->load->model('admin/document_model');
+        $this->load->model('database_models/document_model');
         $this->load->model('database_models/categories_model');
     }
 
