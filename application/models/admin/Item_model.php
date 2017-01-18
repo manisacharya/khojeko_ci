@@ -39,7 +39,7 @@ class Item_model extends CI_Model
     public function __construct() {
         // Call the CI_Model constructor
         parent::__construct();
-        $this->load->model('admin/specification_model'); 
+        $this->load->model('database_models/item_spec_model');
         $this->load->model('database_models/user_model');
         $this->load->model('admin/document_model');
         $this->load->model('database_models/categories_model');
@@ -123,7 +123,7 @@ class Item_model extends CI_Model
             }
             
             //$this->add_img($filename_arr);
-            $this->specification_model->add_spec();
+            $this->item_spec_model->add_spec();
            // $this->document_model->add_doc();
 
            // echo $this->item_id;
