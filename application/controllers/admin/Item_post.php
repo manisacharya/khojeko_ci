@@ -18,8 +18,8 @@ class Item_post extends CI_Controller{
         $this->load->model('database_models/categories_model');
         $this->load->model('admin/personal_model');
         $this->load->model('admin/image_model');
-        $this->load->model('admin/districts_model');
-        $this->load->model('admin/zones_model');
+        $this->load->model('database_model/districts_model');
+        $this->load->model('database_model/zones_model');
         $this->load->helper('security');
         $this->load->library('upload');
         $this->load->library('form_validation');
