@@ -8,13 +8,11 @@ class Details extends CI_Controller {
         $this->load->database(); // load database
         $this->load->model('database_models/retailer_partners_model');
         $this->load->model('detail_db_model');
-//        $this->load->model('user_model');
         $this->load->model('khojeko_db_model'); // load model
         $this->load->model('database_models/categories_model');
         $this->load->model('database_models/ask_me_model');
         $this->load->model('database_models/dealer_model');
         $this->load->model('database_models/items_model');
-//        $this->load->model('database_models/user_model');
         $this->load->model('database_models/spam_model');
         $this->load->model('database_models/favourites_model');
     }

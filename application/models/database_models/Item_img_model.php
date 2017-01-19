@@ -17,4 +17,14 @@ class Item_img_model extends CI_Model {
 
         $this->db->insert_batch('item_img', $img_data);
     }
+
+    //from detail_db_model
+    //show details of item images table
+    public function get_details_img($id){
+
+        $info = $this->db->get_where('item_img', array('item_id' => $id));
+
+        //$row = $info->row();
+        return $info;
+    }
 }

@@ -30,4 +30,22 @@ class Item_spec_model extends CI_Model {
             echo show_error('We have encountered some problem. Visit site later.', 500, 'Opps! Something went wrong');
         }
     }
+
+    //from detail_db_model
+    //show details of item specification table
+    public function get_details_specs($id){
+
+        $info = $this->db->get_where('item_spec', array('item_id' => $id));
+        $row = $this->item_spec_xss_clean($info->row());
+        return $row;
+    }
+
+    //from detail_db_model
+    public function item_spec_xss_clean($spec) {
+        $spec->specs    = html_escape($this->security->xss_clean($spec->specs));
+        $spec->item_id  = html_escape($this->security->xss_clean($spec->item_id));
+
+        return $spec;
+    }
+
 }

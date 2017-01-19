@@ -375,21 +375,81 @@ class Items_model extends CI_Model {
         return $this->db->count_all_results('items');
     }
 
-//    public function get_filtered_items($cid){
-//        $this->db->select('title', 'c_id');
-//        $this->db->where('deleted_date', 0);
-//        $this->db->where('primary', 1);
-//        $this->db->where('items.c_id', $cid);
-//
-//        $this->db->join('item_img', 'item_img.item_id = items.item_id');
-//        $this->db->join('item_spec', 'item_spec.item_id = items.item_id');
-//        $this->db->join('category', 'category.c_id = items.c_id');
-//        $this->db->join('user', 'user.user_id = items.user_id');
-//
-//        $query = $this->db->get('items');
-//        return $query->result();
-//    }
+    //further added functions till admin sections from detail_db_model
+    public function update_counter($id){
+        // return current article views
+        $info = $this->db->get_where('items', array('item_id' => urldecode($id)));
 
+        $row = $info->row();
+
+        $views = $row->views + 1;
+        $this->db->update('items', array('views' => $views), "item_id=".urldecode($id));
+    }
+
+    //show details of item table
+    public function get_details_item($id){
+        $this->db->select('items.*, item_spec.specs, four.c_name AS gg_parent, three.c_name AS g_parent, two.c_name AS parent, one.c_name AS category');
+        $this->db->where('items.item_id', $id);
+        $this->db->join('item_spec', 'items.item_id = item_spec.item_id');
+
+        $this->db->join('category AS one', 'one.c_id = items.c_id');
+        $this->db->join('category AS two', 'one.parent_id = two.c_id', 'LEFT');
+        $this->db->join('category AS three', 'two.parent_id = three.c_id', 'LEFT');
+        $this->db->join('category AS four', 'three.parent_id = four.c_id', 'LEFT');
+        $info = $this->db->get('items');
+        if($info->row() ==  NULL)
+            show_error('Sorry, page broken.');
+        $row = $this->item_xss_clean($info->row());
+        return $row;
+    }
+
+    //get the number of days after item published
+    public function get_date_diff($details){
+        //default_timezone_set in config.php
+        $datestring = '%d %M %Y';
+        $published_date = mdate($datestring, $details->published_date);
+        $current_time = mdate($datestring, time());
+
+        $p = date_create($published_date);
+        $c = date_create($current_time);
+        $days = date_diff($p,$c);
+        return $days;
+    }
+
+    //added from detail_db_model
+    public function item_xss_clean($items) {
+//        foreach ($array as &$items) {
+        $items->title                   = html_escape($this->security->xss_clean($items->title));
+        $items->item_type               = html_escape($this->security->xss_clean($items->item_type));
+        $items->bought_from             = html_escape($this->security->xss_clean($items->bought_from));
+        $items->price                   = html_escape($this->security->xss_clean($items->price));
+        $items->quantity                = html_escape($this->security->xss_clean($items->quantity));
+        $items->used_for                = html_escape($this->security->xss_clean($items->used_for));
+        $items->mkt_price               = html_escape($this->security->xss_clean($items->mkt_price));
+        $items->verification_number     = html_escape($this->security->xss_clean($items->verification_number));
+        $items->is_verified             = html_escape($this->security->xss_clean($items->is_verified));
+        $items->avaibility_address      = html_escape($this->security->xss_clean($items->avaibility_address));
+        $items->published_date          = html_escape($this->security->xss_clean($items->published_date));
+        $items->delivery                = html_escape($this->security->xss_clean($items->delivery));
+        $items->delivery_charge         = html_escape($this->security->xss_clean($items->delivery_charge));
+        $items->warranty_period         = html_escape($this->security->xss_clean($items->warranty_period));
+        $items->sales_status            = html_escape($this->security->xss_clean($items->sales_status));
+        $items->ad_duration             = html_escape($this->security->xss_clean($items->ad_duration));
+        $items->views                   = html_escape($this->security->xss_clean($items->views));
+        $items->visibility              = html_escape($this->security->xss_clean($items->visibility));
+        $items->video_url1	            = html_escape($this->security->xss_clean($items->video_url1));
+        $items->video_url2              = html_escape($this->security->xss_clean($items->video_url2));
+        $items->deleted_date            = html_escape($this->security->xss_clean($items->deleted_date));
+        $items->c_id                    = html_escape($this->security->xss_clean($items->c_id));
+        $items->user_id                 = html_escape($this->security->xss_clean($items->user_id));
+        $items->is_premium              = html_escape($this->security->xss_clean($items->is_premium));
+        $items->comment_count           = html_escape($this->security->xss_clean($items->comment_count));
+        $items->spam_count              = html_escape($this->security->xss_clean($items->spam_count));
+//        }
+//        unset($items);
+
+        return $items;
+    }
 
     ///admin section
     public function add_item_admin(){
@@ -487,6 +547,5 @@ class Items_model extends CI_Model {
 
         return $this->title;
     }
-
 
 }

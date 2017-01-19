@@ -56,7 +56,7 @@
             var Result = $('#result1'); // Get ID of the result DIV where we display the results
             if(username.length > 2) { // if greater than 2 (minimum 3)
                 Result.html('Loading...'); // you can use loading animation here
-                var dataPass = 'action=availability&username='+username;
+                var dataPass = ' ='+username;
 
                 $.ajax({ // Send the username val to available.php
                     type : 'POST',

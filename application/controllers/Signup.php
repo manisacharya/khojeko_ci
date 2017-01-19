@@ -24,9 +24,8 @@ class Signup extends CI_Controller {
 
         $this->get_common_contents($data);
 
-        tomodify
-        $data['zones'] = $this->Signup_model->getAllZones();
-//        $data['zones'] = $this->Signup_model->get_all_zones();
+        //$data['zones'] = $this->Signup_model->getAllZones();
+        $data['zones'] = $this->Signup_model->get_all_zones();
 
         $email = $this->input->post('user_email');
         //generate random key
