@@ -14,7 +14,7 @@ class Item_post extends CI_Controller{
 
         parent::__Construct();
         $this->load->model('database_models/user_model');
-        $this->load->model('admin/item_model'); // load model
+        $this->load->model('database_models/items_model'); // load model
         $this->load->model('database_models/categories_model');
         $this->load->model('admin/personal_model');
         $this->load->model('database_model/item_img_model');
@@ -70,7 +70,7 @@ class Item_post extends CI_Controller{
 
             $this->form_valid_check();
 
-            $this->item_model->add_item();
+            $this->item_model->add_item_admin();
 
             $this->personal_upload();
 
