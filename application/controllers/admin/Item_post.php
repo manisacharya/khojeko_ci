@@ -17,7 +17,7 @@ class Item_post extends CI_Controller{
         $this->load->model('admin/item_model'); // load model
         $this->load->model('database_models/categories_model');
         $this->load->model('admin/personal_model');
-        $this->load->model('admin/image_model');
+        $this->load->model('database_model/item_img_model');
         $this->load->model('database_model/districts_model');
         $this->load->model('database_model/zones_model');
         $this->load->helper('security');
@@ -176,7 +176,7 @@ class Item_post extends CI_Controller{
 
             $count++;
         }
-        $this->image_model->add_img($filename_arr);
+        $this->item_img_model->add_img($filename_arr);
     }
 
     public function get_district_admin(){
