@@ -16,10 +16,10 @@ class Item_post extends CI_Controller{
         $this->load->model('database_models/user_model');
         $this->load->model('database_models/items_model'); // load model
         $this->load->model('database_models/categories_model');
-        $this->load->model('admin/personal_model');
-        $this->load->model('database_model/item_img_model');
-        $this->load->model('database_model/districts_model');
-        $this->load->model('database_model/zones_model');
+        $this->load->model('database_models/personal_model');
+        $this->load->model('database_models/item_img_model');
+        $this->load->model('database_models/districts_model');
+        $this->load->model('database_models/zones_model');
         $this->load->helper('security');
         $this->load->library('upload');
         $this->load->library('form_validation');
