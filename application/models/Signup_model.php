@@ -111,7 +111,7 @@ class Signup_model extends CI_Model {
         }
     }
 
-    public function getAllZones(){
+    public function get_all_zones(){
         $this->db->select('zone_name');
         $query = $this->db->get('zones');
         return $query->result();

@@ -8,7 +8,7 @@ class Admin_pages extends CI_Controller {
         $this->load->model('admin/latest_verified_unverified_ad_model');
         $this->load->model('database_models/categories_model');
         $this->load->model('database_models/user_model');
-        $this->load->model('admin/zones_model');
+//        $this->load->model('admin/zones_model');
         if (! $this->session->has_userdata('admin_logged_in'))
             redirect('admin/login');
     }

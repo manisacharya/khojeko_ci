@@ -12,15 +12,6 @@ class Store_images_model extends CI_Model {
     public $si_name;
     public $d_id;
 
-    public function insert_dealer() {
-        if ($this->db->table_exists('dealer')) {
-            $this->si_id = $this->input->post('si_id');
-            $this->si_name = $this->input->post('si_name');
-            $this->d_id = $this->input->post('d_id');
-            return TRUE;
-        }
-        return FALSE;
-    }
     public function get_store_images($dealer_id) {
         $this->db->select('si_name');
         $this->db->where('store_images.d_id', $dealer_id);

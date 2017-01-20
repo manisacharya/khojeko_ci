@@ -6,14 +6,14 @@ class Search extends CI_Controller {
     function __Construct() {
         parent::__Construct ();
         $this->load->database(); // load database
-        $this->load->model('retailer_partners_model');
+        $this->load->model('database_models/retailer_partners_model');
         $this->load->model('khojeko_db_model'); // load model
-        $this->load->model('general_database_model');
+//        $this->load->model('general_database_model');
         $this->load->model('database_models/categories_model');
         $this->load->model('search_model');
         $this->load->model('database_models/dealer_model');
         $this->load->model('database_models/items_model');
-        $this->load->model('database_models/user_model');
+//        $this->load->model('database_models/user_model');
     }
 
     public function results() {

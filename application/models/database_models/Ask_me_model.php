@@ -15,16 +15,31 @@ class Ask_me_model extends CI_Model {
     public $item_id;
     public $posted_date;
 
-    public function insert_dealer() {
-        if ($this->db->table_exists('dealer')) {
-            $this->ask_id = $this->input->post('ask_id');
-            $this->question = $this->input->post('question');
-            $this->answer = $this->input->post('answer');
-            $this->user_id = $this->input->post('user_id');
-            $this->item_id = $this->input->post('item_id');
-            $this->posted_date = $this->input->post('posted_date');
-            return TRUE;
-        }
-        return FALSE;
+    public function get_ques_ans($id){
+//        $info = $this->db->get_where('ask_me', array('item_id' => $id));
+//        return $info;
+//
+//        SELECT * FROM ask_me JOIN USER WHERE ask_me.user_id = user.user_id AND ask_me.item_id=2
+
+        $this->db->select('*')->from('ask_me');
+        $this->db->join('user', "(ask_me.user_id = user.user_id AND ask_me.item_id=".$id.")");
+
+        $query = $this->db->get();
+        return $query;
+    }
+
+    public function add_question($item_id,$user_id,$comment_count){
+        $data = array(
+            'question' => $this->input->post('question'),
+            'answer' => NULL,
+            'user_id' => $user_id,
+            'item_id' => $item_id,
+            'posted_date' => NOW()
+        );
+
+        $this->db->insert('ask_me', $data);
+
+        $comment_count = $comment_count + 1;
+        $this->db->update('items',array('comment_count' => $comment_count), "item_id=".$item_id);
     }
 }

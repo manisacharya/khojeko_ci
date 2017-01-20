@@ -2,7 +2,6 @@
 class General_database_model extends CI_Model {
 
     // GET ALL DATA FROM ONE TABLE SORTED ORDER parameters:(TABLE NAME, ORDERBY, ASC/DESC)
-
     function getAll($table, $orderby, $order) {
         $this->db->select('*')->from($table)->order_by($orderby, $order);
         $query = $this->db->get();

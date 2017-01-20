@@ -1,14 +1,14 @@
 <?php
-
 class Detail_db_model extends CI_Model{
 
+    //use this method from General_database_model
     function getAll($table, $orderby, $order) {
         $this->db->select('*')->from($table)->order_by($orderby, $order);
-        //$this->db
         $query = $this->db->get();
         return $query->result();
     }
 
+    //addded in Items_model
     public function update_counter($id){
         // return current article views
         $info = $this->get_sql('items','item_id',urldecode($id));
@@ -18,6 +18,7 @@ class Detail_db_model extends CI_Model{
         $this->db->update('items', array('views' => $views), "item_id=".urldecode($id));
     }
 
+    //addded in Items_model
     //show details of item table
     public function get_details_item($id){
         $this->db->select('items.*, item_spec.specs, four.c_name AS gg_parent, three.c_name AS g_parent, two.c_name AS parent, one.c_name AS category');
@@ -35,6 +36,7 @@ class Detail_db_model extends CI_Model{
         return $row;
     }
 
+    //added in Item_spec_model
     //show details of item specification table
     public function get_details_specs($id){
         $info = $this->get_sql('item_spec','item_id',$id);
@@ -42,6 +44,7 @@ class Detail_db_model extends CI_Model{
         return $row;
     }
 
+    //added in Item_img_model
     //show details of item images table
     public function get_details_img($id){
         $info = $this->get_sql('item_img','item_id',$id);
@@ -50,6 +53,7 @@ class Detail_db_model extends CI_Model{
         return $info;
     }
 
+    //added in User_model
     //show details of user table
     public function get_details_user($details){
         $info = $this->get_sql('user','user_id',$details->user_id);
@@ -57,6 +61,7 @@ class Detail_db_model extends CI_Model{
         return $row;
     }
 
+    //added in User_model
     //show details of dealer or personal table
     public function get_details_dealer($user){
         $user_type = $user->type;
@@ -70,6 +75,36 @@ class Detail_db_model extends CI_Model{
         return $row;
     }
 
+    //added in user_model
+    //function to get id for session
+    public function get_id_session($username){
+        $info = $this->get_sql('user','khojeko_username',$username);
+        $row = $info->row();
+        $id = 'user_id';
+        $id = $row->$id;
+        return $id;
+    }
+
+    //added in user_model
+    //function to get user type for session
+    public function get_type_session($username){
+        $info = $this->get_sql('user','khojeko_username',$username);
+        $row = $info->row();
+        $id = 'type';
+        $id = $row->$id;
+        return $id;
+    }
+
+    //all function dependecny on this function changed
+    //query to get information about the given table with given condition
+    public function get_sql($table, $attribute, $data){
+        //$table is the table name and array specifies the contition of the querys
+        $info = $this->db->get_where($table, array($attribute => $data));
+
+        return $info;
+    }
+
+    //added in items_model
     //get the number of days after item published
     public function get_date_diff($details){
         //default_timezone_set in config.php
@@ -83,32 +118,7 @@ class Detail_db_model extends CI_Model{
         return $days;
     }
 
-    //function to get id for session
-    public function get_id_session($username){
-        $info = $this->get_sql('user','khojeko_username',$username);
-        $row = $info->row();
-        $id = 'user_id';
-        $id = $row->$id;
-        return $id;
-    }
-
-    //function to get user type for session
-    public function get_type_session($username){
-        $info = $this->get_sql('user','khojeko_username',$username);
-        $row = $info->row();
-        $id = 'type';
-        $id = $row->$id;
-        return $id;
-    }
-
-    //query to get information about the given table with given condition
-    public function get_sql($table, $attribute, $data){
-        //$table is the table name and array specifies the contition of the querys
-        $info = $this->db->get_where($table, array($attribute => $data));
-
-        return $info;
-    }
-
+    //added in items_model
     public function item_xss_clean($items) {
 //        foreach ($array as &$items) {
         $items->title                   = html_escape($this->security->xss_clean($items->title));
@@ -143,6 +153,7 @@ class Detail_db_model extends CI_Model{
         return $items;
     }
 
+    //added in item_spec_model
     public function item_spec_xss_clean($spec) {
         $spec->specs    = html_escape($this->security->xss_clean($spec->specs));
         $spec->item_id  = html_escape($this->security->xss_clean($spec->item_id));
@@ -150,6 +161,7 @@ class Detail_db_model extends CI_Model{
         return $spec;
     }
 
+    //added in user_model
     public function user_xss_clean($user) {
         $user->khojeko_username    = html_escape($this->security->xss_clean($user->khojeko_username));
         $user->password            = html_escape($this->security->xss_clean($user->password));
@@ -165,6 +177,7 @@ class Detail_db_model extends CI_Model{
         return $user;
     }
 
+    //added in user_model
     public function user_type_xss_clean($type, $user_id) {
         if($user_id == "d_id"){
             $type->name             = html_escape($this->security->xss_clean($type->name));

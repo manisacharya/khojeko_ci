@@ -14,12 +14,12 @@ class Item_post extends CI_Controller{
 
         parent::__Construct();
         $this->load->model('database_models/user_model');
-        $this->load->model('admin/item_model'); // load model
+        $this->load->model('database_models/items_model'); // load model
         $this->load->model('database_models/categories_model');
-        $this->load->model('admin/personal_model');
-        $this->load->model('admin/image_model');
-        $this->load->model('admin/districts_model');
-        $this->load->model('admin/zones_model');
+        $this->load->model('database_models/personal_model');
+        $this->load->model('database_models/item_img_model');
+        $this->load->model('database_models/districts_model');
+        $this->load->model('database_models/zones_model');
         $this->load->helper('security');
         $this->load->library('upload');
         $this->load->library('form_validation');
@@ -33,7 +33,7 @@ class Item_post extends CI_Controller{
 
         $data['user_info'] = $this->user_model->get_user_info('admin', $this->session->userdata['admin_logged_in']['id']);
         $data['categories'] = $this->categories_model->get_categories();
-        $data['zones'] = $this->zones_model->getAllZones();
+        $data['zones'] = $this->zones_model->get_all_zones();
 
         $this->form_validation->set_error_delimiters('<div class="alert alert-danger">', '</div>');
 
@@ -70,7 +70,7 @@ class Item_post extends CI_Controller{
 
             $this->form_valid_check();
 
-            $this->item_model->add_item();
+            $this->item_model->add_item_admin();
 
             $this->personal_upload();
 
@@ -135,7 +135,7 @@ class Item_post extends CI_Controller{
         $a = 1;
 
         $name = $this->user_model->get_user_name();
-        $ad = $this->item_model->get_ad_name();
+        $ad = $this->item_model->get_item_name();
         $id = $this->item_model->get_item_id();
 
         foreach ($_FILES as $key => $value) {
@@ -176,7 +176,7 @@ class Item_post extends CI_Controller{
 
             $count++;
         }
-        $this->image_model->add_img($filename_arr);
+        $this->item_img_model->add_img($filename_arr);
     }
 
     public function get_district_admin(){

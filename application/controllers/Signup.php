@@ -10,11 +10,11 @@ class Signup extends CI_Controller {
         $this->load->library('upload');
         $this->load->model('Signup_model');
         $this->load->model('khojeko_db_model');
-        $this->load->model('retailer_partners_model');
+        $this->load->model('database_models/retailer_partners_model');
         $this->load->model('database_models/categories_model');
         $this->load->model('database_models/dealer_model');
         $this->load->model('database_models/items_model');
-        $this->load->model('database_models/user_model');
+//        $this->load->model('database_models/user_model');
     }
 
     //Call the Sign up page
@@ -24,7 +24,8 @@ class Signup extends CI_Controller {
 
         $this->get_common_contents($data);
 
-        $data['zones'] = $this->Signup_model->getAllZones();
+        //$data['zones'] = $this->Signup_model->getAllZones();
+        $data['zones'] = $this->Signup_model->get_all_zones();
 
         $email = $this->input->post('user_email');
         //generate random key
@@ -208,6 +209,7 @@ class Signup extends CI_Controller {
         }
     }
     //send email for confirmation after sign up
+
     public function email_user($email, $key){
 
         $this->load->library('email', array('mailtype'=>'html'));

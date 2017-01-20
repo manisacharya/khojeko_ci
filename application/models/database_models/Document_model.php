@@ -1,7 +1,7 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: cham11ng
+ * User: manisAlert
  * Date: 10/27/16
  * Time: 1:48 PM
  */
@@ -36,15 +36,5 @@ class Document_model extends CI_Model {
         } else {
             echo show_error('We have encountered some problem. Visit site later.', 500, 'Opps! Something went wrong');
         }
-    }
-
-    public function insert_dealer() {
-        if ($this->db->table_exists('dealer')) {
-            $this->doc_id = $this->input->post('doc_id');
-            $this->doc_name = $this->input->post('doc_name');
-            $this->item_id = $this->input->post('item_id');
-            return TRUE;
-        }
-        return FALSE;
     }
 }
