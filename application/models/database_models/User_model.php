@@ -343,6 +343,23 @@ class User_model extends CI_Model {
 //        return $user;
 //    }
 
+    //from sign_up_model
+    //add user from sign up login details to temporary file
+    public function add_temp_user($key, $username){
+        $data = array(
+            'email' => $this->input->post('user_email'),
+            'khojeko_username' => str_replace(' ', '-', $username),
+            'password' =>  password_hash($this->input->post('password'), PASSWORD_DEFAULT),
+            'type' => $this->input->post('acc_type'),
+            'ac_created' => NOW(),
+            'u_verified' => 0,
+            'verification_key' => $key,
+            'user_status' => 1
+        );
+
+        $this->db->insert('user', $data);
+    }
+
     public function available_username_admin(){
         $query = $this->db->get_where('user', ['khojeko_username' => $this->input->post('username')]);
         echo $query->num_rows();
@@ -351,6 +368,53 @@ class User_model extends CI_Model {
     public function available_email_admin(){
         $query = $this->db->get_where('user', ['email' => $this->input->post('email')]);
         echo $query->num_rows();
+    }
+
+    //from sign_up model
+    public function available_username(){
+        $query = $this->db->get_where('user', ['khojeko_username' => $this->input->post('username')]);
+        echo $query->num_rows();
+    }
+
+    //from sign_up model
+    public function available_email(){
+        $query = $this->db->get_where('user', ['email' => $this->input->post('useremail')]);
+        echo $query->num_rows();
+    }
+
+    //from sign_up model
+    public function is_key_valid_add_user($key){
+        $temp_user = $this->db->get_where('user', array('verification_key' => $key));
+
+        if($temp_user->num_rows() == 1){
+            $row = $temp_user->row();
+
+            //$user_key = $row->user_key;
+            //$type = $row->type;
+            $email = $row->email;
+
+            //update u_verified of user table
+            $this->db->set(array('u_verified' => 1, 'verification_key' => null));
+            $this->db->where('email', $email);
+            $this->db->update('user');
+
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    //from sign_up model
+    //generate personal username
+    public function personal_username($full_name){
+        $random = mt_rand(00000, 99999);
+        $username = url_title($full_name.$random);
+
+        $query = $this->db->get_where('user', ['khojeko_username' => $username]);
+        if($query->num_rows() == 0 )
+            return $username;
+        else
+            $this->personal_username($full_name);
     }
 
 //    public function available_mobile_admin(){

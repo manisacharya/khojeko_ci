@@ -2,6 +2,20 @@
 
 class Signup_model extends CI_Model {
 
+    //added to user_model
+    //generate personal username
+    public function personal_username($full_name){
+        $random = mt_rand(00000, 99999);
+        $username = url_title($full_name.$random);
+
+        $query = $this->db->get_where('user', ['khojeko_username' => $username]);
+        if($query->num_rows() == 0 )
+            return $username;
+        else
+            $this->personal_username($full_name);
+    }
+
+    //added to user_model
     //add user from sign up login details to temporary file
     public function add_temp_user($key, $username){
         $data = array(
@@ -18,6 +32,7 @@ class Signup_model extends CI_Model {
         $this->db->insert('user', $data);
     }
 
+    //added to personal_model
     //add user from sign up profile:personal details to temporary file
     public function add_temp_personal($email){
         $mobile = $this->input->post('mobile_p');
@@ -36,18 +51,7 @@ class Signup_model extends CI_Model {
         $this->update_user('personal', $email, $mobile, 'p_id');
     }
 
-    //generate personal username
-    public function personal_username($full_name){
-        $random = mt_rand(00000, 99999);
-        $username = url_title($full_name.$random);
-
-        $query = $this->db->get_where('user', ['khojeko_username' => $username]);
-        if($query->num_rows() == 0 )
-            return $username;
-        else
-            $this->personal_username($full_name);
-    }
-
+    //added to dealer_model
     //add user from sign up profile:dealer details to temporary file
     public function add_temp_dealer($email, $dealerlogo, $dealerdoc){
         $mobile = $this->input->post('mobile');
@@ -71,10 +75,6 @@ class Signup_model extends CI_Model {
         return $id;
     }
 
-    public function store_front($data){
-        $this->db->insert_batch('store_images', $data);
-    }
-
     //generalised function to update the table temp_user
     public function update_user($table, $email, $mobile, $type){
         $info = $this->db->get_where($table, array('primary_mob' => $mobile));
@@ -90,6 +90,13 @@ class Signup_model extends CI_Model {
         return $id;
     }
 
+
+    //added to store_images_model
+    public function store_front($data){
+        $this->db->insert_batch('store_images', $data);
+    }
+
+    //added to user_model
     public function is_key_valid_add_user($key){
         $temp_user = $this->db->get_where('user', array('verification_key' => $key));
 
@@ -111,12 +118,14 @@ class Signup_model extends CI_Model {
         }
     }
 
+    //added to zones_model
     public function get_all_zones(){
         $this->db->select('zone_name');
         $query = $this->db->get('zones');
         return $query->result();
     }
 
+    //added to district_model
     public function get_districts(){
         $district_selected = $this->input->post('district_selected');
         $this->db->select('district_name')->from('districts');
@@ -135,21 +144,25 @@ class Signup_model extends CI_Model {
         echo $HTML;
     }
 
+    //added to user_model
     public function available_username(){
         $query = $this->db->get_where('user', ['khojeko_username' => $this->input->post('username')]);
         echo $query->num_rows();
     }
 
+    //added to user_model
     public function available_email(){
         $query = $this->db->get_where('user', ['email' => $this->input->post('useremail')]);
         echo $query->num_rows();
     }
 
+    //added to personal_model
     public function available_mobile_P(){
         $query = $this->db->get_where('personal', ['primary_mob' => $this->input->post('mobile_p')]);
         echo $query->num_rows();
     }
 
+    //added to dealer_model
     public function available_mobile_d(){
         $query = $this->db->get_where('dealer', ['primary_mob' => $this->input->post('mobile_d')]);
         echo $query->num_rows();

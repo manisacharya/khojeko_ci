@@ -77,8 +77,48 @@ class Personal_model extends CI_Model {
 
     }
 
+    //from sign_up model
+    //add user from sign up profile:personal details to temporary file
+    public function add_temp_personal($email){
+        $mobile = $this->input->post('mobile_p');
+        $data = array(
+            'name' => $this->input->post('full_name'),
+            'zone' => $this->input->post('zone_p'),
+            'district' => $this->input->post('district_p'),
+            'city' => $this->input->post('city_p'),
+            'full_address' => $this->input->post('address_p'),
+            'primary_mob' => $mobile,
+            'secondary_mob' => $this->input->post('sec_mobile'),
+            'tel_no' => $this->input->post('telephone_p')
+        );
+        $this->db->insert('personal', $data);
+        //update user table
+        $this->update_user('personal', $email, $mobile, 'p_id');
+    }
+
+    //generalised function to update the table temp_user
+    public function update_user($table, $email, $mobile, $type){
+        $info = $this->db->get_where($table, array('primary_mob' => $mobile));
+        $row = $info->row();
+        $id = $row->$type;
+
+        //set user_key to temp_user table
+        //$this->db->update('temp_user', array('user_key' => $id), "email=".$email);
+        $this->db->set(array('user_key' => $id));
+        $this->db->where('email', $email);
+        $this->db->update('user');
+
+        return $id;
+    }
+
     public function available_mobile_admin(){
         $query = $this->db->get_where('personal', ['primary_mob' => $this->input->post('mobile1')]);
+        echo $query->num_rows();
+    }
+
+    //from sign_up model
+    public function available_mobile_P(){
+        $query = $this->db->get_where('personal', ['primary_mob' => $this->input->post('mobile_p')]);
         echo $query->num_rows();
     }
 }
