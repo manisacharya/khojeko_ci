@@ -20,8 +20,8 @@ class User_model extends CI_Model {
 
     public function __construct() {
         parent::__construct();
-        $this->load->model('admin/personal_model');
-        $this->load->model('admin/specification_model');
+        $this->load->model('database_models/personal_model');
+        $this->load->model('database_models/item_spec_model');
     }
 
     public function get_user_info($type, $value) {
@@ -303,7 +303,7 @@ class User_model extends CI_Model {
                 $this->user_id = $row->user_id;
             }
 
-            // $this->specification_model->add_spec();
+            // $this->item_spec_model->add_spec();
         } else {
             echo show_error('We have encountered some problem. Visit site later.', 500, 'Opps! Something went wrong');
         }
