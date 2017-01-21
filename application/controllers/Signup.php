@@ -66,7 +66,7 @@ class Signup extends CI_Controller {
             //form validation for step 1
             $this->signup_step1();
             //generate unique username for personal user
-            $username = $this->personal_model->personal_username($this->input->post('full_name'));
+            $username = $this->user_model->personal_username($this->input->post('full_name'));
             //Validate personal profile from signup page and store in temporary file
             $this->form_validation->set_rules('full_name', 'Full Name', 'required|trim');
             $this->form_validation->set_rules('zone_p', 'Zone', 'required|trim');

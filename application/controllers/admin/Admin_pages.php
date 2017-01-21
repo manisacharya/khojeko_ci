@@ -5,7 +5,7 @@ class Admin_pages extends CI_Controller {
 
     function __Construct() {
         parent::__Construct();
-        $this->load->model('admin/latest_verified_unverified_ad_model');
+        $this->load->model('latest_verified_unverified_ad_model');
         $this->load->model('database_models/categories_model');
         $this->load->model('database_models/user_model');
 //        $this->load->model('admin/zones_model');
