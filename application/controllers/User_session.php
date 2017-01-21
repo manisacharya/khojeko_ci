@@ -10,7 +10,6 @@ class User_session extends CI_Controller {
         $this->load->model('database_models/categories_model');
         $this->load->model('database_models/retailer_partners_model');
         $this->load->model('khojeko_db_model');
-        $this->load->model('detail_db_model');
         $this->load->model('database_models/dealer_model');
         $this->load->model('database_models/items_model');
         $this->load->model('database_models/user_model');
@@ -33,8 +32,8 @@ class User_session extends CI_Controller {
         if($this->form_validation->run()){
             $user_session = array(
                 'username'      => $this->khojeko_username,
-                'type'          => $this->detail_db_model->get_type_session($this->khojeko_username),
-                'id'            => $this->detail_db_model->get_id_session($this->khojeko_username),
+                'type'          => $this->user_model->get_type_session($this->khojeko_username),
+                'id'            => $this->user_model->get_id_session($this->khojeko_username),
                 'is_logged_in'  => 1
             );
             $this->session->set_userdata('logged_in', $user_session);
