@@ -19,4 +19,9 @@ class Store_images_model extends CI_Model {
         $query = $this->db->get('store_images', 4);
         return $query->result();
     }
+
+    //from sign_up_model
+    public function store_front($data){
+        $this->db->insert_batch('store_images', $data);
+    }
 }

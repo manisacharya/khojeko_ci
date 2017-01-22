@@ -7,19 +7,21 @@ class Details extends CI_Controller {
         parent::__Construct ();
         $this->load->database(); // load database
         $this->load->model('database_models/retailer_partners_model');
-        $this->load->model('detail_db_model');
         $this->load->model('khojeko_db_model'); // load model
         $this->load->model('database_models/categories_model');
         $this->load->model('database_models/ask_me_model');
         $this->load->model('database_models/dealer_model');
         $this->load->model('database_models/items_model');
+        $this->load->model('database_models/item_spec_model');
+        $this->load->model('database_models/item_img_model');
+        $this->load->model('database_models/user_model');
         $this->load->model('database_models/spam_model');
         $this->load->model('database_models/favourites_model');
     }
 
     //For Details Page
     public function details($id) {
-        $data['details'] = $this->detail_db_model->get_details_item($id);
+        $data['details'] = $this->items_model->get_details_item($id);
         if ($data['details']->deleted_date != 0)
             show_error('Sorry, page broken.');
 
@@ -30,11 +32,11 @@ class Details extends CI_Controller {
         $this->add_view_count($id);
         $data['id'] = $id;
 
-        $data['specification'] = $this->detail_db_model->get_details_specs($id);
-        $data['image'] = $this->detail_db_model->get_details_img($id);
-        $data['user'] = $this->detail_db_model->get_details_user($data['details']);
-        $data['user_type'] = $this->detail_db_model->get_details_dealer($data['user']);
-        $data['date'] = $this->detail_db_model->get_date_diff($data['details']);
+        $data['specification'] = $this->item_spec_model->get_details_specs($id);
+        $data['image'] = $this->item_img_model->get_details_img($id);
+        $data['user'] = $this->user_model->get_details_user($data['details']);
+        $data['user_type'] = $this->user_model->get_details_dealer($data['user']);
+        $data['date'] = $this->items_model->get_date_diff($data['details']);
         $data['question'] = $this->ask_me_model->get_ques_ans($id);
 
         $data["category"] = $this->categories_model->get_categories();
@@ -101,7 +103,7 @@ class Details extends CI_Controller {
                 'prefix' => ''
             );
             $this->input->set_cookie($cookie);
-            $this->detail_db_model->update_counter($id);
+            $this->items_model->update_counter($id);
         }
 
         // $cookie = array(

@@ -8,13 +8,17 @@ class Signup extends CI_Controller {
         $this->load->database(); // load database
         $this->load->library('form_validation');
         $this->load->library('upload');
-        $this->load->model('Signup_model');
+
+        $this->load->model('database_models/zones_model');
+        $this->load->model('database_models/districts_model');
+        $this->load->model('database_models/user_model');
+        $this->load->model('database_models/dealer_model');
+        $this->load->model('database_models/personal_model');
+        $this->load->model('database_models/store_images_model');
         $this->load->model('khojeko_db_model');
         $this->load->model('database_models/retailer_partners_model');
         $this->load->model('database_models/categories_model');
-        $this->load->model('database_models/dealer_model');
         $this->load->model('database_models/items_model');
-//        $this->load->model('database_models/user_model');
     }
 
     //Call the Sign up page
@@ -25,7 +29,7 @@ class Signup extends CI_Controller {
         $this->get_common_contents($data);
 
         //$data['zones'] = $this->Signup_model->getAllZones();
-        $data['zones'] = $this->Signup_model->get_all_zones();
+        $data['zones'] = $this->zones_model->get_all_zones();
 
         $email = $this->input->post('user_email');
         //generate random key
@@ -49,10 +53,10 @@ class Signup extends CI_Controller {
             //add the input data to temporary table
             if($this->form_validation->run()){
                 $username = $this->input->post('user_name');
-                $this->Signup_model->add_temp_user($key, $username);
+                $this->user_model->add_temp_user($key, $username);
                 $dealerlogo = $this->dealer_logo($name);
                 $dealerdoc = $this->dealer_vat($name);
-                $id = $this->Signup_model->add_temp_dealer($email, $dealerlogo, $dealerdoc);
+                $id = $this->dealer_model->add_temp_dealer($email, $dealerlogo, $dealerdoc);
                 $this->dealer_store($name, $id);
 
                 //send email to the user
@@ -62,7 +66,7 @@ class Signup extends CI_Controller {
             //form validation for step 1
             $this->signup_step1();
             //generate unique username for personal user
-            $username = $this->Signup_model->personal_username($this->input->post('full_name'));
+            $username = $this->user_model->personal_username($this->input->post('full_name'));
             //Validate personal profile from signup page and store in temporary file
             $this->form_validation->set_rules('full_name', 'Full Name', 'required|trim');
             $this->form_validation->set_rules('zone_p', 'Zone', 'required|trim');
@@ -74,8 +78,8 @@ class Signup extends CI_Controller {
             $district_selected = $this->input->post('district_p');
             //add the input data to temporary table
             if ($this->form_validation->run()) {
-                $this->Signup_model->add_temp_user($key, $username);
-                $this->Signup_model->add_temp_personal($email);
+                $this->user_model->add_temp_user($key, $username);
+                $this->personal_model->add_temp_personal($email);
 
                 //send email to the user
                 $this->email_user($email, $key);
@@ -168,7 +172,7 @@ class Signup extends CI_Controller {
             }
             $count++;
         }
-        $this->Signup_model->store_front($filename_arr);
+        $this->store_images_model->store_front($filename_arr);
 
     }
 
@@ -244,7 +248,7 @@ class Signup extends CI_Controller {
     //to send the data from temp tables to the original tables
     public function register_user($key){
 
-        if($this->Signup_model->is_key_valid_add_user($key)){
+        if($this->user_model->is_key_valid_add_user($key)){
             $this->session->set_flashdata('login_msg','<div class="alert alert-success">You can now successfully login.</div>');
             redirect('login');
         } else {
@@ -254,23 +258,23 @@ class Signup extends CI_Controller {
     }
 
     public function get_districts(){
-        $this->Signup_model->get_districts();
+        $this->districts_model->get_districts();
     }
 
     public function available_username(){
-        $this->Signup_model->available_username();
+        $this->user_model->available_username();
     }
 
     public function available_email(){
-        $this->Signup_model->available_email();
+        $this->user_model->available_email();
     }
 
     public function available_mobile_P(){
-        $this->Signup_model->available_mobile_P();
+        $this->personal_model->available_mobile_P();
     }
 
     public function available_mobile_d(){
-        $this->Signup_model->available_mobile_d();
+        $this->dealer_model->available_mobile_d();
     }
 
     public function get_common_contents(&$data) {

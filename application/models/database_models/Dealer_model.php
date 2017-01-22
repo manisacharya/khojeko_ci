@@ -66,4 +66,49 @@ class Dealer_model extends CI_Model {
 
         return $array;
     }
+
+    //from sign_up_model
+    //add user from sign up profile:dealer details to temporary file
+    public function add_temp_dealer($email, $dealerlogo, $dealerdoc){
+        $mobile = $this->input->post('mobile');
+        $data = array(
+            'name' => $this->input->post('dealer_name'),
+            'zone' => $this->input->post('zone'),
+            'district' => $this->input->post('district'),
+            'city' => $this->input->post('city'),
+            'full_address' => $this->input->post('address'),
+            'primary_mob' => $mobile,
+            'tel_no' => $this->input->post('telephone'),
+            'company_website' => $this->input->post('website'),
+            'detail' => $this->input->post('profile'),
+            'logo' => $dealerlogo,
+            'document' => $dealerdoc
+        );
+        $this->db->insert('dealer', $data);
+
+        //update user table
+        $id = $this->update_user('dealer', $email, $mobile, 'd_id');
+        return $id;
+    }
+
+    //generalised function to update the table temp_user
+    public function update_user($table, $email, $mobile, $type){
+        $info = $this->db->get_where($table, array('primary_mob' => $mobile));
+        $row = $info->row();
+        $id = $row->$type;
+
+        //set user_key to temp_user table
+        //$this->db->update('temp_user', array('user_key' => $id), "email=".$email);
+        $this->db->set(array('user_key' => $id));
+        $this->db->where('email', $email);
+        $this->db->update('user');
+
+        return $id;
+    }
+
+    //from sign_up model
+    public function available_mobile_d(){
+        $query = $this->db->get_where('dealer', ['primary_mob' => $this->input->post('mobile_d')]);
+        echo $query->num_rows();
+    }
 }

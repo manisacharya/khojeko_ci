@@ -1,6 +1,21 @@
 <?php
 class Khojeko_db_model extends CI_Model {
 
+    // GET ALL DATA FROM ONE TABLE SORTED ORDER parameters:(TABLE NAME, ORDERBY, ASC/DESC)
+    function getAll($table, $orderby, $order) {
+        $this->db->select('*')->from($table)->order_by($orderby, $order);
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    // GET ONE ROW DATA FROM ONE TABLE parameter:(TABLE NAME, COLUMN, VALUE)
+
+    function getDetails($table, $column, $value) {
+        $this->db->where($column, $value)->from($table)->limit(1);
+        $query = $this->db->get();
+        return $query->row();
+    }
+
     function getAllCondition($table, $id) {
         $this->db->select('*')->from($table)->where('sc_id', $id);
         $query = $this->db->get();

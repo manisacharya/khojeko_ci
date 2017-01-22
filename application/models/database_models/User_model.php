@@ -20,8 +20,8 @@ class User_model extends CI_Model {
 
     public function __construct() {
         parent::__construct();
-        $this->load->model('admin/personal_model');
-        $this->load->model('admin/specification_model');
+        $this->load->model('database_models/personal_model');
+        $this->load->model('database_models/item_spec_model');
     }
 
     public function get_user_info($type, $value) {
@@ -303,7 +303,7 @@ class User_model extends CI_Model {
                 $this->user_id = $row->user_id;
             }
 
-            // $this->specification_model->add_spec();
+            // $this->item_spec_model->add_spec();
         } else {
             echo show_error('We have encountered some problem. Visit site later.', 500, 'Opps! Something went wrong');
         }
@@ -343,6 +343,23 @@ class User_model extends CI_Model {
 //        return $user;
 //    }
 
+    //from sign_up_model
+    //add user from sign up login details to temporary file
+    public function add_temp_user($key, $username){
+        $data = array(
+            'email' => $this->input->post('user_email'),
+            'khojeko_username' => str_replace(' ', '-', $username),
+            'password' =>  password_hash($this->input->post('password'), PASSWORD_DEFAULT),
+            'type' => $this->input->post('acc_type'),
+            'ac_created' => NOW(),
+            'u_verified' => 0,
+            'verification_key' => $key,
+            'user_status' => 1
+        );
+
+        $this->db->insert('user', $data);
+    }
+
     public function available_username_admin(){
         $query = $this->db->get_where('user', ['khojeko_username' => $this->input->post('username')]);
         echo $query->num_rows();
@@ -353,70 +370,117 @@ class User_model extends CI_Model {
         echo $query->num_rows();
     }
 
-//    public function available_mobile_admin(){
-//        $query = $this->db->get_where('personal', ['primary_mob' => $this->input->post('mobile1')]);
-//        echo $query->num_rows();
-//    }
-//
-//    public function can_login($username){
-//        $password = $this->input->post('password');
-//
-//        $this->db->select('khojeko_username, password')->from('user');
-//        $this->db->join('personal', "user.user_key = personal.p_id");
-//        $where = "type='personal' AND (email = '".$username."' OR primary_mob = '".$username."')";
-//        $this->db->where($where);
-//        $query_p = $this->db->get();
-//        $row_p = $query_p->row();
-//        if ($query_p->num_rows() == 1){
-//            $khojeko_username = $row_p->khojeko_username;
-//            $db_password = $row_p->password;
-//        }
-//
-//        $this->db->select('khojeko_username , password')->from('user');
-//        $this->db->join('dealer', "user.user_key = dealer.d_id");
-//        $where = "type='dealer' AND (email = '".$username."' OR primary_mob = '".$username."')";
-//        $this->db->where($where);
-//        $query_d = $this->db->get();
-//        $row_d = $query_d->row();
-//        if ($query_d->num_rows() == 1){
-//            $khojeko_username = $row_d->khojeko_username;
-//            $db_password = $row_d->password;
-//        }
-//
-//        if ($query_p->num_rows() == 1 || $query_d->num_rows() ==1) {
-//            if(password_verify($password, $db_password)) {
-//                return $khojeko_username;
-//            } else {
-//                return null;
-//            }
-//        }
-//    }
-//
-//    public function user_verification($username){
-//        $data = array(
-//            'khojeko_username' => $username,
-//            'u_verified' => 1
-//        );
-//        $info = $this->db->get_where('user', $data);
-//        if ($info->num_rows() == 1) {
-//            return true;
-//        } else {
-//            return false;
-//        }
-//    }
-//
-//    public function check_email(){
-//        $query = $this->db->get_where('user', array('email' => $this->input->post('useremail')));
-//        if($query->num_rows() == 1)
-//            return true;
-//        else
-//            return false;
-//    }
-//
-//    public function new_password(){
-//        $this->db->where('email',$this->input->post('user_email'));
-//        $this->db->update('user', array('password' => password_hash($this->input->post('n_password'), PASSWORD_DEFAULT)));
-//        $this->session->set_flashdata('password_changed','<div class="alert alert-success">Your password has been changed. Please login to continue.</div>');
-//    }
+    //from sign_up model
+    public function available_username(){
+        $query = $this->db->get_where('user', ['khojeko_username' => $this->input->post('username')]);
+        echo $query->num_rows();
+    }
+
+    //from sign_up model
+    public function available_email(){
+        $query = $this->db->get_where('user', ['email' => $this->input->post('useremail')]);
+        echo $query->num_rows();
+    }
+
+    //from sign_up model
+    public function is_key_valid_add_user($key){
+        $temp_user = $this->db->get_where('user', array('verification_key' => $key));
+
+        if($temp_user->num_rows() == 1){
+            $row = $temp_user->row();
+
+            //$user_key = $row->user_key;
+            //$type = $row->type;
+            $email = $row->email;
+
+            //update u_verified of user table
+            $this->db->set(array('u_verified' => 1, 'verification_key' => null));
+            $this->db->where('email', $email);
+            $this->db->update('user');
+
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    //from sign_up model
+    //generate personal username
+    public function personal_username($full_name){
+        $random = mt_rand(00000, 99999);
+        $username = url_title($full_name.$random);
+
+        $query = $this->db->get_where('user', ['khojeko_username' => $username]);
+        if($query->num_rows() == 0 )
+            return $username;
+        else
+            $this->personal_username($full_name);
+    }
+
+    public function available_mobile_admin(){
+        $query = $this->db->get_where('personal', ['primary_mob' => $this->input->post('mobile1')]);
+        echo $query->num_rows();
+    }
+
+    public function can_login($username){
+        $password = $this->input->post('password');
+
+        $this->db->select('khojeko_username, password')->from('user');
+        $this->db->join('personal', "user.user_key = personal.p_id");
+        $where = "type='personal' AND (email = '".$username."' OR primary_mob = '".$username."')";
+        $this->db->where($where);
+        $query_p = $this->db->get();
+        $row_p = $query_p->row();
+        if ($query_p->num_rows() == 1){
+            $khojeko_username = $row_p->khojeko_username;
+            $db_password = $row_p->password;
+        }
+
+        $this->db->select('khojeko_username , password')->from('user');
+        $this->db->join('dealer', "user.user_key = dealer.d_id");
+        $where = "type='dealer' AND (email = '".$username."' OR primary_mob = '".$username."')";
+        $this->db->where($where);
+        $query_d = $this->db->get();
+        $row_d = $query_d->row();
+        if ($query_d->num_rows() == 1){
+            $khojeko_username = $row_d->khojeko_username;
+            $db_password = $row_d->password;
+        }
+
+        if ($query_p->num_rows() == 1 || $query_d->num_rows() ==1) {
+            if(password_verify($password, $db_password)) {
+                return $khojeko_username;
+            } else {
+                return null;
+            }
+        }
+    }
+
+    public function user_verification($username){
+        $data = array(
+            'khojeko_username' => $username,
+            'u_verified' => 1
+        );
+        $info = $this->db->get_where('user', $data);
+        if ($info->num_rows() == 1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function check_email(){
+        $query = $this->db->get_where('user', array('email' => $this->input->post('useremail')));
+        if($query->num_rows() == 1)
+            return true;
+        else
+            return false;
+    }
+
+    public function new_password(){
+        $this->db->where('email',$this->input->post('user_email'));
+        $this->db->update('user', array('password' => password_hash($this->input->post('n_password'), PASSWORD_DEFAULT)));
+        $this->session->set_flashdata('password_changed','<div class="alert alert-success">Your password has been changed. Please login to continue.</div>');
+    }
 
 }
