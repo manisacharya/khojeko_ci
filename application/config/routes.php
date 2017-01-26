@@ -121,3 +121,10 @@ $route['sold_unsold/(:num)/(:num)'] = 'items/sold_unsold/$1/$2';
 $route['hide_unhide/(:num)/(:num)'] = 'items/hide_unhide/$1/$2';
 $route['extend_date/(:num)/(:num)'] = 'items/extend_date/$1/$2';
 $route['premium/(:num)/(:num)'] = 'items/premium/$1/$2';
+
+// Admin Email
+$route['admin/verification'] = 'admin/email_pages/verification';
+$route['admin/support'] = 'admin/email_pages/support';
+$route['admin/feed'] = 'admin/email_pages/feed';
+$route['admin/inquiry'] = 'admin/email_pages/inquiry';
+$route['admin/mass_mail'] = 'admin/email_pages/mass_mail';
