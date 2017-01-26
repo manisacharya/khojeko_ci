@@ -18,8 +18,7 @@
         <h4 class="user-name"><?php echo $user_info->admin_name?></h4>
 
         <div class="dropdown user-login" style="width: 150px;">
-            <button class="btn btn-xs dropdown-toggle btn-rounded" type="button" data-toggle="dropdown" aria-expanded="true" style="width: 150px;">Home <span class="glyphicon glyphicon-chevron-down"></span>
-            </button>
+            <button class="btn btn-xs dropdown-toggle btn-rounded" type="button" data-toggle="dropdown" aria-expanded="true" style="width: 150px;"><span class="glyphicon glyphicon-chevron-down"></span></button>
             <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
                 <?php if($user_info->is_primary == 1): ?>
                     <li role="presentation"><?php echo anchor("admin/sign_up", "Register User");?></li>
@@ -71,12 +70,13 @@
                     <li><a href="<?php echo base_url('admin/data-tables');?>">Send Alert Message</a></li>
                 </ul>
             </li>
-            <li class="has-submenu"><a href="<?php echo base_url('admin/#');?>"> <span class="nav-label">Email Inbox</span></a>
+            <li class="has-submenu"><a href="<?php echo base_url('admin/#');?>"> <span class="nav-label">Email Setting</span></a>
                 <ul class="list-unstyled">
-                    <li><a href="<?php echo base_url('admin/chart-variants');?>">Support</a></li>
-                    <li><a href="<?php echo base_url('admin/gauges');?>">Feed Backs</a></li>
-                    <li><a href="<?php echo base_url('admin/vector-maps');?>">Enquiry</a></li>
-                    <li><a href="<?php echo base_url('admin/range-selector');?>">Mass Mail</a></li>
+                    <li><a href="<?php echo base_url('admin/verification');?>">Verification</a></li>
+                    <li><a href="<?php echo base_url('admin/support');?>">Support</a></li>
+                    <li><a href="<?php echo base_url('admin/feed');?>">Feedback</a></li>
+                    <li><a href="<?php echo base_url('admin/enquiry');?>">Enquiry</a></li>
+                    <li><a href="<?php echo base_url('admin/mass_mail');?>">Mass Mail</a></li>
                 </ul>
             </li>
             <li class="has-submenu"><a href="<?php echo base_url('admin/#');?>"> <span class="nav-label">Admin Panel Setting</span></a>
@@ -90,7 +90,6 @@
             </li>
         </ul>
     </nav>
-
 </aside>
 <!-- Aside Ends-->
 <section class="content">
