@@ -32,7 +32,7 @@ class Admin_pages extends CI_Controller {
             if($search_query){
                 $active_personal = $this->latest_verified_unverified_ad_model->total_items_search('personal', 0, '=0', $search_query);
                 $data['unverified_personal'] = $this->latest_verified_unverified_ad_model->search_active_inactive(0, 'personal', '=0', $search_query, $per_page, ($page_number - 1) * $per_page);
-            }else {
+            } else {
                 //get total rows of items
                 $active_personal = $this->latest_verified_unverified_ad_model->total_items('personal', 0, '=0');
                 $data['unverified_personal'] = $this->latest_verified_unverified_ad_model->get_details_item(0, 'personal', '=0', $per_page, ($page_number - 1) * $per_page);
@@ -262,8 +262,8 @@ class Admin_pages extends CI_Controller {
 
         $this->load->view('admin/templates/header', $data);
         $this->form_validation->set_rules('c_slug', 'Category', 'required', array('required' => 'You must choose a {field} to edit.'));
-        $this->form_validation->set_rules('c_name', 'Category Name', 'required');
-        $this->form_validation->set_rules('parent_slug', 'Parent', 'required');
+        /*$this->form_validation->set_rules('c_name', 'Category Name', 'required');*/
+        $this->form_validation->set_rules('parent_slug', 'Parent', 'required|differs[c_slug]');
         $data['message'] = $this->session->flashdata('message');
 
         if ($this->form_validation->run() === FALSE) {
@@ -274,7 +274,7 @@ class Admin_pages extends CI_Controller {
             } else {
                 $message = "<div class='alert alert-danger'>Not Edited !</div>";
             }
-            if($this->input->post('c_name')) {
+            if($this->input->post('c_slug')) {
                 $this->session->set_flashdata('message', $message);
                 redirect('admin/category_edit');
             }
