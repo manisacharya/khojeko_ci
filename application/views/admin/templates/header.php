@@ -70,13 +70,13 @@
                     <li><a href="<?php echo base_url('admin/data-tables');?>">Send Alert Message</a></li>
                 </ul>
             </li>
-            <li class="has-submenu"><a href="<?php echo base_url('admin/#');?>"> <span class="nav-label">Email Setting</span></a>
+            <li class="has-submenu<?php if(strpos($title, "Email") !== FALSE) { echo ' active';}?>"><a href="<?php echo base_url('admin/#');?>"><span class="nav-label">Email Setting</span></a>
                 <ul class="list-unstyled">
-                    <li><a href="<?php echo base_url('admin/verification');?>">Verification</a></li>
-                    <li><a href="<?php echo base_url('admin/support');?>">Support</a></li>
-                    <li><a href="<?php echo base_url('admin/feed');?>">Feedback</a></li>
-                    <li><a href="<?php echo base_url('admin/enquiry');?>">Enquiry</a></li>
-                    <li><a href="<?php echo base_url('admin/mass_mail');?>">Mass Mail</a></li>
+                    <li <?php if($title == "Email Verification") { echo "class='active'";}?>><a href="<?php echo base_url('admin/verification');?>">Verification</a></li>
+                    <li <?php if($title == "Email Support") { echo "class='active'";}?>><a href="<?php echo base_url('admin/support');?>">Support</a></li>
+                    <li <?php if($title == "Email Feedback") { echo "class='active'";}?>><a href="<?php echo base_url('admin/feed');?>">Feedback</a></li>
+                    <li <?php if($title == "Email Inquiry") { echo "class='active'";}?>><a href="<?php echo base_url('admin/inquiry');?>">Inquiry</a></li>
+                    <li <?php if($title == "Email Mass Mail") { echo "class='active'";}?>><a href="<?php echo base_url('admin/mass_mail');?>">Mass Mail</a></li>
                 </ul>
             </li>
             <li class="has-submenu"><a href="<?php echo base_url('admin/#');?>"> <span class="nav-label">Admin Panel Setting</span></a>
