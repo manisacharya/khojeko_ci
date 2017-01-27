@@ -22,7 +22,6 @@ class Email_pages extends CI_Controller
         $this->form_validation->set_error_delimiters('<div class="alert alert-danger">', '</div>');
         $this->data['user_info'] = $this->user_model->get_user_info('admin', $this->session->userdata['admin_logged_in']['id']);
         $this->data['categories'] = $this->categories_model->get_categories();
-        $this->output->enable_profiler(TRUE);
     }
 
     public function verification()
@@ -33,7 +32,7 @@ class Email_pages extends CI_Controller
 
         if ($this->form_validation->run() == FALSE) {
             $this->data['message'] = $this->session->flashdata('message');
-            $this->data['templates'] = $this->email_model->get_email(1);
+            $this->data['templates'] = $this->email_model->get_email('verification');
             $this->load->view('admin/templates/header', $this->data);
             $this->load->view('admin/email/verification', $this->data);
             $this->load->view('admin/templates/footer');
@@ -57,7 +56,7 @@ class Email_pages extends CI_Controller
 
         if ($this->form_validation->run() == FALSE) {
             $this->data['message'] = $this->session->flashdata('message');
-            $this->data['templates'] = $this->email_model->get_email(2);
+            $this->data['templates'] = $this->email_model->get_email('support');
             $this->load->view('admin/templates/header', $this->data);
             $this->load->view('admin/email/support', $this->data);
             $this->load->view('admin/templates/footer');
@@ -81,7 +80,7 @@ class Email_pages extends CI_Controller
 
         if ($this->form_validation->run() == FALSE) {
             $this->data['message'] = $this->session->flashdata('message');
-            $this->data['templates'] = $this->email_model->get_email(3);
+            $this->data['templates'] = $this->email_model->get_email('feedback');
             $this->load->view('admin/templates/header', $this->data);
             $this->load->view('admin/email/feed', $this->data);
             $this->load->view('admin/templates/footer');
@@ -105,7 +104,7 @@ class Email_pages extends CI_Controller
 
         if ($this->form_validation->run() == FALSE) {
             $this->data['message'] = $this->session->flashdata('message');
-            $this->data['templates'] = $this->email_model->get_email(4);
+            $this->data['templates'] = $this->email_model->get_email('inquiry');
             $this->load->view('admin/templates/header', $this->data);
             $this->load->view('admin/email/inquiry', $this->data);
             $this->load->view('admin/templates/footer');
@@ -129,7 +128,7 @@ class Email_pages extends CI_Controller
 
         if ($this->form_validation->run() == FALSE) {
             $this->data['message'] = $this->session->flashdata('message');
-            $this->data['templates'] = $this->email_model->get_email(5);
+            $this->data['templates'] = $this->email_model->get_email('mass_mail');
             $this->load->view('admin/templates/header', $this->data);
             $this->load->view('admin/email/mass_mail', $this->data);
             $this->load->view('admin/templates/footer');
