@@ -10,7 +10,7 @@ function showMyImage(input,id,num) {
             //var img_id = 'thumbnail'+num;
             $('#thumbnail'+num)
                 .attr('src', e.target.result)
-                .width(100)
+                .width(140)
                 .height(100);
         };
         reader.readAsDataURL(input.files[0]);
@@ -32,13 +32,14 @@ function createCloseButton(i,input_id) {
     document.getElementById("row"+i).appendChild(btn);
 }
 
-//remove image and button after clodse button clicked
+//remove image and button after close button clicked
 function remove(button_id) {
     var id = document.getElementById(button_id).getAttribute("name").split(":");
 
     $('#thumbnail'+id[0]).removeAttr('src').removeAttr('style');
     $('#'+button_id).remove();
     $('#'+id[1]).show();
+    document.getElementById('retail'+id[0]).style.display = "block";
     return document.getElementById(id[1]).value = '';
 }
 
