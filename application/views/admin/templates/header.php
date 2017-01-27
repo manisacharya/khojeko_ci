@@ -54,8 +54,9 @@
             <li class="has-submenu<?php if(strpos($title, "Site") !== FALSE) { echo ' active';}?>"><a href="<?php echo base_url('admin/#');?>"> <span class="nav-label">Banner Management</span></a>
                 <ul class="list-unstyled">
                     <li <?php if($title == "Site Logo") { echo "class='active'";}?>><a href="<?php echo base_url('admin/site_logo');?>">Insert Site Logo</a></li>
-                    <li><a href="<?php echo base_url('admin/buttons');?>">Top Menu Content Management</a></li>
+                    <li <?php if($title == "Site Top Banners") { echo "class='active'";}?>><a href="<?php echo base_url('admin/top_banners');?>">Top Menu Content Management</a></li>
                     <li><a href="<?php echo base_url('admin/icons');?>">Facebook Placeholder</a></li>
+                    <li <?php if($title == "Partners Logo") { echo "class='active'";}?>><a href="<?php echo base_url('admin/partner_logo');?>">Partner Logo Management</a></li>
                 </ul>
             </li>
             <li class="has-submenu"><a href="<?php echo base_url('admin/#');?>"> <span class="nav-label">User Management</span></a>

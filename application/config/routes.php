@@ -73,6 +73,10 @@ $route['upload_file'] = "upload/upload_file";
 $route['admin'] = 'admin/admin_pages/page';
 $route['admin/site_logo'] = 'admin/upload/site_logo/';
 $route['admin/logo_upload'] = 'admin/upload/logo_upload/';
+$route['admin/top_banners'] = 'admin/upload/top_banners/';
+$route['admin/top_banners_upload'] = 'admin/upload/top_banners_upload';
+$route['admin/partner_logo'] = 'admin/upload/partner_logo/';
+$route['admin/partner_logo_upload'] = 'admin/upload/partner_logo_upload';
 $route['admin/adv_index'] = 'admin/admin_pages/page';
 //admin active advertisements
 $route['admin/active_adv_personal'] = 'admin/admin_pages/page/active_adv_personal';
