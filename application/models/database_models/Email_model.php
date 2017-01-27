@@ -36,9 +36,9 @@ class Email_model extends CI_Model {
         return TRUE;
     }
 
-    public function get_email($id = FALSE)
+    public function get_email($type = FALSE)
     {
-        $this->db->where('id', $id);
+        $this->db->where('type', $type);
         $query = $this->db->get('emails', 1);
         return $query->row();
     }
