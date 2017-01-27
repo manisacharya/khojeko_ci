@@ -15,7 +15,14 @@
     <link href="<?php echo base_url('public/css/list_grid.css');?>" rel="stylesheet" />
     <link href="<?php echo base_url('public/css/login.css');?>" rel="stylesheet" />
     <link href="<?php echo base_url('public/css/signup.css'); ?>"  rel="stylesheet">
-
+    <noscript>
+        <style type="text/css">
+            .page-container {display:none;}
+        </style>
+        <div class="noscriptmsg">
+            You don't have javascript enabled.  Good luck with that.
+        </div>
+    </noscript>
     <link href="<?php echo base_url('public/images/icons/icon.ico')?>" rel="shortcut icon" />
 </head>
 <body>
