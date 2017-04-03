@@ -12,7 +12,6 @@
 <!--                    <table>-->
                     <?php
                         $i=1;
-                        $hr = 0;
                         foreach ($retailer_partners->result() as $row) {?>
 <!--                        <tr>-->
 <!--                            <td>--><?php //echo $i.'>'?><!--</td>-->
